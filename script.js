@@ -37,6 +37,7 @@ function adicionaTarefa() {
   const lista = document.getElementById('lista-tarefas')
   const item = document.createElement('li')
   item.textContent = confereCampo()
+  item.addEventListener('click', alteraFundo)
   lista.appendChild(item)
   
   
@@ -50,5 +51,23 @@ function confereCampo() {
     campo.value = ""
     return temp
   }
+
+}
+
+function alteraFundo(value) {
+  removeFundo()
+
+  let alvo = value.target;
+  value.target.classList.add('bg')
+
+}
+
+function removeFundo() {
+  const atual = document.getElementsByClassName('bg')[0]
+  if(atual){
+    atual.classList.remove('bg')
+  }
+
+
 
 }

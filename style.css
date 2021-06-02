@@ -58,7 +58,7 @@ html, body {
 #listArea {
   height: auto;
   width: 100%;
-  background-color: cadetblue;
+  background-color: red;
   min-height: 40px;
 }
 
@@ -73,4 +73,9 @@ html, body {
 
 #lista-tarefas {
   padding-left: 30px;
+}
+
+
+.bg {
+  background-color: rgb(128, 128, 128);
 }
