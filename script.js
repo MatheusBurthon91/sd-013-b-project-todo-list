@@ -43,3 +43,13 @@ function clearAll() {
 }
 
 document.getElementById('apaga-tudo').addEventListener('click', clearAll);
+
+// Adiciona Botão Remover-finalizados.
+function removeFinished() {
+  const finishedTasks = document.getElementsByClassName('completed');
+  for (let index = 0; index < finishedTasks.length; index += 0) {
+    finishedTasks[index].parentNode.removeChild(finishedTasks[index]);
+  }
+}
+
+document.getElementById('remover-finalizados').addEventListener('click', removeFinished);
