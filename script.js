@@ -51,3 +51,16 @@ function changeCompleted(event) {
     event.target.className += ' completed';
   }
 }
+
+//10
+const clearButton = document.createElement('button');
+clearButton.id = 'apaga-tudo';
+clearButton.innerText = 'Limpar lista';
+document.body.appendChild(clearButton);
+clearButton.addEventListener('click', clearList);
+
+function clearList () {
+  while (list.hasChildNodes()) {  
+    list.removeChild(list.firstChild);
+  } 
+}
