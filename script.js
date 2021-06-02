@@ -10,14 +10,22 @@ window.onload = function () {
     listaTarefa.innerText = novaTarefa;
     listaTarefa.className = 'itemLista';
     lista.appendChild(listaTarefa);
-  };
-
-  button.addEventListener('click', addTarefa);
-  
-  function trocaCorFundo(event) {
-    let itemClicado = event.target;
-    itemClicado.style.backgroundColor = 'rgb(128, 128, 128)';
   }
 
+  button.addEventListener('click', addTarefa);
+
+  const itensLi = document.getElementsByTagName('li');
+
+  function trocaCorFundo(event) {
+    for (let index = 0; index < itensLi.length; index += 1) {
+      if (itensLi[index].classList.contains('check')) {
+        itensLi[index].classList.remove('check');
+        itensLi[index].style.backgroundColor = 'white';
+      } else {
+        event.target.classList.add('check');
+        event.target.style.backgroundColor = 'rgb(128,128,128)';
+      }
+    }
+  }
   lista.addEventListener('click', trocaCorFundo);
 };
