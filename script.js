@@ -1,3 +1,5 @@
+const { RuleTester } = require("eslint");
+
 const ol = document.getElementById('lista-tarefas');
 function addAssigment() {
   const TextBox = document.getElementById('texto-tarefa');
@@ -21,3 +23,4 @@ function changeColor(event) {
   }
 }
 document.querySelector('#lista-tarefas').addEventListener('click', changeColor);
+teste;
