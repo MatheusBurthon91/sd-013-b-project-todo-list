@@ -39,6 +39,14 @@ function toggleTaskBehavior(event) {
   }
 }
 
+function cleanListBehavior(_event) {
+  const list = document.querySelector('#lista-tarefas');
+
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+}
+
 // Waiting page to load
 function clickEvents() {
   document.body.addEventListener('click', (event) => {
@@ -49,6 +57,9 @@ function clickEvents() {
       break;
     case 'task':
       toggleTaskBehavior(event);
+      break;
+    case 'clean-list':
+      cleanListBehavior(event);
       break;
     default:
       break;
