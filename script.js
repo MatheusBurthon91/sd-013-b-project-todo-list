@@ -24,3 +24,16 @@ document.body.appendChild(sectionList);
 let orderedList = document.createElement('ol');
 orderedList.id = 'lista-tarefas';
 sectionList.appendChild(orderedList);
+
+// Requisito 5
+let button = document.createElement('button');
+button.id = 'criar-tarefa';
+button.innerText = 'Inserir'
+sectionList.appendChild(button);
+
+button.addEventListener('click', function () {
+let li = document.createElement('li');
+  li.innerHTML = input.value;
+  orderedList.appendChild(li);
+  input.value = '';
+})
