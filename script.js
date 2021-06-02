@@ -6,12 +6,26 @@ function addTaskBehavior(_event) {
   if (taskInput.value) {
     const task = document.createElement('li');
 
+    task.classList.add('task');
     task.innerHTML = taskInput.value;
 
     taskList.appendChild(task);
   }
 
   taskInput.value = '';
+}
+
+function toggleTaskBehavior(event) {
+  const task = event.target;
+  const selectedTask = document.querySelector('.task.selected');
+
+  if (selectedTask) {
+    selectedTask.classList.remove('selected');
+  }
+
+  if (selectedTask !== task) {
+    task.classList.add('selected');
+  }
 }
 
 // Waiting page to load
@@ -23,6 +37,9 @@ window.onload = () => {
     switch (targetClass) {
     case 'add-task':
       addTaskBehavior(event);
+      break;
+    case 'task':
+      toggleTaskBehavior(event);
       break;
     default:
       break;
