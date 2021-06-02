@@ -26,11 +26,12 @@ html, body {
 }
 
 .headerContent {
-  height: 60px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid black;
+  flex-direction: column;
 
 }
