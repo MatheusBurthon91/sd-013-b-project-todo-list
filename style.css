@@ -1,14 +1,13 @@
 body {
-    background-color: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
 }
 
 * {
-    text-align: center;
-    margin-top: 100px;
-    margin: 50px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 #criar-tarefa {
-    text-align: center;
-    margin: auto;
+  text-align: center;
+  margin: auto;
 }
