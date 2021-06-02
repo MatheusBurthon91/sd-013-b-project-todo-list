@@ -21,11 +21,6 @@ addTaskBtn.addEventListener('click', () => {
 
 // troca a cor do fundo para cinza quando clicado duas vezes
 document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('selected')) {
-    e.target.classList.remove('selected');
-    e.target.style.background = 'none';
-    return;
-  }
   if (e.target.classList.contains('task')) {
     const tasks = document.querySelector('#lista-tarefas').children;
     for (let i = 0; i < tasks.length; i += 1) {
@@ -100,8 +95,8 @@ saveBtn.addEventListener('click', () => {
 const upBtn = document.querySelector('#mover-cima');
 upBtn.addEventListener('click', () => {
   const selected = document.querySelector('.selected');
-  if (selected && selected.previousSibling) {
-    const previousElement = selected.previousSibling;
+  if (selected && selected.previousElementSibling) {
+    const previousElement = selected.previousElementSibling;
     previousElement.insertAdjacentElement('beforebegin', selected);
   }
 });
@@ -109,8 +104,8 @@ upBtn.addEventListener('click', () => {
 const downBtn = document.querySelector('#mover-baixo');
 downBtn.addEventListener('click', () => {
   const selected = document.querySelector('.selected');
-  if (selected && selected.nextSibling) {
-    const nextElement = selected.nextSibling;
+  if (selected && selected.nextElementSibling) {
+    const nextElement = selected.nextElementSibling;
     nextElement.insertAdjacentElement('afterend', selected);
   }
 });
