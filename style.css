@@ -1,1 +1,8 @@
+#lista-tarefas {
+  list-style: none;
+  padding: 0px;
+}
 
+#lista-tarefas li {
+  margin: 4px;
+}
