@@ -12,12 +12,22 @@ function createTask() {
   input.value = '';
 }
 
+function changeSelected() {
+  const listItem = document.getElementsByClassName('listItem');
+  for (let key = 0; key < listItem.length; key += 1) {
+    if (listItem[key].className === 'listItem selected') {
+      listItem[key].classList.remove('selected');
+      listItem[key].style.backgroundColor = 'rgb(255, 255, 255)';
+    }
+  }
+}
+
 function createSelected(event) {
   const element = event.target;
-  console.log(element);
   if (element.className === 'listItem') {
-    console.log(element);
+    changeSelected();
     element.style.backgroundColor = 'rgb(128, 128, 128)';
+    element.classList.add('selected');
   }
 }
 
