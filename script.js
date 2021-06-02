@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 const h1 = document.createElement('h1');
 
 document.querySelector('header').appendChild(h1);
@@ -23,3 +24,12 @@ funcId.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
 olSelect.setAttribute('id', 'lista-tarefas');
 
 buttonSelect.setAttribute('id', 'criar-tarefa');
+
+const olId = document.getElementById('lista-tarefas');
+
+buttonSelect.addEventListener('click', () => {
+  let liCreat = document.createElement('li');
+  const input = document.querySelector('input').value;
+  olId.appendChild(liCreat).innerText = input;
+  document.querySelector('input').value = '';
+});
