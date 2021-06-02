@@ -36,6 +36,15 @@ function addSelectClass(event) {
   }
 }
 
+function removeSelectedClass() {
+  listItem = document.querySelectorAll('li');
+  for (let i = 0; i < listItem.length; i += 1) {
+    if (listItem[i].classList.contains('selected')) {
+      listItem[i].classList.remove('selected');
+    }
+  }
+}
+
 function bgColorLi() {
   listItem = document.querySelectorAll('li');
   for (let i = 0; i < listItem.length; i += 1) {
@@ -193,4 +202,6 @@ moveDownBtn.addEventListener('click', () => {
 
 if (localStorage.getItem('ol') !== undefined) {
   ol.innerHTML = localStorage.getItem('ol');
+  removeSelectedClass();
+  bgColorLi();
 }
