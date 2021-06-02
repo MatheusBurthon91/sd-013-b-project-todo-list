@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto slab, sans-serif;
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  background-color: black;
+  padding: 16px;
+}
+
+.title {
+  color: antiquewhite;
+  font-size: 2rem;
+}
+
+.tutorial {
+  font-size: 1rem;
+  color: #faebd7da;
+}
