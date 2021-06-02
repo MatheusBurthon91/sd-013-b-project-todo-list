@@ -2,6 +2,11 @@ const buttonCreateTask = document.querySelector('#criar-tarefa');
 const taskList = document.querySelector('#lista-tarefas');
 const buttonRemoveAll = document.querySelector('#apaga-tudo');
 const buttonRemoveFinished = document.querySelector('#remover-finalizados');
+const buttonSave = document.querySelector('#salvar-tarefas');
+const buttonUp = document.querySelector('#mover-cima');
+const buttonDown = document.querySelector('#mover-baixo');
+
+taskList.innerHTML = localStorage.getItem('taskList');
 
 function createTask() {
   const newTask = document.createElement('li');
@@ -11,9 +16,9 @@ function createTask() {
   document.getElementById('texto-tarefa').value = '';
 }
 
-function isSelectedOrCompleted(task, nameClass) {
-  if (task.classList.contains(nameClass)) {
-    task.classList.remove(nameClass);
+function isCompleted(task) {
+  if (task.classList.contains('completed')) {
+    task.classList.remove('completed');
     return true;
   }
   return false;
@@ -24,19 +29,16 @@ buttonCreateTask.addEventListener('click', createTask);
 taskList.addEventListener('click', (event) => {
   if (event.target.classList.contains('task')) {
     const previousElement = document.querySelector('.selected');
-    const selected = isSelectedOrCompleted(event.target, 'selected');
     if (previousElement) {
       previousElement.classList.remove('selected');
     }
-    if (!selected) {
-      event.target.classList.add('selected');
-    }
+    event.target.classList.add('selected');
   }
 }, false);
 
 taskList.addEventListener('dblclick', (event) => {
   if (event.target.classList.contains('task')) {
-    const completed = isSelectedOrCompleted(event.target, 'completed');
+    const completed = isCompleted(event.target);
     if (!completed) {
       event.target.classList.add('completed');
     }
@@ -54,5 +56,27 @@ function removeFinished() {
   }
 }
 
+function saveTasks() {
+  const tasks = taskList.innerHTML;
+  localStorage.setItem('taskList', tasks);
+}
+
+function moveUp() {
+  const selected = document.querySelector('.selected');
+  if (selected && selected.previousSibling) {
+    taskList.insertBefore(selected, selected.previousSibling);
+  }
+}
+
+function moveDown() {
+  const selected = document.querySelector('.selected');
+  if (selected && selected.nextSibling) {
+    taskList.insertBefore(selected.nextSibling, selected);
+  }
+}
+
 buttonRemoveAll.addEventListener('click', clearList);
 buttonRemoveFinished.addEventListener('click', removeFinished);
+buttonSave.addEventListener('click', saveTasks);
+buttonUp.addEventListener('click', moveUp);
+buttonDown.addEventListener('click', moveDown);
