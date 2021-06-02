@@ -17,11 +17,17 @@ function CreateElementClass(type, father, classN) {
 
 // Criação de tags.
 createElementID('button', main, 'criar-tarefa');
-const button = document.querySelector('#criar-tarefa');
-button.innerText = 'Adicionar';
+const addButton = document.querySelector('#criar-tarefa');
+addButton.innerText = 'Adicionar';
 
 createElementID('ol', main, 'lista-tarefas');
 const listT = document.querySelector('#lista-tarefas');
+
+createElementID('div', main, 'button-list');
+const buttonList = document.querySelector('#button-list');
+
+createElementID('button', buttonList, 'apaga-tudo');
+buttonList.firstElementChild.innerText = 'Apagar tudo';
 
 // Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
@@ -59,10 +65,19 @@ function listClickLine(e) {
   }
 }
 
+function clickClearList() {
+  const listItem = listT.children;
+  for (let index = listItem.length - 1; index <= listItem.length && index >= 0; index -= 1) {
+    listT.removeChild(listItem[index]);
+  }
+}
+
 // Event Listener.
-button.addEventListener('click', buttonClickAddList);
+addButton.addEventListener('click', buttonClickAddList);
 
 document.addEventListener('click', listClickResetBg);
 document.addEventListener('click', listClickBg);
 
 document.addEventListener('dblclick', listClickLine);
+
+document.querySelector('#apaga-tudo').addEventListener('click', clickClearList);
