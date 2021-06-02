@@ -40,10 +40,15 @@ function createButton() {
 
 createButton();
 
+function setBackGroundColor(event) {
+  event.target.style.backgroundColor = 'rgb(128,128,128)';    
+}
+
 function addAssignment() {
   const list = document.querySelector('#lista-tarefas');
   const input = document.querySelector('#texto-tarefa');
   const itemList = document.createElement('li');
+  itemList.addEventListener('click',setBackGroundColor);
   itemList.innerText = input.value;
   list.appendChild(itemList);
   input.value = '';
@@ -51,4 +56,3 @@ function addAssignment() {
 
 const buttonAdd = document.querySelector('#criar-tarefa');
 buttonAdd.addEventListener('click',addAssignment);
-
