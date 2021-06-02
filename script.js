@@ -1,4 +1,5 @@
 const button = document.querySelector('#criar-tarefa');
+const secondButton = document.querySelector('#apaga-tudo');
 
 function setClass(element) {
   element.addEventListener('click', () => {
@@ -35,3 +36,14 @@ function setTask() {
 }
 
 button.addEventListener('click', setTask);
+
+function clearTasks() {
+  const itens = document.querySelectorAll('li');
+  if (itens.length > 0) {
+    for (let index = 0; index < itens.length; index += 1) {
+      itens[index].remove();
+    }
+  }
+}
+
+secondButton.addEventListener('click', clearTasks);
