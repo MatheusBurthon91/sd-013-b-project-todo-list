@@ -28,7 +28,7 @@ function backgroundColorItem(event) {
 
 function lineThrough(event) {
   const eventTarget = event.target;
-  if (eventTarget.classList[0] === 'completed') {
+  if (eventTarget.classList.contains('completed')) {
     eventTarget.classList.remove('completed');
   } else {
     eventTarget.classList.add('completed');
@@ -76,8 +76,27 @@ function loadTasks() {
     const li = document.querySelectorAll('li');
     li[index].innerText = tasks[index];
     if (classes[index] !== '') {
-      console.log(classes[index]);
       li[index].className = classes[index];
+    }
+  }
+}
+
+function moveUp() {
+  const ol = document.getElementById(listaTarefas);
+  const li = document.querySelectorAll('li');
+  for (let index = 1; index < li.length; index += 1) {
+    if (li[index].classList.contains('selected')) {
+      ol.insertBefore(li[index], li[index - 1]);
+    }
+  }
+}
+
+function moveDown() {
+  const ol = document.getElementById(listaTarefas);
+  const li = document.querySelectorAll('li');
+  for (let index = 0; index < li.length - 1; index += 1) {
+    if (li[index].classList.contains('selected')) {
+      ol.insertBefore(li[index], li[index + 2]);
     }
   }
 }
@@ -100,6 +119,12 @@ function start() {
 
   const buttonSaveTasks = document.getElementById('salvar-tarefas');
   buttonSaveTasks.addEventListener('click', saveTasks);
+
+  const buttonMoveUp = document.getElementById('mover-cima');
+  buttonMoveUp.addEventListener('click', moveUp);
+
+  const buttonMoveDown = document.getElementById('mover-baixo');
+  buttonMoveDown.addEventListener('click', moveDown);
 }
 
 window.onload = start;
