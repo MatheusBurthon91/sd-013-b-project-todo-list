@@ -13,10 +13,25 @@ function criaTarefa() {
 botao.addEventListener('click', criaTarefa);
 
 function pintaSoUm(event) {
-  var x = event.target;
+  let x = event.target;
   for (let i = 0; i < listaTarefas.childElementCount; i += 1) {
     listaTarefas.children[i].style.backgroundColor = 'white';
-    }
+  }
   x.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 listaTarefas.addEventListener('click', pintaSoUm);
+
+function riscaTarefaCompletada(event) {
+  let x = event.target;
+  if (x.className == 'completed') {
+    x.style.textDecoration = 'none';
+    x.className = '';
+  }
+  else {
+    x.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
+    x.className = 'completed';
+  }
+  
+}
+
+listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
