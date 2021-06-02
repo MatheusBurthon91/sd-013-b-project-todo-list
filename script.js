@@ -100,8 +100,8 @@ saveBtn.addEventListener('click', () => {
 const upBtn = document.querySelector('#mover-cima');
 upBtn.addEventListener('click', () => {
   const selected = document.querySelector('.selected');
-  if (selected && selected.previousElementSibling) {
-    const previousElement = selected.previousElementSibling;
+  if (selected && selected.previousSibling) {
+    const previousElement = selected.previousSibling;
     previousElement.insertAdjacentElement('beforebegin', selected);
   }
 });
@@ -109,11 +109,18 @@ upBtn.addEventListener('click', () => {
 const downBtn = document.querySelector('#mover-baixo');
 downBtn.addEventListener('click', () => {
   const selected = document.querySelector('.selected');
-  if (selected && selected.nextElementSibling) {
-    const nextElement = selected.nextElementSibling;
+  if (selected && selected.nextSibling) {
+    const nextElement = selected.nextSibling;
     nextElement.insertAdjacentElement('afterend', selected);
   }
 });
 
+const removeSelectedTaskBtn = document.querySelector('#remover-selecionado');
+removeSelectedTaskBtn.addEventListener('click', () => {
+  const element = document.querySelector('.selected');
+  if (element) {
+    element.remove();
+  }
+});
 
 loadTasksSaved();
