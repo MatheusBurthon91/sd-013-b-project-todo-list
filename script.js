@@ -57,3 +57,18 @@ btnDeleteAll.addEventListener('click', function () {
     }
   }
 });
+
+// Implementa função para o botão 'Remover Finalizadas'"
+const btnDeleteCompleted = document.querySelector('#remover-finalizados');
+btnDeleteCompleted.addEventListener('click', function () {
+  const completedTasks = document.querySelectorAll('.completed');
+  if (completedTasks.length === 0) {
+    alert('Não há nenhuma tarefa concluída!');
+  } else {
+    const completedTasksLength = document.querySelectorAll('.completed').length;
+    for (let index = 0; index < completedTasksLength; index += 1) {
+      const childForRemove = completedTasks[index];
+      taskList.removeChild(childForRemove);
+    }
+  }
+});
