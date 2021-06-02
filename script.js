@@ -49,7 +49,42 @@ function deleteAll() {
   }
 }
 
+function saveTasks() {
+  const li = document.querySelectorAll('li');
+  let tasks = '';
+  let classes = '';
+  for (let index = 0; index < li.length; index += 1) {
+    tasks += li[index].innerText;
+    tasks += ',';
+    classes += li[index].classList.value;
+    classes += ',';
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem('classes', JSON.stringify(classes));
+}
+
+function loadTasks() {
+  if (localStorage.getItem('tasks') === null) {
+    return;
+  }
+  const tasks = JSON.parse(localStorage.getItem('tasks')).split(',');
+  tasks.pop();
+  const classes = JSON.parse(localStorage.getItem('classes')).split(',');
+  classes.pop();
+  for (let index = 0; index < tasks.length; index += 1) {
+    addTask();
+    const li = document.querySelectorAll('li');
+    li[index].innerText = tasks[index];
+    if (classes[index] !== '') {
+      console.log(classes[index]);
+      li[index].className = classes[index];
+    }
+  }
+}
+
 function start() {
+  loadTasks();
+
   const buttonCreateTask = document.getElementById('criar-tarefa');
   buttonCreateTask.addEventListener('click', addTask);
 
@@ -62,6 +97,9 @@ function start() {
 
   const buttonDeleteAll = document.getElementById('apaga-tudo');
   buttonDeleteAll.addEventListener('click', deleteAll);
+
+  const buttonSaveTasks = document.getElementById('salvar-tarefas');
+  buttonSaveTasks.addEventListener('click', saveTasks);
 }
 
 window.onload = start;
