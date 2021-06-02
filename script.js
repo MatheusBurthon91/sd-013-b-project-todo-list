@@ -41,8 +41,22 @@ function createButton() {
 createButton();
 
 function setBackGroundColor(event) {
-  event.target.style.backgroundColor = 'rgb(128,128,128)';    
-}
+  const itemList = document.querySelectorAll('.item');
+  for(index = 0; index < itemList.length; index += 1) {
+    if(itemList[index].className.includes('selected') === true) {
+      itemList[index].classList.remove('selected');
+      itemList[index].style.backgroundColor = 'white';        
+    }
+    event.target.style.backgroundColor = 'rgb(128,128,128)';
+    event.target.classList.add('selected');
+  }
+//   if(selected !== null){
+//     selected.classList.remove('selected'); 
+//   } else {
+//     event.target.style.backgroundColor = 'rgb(128,128,128)';
+//     event.target.classList.add('selected');
+//   }
+}   
 
 function addAssignment() {
   const list = document.querySelector('#lista-tarefas');
@@ -50,6 +64,7 @@ function addAssignment() {
   const itemList = document.createElement('li');
   itemList.addEventListener('click',setBackGroundColor);
   itemList.innerText = input.value;
+  itemList.className = 'item';
   list.appendChild(itemList);
   input.value = '';
 }
