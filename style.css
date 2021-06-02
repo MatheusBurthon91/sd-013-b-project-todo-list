@@ -1,3 +1,15 @@
 * {
   margin: 0;
 }
+
+h1 {
+  text-align: center;
+}
+
+#funcionamento {
+  text-align: center;
+}
+
+#texto-tarefa:hover {
+  border: 2px ridge cadetblue;
+}
