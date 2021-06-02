@@ -70,17 +70,27 @@ function toggleTaskBehavior(event) {
 }
 
 // Funções de gerenciamento de eventos
+function buttonSwitch(event) {
+  const targetClass = event.target.classList[1];
+  switch (targetClass) {
+  case 'add-task': addTaskBehavior(event);
+    break;
+  case 'clean-completed': cleanCompletedBehavior(event);
+    break;
+  case 'clean-list': cleanListBehavior(event);
+    break;
+  case 'save-list': saveListBehavior(event);
+    break;
+  default:
+    break;
+  }
+}
+
 function clickEvents() {
   document.body.addEventListener('click', (event) => {
     const targetClass = event.target.classList[0];
     switch (targetClass) {
-    case 'add-task': addTaskBehavior(event);
-      break;
-    case 'clean-completed': cleanCompletedBehavior(event);
-      break;
-    case 'clean-list': cleanListBehavior(event);
-      break;
-    case 'save-list': saveListBehavior(event);
+    case 'button': buttonSwitch(event);
       break;
     case 'task': toggleTaskBehavior(event);
       break;
