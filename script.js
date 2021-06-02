@@ -91,5 +91,8 @@ document.getElementById('mover-baixo').addEventListener('click', () => {
     alert('Nenhuma tarefa foi selecionada');
   }
 });
-
+document.getElementById('remover-selecionado').addEventListener('click', () => {
+  const selected = document.querySelector('.selected');
+  selected.remove();
+});
 window.onload = loadStorage;
