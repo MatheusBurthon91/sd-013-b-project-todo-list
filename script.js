@@ -19,7 +19,7 @@ function addEventListBackground() { // função para adicionar evento que ao cli
     list[index].addEventListener('click', listBackground);
   }
 }
-function listSublinha(eventoDeOrigem) {
+function listSublinha(eventoDeOrigem) { // essa função ao ser chamada adiciona ou remove a classe completed;
   const list = document.querySelectorAll('.list');
   const evento = eventoDeOrigem.target;
   for (let index = 0; index < list.length; index += 1) {
@@ -28,11 +28,19 @@ function listSublinha(eventoDeOrigem) {
     }
   }
 }
-function addEventListSublinha() {
+function addEventListSublinha() { // essa função adiciona evento que sublinha, chamando a função anterior;
   const list = document.querySelectorAll('.list');
   for (let index = 0; index < list.length; index += 1) {
     list[index].addEventListener('dblclick', listSublinha);
   }
+}
+function clearALl() { // essa função ao ser chamada limpa todas as tarefas da lista;
+  const lista = document.querySelector('#lista-tarefas');
+  lista.innerHTML = '';
+}
+function addEventClear() { // essa função adiciona evento de apagar todas as tarefas, chamando a função anterior;
+  const elemento = document.querySelector('#apaga-tudo');
+  elemento.addEventListener('click', clearALl);
 }
 function taskSubmit() { // função que adiciona o elemento com o valor do input, e chama a função anterior para adicionar evento que muda o fundo;
   const taskValue = document.querySelector('#texto-tarefa').value;
@@ -44,6 +52,7 @@ function taskSubmit() { // função que adiciona o elemento com o valor do input
   document.querySelector('#texto-tarefa').value = '';
   addEventListBackground();
   addEventListSublinha();
+  addEventClear();
 }
 const taskBtn = document.querySelector('#criar-tarefa');
 taskBtn.addEventListener('click', taskSubmit); // evento que adiciona tarefa a lista;
