@@ -5,6 +5,7 @@ window.onload = function() {
   activityList();
   createButton();
   highlightItem();
+  completeItem();
 };
 
 function heroTitle() {
@@ -44,6 +45,7 @@ function addToList() {
   document.querySelector('#criar-tarefa').addEventListener ('click', () => {
   const inputText = document.querySelector('#texto-tarefa').value;
   const newItem = document.createElement('li');
+  newItem.className = 'item';
   newItem.innerText = inputText;
   document.querySelector('ol').appendChild(newItem);
   document.querySelector('#texto-tarefa').value = null;
@@ -62,8 +64,8 @@ function removeColor() {
   const list = document.querySelector('ol');
   const selected = document.getElementsByClassName('selected');
   list.addEventListener('click', () => {
-    selected[0].removeAttribute('class');
     selected[0].removeAttribute('style');
+    selected[0].classList.remove('selected');
   });
 }
 
@@ -72,5 +74,17 @@ function addColor(event) {
     const clickedItem = event.target;
     clickedItem.classList.add('selected');
     clickedItem.style.backgroundColor = 'rgb(128,128,128)';
+  }
+}
+
+function completeItem() {
+  const list = document.querySelector('ol');
+  list.addEventListener('dblclick', addLine, false);
+}
+
+function addLine(event) {
+  if (event.target !== event.currentTarget) {
+    const clickedItem = event.target;
+    clickedItem.classList.add('completed');
   }
 }
