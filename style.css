@@ -18,6 +18,14 @@ h1 {
   text-decoration: line-through solid black;
 }
 
+#apaga-tudo {
+  color: white;
+  background-color: rgb(160 , 42 , 42);
+  border-radius: 10px;
+  height: 25px;
+  width: 120px;
+}
+
 #criar-tarefa {
   color: white;
   background-color: rgb(48 , 48 , 223);
@@ -30,6 +38,18 @@ h1 {
   text-align: center;
 }
 
+#remover-finalizados {
+  color: white;
+  background-color: rgb(48 , 48 , 223);
+  border-radius: 10px;
+  height: 25px;
+  width: 150px;
+}
+
 #texto-tarefa {
   border: 2px ridge cadetblue;
+}
+
+#ultimos-btn {
+  margin-top: 5px;
 }

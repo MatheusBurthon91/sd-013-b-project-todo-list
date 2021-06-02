@@ -1,5 +1,8 @@
 const buttonText = document.getElementById('criar-tarefa');
 const listItem = document.getElementsByTagName('li');
+const eraseAllBtn = document.getElementById('apaga-tudo');
+const eraseCompletedBtn = document.getElementById('remover-finalizados');
+const mainList = document.getElementById('lista-tarefas');
 console.log(listItem);
 
 function selectedItem(event) {
@@ -25,7 +28,6 @@ function completedItem(event) {
 }
 
 function clickAddList() {
-  const mainList = document.getElementById('lista-tarefas');
   const inputText = document.getElementById('texto-tarefa');
   const lineList = document.createElement('li');
   lineList.className = 'lista';
@@ -37,3 +39,24 @@ function clickAddList() {
 }
 
 buttonText.addEventListener('click', clickAddList);
+
+function eraseAll() {
+  const childList = document.getElementsByTagName('li');
+  while (childList[0]) {
+    mainList.removeChild(childList[0]);
+  }
+}
+
+eraseAllBtn.addEventListener('click', eraseAll);
+
+function eraseCompleted() {
+  const childList = document.getElementsByTagName('li');
+  for (let index = 0; index < childList.length; index += 1) {
+    if (childList[index].classList.contains('completed')) {
+      mainList.removeChild(childList[index]);
+      index -= 1;
+    }
+  }
+}
+
+eraseCompletedBtn.addEventListener('click', eraseCompleted);
