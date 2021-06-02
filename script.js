@@ -19,8 +19,20 @@ function changeColor(event) {
     selectedOne.classList.remove('selected');
   }
   const listItem = event.target;
-  listItem.style.backgroundColor = 'rgb(128,128,128)'
+  listItem.style.backgroundColor = 'rgb(128,128,128)';
   listItem.classList.add('selected');
 }
 
 orderedList.addEventListener('click', changeColor);
+
+// Adiciona DoubleClick.
+function riskItem(event) {
+  const listItem = event.target;
+  if (listItem.classList.contains('completed')) {
+    listItem.classList.remove('completed');
+  } else {
+    listItem.classList.add('completed');
+  }
+}
+
+orderedList.addEventListener('dblclick', riskItem);
