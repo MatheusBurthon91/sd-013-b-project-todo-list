@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Project| To-do list</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -13,12 +14,13 @@
     <main>
         <form>
             <label>O que voce precisa fazer?</label>
-            <input type="text" name="" id="text-tarefa">
+            <input type="text" name="" id="texto-tarefa">
+            <button type="button" id="criar-tarefa" onsubmit="return false">Adicionar</button>
         </form>
         <section>
             <ol id="lista-tarefas"></ol>
         </section>
     </main>
-
+    <script src="script.js"></script>
 </body>
 </html>
