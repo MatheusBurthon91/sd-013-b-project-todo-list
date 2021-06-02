@@ -39,10 +39,21 @@ taskList.addEventListener('click', function (event) {
 // Função para riscar tarefa da lista
 taskList.addEventListener('dblclick', function (event) {
   if (event.target.className === '') {
-    console.log('Entrou na primeira');
     event.target.className = 'completed';
   } else if (event.target.className === 'completed') {
-    console.log('Entrou na segunda');
     event.target.className = '';
+  }
+});
+
+// Implementa a função de apagar tudo quando clica no botão 'Apagar Tudo'
+const btnDeleteAll = document.querySelector('#apaga-tudo'); 
+btnDeleteAll.addEventListener('click', function () {
+  if (taskList.children.length === 0) {
+    alert('Não existe nenhuma tarefa na sua lista');
+  } else {
+    const taskListLength = taskList.children.length;
+    for (let index = 0; index < taskListLength; index += 1) {
+      taskList.lastElementChild.remove();
+    }
   }
 });
