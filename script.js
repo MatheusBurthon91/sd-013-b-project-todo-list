@@ -74,16 +74,11 @@ function removeFundo() {
 
 function riscaConteudo(value) {
   const alvo = value.target
-
   if(verificaCompleted(alvo.classList)){
     alvo.classList.remove('completed')
   } else {
     alvo.classList.add('completed')
   }
-
-  
-
-
 }
 
 
@@ -91,7 +86,6 @@ function verificaCompleted(alvo) {
   let lista = alvo
   for(let i = 0; i < lista.length; i += 1){
     if(lista[i] === 'completed'){
-      console.log("achou")
       return true
     }
   }
@@ -151,4 +145,95 @@ function removeFinalizados() {
   }
 
 }
+
+
+
+function adicionaSalvar() {
+  const pai = document.getElementById('btnsArea');
+  const btn = document.createElement('button');
+  btn.className = "btnAdicionar"
+  btn.textContent = "Salvar"
+  btn.id = "salvar-tarefas"
+  btn.addEventListener('click', salvaTarefas)
+  pai.appendChild(btn)
+}
+
+adicionaSalvar()
+
+
+
+function salvaTarefas(){
+  const itens = document.getElementsByClassName('item')
+  let lista = transformaArray(itens)
+  let classes = getClasses(itens)
+  salvaLocal(lista, classes)
+}
+
+
+function transformaArray(save) {
+  let itens = save
+  let arr = []
+  for(let i = 0; i < itens.length; i += 1){
+    arr.push(itens[i].textContent)
+  }
+  return JSON.stringify(arr)
+}
+
+function salvaLocal(tarefas, classes) {
+  localStorage.clear();
+  localStorage.setItem("tarefas", tarefas)
+  localStorage.setItem("classes", classes)
+  
+
+}
+
+function getClasses(itens) {
+  let arr = []
+
+  for(let i = 0; i < itens.length; i += 1){
+    arr.push(itens[i].className)
+  }
+
+  return transformaClasses(arr)
+
+
+}
+
+
+function transformaClasses(arr){
+  return JSON.stringify(arr)
+
+}
+
+
+function verificaSalvos() {
+  const tarefas = localStorage.getItem('tarefas')
+  const classes = localStorage.getItem('classes')
+
+  if(tarefas && classes){
+    adicionaSalvos(tarefas, classes)
+
+  }
+}
+
+verificaSalvos();
+
+
+function adicionaSalvos(tarefa, classe) {
+  let tarefas = JSON.parse(tarefa)
+  let classes = JSON.parse(classe)
+  const pai = document.getElementById('lista-tarefas')
+  for(let i = 0; i < tarefas.length; i += 1) {
+    const filho = document.createElement('li')
+    filho.addEventListener('click', alteraFundo)
+    filho.addEventListener('dblclick', riscaConteudo)
+    filho.className = classes[i]
+    filho.textContent = tarefas[i]
+    pai.appendChild(filho)
+
+  }
+
+}
+
+
 
