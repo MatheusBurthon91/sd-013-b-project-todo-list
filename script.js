@@ -1,5 +1,6 @@
 let ol = document.querySelector('#lista-tarefas');
 let tarefa = document.querySelector('#criar-tarefa');
+let apaga = document.querySelector('#apaga-tudo');
 
 
 function criarTarefa(){
@@ -35,4 +36,10 @@ function removeCompleted(event) {
 
 ol.addEventListener('dblclick', completedTask)
 //ol.addEventListener('dblclick', removeCompleted)
+
+function apagarTudo() {
+  ol.innerText = '';
+}
+
+apaga.addEventListener('click', apagarTudo)
 
