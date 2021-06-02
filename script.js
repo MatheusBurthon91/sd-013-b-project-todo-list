@@ -137,6 +137,52 @@ function addSaveTasksEvent() {
   });
 }
 
+function addMoveUpEvent() {
+  const moveUpButton = document.querySelector('#mover-cima');
+
+  moveUpButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const currentSelected = document.querySelector('.selected');
+    const taskList = document.querySelector(taskListId);
+
+    if (currentSelected && currentSelected !== taskList.firstElementChild) {
+      const previousItem = currentSelected.previousElementSibling;
+      taskList.insertBefore(currentSelected, previousItem);
+    }
+  });
+}
+
+function addMoveDownEvent() {
+  const moveDownButton = document.querySelector('#mover-baixo');
+
+  moveDownButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const currentSelected = document.querySelector('.selected');
+    const taskList = document.querySelector(taskListId);
+
+    if (currentSelected && currentSelected !== taskList.lastElementChild) {
+      const nextItem = currentSelected.nextElementSibling;
+      taskList.insertBefore(nextItem, currentSelected);
+    }
+  });
+}
+
+function addRemoveSelectedEvent() {
+  const removeSelectedButton = document.querySelector('#remover-selecionado');
+
+  removeSelectedButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const currentSelected = document.querySelector('.selected');
+
+    if (currentSelected) {
+      currentSelected.remove();
+    }
+  });
+}
+
 window.onload = () => {
   retrieveFromLocalStorage();
   addTaskButtonEventListener();
@@ -146,4 +192,7 @@ window.onload = () => {
   addClearListEvent();
   addClearCompletedEvent();
   addSaveTasksEvent();
+  addMoveUpEvent();
+  addMoveDownEvent();
+  addRemoveSelectedEvent();
 };
