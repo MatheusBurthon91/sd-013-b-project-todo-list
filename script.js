@@ -17,3 +17,8 @@ let section0 = document.querySelector('section');
 section0.appendChild(input1);
 input1.id = 'texto-tarefa';
 
+// Requisito 5
+let button1 = document.createElement('button');
+section0.appendChild(button1);
+button1.id = 'criar-tarefa';
+button1.innerText = 'adicionar ';
