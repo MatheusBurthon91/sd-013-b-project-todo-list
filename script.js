@@ -1,3 +1,5 @@
+const listaTarefas = 'lista-tarefas';
+
 function createLi() {
   const li = document.createElement('li');
   const task = document.getElementById('texto-tarefa');
@@ -7,29 +9,39 @@ function createLi() {
 }
 
 function addTask() {
-  const ol = document.getElementById('lista-tarefas');
+  const ol = document.getElementById(listaTarefas);
   ol.appendChild(createLi());
 }
 
-function removeBackgroundColor() {
-  const ol = document.getElementById('lista-tarefas');
+function removeClass(classItem) {
+  const ol = document.getElementById(listaTarefas);
   for (let index = 0; index < ol.children.length; index += 1) {
-    ol.children[index].style.backgroundColor = 'transparent';
+    ol.children[index].classList.remove(classItem);
   }
 }
 
 function backgroundColorItem(event) {
   const eventTarget = event.target;
-  removeBackgroundColor();
-  eventTarget.style.backgroundColor = 'rgb(128, 128, 128)';
+  removeClass('selected');
+  eventTarget.classList.add('selected');
+}
+
+function lineThrough(event) {
+  const eventTarget = event.target;
+  if (eventTarget.classList[0] === 'completed') {
+    eventTarget.classList.remove('completed');
+  } else {
+    eventTarget.classList.add('completed');
+  }
 }
 
 function start() {
   const button = document.getElementById('criar-tarefa');
   button.addEventListener('click', addTask);
 
-  const listItem = document.getElementById('lista-tarefas');
+  const listItem = document.getElementById(listaTarefas);
   listItem.addEventListener('click', backgroundColorItem);
+  listItem.addEventListener('dblclick', lineThrough);
 }
 
 window.onload = start;
