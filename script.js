@@ -15,6 +15,15 @@ function CreateElementClass(type, father, classN) {
   father.appendChild(tag);
 }
 
+// Criação de tags.
+createElementID('button', main, 'criar-tarefa');
+const button = document.querySelector('#criar-tarefa');
+button.innerText = 'Adicionar';
+
+createElementID('ol', main, 'lista-tarefas');
+const listT = document.querySelector('#lista-tarefas');
+//
+
 // Limpa a caixa de texto do input.
 function buttonClickClear() {
   input.value = '';
@@ -23,26 +32,31 @@ function buttonClickClear() {
 // Adiciona o texto do input a lista.
 function buttonClickAddList() {
   const inputValue = input.value;
-  CreateElementClass('li', document.querySelector('#lista-tarefas'), 'list-item');
-  document.querySelector('#lista-tarefas').lastChild.innerText = inputValue;
+  CreateElementClass('li', listT, 'list-item');
+  listT.lastChild.innerText = inputValue;
 }
 
-function listClick(e) {
+// Reseta a cor do background dos list-item quando são clicados.
+function listClickResetBg(e) {
+  const itens = listT.children;
+  if (e.target.classList.contains('list-item')) {
+    for (let index = 0; index < itens.length; index += 1) {
+      itens[index].style.backgroundColor = 'white';
+    }
+  }
+}
+
+// Adiciona background color nos list-item quando são clicados.
+function listClickBg(e) {
   if (e.target.classList.contains('list-item')) {
     e.target.style.backgroundColor = 'rgb(128, 128, 128)';
   }
 }
 
-// Criação de tags.
-
-createElementID('button', main, 'criar-tarefa');
-const button = document.querySelector('#criar-tarefa');
-button.innerText = 'Adicionar';
-
-createElementID('ol', main, 'lista-tarefas');
-
 // Event Listener.
 button.addEventListener('click', buttonClickAddList);
 button.addEventListener('click', buttonClickClear);
 
-document.addEventListener('click', listClick);
+document.addEventListener('click', listClickResetBg);
+document.addEventListener('click', listClickBg);
+//
