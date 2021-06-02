@@ -42,6 +42,15 @@ function bgColorLi() {
   }
 }
 
+function addCompletedClass(event) {
+  const evento = event;
+  if (event.target.classList.contains('completed')) {
+    evento.target.classList.remove('completed');
+  } else {
+    evento.target.classList.add('completed');
+  }
+}
+
 // EventListeners
 button.addEventListener('click', () => {
   createListItem();
@@ -52,5 +61,11 @@ ol.addEventListener('click', (event) => {
   if (event.target.classList.contains('list-item')) {
     addSelectClass(event);
     bgColorLi();
+  }
+});
+
+ol.addEventListener('dblclick', (event) => {
+  if (event.target.classList.contains('list-item')) {
+    addCompletedClass(event);
   }
 });
