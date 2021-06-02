@@ -1,1 +1,12 @@
- 
+* {
+  margin: 0;
+}
+
+#title {
+  text-align: center;
+  margin: 3%;
+}
+
+p {
+  margin-left: 2.5%;
+}
