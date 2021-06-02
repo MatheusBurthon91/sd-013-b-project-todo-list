@@ -129,3 +129,26 @@ function limpaTudo() {
   
 }
 
+
+function adicionaRemover() {
+  const pai = document.getElementById('btnsArea')
+  const btn = document.createElement('button')
+  btn.className = "btnAdicionar"
+  btn.textContent = "Limpar Completos"
+  btn.id = "remover-finalizados"
+  btn.addEventListener('click', removeFinalizados)
+  pai.appendChild(btn)
+}
+
+adicionaRemover()
+
+function removeFinalizados() {
+  const pai = document.getElementById('lista-tarefas')
+  const filhos = document.getElementsByClassName('completed')
+  let quant = filhos.length;
+  for(let i = quant - 1; i >= 0; i -= 1){
+    pai.removeChild(filhos[i])
+  }
+
+}
+
