@@ -6,6 +6,7 @@ function addTarefa() {
   const listaTarefas = document.getElementById('lista-tarefas');
   listaTarefas.appendChild(item);
   inp.value = '';
+  inp.focus();
 }
 const botaoAdd = document.getElementById('criar-tarefa');
 botaoAdd.addEventListener('click', addTarefa);
@@ -30,3 +31,10 @@ function risco(event) {
     event.target.className += ' completed';
   }
 }
+
+function apagaTudo() {
+  const listaDeTarefas = document.getElementById('lista-tarefas');
+  listaDeTarefas.innerText = '';
+}
+const botaoApaga = document.getElementById('apaga-tudo');
+botaoApaga.addEventListener('click', apagaTudo);
