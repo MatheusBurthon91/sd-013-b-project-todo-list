@@ -6,6 +6,7 @@ window.onload = function() {
   createButton();
   highlightItem();
   completeItem();
+  clearButton();
 };
 
 function heroTitle() {
@@ -91,4 +92,22 @@ function addRemoveLine(event) {
     clickedItem.classList.add('completed');
     }
   }
+}
+
+function clearButton() {
+  const button = document.createElement('button');
+  button.id = 'apaga-tudo';
+  button.innerText = 'Apagar tudo';
+  document.querySelector('main').appendChild(button);
+  clearList();
+}
+
+function clearList() {
+  const button = document.querySelector('#apaga-tudo');
+  const list = document.querySelector('ol');
+  button.addEventListener('click', () => {
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+   }
+  });
 }
