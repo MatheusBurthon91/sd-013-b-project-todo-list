@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.mainContent {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  height: 600px;
+  width: 1200px;
+  background-color: royalblue;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.headerContent {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+
+}
