@@ -6,9 +6,21 @@ h1 {
   text-align: center;
 }
 
+.lista {
+  font-style: italic;
+}
+
+.selected {
+  background-color: grey;
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}
+
 #criar-tarefa {
   color: white;
-  background-color: rgb(48, 48, 223);
+  background-color: rgb(48 , 48 , 223);
   border-radius: 10px;
   height: 25px;
   width: 80px;
