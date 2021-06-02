@@ -1,4 +1,14 @@
 // Funções de comportamento/resposta a eventos
+function completeTaskBehavior(event) {
+  const task = event.target;
+
+  if (task.classList.contains('completed')) {
+    task.classList.remove('completed');
+  } else {
+    task.classList.add('completed');
+  }
+}
+
 function addTaskBehavior(_event) {
   const taskInput = document.querySelector('#texto-tarefa');
   const taskList = document.querySelector('#lista-tarefas');
@@ -6,6 +16,7 @@ function addTaskBehavior(_event) {
   if (taskInput.value) {
     const task = document.createElement('li');
 
+    task.addEventListener('dblclick', completeTaskBehavior);
     task.classList.add('task');
     task.innerHTML = taskInput.value;
 
@@ -28,23 +39,10 @@ function toggleTaskBehavior(event) {
   }
 }
 
-function completeTaskBehavior(event) {
-  const task = event.target;
-
-  if (task.classList.contains('completed')) {
-    task.classList.remove('completed');
-  } else {
-    task.classList.add('completed');
-  }
-
-}
-
 // Waiting page to load
-window.onload = () => {
-  // Event Bubbling
+function clickEvents() {
   document.body.addEventListener('click', (event) => {
     const targetClass = event.target.classList[0];
-
     switch (targetClass) {
     case 'add-task':
       addTaskBehavior(event);
@@ -56,15 +54,23 @@ window.onload = () => {
       break;
     }
   });
-  document.body.addEventListener('dblclick', (event) => {
-    const targetClass = event.target.classList[0];
+}
 
-    switch (targetClass) {
-    case 'task':
-      completeTaskBehavior(event);
-      break;
-    default:
-      break;
-    }
-  });
+// function dblclickEvents() {
+//   document.body.addEventListener('dblclick', (event) => {
+//     const targetClass = event.target.classList[0];
+
+//     switch (targetClass) {
+//     case 'task':
+//       completeTaskBehavior(event);
+//       break;
+//     default:
+//       break;
+//     }
+//   });
+// }
+
+window.onload = () => {
+  // Event Bubbling
+  clickEvents();
 };
