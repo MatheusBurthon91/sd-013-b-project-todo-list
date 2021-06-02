@@ -27,4 +27,23 @@ function inputTaskList() {
 window.onload = () => {
   const createTaskButton = document.getElementById('criar-tarefa');
   createTaskButton.addEventListener('click', inputTaskList);
+
+  //BOTAO LIMPA
+  const clearButton = document.getElementById('apaga-tudo');
+  clearButton.addEventListener('click', () => {
+    const todoList = document.getElementById('lista-tarefas');
+    const listSize = todoList.children.length;
+    for (let index = 0; index < listSize; index += 1) {
+      todoList.removeChild(todoList.firstChild);
+    }
+  });
+
+  //REMOVER FINALIZADOS
+  const removeFinishedItemsButton = document.getElementById('remover-finalizados');
+  removeFinishedItemsButton.addEventListener('click', () => {
+    const finishedItems =  document.querySelectorAll('.completed');
+    for (item of finishedItems) {
+      item.parentNode.removeChild(item);
+    }
+  });
 };
