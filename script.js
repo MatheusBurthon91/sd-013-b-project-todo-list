@@ -33,6 +33,13 @@ function cleanListBehavior(_event) {
   }
 }
 
+function cleanSelectedBehavior(_event) {
+  const selectedTask = document.querySelector('.task.selected');
+  if (selectedTask) {
+    selectedTask.remove();
+  }
+}
+
 function completeTaskBehavior(event) {
   const task = event.target;
 
@@ -94,6 +101,8 @@ function buttonSwitch(event) {
   case 'clean-completed': cleanCompletedBehavior(event);
     break;
   case 'clean-list': cleanListBehavior(event);
+    break;
+  case 'clean-selected': cleanSelectedBehavior(event);
     break;
   case 'move-down': moveDownBehavior(event);
     break;
