@@ -1,4 +1,5 @@
 const main = document.querySelector('#principal');
+const input = document.querySelector('#texto-tarefa');
 
 // Cria tags e define ID.
 function createElementID(type, father, idName) {
@@ -7,9 +8,33 @@ function createElementID(type, father, idName) {
   father.appendChild(tag);
 }
 
-window.onload = function start() {
-  createElementID('input', main, 'texto-tarefa');
-  document.querySelector('#texto-tarefa').type = 'text';
+// Cria tags e define a classe.
+function CreateElementClass(type, father, classN) {
+  const tag = document.createElement(type);
+  tag.className = classN;
+  father.appendChild(tag);
+}
 
-  createElementID('ol', main, 'lista-tarefas');
-};
+// Limpa a caixa de texto do input.
+function buttonClickClear() {
+  input.value = '';
+}
+
+// Adiciona o texto do input a lista.
+function buttonClickAddList() {
+  const inputValue = input.value;
+  CreateElementClass('li', document.querySelector('#lista-tarefas'), 'list-item');
+  document.querySelector('#lista-tarefas').lastChild.innerText = inputValue;
+}
+
+// Criação de tags.
+
+createElementID('button', main, 'criar-tarefa');
+const button = document.querySelector('#criar-tarefa');
+button.innerText = 'Adicionar';
+
+createElementID('ol', main, 'lista-tarefas');
+
+// Event Listener.
+button.addEventListener('click', buttonClickAddList);
+button.addEventListener('click', buttonClickClear);
