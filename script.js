@@ -1,12 +1,15 @@
-let buttonSubmit = document.querySelector('#criar-tarefa')
+let listaTarefas = document.querySelector('#lista-tarefas');
+let tarefaInput = document.querySelector('#texto-tarefa');
 
-buttonSubmit.addEventListener('click', makeAssign);
+let buttonTarefa = document.querySelector('#criar-tarefa');
 
-function makeAssign() {
-  let textAssign = document.querySelector('#lista-tarefas');
-  let input = document.querySelector('#input');
-  let li = document.createElement('li');
-  li.innerText = input;
-  textAssign.appendChild(li);
-  // creatText.innerText = '';
-}
+
+buttonTarefa.addEventListener('click', criaTarefa);
+
+function criaTarefa() {
+  const item = document.createElement('li');
+  item.innerText = tarefaInput.value;
+  listaTarefas.appendChild(item);
+  tarefaInput.value = null;
+};
+
