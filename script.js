@@ -6,7 +6,7 @@ buttonCreateToDo.addEventListener('click', () => {
   const taskName = document.querySelector('#texto-tarefa').value;
   const createOrdedList = document.createElement('li');
   createOrdedList.setAttribute('class', 'toDoListItem');
-//   createOrdedList.setAttribute('onclick', 'ordedListClick()');
+
   createOrdedList.setAttribute('id', `li ${identificador}`);
   identificador += 1;
   toDoList.appendChild(createOrdedList).innerHTML = taskName;
