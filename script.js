@@ -19,16 +19,23 @@ function markListItem(event) {
   else target.classList.remove('completed');
   console.log(decoration);
 }
+
+function createTask(string) {
+  const taskList = document.querySelector('#lista-tarefas');
+  const task = document.createElement('li');
+  task.innerText = string;
+  taskList.appendChild(task);
+  task.addEventListener('click', clickListItem);
+  task.addEventListener('dblclick', markListItem);
+  return task;
+}
+
 function createTaskPress() {
   const input = document.querySelector('#texto-tarefa');
-  const list = document.querySelector('#lista-tarefas');
-  const listItem = document.createElement('li');
   if (input.value !== '') {
-    listItem.innerText = input.value;
+    console.log(input);
+    createTask(input.value);
     input.value = '';
-    list.appendChild(listItem);
-    list.addEventListener('click', clickListItem);
-    list.addEventListener('dblclick', markListItem);
   }
 }
 function removeAllTasks() {
@@ -54,3 +61,26 @@ function removeLinedTasks() {
     if (isCompletedTask(list[index])) list[index].remove();
   }
 }
+
+function saveAllTasks() {
+  let stringList = '';
+  const list = document.querySelector('#lista-tarefas').children;
+  for (let index = 0; index < list.length; index += 1) {
+    stringList += `${list[index].innerText}`;
+    if (isCompletedTask(list[index])) stringList += '.completed';
+    if (index < list.length - 1) stringList += ' ';
+  }
+  window.localStorage.setItem('lista', stringList);
+}
+
+function loadAllTasks() {
+  const tasks = window.localStorage.getItem('lista').split(' ');
+  for (let index = 0; index < tasks.length; index += 1) {
+    if (tasks[index].split('.')[1] === 'completed') {
+      const task = createTask((tasks[index].split('.')[0]));
+      task.classList.add('completed');
+    } else createTask(tasks[index]);
+  }
+}
+
+loadAllTasks();
