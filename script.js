@@ -7,7 +7,7 @@ window.onload = function() {
   highlightItem();
   completeItem();
   clearButton();
-  clearCompletedButton()
+  clearCompletedButton();
 };
 
 function heroTitle() {
@@ -63,11 +63,13 @@ function highlightItem() {
 // As funções a seguir, removeClass e addClass, foram feitas baseadas no código apresentado no vídeo "Handling Events for Multiple Elements" do canal KIRUPA (https://www.youtube.com/watch?v=Xwq1Hj1DyDM&t=303s)
 
 function removeColor() {
-  const list = document.querySelector('ol');
   const selected = document.getElementsByClassName('selected');
+  const list = document.querySelector('ol');
   list.addEventListener('click', () => {
+    if (selected.length !== 0) {
     selected[0].removeAttribute('style');
     selected[0].classList.remove('selected');
+    }
   });
 }
 
