@@ -30,7 +30,7 @@ function createListItem(task) {
   listItem.className = 'item';
   listItem.addEventListener('click', selectColor);
   listItem.addEventListener('dblclick', complete);
-  document.getElementById('lista-tarefa').appendChild(listItem);
+  document.getElementById('lista-tarefas').appendChild(listItem);
   document.querySelector('input').value = '';
 }
 
