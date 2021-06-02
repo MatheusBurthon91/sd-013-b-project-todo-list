@@ -38,6 +38,7 @@ function adicionaTarefa() {
   const item = document.createElement('li')
   item.textContent = confereCampo()
   item.addEventListener('click', alteraFundo)
+  item.addEventListener('dblclick', riscaConteudo)
   lista.appendChild(item)
   
   
@@ -56,8 +57,6 @@ function confereCampo() {
 
 function alteraFundo(value) {
   removeFundo()
-
-  let alvo = value.target;
   value.target.classList.add('bg')
 
 }
@@ -69,5 +68,32 @@ function removeFundo() {
   }
 
 
+
+}
+
+function riscaConteudo(value) {
+  const alvo = value.target
+
+  if(verificaCompleted(alvo.classList)){
+    alvo.classList.remove('completed')
+  } else {
+    alvo.classList.add('completed')
+  }
+
+  
+
+
+}
+
+
+function verificaCompleted(alvo) {
+  let lista = alvo
+  for(let i = 0; i < lista.length; i += 1){
+    if(lista[i] === 'completed'){
+      console.log("achou")
+      return true
+    }
+  }
+  return false
 
 }
