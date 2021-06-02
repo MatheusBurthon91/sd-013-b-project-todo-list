@@ -18,11 +18,20 @@ taskList.addEventListener('click', (event) => {
   if (classToRemove === null) {
     assistant.target.classList.add('selected');
     assistant.target.style.backgroundColor = 'rgb(128, 128, 128)';
-    console.log(classToRemove);
   } else {
     classToRemove.classList.remove('selected');
     classToRemove.style.backgroundColor = 'white';
     assistant.target.classList.add('selected');
     assistant.target.style.backgroundColor = 'rgb(128, 128, 128)';
+  }
+});
+
+taskList.addEventListener('dblclick', (event) => {
+  const assistant = event;
+  const classToRemove = document.querySelector('.completed');
+  if (classToRemove === null) {
+    assistant.target.classList.add('completed');
+  } else {
+    assistant.target.classList.remove('completed');
   }
 });
