@@ -26,3 +26,9 @@ function taskCompleted(event) {
 
 list.addEventListener('dblclick', taskCompleted);
 list.addEventListener('click', addBackground);
+
+function eraseAll() {
+  list.innerHTML = '';
+}
+
+document.querySelector('#apaga-tudo').addEventListener('click', eraseAll);
