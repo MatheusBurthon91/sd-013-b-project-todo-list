@@ -32,3 +32,8 @@ document.addEventListener('dblclick', (e) => {
     element.classList.toggle('completed');
   }
 });
+
+const clearAllBtn = document.querySelector('#apaga-tudo');
+clearAllBtn.addEventListener('click', () => {
+  olTaskList.innerHTML = '';
+});
