@@ -6,15 +6,8 @@ task.addEventListener('input', function (event) {
 });
 
 // Limpa o valor do input quando clica no campo
-task.addEventListener('dblclick', function () {
+task.addEventListener('click', function () {
   task.value = '';
-});
-
-// Botão 'Adicionar" recebe o texto do input e envia para Lista Ordenada
-const btnAdd = document.querySelector('#criar-tarefa');
-btnAdd.addEventListener('click', function () {
-  newTask(text);
-  task.value = 'Digite aqui sua tarefa!';
 });
 
 // Cria uma nova 'li' contendo o texto do input e agrega na lista ordenada
@@ -24,3 +17,22 @@ function newTask(inputText) {
   newLi.innerText = taskText;
   document.querySelector('#lista-tarefas').appendChild(newLi);
 }
+
+// Botão 'Adicionar" recebe o texto do input e envia para Lista Ordenada
+const btnAdd = document.querySelector('#criar-tarefa');
+btnAdd.addEventListener('click', function () {
+  newTask(text);
+  task.value = '';
+});
+
+// Função para mudar o Background Color das Tasks
+const taskList = document.querySelector('#lista-tarefas');
+taskList.addEventListener('click', function (event) {
+  if (taskList.children.length > 0) {
+    console.log('Entrou');
+    for (let index = 0; index < taskList.children.length; index += 1) {
+      taskList.children[index].style.backgroundColor = '';
+    }
+  }
+  event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+});
