@@ -20,3 +20,11 @@ button {
   background-color: #008CBA;
   color: white;
 }
+
+#funcionamento{
+  font-style: italic;
+}
+
+.selecionado {
+  background-color: rgb(128, 128, 128);
+}
