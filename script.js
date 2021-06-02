@@ -14,7 +14,7 @@ window.onload = function () {
 
   button.addEventListener('click', addTarefa);
 
-  const itensLi = document.getElementsByTagName('li');
+  const itensLi = document.getElementsByClassName('itemLista');
 
   function trocaCorFundo(event) {
     for (let index = 0; index < itensLi.length; index += 1) {
@@ -28,4 +28,13 @@ window.onload = function () {
     }
   }
   lista.addEventListener('click', trocaCorFundo);
+
+  function riscado(event) {
+    if (event.target.classList.contains('completed')) {
+      event.target.classList.remove('completed');
+    } else {
+        event.target.classList.add('completed');
+      }
+  }
+  lista.addEventListener('dblclick', riscado);
 };
