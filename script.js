@@ -19,12 +19,24 @@ botaoCriarTarefa.innerText = 'Criar Tarefa';
 const itemTarefasOl = document.querySelector('ol');
 
 function alteraCorItemLista(event) {
+  const itemLi = document.querySelectorAll('li');
   const evento = event;
-  console.log('Click OK');
-  const styleLi = document.querySelectorAll('li');
-  for (let index = 0; index < styleLi.length; index += 1) {
-    styleLi[index].style.backgroundColor = 'white';
+  for (let index = 0; index < itemLi.length; index += 1) {
+    itemLi[index].style.backgroundColor = 'white';
   }
   evento.target.style.backgroundColor = 'rgb(128,128,128)';
 }
 itemTarefasOl.addEventListener('click', alteraCorItemLista);
+
+// requesito 9- Ao clicar 2x no item marca com risco de completado
+// e retira o risco completado
+function tarefaCompletada(event) {
+  const evento = event;
+  const itemLi = document.querySelectorAll('li');
+  console.log('click OK2');
+  for (let index = 0; index < itemLi.length; index += 1) {
+    itemLi[index].className = 'item-tarefa';
+  }
+  evento.target.className = 'item-tarefa completed';
+}
+itemTarefasOl.addEventListener('dblclick', tarefaCompletada);
