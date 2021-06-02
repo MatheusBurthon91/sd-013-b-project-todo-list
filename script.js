@@ -25,15 +25,14 @@ ol.addEventListener('click', colorItem)
 
 
 function completedTask(event) {
-  event.target.classList.add('completed')
+  event.target.classList.toggle('completed')
 }
 
-function failTaks(event) {
-  let selected = document.querySelector('.completed')
-  if(selected) {
-    selected.classList.remove('selected')
-  }
+function removeCompleted(event) {
+  let completed = document.querySelector('.completed')
+  completed.classList.t('completed');
 }
 
 ol.addEventListener('dblclick', completedTask)
+//ol.addEventListener('dblclick', removeCompleted)
 
