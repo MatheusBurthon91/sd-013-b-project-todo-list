@@ -9,24 +9,33 @@ function createTask() {
   document.getElementById('texto-tarefa').value = '';
 }
 
-function deselect(task) {
-  if (task.classList.contains('selected')) {
-    task.classList.remove('selected');
-    return false;
+function isSelectedOrCompleted(task, nameClass) {
+  if (task.classList.contains(nameClass)) {
+    task.classList.remove(nameClass);
+    return true;
   }
-  return true;
+  return false;
 }
 
 buttonCreateTask.addEventListener('click', createTask);
 list.addEventListener('click', (event) => {
   if (event.target.classList.contains('task')) {
     const previousElement = document.querySelector('.selected');
-    const check = deselect(event.target);
+    const selected = isSelectedOrCompleted(event.target, 'selected');
     if (previousElement) {
       previousElement.classList.remove('selected');
     }
-    if (check) {
+    if (!selected) {
       event.target.classList.add('selected');
+    }
+  }
+}, false);
+
+list.addEventListener('dblclick', (event) => {
+  if (event.target.classList.contains('task')) {
+    const completed = isSelectedOrCompleted(event.target, 'completed');
+    if (!completed) {
+      event.target.classList.add('completed');
     }
   }
 }, false);
