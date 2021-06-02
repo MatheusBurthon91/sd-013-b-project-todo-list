@@ -8,7 +8,7 @@ function createItemList(value) {
 function createTask() {
   const input = document.getElementById('texto-tarefa');
   createItemList(input.value);
-  input.value = '';
+  input.value = '';// seis
 }
 
 function init() {
