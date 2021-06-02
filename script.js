@@ -237,3 +237,120 @@ function adicionaSalvos(tarefa, classe) {
 
 
 
+function adicionaMover(){
+  const pai = document.getElementById('btnsArea')
+  const subir = document.createElement('button')
+  const descer = document.createElement('button')
+
+  subir.id = "mover-cima"
+  descer.id = "mover-baixo"
+
+  subir.className = "btnAdicionar"
+  descer.className = "btnAdicionar"
+
+  subir.textContent = "Subir"
+  descer.textContent = "Descer"
+
+  subir.addEventListener('click', sobeItem)
+  descer.addEventListener('click', desceItem)
+
+  pai.appendChild(subir)
+  pai.appendChild(descer)
+
+
+
+
+
+}
+
+
+adicionaMover();
+
+
+
+function sobeItem() {
+  const selecionado = document.getElementsByClassName('bg')[0]
+  let lugar = posicao(selecionado);
+  sobe(lugar)
+
+}
+
+function desceItem() {
+  const selecionado = document.getElementsByClassName('bg')[0]
+  let lugar = posicao(selecionado);
+  desce(lugar)
+  
+
+}
+
+
+function posicao(selecionado) {
+  const selected = selecionado
+  const filhos = document.getElementsByClassName('item')
+  for(let i = 0; i < filhos.length; i += 1){
+    if(selected === filhos[i]){
+      return i
+    }
+  }
+  
+}
+
+function sobe(pos) {
+  if(pos === 0){
+    return
+  }
+  let temp;
+  let filhos = document.getElementsByClassName('item')
+  let novo = transforma(filhos)
+
+  temp = novo[pos - 1]
+  novo[pos - 1] = novo[pos]
+  novo[pos] = temp
+
+  refaz(novo)
+
+  
+
+}
+
+function transforma(objeto) {
+  let arr = []
+  for(let i = 0; i < objeto.length; i += 1){
+    arr.push(objeto[i])
+  }
+  return arr
+}
+
+
+function refaz(novo) {
+  limpaTudo()
+  const pai = document.getElementById('lista-tarefas')
+  for(let i = 0; i < novo.length; i += 1){
+    pai.appendChild(novo[i])
+  }
+}
+
+
+function desce(pos) {
+  let filhos = document.getElementsByClassName('item')
+  if(pos === filhos.length - 1) {
+    return
+  }
+
+  let temp;
+  let novo = transforma(filhos)
+
+  temp = novo[pos + 1]
+  novo[pos + 1] = novo[pos]
+  novo[pos] = temp
+
+  refaz(novo)
+
+
+}
+
+
+//temp = filhos[pos - 1]
+// filhos[pos - 1] = filhos[pos]
+// filhos[pos] = temp
+
