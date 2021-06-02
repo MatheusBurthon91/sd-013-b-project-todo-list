@@ -42,9 +42,16 @@ function removeFinished() {
   }
 }
 
+function deleteAll() {
+  const ol = document.getElementById(listaTarefas);
+  while (ol.children.length) {
+    ol.removeChild(ol.firstChild);
+  }
+}
+
 function start() {
-  const button = document.getElementById('criar-tarefa');
-  button.addEventListener('click', addTask);
+  const buttonCreateTask = document.getElementById('criar-tarefa');
+  buttonCreateTask.addEventListener('click', addTask);
 
   const listItem = document.getElementById(listaTarefas);
   listItem.addEventListener('click', backgroundColorItem);
@@ -52,6 +59,9 @@ function start() {
 
   const buttonRemove = document.getElementById('remover-finalizados');
   buttonRemove.addEventListener('click', removeFinished);
+
+  const buttonDeleteAll = document.getElementById('apaga-tudo');
+  buttonDeleteAll.addEventListener('click', deleteAll);
 }
 
 window.onload = start;
