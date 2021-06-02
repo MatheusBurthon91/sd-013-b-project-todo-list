@@ -1,6 +1,7 @@
 const buttonCreateTask = document.querySelector('#criar-tarefa');
-const list = document.querySelector('#lista-tarefas');
+const taskList = document.querySelector('#lista-tarefas');
 const buttonRemoveAll = document.querySelector('#apaga-tudo');
+const buttonRemoveFinished = document.querySelector('#remover-finalizados');
 
 function createTask() {
   const newTask = document.createElement('li');
@@ -20,7 +21,7 @@ function isSelectedOrCompleted(task, nameClass) {
 
 buttonCreateTask.addEventListener('click', createTask);
 
-list.addEventListener('click', (event) => {
+taskList.addEventListener('click', (event) => {
   if (event.target.classList.contains('task')) {
     const previousElement = document.querySelector('.selected');
     const selected = isSelectedOrCompleted(event.target, 'selected');
@@ -33,7 +34,7 @@ list.addEventListener('click', (event) => {
   }
 }, false);
 
-list.addEventListener('dblclick', (event) => {
+taskList.addEventListener('dblclick', (event) => {
   if (event.target.classList.contains('task')) {
     const completed = isSelectedOrCompleted(event.target, 'completed');
     if (!completed) {
@@ -43,7 +44,15 @@ list.addEventListener('dblclick', (event) => {
 }, false);
 
 function clearList() {
-  list.innerHTML = '';
+  taskList.innerHTML = '';
+}
+
+function removeFinished() {
+  const finishedTaskList = document.querySelectorAll('.completed');
+  for (let index = 0; index < finishedTaskList.length; index += 1) {
+    taskList.removeChild(finishedTaskList[index]);
+  }
 }
 
 buttonRemoveAll.addEventListener('click', clearList);
+buttonRemoveFinished.addEventListener('click', removeFinished);
