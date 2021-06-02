@@ -7,6 +7,7 @@ window.onload = function() {
   highlightItem();
   completeItem();
   clearButton();
+  clearCompletedButton()
 };
 
 function heroTitle() {
@@ -108,6 +109,26 @@ function clearList() {
   button.addEventListener('click', () => {
     while (list.firstChild) {
       list.removeChild(list.firstChild);
+   }
+  });
+}
+
+function clearCompletedButton() {
+  const button = document.createElement('button');
+  button.id = 'remover-finalizados';
+  button.innerText = 'Apagar finalizados';
+  document.querySelector('main').appendChild(button);
+  clearCompletedList();
+}
+
+
+function clearCompletedList() {
+  const button = document.querySelector('#remover-finalizados');
+  button.addEventListener('click', () => {
+    const list = document.querySelector('#lista-tarefas');
+    const listItems = document.querySelectorAll('.completed');
+    for (let key in listItems) {
+    list.removeChild(listItems[key]);
    }
   });
 }
