@@ -18,4 +18,11 @@ function addBackground(event) {
   selectedList.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
+function taskCompleted(event) {
+  const selected = event.target;
+  if (selected.className === 'completed') selected.classList.remove('completed');
+  else selected.classList.add('completed');
+}
+
+list.addEventListener('dblclick', taskCompleted);
 list.addEventListener('click', addBackground);
