@@ -1,7 +1,3 @@
-.background-color {
-  background-color: rgb(128, 128, 128);
-}
-
-.remove-color {
-  background-color: white;
+.completed {
+  text-decoration: line-through;
 }

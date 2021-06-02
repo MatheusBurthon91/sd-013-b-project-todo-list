@@ -23,6 +23,15 @@ function addClickColor(event) {
   targ.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
+function taskCompleted(event) {
+  const selectedLine = event.target;
+  if (selectedLine.className === 'completed') {
+    selectedLine.classList.remove('completed');
+  } else {
+    selectedLine.classList.add('completed');
+  }
+}
 const selectorA = document.querySelector('#lista-tarefas');
 
 selectorA.addEventListener('click', addClickColor);
+selectorA.addEventListener('dblclick', taskCompleted);
