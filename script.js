@@ -19,7 +19,7 @@ function markListItem(event) {
   else target.classList.remove('completed');
   console.log(decoration);
 }
-function createTaskPress(event) {
+function createTaskPress() {
   const input = document.querySelector('#texto-tarefa');
   const list = document.querySelector('#lista-tarefas');
   const listItem = document.createElement('li');
@@ -29,5 +29,28 @@ function createTaskPress(event) {
     list.appendChild(listItem);
     list.addEventListener('click', clickListItem);
     list.addEventListener('dblclick', markListItem);
+  }
+}
+function removeAllTasks() {
+  const list = document.querySelector('#lista-tarefas').children;
+  const listLength = list.length;
+  for (let index = listLength - 1; index >= 0; index -= 1) {
+    list[index].remove();
+  }
+}
+
+function isCompletedTask(task) {
+  const classes = task.classList;
+  for (let index = 0; index < classes.length; index += 1) {
+    if (classes[index] === 'completed') return true;
+  }
+  return false;
+}
+
+function removeLinedTasks() {
+  const list = document.querySelector('#lista-tarefas').children;
+  const listLength = list.length;
+  for (let index = listLength - 1; index >= 0; index -= 1) {
+    if (isCompletedTask(list[index])) list[index].remove();
   }
 }
