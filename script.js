@@ -14,7 +14,13 @@ function addLi(listPath) {
 
 // Pintar o background de cinza
 function backgroundPainter(element) {
-  element.className = 'grey';
+  let searchingForGrey = document.querySelector('.grey');
+  if (searchingForGrey === null) {
+    element.className = 'grey';
+  } else {
+    searchingForGrey.classList.remove('grey');
+    element.className = 'grey';
+  }
 }
 
 // Tornar o fundo de um item da lista cinza
