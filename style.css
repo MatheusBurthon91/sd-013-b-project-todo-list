@@ -2,8 +2,8 @@
   box-sizing: border-box;
   font-family: Roboto slab, sans-serif;
   font-size: 16px;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -18,5 +18,5 @@ header {
 
 .tutorial {
   font-size: 1rem;
-  color: #faebd7da;
+  color: rgba(250 , 235 , 215 , 0.855);
 }
