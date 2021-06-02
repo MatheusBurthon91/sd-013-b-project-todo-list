@@ -1,7 +1,6 @@
 // ====================
 // Variables
 // ====================
-const paragraph = document.getElementById('funcionamento');
 const input = document.getElementById('texto-tarefa');
 const button = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
