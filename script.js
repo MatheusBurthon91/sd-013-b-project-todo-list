@@ -29,6 +29,9 @@ const buttonList = document.querySelector('#button-list');
 createElementID('button', buttonList, 'apaga-tudo');
 buttonList.firstElementChild.innerText = 'Apagar tudo';
 
+createElementID('button', buttonList, 'remover-finalizados');
+buttonList.firstElementChild.nextElementSibling.innerText = 'Apagar os finalizados';
+
 // Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
   const inputValue = input.value;
@@ -65,10 +68,21 @@ function listClickLine(e) {
   }
 }
 
+// Limpa a lista, quando o botão designado for clicado.
 function clickClearList() {
   const listItem = listT.children;
   for (let index = listItem.length - 1; index <= listItem.length && index >= 0; index -= 1) {
     listT.removeChild(listItem[index]);
+  }
+}
+
+// Limpa os item da lista que tem a class completed.
+function clickClearCompleted() {
+  const listItem = listT.children;
+  for (let index = listItem.length - 1; index < listItem.length && index >= 0; index -= 1) {
+    if (listItem[index].classList.contains('completed')) {
+      listT.removeChild(listItem[index]);
+    }
   }
 }
 
@@ -81,3 +95,5 @@ document.addEventListener('click', listClickBg);
 document.addEventListener('dblclick', listClickLine);
 
 document.querySelector('#apaga-tudo').addEventListener('click', clickClearList);
+
+document.querySelector('#remover-finalizados').addEventListener('click', clickClearCompleted);
