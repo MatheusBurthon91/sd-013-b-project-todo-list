@@ -10,4 +10,6 @@ function createElementID(type, father, idName) {
 window.onload = function start() {
   createElementID('input', main, 'texto-tarefa');
   document.querySelector('#texto-tarefa').type = 'text';
+
+  createElementID('ol', main, 'lista-tarefas');
 };
