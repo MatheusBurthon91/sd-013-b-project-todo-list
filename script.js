@@ -1,7 +1,8 @@
 window.onload = function(){
   const btnOk = document.getElementById('criar-tarefa')
-  
+  const olTasks = document.getElementById('lista-tarefas')
   btnOk.addEventListener('click', createTasks)
+  olTasks.addEventListener('click', changeBackGround)
 }
 
 function createTasks(){
@@ -13,6 +14,10 @@ function createTasks(){
   ol.appendChild(li)
   console.log('teste');
 
+}
 
-
+function changeBackGround(event){
+  const elementoAlvo = event.target
+  elementoAlvo.style.backgroundColor = 'rgb(128, 128, 128)';
+console.log(elementoAlvo);
 }
