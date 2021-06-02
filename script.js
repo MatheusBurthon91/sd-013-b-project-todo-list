@@ -5,7 +5,6 @@ const listaTarefas = document.getElementById('lista-tarefas');
 
 function criaTarefa() {
   const tarefa = document.createElement('li');
-  tarefa.className = 'tarefa';
   // Referencia da propriedade value https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onkeyup_addeventlistener
   tarefa.innerText = input.value;
   listaTarefas.appendChild(tarefa);
@@ -13,11 +12,11 @@ function criaTarefa() {
 }
 botao.addEventListener('click', criaTarefa);
 
-function pintaTarefa(event) {
+function pintaSoUm(event) {
   var x = event.target;
+  for (let i = 0; i < listaTarefas.childElementCount; i += 1) {
+    listaTarefas.children[i].style.backgroundColor = 'white';
+    }
   x.style.backgroundColor = 'rgb(128, 128, 128)';
 }
-function pintar() {
-    listaTarefas.addEventListener('click', pintaTarefa);
-}
-pintar();
+listaTarefas.addEventListener('click', pintaSoUm);
