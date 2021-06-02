@@ -1,7 +1,9 @@
+// Constantes
+const taskList = document.querySelector('#lista-tarefas');
+
 // Funções de comportamento/resposta a eventos
 function addTaskBehavior(_event) {
   const taskInput = document.querySelector('#texto-tarefa');
-  const taskList = document.querySelector('#lista-tarefas');
 
   if (taskInput.value) {
     const task = document.createElement('li');
@@ -24,10 +26,8 @@ function cleanCompletedBehavior(_event) {
 }
 
 function cleanListBehavior(_event) {
-  const list = document.querySelector('#lista-tarefas');
-
-  while (list.hasChildNodes()) {
-    list.removeChild(list.firstChild);
+  while (taskList.hasChildNodes()) {
+    taskList.removeChild(taskList.firstChild);
   }
 }
 
@@ -74,20 +74,15 @@ function clickEvents() {
   document.body.addEventListener('click', (event) => {
     const targetClass = event.target.classList[0];
     switch (targetClass) {
-    case 'add-task':
-      addTaskBehavior(event);
+    case 'add-task': addTaskBehavior(event);
       break;
-    case 'clean-completed':
-      cleanCompletedBehavior(event);
+    case 'clean-completed': cleanCompletedBehavior(event);
       break;
-    case 'clean-list':
-      cleanListBehavior(event);
-    break;
-    case 'save-list':
-      saveListBehavior(event);
+    case 'clean-list': cleanListBehavior(event);
       break;
-    case 'task':
-      toggleTaskBehavior(event);
+    case 'save-list': saveListBehavior(event);
+      break;
+    case 'task': toggleTaskBehavior(event);
       break;
     default:
       break;
@@ -109,27 +104,26 @@ function dblclickEvents() {
 }
 
 // Funções de criação dinâmica de elementos e carregamento da página
-function loadList(taskList) {
-  const tasks = JSON.parse(taskList);
-  const list = document.querySelector('#lista-tarefas');
+function loadList(savedTasks) {
+  const tasks = JSON.parse(savedTasks);
 
-  for (let taskKey of Object.keys(tasks)) {
+  Object.keys(tasks).forEach((taskKey) => {
     const task = document.createElement('li');
     const taskName = taskKey.split('.')[1];
 
     task.className = tasks[taskKey];
     task.innerHTML = taskName;
 
-    list.appendChild(task);
-  }
+    taskList.appendChild(task);
+  });
 }
 
 window.onload = () => {
   // Checking for existing list
-  const taskList = localStorage.getItem('sd-13-todo-list-project:task-list');
+  const savedTasks = localStorage.getItem('sd-13-todo-list-project:task-list');
 
-  if (taskList) {
-    loadList(taskList);
+  if (savedTasks) {
+    loadList(savedTasks);
   }
 
   // Event Bubbling
