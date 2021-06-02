@@ -22,10 +22,20 @@ applyButton.addEventListener('click', function(){
 	auxiliar();
 })
 
-
+//remove class selected
 function classRemover(){
 	for(let i = 0; i < ordenatedList.children.length;i++){
 		ordenatedList.children[i].classList.remove('selected');
+	}
+}
+
+function completeTask(){
+	for(let i in ordenatedList.children.classList){
+		if(ordenatedList.children[i].classList[i] === 'completed'){
+			return;
+		}else{
+			ordenatedList.children[i].classList.add('completed');
+		}
 	}
 }
 
@@ -38,11 +48,18 @@ function listFill(){
 		for(let i = 0; i < listArray.length; i++){
 			ordenatedList.children[i].innerText = listArray[i];
 			ordenatedList.children[i].className = 'liGenerated';
-			ordenatedList.children[i].addEventListener('click', classRemover);
+			
+			//remove selected e add selected
 			ordenatedList.children[i].addEventListener('click', function(){
+				classRemover();
 				ordenatedList.children[i].classList.add('selected');
 			})
+
+			//add event completed
+			ordenatedList.children[i].addEventListener('dbclick', completeTask);
+
 		}
+
 	}else{
 		alert('caixa de texto vazia');
 	}
@@ -65,3 +82,14 @@ for(let i =0; i<document.getElementsByClassName('liGenerated').length; i++){
 
 
 
+/*
+function completeTask(){
+	for(let i in document.getElementsByClassName('liGenerated').classList){
+		if(ordenatedList.children[i].classList[i] === 'completed'){
+			return;
+		}else{
+			ordenatedList.children[i].classList.add('completed');
+		}
+	}
+}
+*/
