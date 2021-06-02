@@ -35,6 +35,13 @@ function lineThrough(event) {
   }
 }
 
+function removeFinished() {
+  const completed = document.getElementsByClassName('completed');
+  while (completed.length) {
+    completed[0].parentNode.removeChild(completed[0]);
+  }
+}
+
 function start() {
   const button = document.getElementById('criar-tarefa');
   button.addEventListener('click', addTask);
@@ -42,6 +49,9 @@ function start() {
   const listItem = document.getElementById(listaTarefas);
   listItem.addEventListener('click', backgroundColorItem);
   listItem.addEventListener('dblclick', lineThrough);
+
+  const buttonRemove = document.getElementById('remover-finalizados');
+  buttonRemove.addEventListener('click', removeFinished);
 }
 
 window.onload = start;
