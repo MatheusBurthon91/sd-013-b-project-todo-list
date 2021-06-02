@@ -6,10 +6,18 @@ h1 {
   text-align: center;
 }
 
+#criar-tarefa {
+  color: white;
+  background-color: rgb(48, 48, 223);
+  border-radius: 10px;
+  height: 25px;
+  width: 80px;
+}
+
 #funcionamento {
   text-align: center;
 }
 
-#texto-tarefa:hover {
+#texto-tarefa {
   border: 2px ridge cadetblue;
 }
