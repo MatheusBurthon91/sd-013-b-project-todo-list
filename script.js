@@ -1,3 +1,23 @@
+// Função que recuperar as tasks salvas
+function recoverTasks(tasks) {
+  const tasksToRecover = tasks;
+  for (let index = 0; index < tasksToRecover.length; index += 1) {
+    const newTaskRecovered = document.createElement('li');
+    newTaskRecovered.innerText = tasksToRecover[index].text;
+    newTaskRecovered.style.backgroundColor = tasksToRecover[index].backGroundStyle;
+    newTaskRecovered.className = tasksToRecover[index].class;
+    document.querySelector('#lista-tarefas').appendChild(newTaskRecovered);
+  }
+}
+
+// Evento Onload que vai recurar as tasks armazenadas e carrega-las
+window.onload = function () {
+  const items = localStorage.getItem('Tasks') || [];
+  if (items.length !== 0) {
+    recoverTasks(JSON.parse(items));
+  }
+};
+
 // Captura o texto do Input e armazena na variável 'text'
 const task = document.querySelector('#texto-tarefa');
 let text = '';
@@ -71,4 +91,19 @@ btnDeleteCompleted.addEventListener('click', function () {
       taskList.removeChild(childForRemove);
     }
   }
+});
+
+// FUNÇÕES BONUS
+// Função para Salvar as tasks em uma array. Referências: https://developer.mozilla.org/pt-BR/docs/Web/API/Storage/getItem e https://www.horadecodar.com.br/2020/07/21/como-salvar-um-objeto-na-localstorage/
+const savedTasks = [];
+const taskChildren = taskList.children;
+const btnSave = document.querySelector('#salvar-tarefas');
+btnSave.addEventListener('click', function () {
+  for (let index = 0; index < taskChildren.length; index += 1) {
+    const label = taskChildren[index].innerText;
+    const style = taskChildren[index].style.backgroundColor;
+    const nameOfClass = taskChildren[index].className;
+    savedTasks.push({ text: label, backGroundStyle: style, class: nameOfClass });
+  }
+  localStorage.setItem('Tasks', JSON.stringify(savedTasks));
 });
