@@ -1,0 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
+.liSelectedColor {
+  background-color: rgb(128, 128, 128);
+}

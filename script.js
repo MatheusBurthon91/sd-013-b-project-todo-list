@@ -8,3 +8,11 @@ buttonAdd.addEventListener('click', () => {
   li.innerText = input.value;
   input.value = ''
 })
+
+const list = document.querySelector('#lista-tarefas')
+
+list.addEventListener('click', (event) => {
+  let li = document.getElementsByTagName('li')
+  let color = li.className = 'liSelectedColor'
+  event.target.classList.add(color)
+})
