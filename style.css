@@ -1,0 +1,8 @@
+* {
+  margin: 0;
+}
+
+header , p {
+  padding-top: 20px;
+  text-align: center;
+}
