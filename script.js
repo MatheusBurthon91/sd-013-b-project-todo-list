@@ -38,15 +38,13 @@ function addTask() {
 }
 
 // Exercicio 7
-addEventListener('click', changeColor);
-const itens = document.getElementsByClassName('item-list');
-const listOrdenada = document.getElementById('lista-tarefas');
-
-function changeColor(event) {
-  
-  event.target.style.backgroundColor = 'rgb(128,128,128)'
+function createBackgroundColor(event) {
+  const element = event.target;
+  if (element.className === 'item-list') {
+    element.style.backgroundColor = 'rgb(128, 128, 128)';
+    element.classList.add('selected');
+  }
 }
+addEventListener('click', createBackgroundColor)
 
-
-
-
+// Exercicio 8
