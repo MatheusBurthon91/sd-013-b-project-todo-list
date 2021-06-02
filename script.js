@@ -33,4 +33,19 @@ window.onclick = (e) => {
     }
   }
 };
-// e.target.className += ' completed';
+
+const clearAllButton = document.getElementById('apaga-tudo');
+clearAllButton.addEventListener('click', () => {
+  //   for (let index = 0; index < toDoListItem.length; index += 1) {}
+  document.getElementById('lista-tarefas').innerHTML = '';
+});
+
+const clearAllCheckedButton = document.getElementById('remover-finalizados');
+const getClassChecked = document.getElementsByClassName('completed');
+clearAllCheckedButton.addEventListener('click', () => {
+  for (let index = 0; index <= getClassChecked.length; index += 1) {
+    getClassChecked[0].remove();
+  }
+});
+
+//   console.log('bob');
