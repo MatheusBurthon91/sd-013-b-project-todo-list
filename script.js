@@ -4,6 +4,7 @@ window.onload = function() {
   input();
   activityList();
   createButton();
+  highlightItem();
 };
 
 function heroTitle() {
@@ -47,4 +48,15 @@ function addToList() {
   document.querySelector('ol').appendChild(newItem);
   document.querySelector('#texto-tarefa').value = null;
   });
+}
+
+function highlightItem() {
+  let list = document.querySelector('ol');
+  list.addEventListener ('click', highlight, false);
+  function highlight(event) {
+    if (event.target !== event.currentTarget) {
+      const clickedItem = event.target;
+      clickedItem.style.backgroundColor = 'rgb(128,128,128)';
+    }
+  }
 }
