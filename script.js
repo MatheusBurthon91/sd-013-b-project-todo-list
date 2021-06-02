@@ -66,6 +66,47 @@ function removeCompleted() {
   }
 }
 
+function moveUp() {
+  let aClass;
+  let aText;
+  let bClass;
+  let bText;
+  for (let i = 0; i < ol.children.length; i += 1) {
+    if (ol.children[i].classList.contains('selected') && i !== 0) {
+      aClass = ol.children[i].className;
+      aText = ol.children[i].innerText;
+      bClass = ol.children[i - 1].className;
+      bText = ol.children[i - 1].innerText;
+      ol.children[i - 1].className = aClass;
+      ol.children[i - 1].innerText = aText;
+      ol.children[i].className = bClass;
+      ol.children[i].innerText = bText;
+      bgColorLi();
+    }
+  }
+}
+
+function moveDown() {
+  let aClass;
+  let aText;
+  let bClass;
+  let bText;
+  for (let i = 0; i < ol.children.length; i += 1) {
+    if (ol.children[i].classList.contains('selected') && i !== ol.children.length - 1) {
+      aClass = ol.children[i].className;
+      aText = ol.children[i].innerText;
+      bClass = ol.children[i + 1].className;
+      bText = ol.children[i + 1].innerText;
+      ol.children[i + 1].className = aClass;
+      ol.children[i + 1].innerText = aText;
+      ol.children[i].className = bClass;
+      ol.children[i].innerText = bText;
+      bgColorLi();
+      break;
+    }
+  }
+}
+
 // ====================
 // New Buttons
 // ====================
@@ -90,6 +131,20 @@ saveBtn.id = 'salvar-tarefas';
 saveBtn.innerText = 'Save Tasks';
 saveBtn.style.marginRight = '8px';
 document.body.appendChild(saveBtn);
+
+// Move up
+const moveUpBtn = document.createElement('button');
+moveUpBtn.id = 'mover-cima';
+moveUpBtn.innerText = 'Move Up';
+moveUpBtn.style.marginRight = '8px';
+document.body.appendChild(moveUpBtn);
+
+// Move down
+const moveDownBtn = document.createElement('button');
+moveDownBtn.id = 'mover-baixo';
+moveDownBtn.innerText = 'Move Down';
+moveDownBtn.style.marginRight = '8px';
+document.body.appendChild(moveDownBtn);
 
 // ====================
 // EventListeners
@@ -122,6 +177,14 @@ removeCompletedBtn.addEventListener('click', () => {
 
 saveBtn.addEventListener('click', () => {
   localStorage.setItem('ol', ol.innerHTML);
+});
+
+moveUpBtn.addEventListener('click', () => {
+  moveUp();
+});
+
+moveDownBtn.addEventListener('click', () => {
+  moveDown();
 });
 
 // ====================
