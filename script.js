@@ -14,10 +14,9 @@ function clickListItem(event) {
 }
 function markListItem(event) {
   const { target } = event;
-  const decoration = target.style.textDecoration;
+  // const decoration = target.style.textDecoration;
   if (target.classList < 1) target.classList.add('completed');
   else target.classList.remove('completed');
-  console.log(decoration);
 }
 
 function createTask(string) {
@@ -33,7 +32,6 @@ function createTask(string) {
 function createTaskPress() {
   const input = document.querySelector('#texto-tarefa');
   if (input.value !== '') {
-    console.log(input);
     createTask(input.value);
     input.value = '';
   }
@@ -68,17 +66,19 @@ function saveAllTasks() {
   for (let index = 0; index < list.length; index += 1) {
     stringList += `${list[index].innerText}`;
     if (isCompletedTask(list[index])) stringList += '.completed';
-    if (index < list.length - 1) stringList += ' ';
+    if (index < list.length - 1) stringList += '/final/';
   }
   window.localStorage.setItem('lista', stringList);
 }
 
 function loadAllTasks() {
   const local = window.localStorage.getItem('lista');
+  console.log(local);
   if (local !== null) {
-    const tasks = local.split(' ');
+    const tasks = local.split('/final/');
     // const tasks = window.localStorage.getItem('lista').split(' ');
     for (let index = 0; index < tasks.length; index += 1) {
+      console.log(tasks[index]);
       if (tasks[index].split('.')[1] === 'completed') {
         const task = createTask((tasks[index].split('.')[0]));
         task.classList.add('completed');
