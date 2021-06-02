@@ -25,15 +25,34 @@ function getTarefas() {
   tarefas = document.querySelectorAll('.tarefa');
 }
 
+function clearSelected() {
+  for (let index = 0; index < tarefas.length; index += 1) {
+    const classeItem = tarefas[index].className;
+    tarefas[index].className = classeItem.replace(/selected/, '');
+  }
+}
+
 function selectTarefa(event) {
   // adicionar a classe selected para a li clicada
+  // 1. retira a classe selected de todas as li
+  clearSelected();
+  // 2. adiciona a classe selected à li clicada
+  getTarefas();
   const tarefaClicada = event.target;
   for (let index = 0; index < tarefas.length; index += 1) {
     if (tarefas[index] === tarefaClicada) {
-      tarefas[index].className = 'tarefa selected';
-    } else {
-      tarefas[index].className = 'tarefa';
+      tarefas[index].className += ' selected';
     }
+  }
+}
+
+function completedTarefa(event) {
+  const tarefaClicada = event.target;
+  const classeTarefaClicada = tarefaClicada.className;
+  if (classeTarefaClicada.includes(' completed')) {
+    tarefaClicada.className = classeTarefaClicada.replace(/completed/, '');
+  } else {
+    tarefaClicada.className += ' completed';
   }
 }
 
@@ -41,5 +60,6 @@ function construaLiClicavel() {
   getTarefas();
   for (let index = 0; index < tarefas.length; index += 1) {
     tarefas[index].addEventListener('click', selectTarefa);
+    tarefas[index].addEventListener('dblclick', completedTarefa);
   }
 }
