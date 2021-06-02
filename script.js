@@ -52,7 +52,7 @@ function changeCompleted(event) {
   }
 }
 
-//10
+// 10
 const clearButton = document.createElement('button');
 clearButton.id = 'apaga-tudo';
 clearButton.innerText = 'Limpar lista';
@@ -62,5 +62,19 @@ clearButton.addEventListener('click', clearList);
 function clearList () {
   while (list.hasChildNodes()) {  
     list.removeChild(list.firstChild);
+  } 
+}
+
+// 11
+const clearCompletedButton = document.createElement('button');
+clearCompletedButton.id = 'remover-finalizados';
+clearCompletedButton.innerText = 'Remover itens finalizados';
+document.body.appendChild(clearCompletedButton);
+clearCompletedButton.addEventListener('click', clearCompleted);
+
+function clearCompleted() {
+  const completedItens = document.getElementsByClassName('completed');
+  while (completedItens.length > 0) {  
+    completedItens[0].remove ();
   } 
 }
