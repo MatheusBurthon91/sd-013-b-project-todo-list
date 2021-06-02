@@ -46,7 +46,7 @@ taskList.addEventListener('dblclick', function (event) {
 });
 
 // Implementa a função de apagar tudo quando clica no botão 'Apagar Tudo'
-const btnDeleteAll = document.querySelector('#apaga-tudo'); 
+const btnDeleteAll = document.querySelector('#apaga-tudo');
 btnDeleteAll.addEventListener('click', function () {
   if (taskList.children.length === 0) {
     alert('Não existe nenhuma tarefa na sua lista');
