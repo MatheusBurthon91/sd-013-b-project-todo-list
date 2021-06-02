@@ -11,4 +11,4 @@ function addItem(){
 }
 
 let button = document.querySelector("button");
-button.addEventListener("dblclick", addItem);
+button.addEventListener("click", addItem);
