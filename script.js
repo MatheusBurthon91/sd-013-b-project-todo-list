@@ -51,12 +51,26 @@ function addToList() {
 }
 
 function highlightItem() {
-  let list = document.querySelector('ol');
-  list.addEventListener ('click', highlight, false);
-  function highlight(event) {
-    if (event.target !== event.currentTarget) {
-      const clickedItem = event.target;
-      clickedItem.style.backgroundColor = 'rgb(128,128,128)';
-    }
+  removeColor();
+  const list = document.querySelector('ol');
+  list.addEventListener('click', addColor, false);
+}
+
+// As funções a seguir, removeClass e addClass, foram feitas baseadas no código apresentado no vídeo "Handling Events for Multiple Elements" do canal KIRUPA (https://www.youtube.com/watch?v=Xwq1Hj1DyDM&t=303s)
+
+function removeColor() {
+  const list = document.querySelector('ol');
+  const selected = document.getElementsByClassName('selected');
+  list.addEventListener('click', () => {
+    selected[0].removeAttribute('class');
+    selected[0].removeAttribute('style');
+  });
+}
+
+function addColor(event) {
+  if (event.target !== event.currentTarget) {
+    const clickedItem = event.target;
+    clickedItem.classList.add('selected');
+    clickedItem.style.backgroundColor = 'rgb(128,128,128)';
   }
 }
