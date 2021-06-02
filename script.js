@@ -53,3 +53,29 @@ function removeFinished() {
 }
 
 document.getElementById('remover-finalizados').addEventListener('click', removeFinished);
+
+// Adiciona botão de Salvar tarefas.
+function getProprieties(item) {
+  const text = item.innerText;
+  const itemClass = item.className;
+  return [text, itemClass];
+}
+
+function saveTaskList () {
+  const listItems = document.getElementsByTagName('li');
+  for (let index = 0; index < listItems.length; index += 1) {
+    const arrayItem = (getProprieties(listItems[index]));
+    localStorage.setItem(index.toString(), arrayItem);
+  }
+}
+
+function readProprieties () {
+
+}
+
+document.getElementById('salvar-tarefas').addEventListener('click', saveTaskList);
+window.onload = function checkLocalStorage () {
+    for (let index = 0; index < localStorage.length; index += 1) {
+        console.log(localStorage.)
+    }
+}
