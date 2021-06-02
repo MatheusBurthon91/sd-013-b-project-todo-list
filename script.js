@@ -18,7 +18,6 @@ function createListItem() {
     createLi.innerText = input.value;
     createLi.classList.add('list-item');
     ol.appendChild(createLi);
-    listItem = document.querySelectorAll('li');
   }
 }
 
@@ -27,6 +26,7 @@ function clearInput() {
 }
 
 function addSelectClass(event) {
+  listItem = document.querySelectorAll('li');
   for (let i = 0; i < listItem.length; i += 1) {
     if (listItem[i] === event.target) {
       listItem[i].classList.add('selected');
@@ -37,6 +37,7 @@ function addSelectClass(event) {
 }
 
 function bgColorLi() {
+  listItem = document.querySelectorAll('li');
   for (let i = 0; i < listItem.length; i += 1) {
     if (listItem[i].classList.contains('selected')) {
       listItem[i].style.backgroundColor = 'rgb(128, 128, 128)';
@@ -47,6 +48,7 @@ function bgColorLi() {
 }
 
 function addCompletedClass(event) {
+  listItem = document.querySelectorAll('li');
   const evento = event;
   if (event.target.classList.contains('completed')) {
     evento.target.classList.remove('completed');
@@ -56,6 +58,7 @@ function addCompletedClass(event) {
 }
 
 function removeCompleted() {
+  listItem = document.querySelectorAll('li');
   for (let i = 0; i < listItem.length; i += 1) {
     if (listItem[i].classList.contains('completed')) {
       ol.removeChild(listItem[i]);
@@ -80,6 +83,13 @@ removeCompletedBtn.id = 'remover-finalizados';
 removeCompletedBtn.innerText = 'Remove Completed Tasks';
 removeCompletedBtn.style.marginRight = '8px';
 document.body.appendChild(removeCompletedBtn);
+
+// Save Tasks
+const saveBtn = document.createElement('button');
+saveBtn.id = 'salvar-tarefas';
+saveBtn.innerText = 'Save Tasks';
+saveBtn.style.marginRight = '8px';
+document.body.appendChild(saveBtn);
 
 // ====================
 // EventListeners
@@ -109,3 +119,15 @@ clearBtn.addEventListener('click', () => {
 removeCompletedBtn.addEventListener('click', () => {
   removeCompleted();
 });
+
+saveBtn.addEventListener('click', () => {
+  localStorage.setItem('ol', ol.innerHTML);
+});
+
+// ====================
+// STORAGE
+// ====================
+
+if (localStorage.getItem('ol') !== undefined) {
+  ol.innerHTML = localStorage.getItem('ol');
+}
