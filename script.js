@@ -11,21 +11,23 @@ function adicionarTarefa() {
 }
 
 botaoAdi.addEventListener('click', adicionarTarefa);
-  
-listaTarefa.addEventListener('click',(event)=>{
-  removendoClasse()
-  
-       event.target.classList.add('selected')
 
-})
-//Source=Exercicio 8 inspirado na resolução do Ygor Lages link:https://github.com/tryber/sd-013-b-project-todo-list/tree/ygor-project-todo-list
+listaTarefa.addEventListener('click', (event) => {
+  removendoClasse();
 
-function removendoClasse(evento){
-  //seleciona o elemento com a classe selected na posição 0
-  let li=document.getElementsByClassName('selected')[0];
-  //se caso ele achar um li na posição 0 ele vai exclui-lo
-  
-  if(li){  
-    li.classList.remove('selected')
+  event.target.classList.add('selected');
+});
+//Source=Requisito 8 inspirado na resolução do Ygor Lages link:https://github.com/tryber/sd-013-b-project-todo-list/tree/ygor-project-todo-list
+
+function removendoClasse(evento) {
+  //seleciona o elemento com a classe selected na posição 0;
+  let li = document.getElementsByClassName('selected')[0];
+  //se caso ele achar um li na posição 0 ele vai exclui-lo;
+  if (li) {
+    li.classList.remove('selected');
   }
 }
+
+listaTarefa.addEventListener('dblclick', (doubleclick) => {
+  doubleclick.target.classList.toggle('completed');
+});
