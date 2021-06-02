@@ -267,20 +267,17 @@ function adicionaMover(){
 adicionaMover();
 
 
-
+//13
 function sobeItem() {
   const selecionado = document.getElementsByClassName('bg')[0]
   let lugar = posicao(selecionado);
   sobe(lugar)
-
 }
 
 function desceItem() {
   const selecionado = document.getElementsByClassName('bg')[0]
   let lugar = posicao(selecionado);
   desce(lugar)
-  
-
 }
 
 
@@ -302,15 +299,10 @@ function sobe(pos) {
   let temp;
   let filhos = document.getElementsByClassName('item')
   let novo = transforma(filhos)
-
   temp = novo[pos - 1]
   novo[pos - 1] = novo[pos]
   novo[pos] = temp
-
   refaz(novo)
-
-  
-
 }
 
 function transforma(objeto) {
@@ -348,9 +340,31 @@ function desce(pos) {
 
 
 }
+// acaba 13
+
+function adicionaRemoverSelecionado(){
+  const pai = document.getElementById("btnsArea")
+  let filho = document.createElement('button')
+  filho.id = "remover-selecionado"
+  filho.className = "btnAdicionar"
+  filho.textContent = "Remover Selecionado"
+  filho.addEventListener('click', removeSelecionado)
+  pai.appendChild(filho)
+
+}
 
 
-//temp = filhos[pos - 1]
-// filhos[pos - 1] = filhos[pos]
-// filhos[pos] = temp
+adicionaRemoverSelecionado()
 
+
+
+function removeSelecionado() {
+  const selecionado = document.getElementsByClassName('bg')[0]
+  const pai = document.getElementById('lista-tarefas')
+  if(selecionado){
+    pai.removeChild(selecionado)
+
+  }
+  
+
+}
