@@ -16,9 +16,28 @@ let input1 = document.createElement('input');
 let section0 = document.querySelector('section');
 section0.appendChild(input1);
 input1.id = 'texto-tarefa';
+input1.type = 'text';
 
 // Requisito 5
+// criar o button
 let button1 = document.createElement('button');
 section0.appendChild(button1);
 button1.id = 'criar-tarefa';
-button1.innerText = 'adicionar ';
+button1.innerText = 'criar tarefa';
+button1.addEventListener('click', addTask)
+// fazer com que ao clicar no botao oq estiver no input va para lista;
+let myList = document.getElementById('lista-tarefas'); 
+let input = document.getElementById('texto-tarefa');
+
+function addTask() {
+  const list = document.createElement('li');
+  list.className = 'list-item';
+  list.innerText = input.value;
+  myList.appendChild(list);
+  input.value = '';
+}
+
+// 
+
+
+
