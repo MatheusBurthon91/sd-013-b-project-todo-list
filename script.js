@@ -6,19 +6,6 @@ function clearInputTextoTarefa() {
   inputTextoTarefa.value = '';
 }
 
-function createTarefa() {
-  const tarefa = inputTextoTarefa.value;
-  const li = document.createElement('li');
-  li.innerText = tarefa;
-  li.className = 'tarefa';
-  olListaTarefas.appendChild(li);
-  clearInputTextoTarefa();
-  inputTextoTarefa.focus();
-  construaLiClicavel();
-}
-
-btnCriarTarefa.addEventListener('click', createTarefa);
-
 let tarefas = document.querySelectorAll('.tarefa');
 
 function getTarefas() {
@@ -63,3 +50,16 @@ function construaLiClicavel() {
     tarefas[index].addEventListener('dblclick', completedTarefa);
   }
 }
+
+function createTarefa() {
+  const tarefa = inputTextoTarefa.value;
+  const li = document.createElement('li');
+  li.innerText = tarefa;
+  li.className = 'tarefa';
+  olListaTarefas.appendChild(li);
+  clearInputTextoTarefa();
+  inputTextoTarefa.focus();
+  construaLiClicavel();
+}
+
+btnCriarTarefa.addEventListener('click', createTarefa);
