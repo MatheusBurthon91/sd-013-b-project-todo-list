@@ -1,5 +1,5 @@
 // Funções de comportamento/resposta a eventos
-function addTaskBehavior(event) {
+function addTaskBehavior(_event) {
   const taskInput = document.querySelector('#texto-tarefa');
   const taskList = document.querySelector('#lista-tarefas');
 
@@ -21,11 +21,11 @@ window.onload = () => {
     const targetClass = event.target.classList[0];
 
     switch (targetClass) {
-      case 'add-task':
-        addTaskBehavior(event);
-        break;
-      default:
-        break;
+    case 'add-task':
+      addTaskBehavior(event);
+      break;
+    default:
+      break;
     }
   });
-}
+};
