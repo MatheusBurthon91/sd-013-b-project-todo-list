@@ -7,7 +7,7 @@ eraseButton.addEventListener('click', eraseListItems);
 createButton.addEventListener('click', createListItem);
 
 function selectColor(element) {
-  let selectedItem = document.getElementsByClassName('selected')[0]
+  const selectedItem = document.getElementsByClassName('selected')[0];
   if (selectedItem !== undefined) {
     selectedItem.className = selectedItem.className.replace(' selected', '');
   }
