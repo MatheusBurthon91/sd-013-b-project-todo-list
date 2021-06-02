@@ -12,6 +12,16 @@ function setClass(element) {
   });
 }
 
+function riskTask(element) {
+  element.addEventListener('dblclick', () => {
+    if (element.classList.contains('completed')) {
+      element.classList.remove('completed');
+    } else {
+      element.classList.add('completed');
+    }
+  });
+}
+
 function setTask() {
   const input = document.querySelector('#texto-tarefa');
   const item = document.createElement('li');
@@ -21,6 +31,7 @@ function setTask() {
   const lista = document.querySelector('#lista-tarefas');
   lista.appendChild(item);
   setClass(item);
+  riskTask(item);
 }
 
 button.addEventListener('click', setTask);
