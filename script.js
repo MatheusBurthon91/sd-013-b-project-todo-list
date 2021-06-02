@@ -38,3 +38,13 @@ function apagaTudo() {
 }
 const botaoApaga = document.getElementById('apaga-tudo');
 botaoApaga.addEventListener('click', apagaTudo);
+
+function removeFinalizados() {
+  const tarefasCompletas = document.getElementsByClassName('completed');
+  const listaDeTarefas = document.getElementById('lista-tarefas');
+  while (tarefasCompletas.length > 0) {
+    listaDeTarefas.removeChild(tarefasCompletas[0]);
+  }
+}
+const botaoRemove = document.getElementById('remover-finalizados');
+botaoRemove.addEventListener('click', removeFinalizados);
