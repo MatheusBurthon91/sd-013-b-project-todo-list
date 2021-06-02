@@ -8,7 +8,6 @@ function loadStorage() {
       newTask.outerHTML = localStorage.getItem(`item${index}`);
     }
   }
-
 }
 // events
 document.getElementById('criar-tarefa').addEventListener('click', () => {
@@ -28,9 +27,9 @@ document.addEventListener('click', (listItem) => {
   const itemClicked = listItem.target;
   if (itemClicked.classList.contains('list-item')) {
     for (let index = 0; index < otherItems.length; index += 1) {
-      otherItems[index].style.backgroundColor = 'white';
+      otherItems[index].classList.remove('selected');
     }
-    itemClicked.style.backgroundColor = 'grey';
+    itemClicked.classList.add('selected');
   }
 });
 document.addEventListener('dblclick', (listItem) => {
@@ -54,7 +53,6 @@ document.getElementById('remover-finalizados').addEventListener('click', () => {
     completedItems[0].remove();
   }
 });
-
 document.getElementById('salvar-tarefas').addEventListener('click', () => {
   const allItems = document.getElementsByClassName('list-item');
   console.log(allItems);
@@ -62,6 +60,36 @@ document.getElementById('salvar-tarefas').addEventListener('click', () => {
     localStorage.setItem(`item${index}`, allItems[index].outerHTML);
   }
   alert('Seus itens foram salvos!');
+});
+document.getElementById('mover-cima').addEventListener('click', () => {
+  const selectedTask = document.querySelector('.selected');
+  if (selectedTask !== null) {
+    const selectedContent = selectedTask.outerHTML;
+    const upperTask = selectedTask.previousElementSibling;
+    if (upperTask === null) {
+      alert('Essa tarefa ja esta no topo da lista.');
+    } else {
+      selectedTask.outerHTML = upperTask.outerHTML;
+      upperTask.outerHTML = selectedContent;
+    }
+  } else {
+    alert('Nenhuma tarefa foi selecionada');
+  }
+});
+document.getElementById('mover-baixo').addEventListener('click', () => {
+  const selectedTask = document.querySelector('.selected');
+  if (selectedTask !== null) {
+    const selectedContent = selectedTask.outerHTML;
+    const lowerTask = selectedTask.nextElementSibling;
+    if (lowerTask === null) {
+      alert('Essa tarefa ja esta na base da lista.');
+    } else {
+      selectedTask.outerHTML = lowerTask.outerHTML;
+      lowerTask.outerHTML = selectedContent;
+    }
+  } else {
+    alert('Nenhuma tarefa foi selecionada');
+  }
 });
 
 window.onload = loadStorage;

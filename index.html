@@ -14,16 +14,21 @@
     <main>
         <form>
             <label>O que voce precisa fazer?</label>
-            <input type="text" name="" id="texto-tarefa">
+            <input type="text" onsubmit="return false" id="texto-tarefa">
             <button type="button" id="criar-tarefa" onsubmit="return false">Adicionar</button>
         </form>
         <section>
             <ol id="lista-tarefas"></ol>
         </section>
-        <button id="apaga-tudo">Limpar lista</button>
-        <button id="remover-finalizados">Limpar finalizados</button>
-        <button id="salvar-tarefas">Salvar tarefas</button>
+        <section class="tools">
+            <button id="apaga-tudo">Limpar lista</button>
+            <button id="remover-finalizados">Limpar finalizados</button>
+            <button id="salvar-tarefas">Salvar tarefas</button>
+            <button id="mover-cima">Mover para cima</button>
+            <button id="mover-baixo">Mover para baixo</button>
+        </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
