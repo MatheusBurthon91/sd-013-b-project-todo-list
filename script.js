@@ -27,6 +27,12 @@ function buttonClickAddList() {
   document.querySelector('#lista-tarefas').lastChild.innerText = inputValue;
 }
 
+function listClick(e) {
+  if (e.target.classList.contains('list-item')) {
+    e.target.style.backgroundColor = 'rgb(128, 128, 128)';
+  }
+}
+
 // Criação de tags.
 
 createElementID('button', main, 'criar-tarefa');
@@ -38,3 +44,5 @@ createElementID('ol', main, 'lista-tarefas');
 // Event Listener.
 button.addEventListener('click', buttonClickAddList);
 button.addEventListener('click', buttonClickClear);
+
+document.addEventListener('click', listClick);
