@@ -21,4 +21,5 @@ pegarListaTarefa.addEventListener('click', (event) => {
   const evento = event;
   evento.target.style.background = 'rgb(128, 128, 128)';
 });
-// pegarListaTarefa.target.style.background = 'rgb(128,128,128)';
+const novaLista = document.createElement('li');
+novaLista.addEventListener('click', oneSelected);
