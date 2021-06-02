@@ -1,11 +1,15 @@
+// ====================
 // Variables
+// ====================
 const paragraph = document.getElementById('funcionamento');
 const input = document.getElementById('texto-tarefa');
 const button = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
 let listItem = document.querySelectorAll('li');
 
+// ====================
 // Functions
+// ====================
 function createListItem() {
   if (input.value === '') {
     alert('Tarefa vazia');
@@ -51,7 +55,19 @@ function addCompletedClass(event) {
   }
 }
 
+// ====================
+// SCRIPT
+// ====================
+
+// Clear Button
+const clearBtn = document.createElement('button');
+clearBtn.id = 'apaga-tudo';
+clearBtn.innerText = 'Clear All';
+document.body.append(clearBtn);
+
+// ====================
 // EventListeners
+// ====================
 button.addEventListener('click', () => {
   createListItem();
   clearInput();
@@ -68,4 +84,8 @@ ol.addEventListener('dblclick', (event) => {
   if (event.target.classList.contains('list-item')) {
     addCompletedClass(event);
   }
+});
+
+clearBtn.addEventListener('click', () => {
+  ol.innerHTML = '';
 });
