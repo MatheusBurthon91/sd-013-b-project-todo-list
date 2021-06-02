@@ -29,10 +29,20 @@ btnAdd.addEventListener('click', function () {
 const taskList = document.querySelector('#lista-tarefas');
 taskList.addEventListener('click', function (event) {
   if (taskList.children.length > 0) {
-    console.log('Entrou');
     for (let index = 0; index < taskList.children.length; index += 1) {
       taskList.children[index].style.backgroundColor = '';
     }
   }
   event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+});
+
+// Função para riscar tarefa da lista
+taskList.addEventListener('dblclick', function (event) {
+  if (event.target.className === '') {
+    console.log('Entrou na primeira');
+    event.target.className = 'completed';
+  } else if (event.target.className === 'completed') {
+    console.log('Entrou na segunda');
+    event.target.className = '';
+  }
 });
