@@ -51,9 +51,9 @@ function changeColor(event) {
 myList.addEventListener('click', changeColor);
 
 // exercise 8 
-addEventListener('dblclick', riskItem)
+addEventListener('dblclick', stripeItem)
 
-function riskItem(event) {
+function stripeItem(event) {
   const element = event.target;
   if(element.classList.contains('completed')) {
     element.classList.remove('completed');
@@ -62,4 +62,9 @@ function riskItem(event) {
   }
 }
 
-// exer
+// exercise 10
+const main = document.getElementById('principal');
+const clearButton = document.createElement('button');
+clearButton.id = 'apaga-tudo'
+main.appendChild(clearButton);
+clearButton.innerText = 'limpar tudo';

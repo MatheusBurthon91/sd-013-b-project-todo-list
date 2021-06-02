@@ -21,3 +21,9 @@
 .completed {
   text-decoration: line-through solid black;
 }
+
+#apaga-tudo {
+  height: 40px;
+  width: 90px;
+  margin-top: 20px;
+}
