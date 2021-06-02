@@ -1,5 +1,5 @@
-// Constantes
-const taskList = document.querySelector('#lista-tarefas');
+// Declrando constantes
+const constants = {};
 
 // Funções de comportamento/resposta a eventos
 function addTaskBehavior(_event) {
@@ -11,7 +11,7 @@ function addTaskBehavior(_event) {
     task.classList.add('task');
     task.innerHTML = taskInput.value;
 
-    taskList.appendChild(task);
+    constants.taskList.appendChild(task);
   }
 
   taskInput.value = '';
@@ -26,8 +26,8 @@ function cleanCompletedBehavior(_event) {
 }
 
 function cleanListBehavior(_event) {
-  while (taskList.hasChildNodes()) {
-    taskList.removeChild(taskList.firstChild);
+  while (constants.taskList.hasChildNodes()) {
+    constants.taskList.removeChild(constants.taskList.firstChild);
   }
 }
 
@@ -114,11 +114,14 @@ function loadList(savedTasks) {
     task.className = tasks[taskKey];
     task.innerHTML = taskName;
 
-    taskList.appendChild(task);
+    constants.taskList.appendChild(task);
   });
 }
 
 window.onload = () => {
+  // Setando constantes
+  constants.taskList = document.querySelector('#lista-tarefas');
+
   // Checking for existing list
   const savedTasks = localStorage.getItem('sd-13-todo-list-project:task-list');
 
