@@ -1,0 +1,9 @@
+.completed {
+  text-decoration: line-through;
+} 
+
+.selected {
+  background-color: gray;
+  width: 80px;
+}
+
