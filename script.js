@@ -1,7 +1,7 @@
-let listaTarefas = document.querySelector('#lista-tarefas');
-let tarefaInput = document.querySelector('#texto-tarefa');
+const listaTarefas = document.querySelector('#lista-tarefas');
+const tarefaInput = document.querySelector('#texto-tarefa');
 
-let buttonTarefa = document.querySelector('#criar-tarefa');
+const buttonTarefa = document.querySelector('#criar-tarefa');
 
 
 buttonTarefa.addEventListener('click', criaTarefa);
@@ -11,5 +11,17 @@ function criaTarefa() {
   item.innerText = tarefaInput.value;
   listaTarefas.appendChild(item);
   tarefaInput.value = null;
+
+  item.addEventListener('click', function() {
+    selecionarTarefa(item);
+  });
+};
+
+
+function selecionarTarefa(item) {
+  if (document.getElementsByClassName('color-target')[0] != null){
+    document.getElementsByClassName('color-target')[0].classList.remove('color-target')
+  }
+  item.classList.add('color-target')  
 };
 
