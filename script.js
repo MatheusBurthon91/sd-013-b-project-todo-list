@@ -16,3 +16,11 @@ header.appendChild(paragrafo);
 let input = document.createElement('input');
 input.id = 'texto-tarefa';
 header.appendChild(input);
+
+// Requisito 4
+let sectionList = document.createElement('section');
+document.body.appendChild(sectionList);
+
+let orderedList = document.createElement('ol');
+orderedList.id = 'lista-tarefas';
+sectionList.appendChild(orderedList);
