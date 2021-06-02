@@ -7,17 +7,33 @@ function criarTarefa(){
   let createLi = document.createElement('li');
   ol.appendChild(createLi).innerText = input;
   if (input === input) {
-    document.querySelector('#texto-tarefa').value = null;
+    document.querySelector('#texto-tarefa').value = '';
   }
 }
 
 tarefa.addEventListener('click', criarTarefa)
 
-function colorItem() {
-  let listadeTaks = document.querySelectorAll("#lista-tarefas li");
-  for (let i = 0; i < listadeTaks.length; i += 1) {
-    listadeTaks[i].style.backgroundColor = 'rgb(128, 128, 128)';
+function colorItem(event) {
+  let selecionado = document.querySelector('.selected');
+  if(selecionado) {
+    selecionado.classList.remove('selected');
   }
+  event.target.classList.add('selected');
 }
 
 ol.addEventListener('click', colorItem)
+
+
+function completedTask(event) {
+  event.target.classList.add('completed')
+}
+
+function failTaks(event) {
+  let selected = document.querySelector('.completed')
+  if(selected) {
+    selected.classList.remove('selected')
+  }
+}
+
+ol.addEventListener('dblclick', completedTask)
+
