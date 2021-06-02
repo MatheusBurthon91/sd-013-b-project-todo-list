@@ -1,4 +1,36 @@
 // Funções de comportamento/resposta a eventos
+function addTaskBehavior(_event) {
+  const taskInput = document.querySelector('#texto-tarefa');
+  const taskList = document.querySelector('#lista-tarefas');
+
+  if (taskInput.value) {
+    const task = document.createElement('li');
+
+    task.classList.add('task');
+    task.innerHTML = taskInput.value;
+
+    taskList.appendChild(task);
+  }
+
+  taskInput.value = '';
+}
+
+function cleanCompletedBehavior(_event) {
+  const completedTask = document.querySelectorAll('.completed');
+
+  for (let index = 0; index < completedTask.length; index += 1) {
+    completedTask[index].remove();
+  }
+}
+
+function cleanListBehavior(_event) {
+  const list = document.querySelector('#lista-tarefas');
+
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+}
+
 function completeTaskBehavior(event) {
   const task = event.target;
 
@@ -9,21 +41,19 @@ function completeTaskBehavior(event) {
   }
 }
 
-function addTaskBehavior(_event) {
-  const taskInput = document.querySelector('#texto-tarefa');
-  const taskList = document.querySelector('#lista-tarefas');
+function saveListBehavior(_event) {
+  const tasks = document.querySelectorAll('.task');
 
-  if (taskInput.value) {
-    const task = document.createElement('li');
+  if (tasks.length) {
+    const savedTasks = {};
 
-    task.addEventListener('dblclick', completeTaskBehavior);
-    task.classList.add('task');
-    task.innerHTML = taskInput.value;
+    for (let index = 0; index < tasks.length; index += 1) {
+      const taskName = `${index}.${tasks[index].innerHTML}`;
+      savedTasks[taskName] = tasks[index].className;
+    }
 
-    taskList.appendChild(task);
+    localStorage.setItem('sd-13-todo-list-project:task-list', JSON.stringify(savedTasks));
   }
-
-  taskInput.value = '';
 }
 
 function toggleTaskBehavior(event) {
@@ -39,23 +69,7 @@ function toggleTaskBehavior(event) {
   }
 }
 
-function cleanListBehavior(_event) {
-  const list = document.querySelector('#lista-tarefas');
-
-  while (list.hasChildNodes()) {
-    list.removeChild(list.firstChild);
-  }
-}
-
-function cleanCompletedBehavior(_event) {
-  const completedTask = document.querySelectorAll('.completed');
-
-  for (let index = 0; index < completedTask.length; index += 1) {
-    completedTask[index].remove();
-  }
-}
-
-// Waiting page to load
+// Funções de gerenciamento de eventos
 function clickEvents() {
   document.body.addEventListener('click', (event) => {
     const targetClass = event.target.classList[0];
@@ -63,14 +77,17 @@ function clickEvents() {
     case 'add-task':
       addTaskBehavior(event);
       break;
-    case 'task':
-      toggleTaskBehavior(event);
+    case 'clean-completed':
+      cleanCompletedBehavior(event);
       break;
     case 'clean-list':
       cleanListBehavior(event);
+    break;
+    case 'save-list':
+      saveListBehavior(event);
       break;
-    case 'clean-completed':
-      cleanCompletedBehavior(event);
+    case 'task':
+      toggleTaskBehavior(event);
       break;
     default:
       break;
@@ -78,21 +95,44 @@ function clickEvents() {
   });
 }
 
-// function dblclickEvents() {
-//   document.body.addEventListener('dblclick', (event) => {
-//     const targetClass = event.target.classList[0];
+function dblclickEvents() {
+  document.body.addEventListener('dblclick', (event) => {
+    const targetClass = event.target.classList[0];
+    switch (targetClass) {
+    case 'task':
+      completeTaskBehavior(event);
+      break;
+    default:
+      break;
+    }
+  });
+}
 
-//     switch (targetClass) {
-//     case 'task':
-//       completeTaskBehavior(event);
-//       break;
-//     default:
-//       break;
-//     }
-//   });
-// }
+// Funções de criação dinâmica de elementos e carregamento da página
+function loadList(taskList) {
+  const tasks = JSON.parse(taskList);
+  const list = document.querySelector('#lista-tarefas');
+
+  for (let taskKey of Object.keys(tasks)) {
+    const task = document.createElement('li');
+    const taskName = taskKey.split('.')[1];
+
+    task.className = tasks[taskKey];
+    task.innerHTML = taskName;
+
+    list.appendChild(task);
+  }
+}
 
 window.onload = () => {
+  // Checking for existing list
+  const taskList = localStorage.getItem('sd-13-todo-list-project:task-list');
+
+  if (taskList) {
+    loadList(taskList);
+  }
+
   // Event Bubbling
   clickEvents();
+  dblclickEvents();
 };
