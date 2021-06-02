@@ -23,4 +23,3 @@ function changeColor(event) {
   }
 }
 document.querySelector('#lista-tarefas').addEventListener('click', changeColor);
-teste;
