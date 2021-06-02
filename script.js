@@ -1,8 +1,9 @@
 // Variables
-const funcionamento = document.getElementById('funcionamento');
+const paragraph = document.getElementById('funcionamento');
 const input = document.getElementById('texto-tarefa');
 const button = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
+let listItem = document.querySelectorAll('li');
 
 // Functions
 function createListItem() {
@@ -11,7 +12,9 @@ function createListItem() {
   } else {
     const createLi = document.createElement('li');
     createLi.innerText = input.value;
+    createLi.classList.add('list-item');
     ol.appendChild(createLi);
+    listItem = document.querySelectorAll('li');
   }
 }
 
@@ -19,7 +22,35 @@ function clearInput() {
   input.value = '';
 }
 
+function addSelectClass(event) {
+  for (let i = 0; i < listItem.length; i += 1) {
+    if (listItem[i] === event.target) {
+      listItem[i].classList.add('selected');
+    } else {
+      listItem[i].classList.remove('selected');
+    }
+  }
+}
+
+function bgColorLi() {
+  for (let i = 0; i < listItem.length; i += 1) {
+    if (listItem[i].classList.contains('selected')) {
+      listItem[i].style.backgroundColor = 'rgb(128, 128, 128)';
+    } else {
+      listItem[i].style.backgroundColor = '';
+    }
+  }
+}
+
+// EventListeners
 button.addEventListener('click', () => {
   createListItem();
   clearInput();
+});
+
+ol.addEventListener('click', (event) => {
+  if (event.target.classList.contains('list-item')) {
+    addSelectClass(event);
+    bgColorLi();
+  }
 });
