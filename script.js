@@ -8,25 +8,33 @@ function createTask () {
 
   li.addEventListener('click', selectTaskLi);
 
-  li.className = 'li-task';
+//  li.className = 'li-task';
   li.innerText = inputText.value;
   taskListOl.appendChild(li);
   inputText.value = '';
 
 }
 
-const getTaskLi = document.querySelectorAll('.li-task');
-
 function selectTaskLi(event) {
-  const eventTarget = event.target
-  console.log(eventTarget);
+  const currentTask = document.querySelector('.selected');
+  const clickedTask = event.target;
 
-  if (eventTarget.style.backgroundColor === 'rgb(128, 128, 128)') {
-    eventTarget.style.backgroundColor = '';
+  if (currentTask.className === null) {
+    clickedTask.className += ' selected';
+    
   } else {
-
-    eventTarget.style.backgroundColor = 'rgb(128, 128, 128)';
+    currentTask.className = '';
   }
+  console.log(currentTask);
+
+
+
+  // if (eventTarget.style.backgroundColor === 'rgb(128, 128, 128)') {
+  //   eventTarget.style.backgroundColor = '';
+  // } else {
+
+  //   eventTarget.style.backgroundColor = 'rgb(128, 128, 128)';
+  // }
 
   
 }
