@@ -8,12 +8,6 @@ function createNewTask(text, classList = 'task') {
   return task;
 }
 
-function classObjectToString(obj) {
-  const array = Object.entries(obj).map((value) => `${value[1]} `);
-
-  return array.toString().replace(/,/g, '');
-}
-
 function saveToLocalStorage(tasksArray) {
   localStorage.setItem('tasks', JSON.stringify(tasksArray));
 }
@@ -23,10 +17,8 @@ function retrieveFromLocalStorage() {
   const taskList = document.querySelector(taskListId);
 
   if (storedTasks) {
-    storedTasks.forEach(({ text, classList }) => {
-      const classListString = classObjectToString(classList);
-
-      taskList.appendChild(createNewTask(text, classListString));
+    storedTasks.forEach((task) => {
+      taskList.appendChild(createNewTask(task.text, task.classList));
     });
   }
 }
@@ -129,7 +121,7 @@ function addSaveTasksEvent() {
     tasks.forEach((task) => {
       tasksObjectArray.push({
         text: task.innerText,
-        classList: task.classList,
+        classList: task.classList.value,
       });
     });
 
