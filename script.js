@@ -9,3 +9,12 @@ function adicionaInput() {
 }
 
 adicionaInput();
+
+
+function criaLista() {
+  const pai = document.getElementById('listArea')
+  const lista = document.createElement('ol')
+  lista.id = "lista-tarefas"
+  pai.appendChild(lista)
+}
+criaLista();
