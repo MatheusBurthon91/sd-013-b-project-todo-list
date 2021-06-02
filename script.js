@@ -1,6 +1,7 @@
 const botaoAdi = document.querySelector('#criar-tarefa');
 const textTarefa = document.querySelector('#texto-tarefa');
 const listaTarefa = document.querySelector('#lista-tarefas');
+const botaoApaga=document.querySelector('#apaga-tudo')
 
 function adicionarTarefa() {
   let input = textTarefa.value;
@@ -31,3 +32,25 @@ function removendoClasse(evento) {
 listaTarefa.addEventListener('dblclick', (doubleclick) => {
   doubleclick.target.classList.toggle('completed');
 });
+
+botaoApaga.addEventListener('click',()=>{
+   let apagar=document.getElementById('lista-tarefas');
+   if(apagar.parentNode){
+     apagar.parentNode.removeChild(apagar)
+   }
+});
+
+botaoApaga.addEventListener('click',()=>{
+   let apagar=document.getElementsByTagName('li');
+  for(let key of apagar){
+    if(apagar[key].classList.contains('completed')){
+      apagar[key].remove()
+    }
+  }
+});
+
+
+
+
+
+
