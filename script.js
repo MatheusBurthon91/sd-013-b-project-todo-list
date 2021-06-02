@@ -75,6 +75,15 @@ function removeCompleted() {
   }
 }
 
+function removeSelected() {
+  listItem = document.querySelectorAll('li');
+  for (let i = 0; i < listItem.length; i += 1) {
+    if (listItem[i].classList.contains('selected')) {
+      ol.removeChild(listItem[i]);
+    }
+  }
+}
+
 function moveUp() {
   let aClass;
   let aText;
@@ -155,6 +164,12 @@ moveDownBtn.innerText = 'Move Down';
 moveDownBtn.style.marginRight = '8px';
 document.body.appendChild(moveDownBtn);
 
+// Remove Selected Button
+const removeSelectedBtn = document.createElement('button');
+removeSelectedBtn.id = 'remover-selecionado';
+removeSelectedBtn.innerText = 'Remove Selected Task';
+document.body.appendChild(removeSelectedBtn);
+
 // ====================
 // EventListeners
 // ====================
@@ -194,6 +209,10 @@ moveUpBtn.addEventListener('click', () => {
 
 moveDownBtn.addEventListener('click', () => {
   moveDown();
+});
+
+removeSelectedBtn.addEventListener('click', () => {
+  removeSelected();
 });
 
 // ====================
