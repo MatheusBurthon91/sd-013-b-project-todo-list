@@ -5,6 +5,7 @@ const buttonRemoveFinished = document.querySelector('#remover-finalizados');
 const buttonSave = document.querySelector('#salvar-tarefas');
 const buttonUp = document.querySelector('#mover-cima');
 const buttonDown = document.querySelector('#mover-baixo');
+const buttonRemoveSelected = document.querySelector('#remover-selecionado');
 
 taskList.innerHTML = localStorage.getItem('taskList');
 
@@ -75,8 +76,16 @@ function moveDown() {
   }
 }
 
+function removeSelected() {
+  const selected = document.querySelector('.selected');
+  if (selected) {
+    taskList.removeChild(selected);
+  }
+}
+
 buttonRemoveAll.addEventListener('click', clearList);
 buttonRemoveFinished.addEventListener('click', removeFinished);
 buttonSave.addEventListener('click', saveTasks);
 buttonUp.addEventListener('click', moveUp);
 buttonDown.addEventListener('click', moveDown);
+buttonRemoveSelected.addEventListener('click', removeSelected);
