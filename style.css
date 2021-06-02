@@ -35,3 +35,28 @@ html, body {
   flex-direction: column;
 
 }
+
+#inputArea {
+  background-color: burlywood;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo {
+  height: 25px;
+  width: 180px;
+  border-radius: 5px;
+  border: none;
+  padding: 1px 5px;
+
+}
+
+
+#listArea {
+  height: auto;
+  width: 100%;
+  background-color: cadetblue;
+}
