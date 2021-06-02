@@ -15,6 +15,9 @@ function criaTarefa() {
   item.addEventListener('click', function() {
     selecionarTarefa(item);
   });
+  item.addEventListener('dblclick', function () {
+    completedItem(item);
+  });
 };
 
 
@@ -25,3 +28,10 @@ function selecionarTarefa(item) {
   item.classList.add('color-target')  
 };
 
+function completedItem(item) {
+  if (item.classList.contains('completed')) {
+    item.classList.remove('completed');
+  } else {
+    item.classList.add('completed');
+  }
+}

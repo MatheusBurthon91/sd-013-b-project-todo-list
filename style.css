@@ -1,3 +1,7 @@
 .color-target {
   background-color: grey;
 }
+
+.completed {
+  text-decoration: line-through;
+}
