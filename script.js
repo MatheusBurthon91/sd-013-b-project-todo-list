@@ -14,6 +14,16 @@ function selectedItem(event) {
     item.classList.add('selected');
   }
 }
+
+function completedItem(event) {
+  const item = event.target;
+  if (item.classList.contains('completed')) {
+    item.classList.remove('completed');
+  } else {
+    item.classList.add('completed');
+  }
+}
+
 function clickAddList() {
   const mainList = document.getElementById('lista-tarefas');
   const inputText = document.getElementById('texto-tarefa');
@@ -23,6 +33,7 @@ function clickAddList() {
   mainList.appendChild(lineList);
   inputText.value = '';
   mainList.lastElementChild.addEventListener('click', selectedItem);
+  mainList.lastElementChild.addEventListener('dblclick', completedItem);
 }
 
 buttonText.addEventListener('click', clickAddList);
