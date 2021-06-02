@@ -37,6 +37,7 @@ function adicionaTarefa() {
   const lista = document.getElementById('lista-tarefas')
   const item = document.createElement('li')
   item.textContent = confereCampo()
+  item.className = "item"
   item.addEventListener('click', alteraFundo)
   item.addEventListener('dblclick', riscaConteudo)
   lista.appendChild(item)
@@ -97,3 +98,34 @@ function verificaCompleted(alvo) {
   return false
 
 }
+
+
+
+function adicionaLimpar(){
+  const pai = document.getElementById('btnsArea')
+  let btn = document.createElement('button')
+  btn.id = "apaga-tudo",
+  btn.className = "btnAdicionar"
+  btn.textContent = "Limpar"
+  btn.addEventListener('click', limpaTudo)
+  pai.appendChild(btn)
+  
+
+
+
+
+}
+
+adicionaLimpar()
+
+function limpaTudo() {
+  const pai = document.getElementById('lista-tarefas')
+  const filhos = document.getElementsByClassName('item')
+  let quant = filhos.length
+  for(let i = quant -1; i >= 0; i -= 1){
+    pai.removeChild(filhos[i])
+  }
+  
+  
+}
+
