@@ -18,6 +18,10 @@ function createTasks(){
 
 function changeBackGround(event){
   const elementoAlvo = event.target
-  elementoAlvo.style.backgroundColor = 'rgb(128, 128, 128)';
+  let classesSelects = document.getElementsByClassName('select')
+  for (let index = 0; index < classesSelects.length; index += 1){
+    classesSelects[index].className = '';
+  }
+  elementoAlvo.className = 'select'
 console.log(elementoAlvo);
 }
