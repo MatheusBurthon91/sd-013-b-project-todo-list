@@ -79,12 +79,16 @@ function addColor(event) {
 
 function completeItem() {
   const list = document.querySelector('ol');
-  list.addEventListener('dblclick', addLine, false);
+  list.addEventListener('dblclick', addRemoveLine, false);
 }
 
-function addLine(event) {
+function addRemoveLine(event) {
   if (event.target !== event.currentTarget) {
     const clickedItem = event.target;
+    if (clickedItem.classList.contains('completed')) {
+      clickedItem.classList.remove('completed');
+    } else {
     clickedItem.classList.add('completed');
+    }
   }
 }
