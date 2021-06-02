@@ -55,15 +55,31 @@ function addCompletedClass(event) {
   }
 }
 
+function removeCompleted() {
+  for (let i = 0; i < listItem.length; i += 1) {
+    if (listItem[i].classList.contains('completed')) {
+      ol.removeChild(listItem[i]);
+    }
+  }
+}
+
 // ====================
-// SCRIPT
+// New Buttons
 // ====================
 
 // Clear Button
 const clearBtn = document.createElement('button');
 clearBtn.id = 'apaga-tudo';
 clearBtn.innerText = 'Clear All';
-document.body.append(clearBtn);
+clearBtn.style.marginRight = '8px';
+document.body.appendChild(clearBtn);
+
+// Remove Completed Button
+const removeCompletedBtn = document.createElement('button');
+removeCompletedBtn.id = 'remover-finalizados';
+removeCompletedBtn.innerText = 'Remove Completed Tasks';
+removeCompletedBtn.style.marginRight = '8px';
+document.body.appendChild(removeCompletedBtn);
 
 // ====================
 // EventListeners
@@ -88,4 +104,8 @@ ol.addEventListener('dblclick', (event) => {
 
 clearBtn.addEventListener('click', () => {
   ol.innerHTML = '';
+});
+
+removeCompletedBtn.addEventListener('click', () => {
+  removeCompleted();
 });
