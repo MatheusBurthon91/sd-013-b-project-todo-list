@@ -74,12 +74,16 @@ function saveAllTasks() {
 }
 
 function loadAllTasks() {
-  const tasks = window.localStorage.getItem('lista').split(' ');
-  for (let index = 0; index < tasks.length; index += 1) {
-    if (tasks[index].split('.')[1] === 'completed') {
-      const task = createTask((tasks[index].split('.')[0]));
-      task.classList.add('completed');
-    } else createTask(tasks[index]);
+  const local = window.localStorage.getItem('lista');
+  if (local !== null) {
+    const tasks = local.split(' ');
+    // const tasks = window.localStorage.getItem('lista').split(' ');
+    for (let index = 0; index < tasks.length; index += 1) {
+      if (tasks[index].split('.')[1] === 'completed') {
+        const task = createTask((tasks[index].split('.')[0]));
+        task.classList.add('completed');
+      } else createTask(tasks[index]);
+    }
   }
 }
 
