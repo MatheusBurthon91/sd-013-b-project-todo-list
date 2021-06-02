@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/9ee566bea3.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header id="header">
@@ -20,7 +21,17 @@
       <input type="text" id="texto-tarefa" class="task-input" placeholder="Adicione uma nova tarefa">
       <button id="criar-tarefa" class="button add-task">Adicionar</button>
     </section>
-    <ol id="lista-tarefas" class="task-list"></ol>
+    <section class="list-container">
+      <ol id="lista-tarefas" class="task-list"></ol>
+      <div class="button-group">
+        <button id="mover-cima" class="button move-up">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="mover-baixo" class="button move-down">
+          <i class="fas fa-arrow-down"></i>
+        </button>
+      </div>
+    </section>
   </main>
   <footer id="footer">
     <button id="apaga-tudo" class="button clean-list">Limpar Lista</button>

@@ -1,5 +1,7 @@
 // Declrando constantes
-const constants = {};
+const constants = {
+  taskList: Node,
+};
 
 // Funções de comportamento/resposta a eventos
 function addTaskBehavior(_event) {
@@ -41,6 +43,22 @@ function completeTaskBehavior(event) {
   }
 }
 
+function moveDownBehavior(_event) {
+  const selectedTask = document.querySelector('.task.selected');
+
+  if (selectedTask && selectedTask !== constants.taskList.lastChild) {
+    selectedTask.nextElementSibling.insertAdjacentElement('afterend', selectedTask);
+  }
+}
+
+function moveUpBehavior(_event) {
+  const selectedTask = document.querySelector('.task.selected');
+
+  if (selectedTask && selectedTask !== constants.taskList.firstChild) {
+    selectedTask.previousElementSibling.insertAdjacentElement('beforebegin', selectedTask);
+  }
+}
+
 function saveListBehavior(_event) {
   const tasks = document.querySelectorAll('.task');
 
@@ -64,9 +82,7 @@ function toggleTaskBehavior(event) {
     selectedTask.classList.remove('selected');
   }
 
-  if (selectedTask !== task) {
-    task.classList.add('selected');
-  }
+  task.classList.add('selected');
 }
 
 // Funções de gerenciamento de eventos
@@ -78,6 +94,10 @@ function buttonSwitch(event) {
   case 'clean-completed': cleanCompletedBehavior(event);
     break;
   case 'clean-list': cleanListBehavior(event);
+    break;
+  case 'move-down': moveDownBehavior(event);
+    break;
+  case 'move-up': moveUpBehavior(event);
     break;
   case 'save-list': saveListBehavior(event);
     break;
