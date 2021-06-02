@@ -15,9 +15,16 @@ botaoCriarTarefa.addEventListener('click', criaItemLista);
 botaoCriarTarefa.innerText = 'Criar Tarefa';
 
 // requesito 7- alterar cor de fundo do item da lista tarefas
-const itemTarefasLi = document.querySelector('ol');
+// Requesito 8 - alterar apenas uma cor por vez
+const itemTarefasOl = document.querySelector('ol');
 
 function alteraCorItemLista(event) {
-  event.target.style.backgroundColor = 'rgb(128,128,128)';
+  const evento = event;
+  console.log('Click OK');
+  const styleLi = document.querySelectorAll('li');
+  for (let index = 0; index < styleLi.length; index += 1) {
+    styleLi[index].style.backgroundColor = 'white';
+  }
+  evento.target.style.backgroundColor = 'rgb(128,128,128)';
 }
-itemTarefasLi.addEventListener('click', alteraCorItemLista);
+itemTarefasOl.addEventListener('click', alteraCorItemLista);
