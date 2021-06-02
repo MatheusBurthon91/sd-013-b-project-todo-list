@@ -87,4 +87,45 @@ function loadAllTasks() {
   }
 }
 
+function findColored() {
+  const taskList = document.querySelector('#lista-tarefas').children;
+  for (let index = 0; index < taskList.length; index += 1) {
+    if (taskList[index].style.backgroundColor === 'rgb(128, 128, 128)') {
+      return index;
+    }
+  }
+}
+
+function moveTaskUp() {
+  // verificar se alguma tarefa esta marcada
+  const coloredIndex = findColored();
+  if (coloredIndex !== undefined && coloredIndex > 0) {
+    // selecionando a lista de tarefas
+    const taskList = document.querySelector('#lista-tarefas');
+    // selecionando a tarefa que esta a cima da selecionada
+    const upperTask = taskList.children[coloredIndex - 1];
+    // removendo a tarefa superior para que a de baixo suba
+    upperTask.remove();
+    // adicionando a tarefa removida apos a que subiu
+    taskList.insertBefore(upperTask, taskList.children[coloredIndex]);
+  } else window.alert('problema na seleção');
+}
+
+function moveTaskDown() {
+  const coloredIndex = findColored();
+  const taskList = document.querySelector('#lista-tarefas');
+  if (coloredIndex !== undefined && coloredIndex < taskList.children.length - 1) {
+    // const belowTask = taskList.children[coloredIndex + 1];
+    const selectedTask = taskList.children[coloredIndex];
+    selectedTask.remove();
+    taskList.insertBefore(selectedTask, taskList.children[coloredIndex + 1]);
+  } else window.alert('problema na seleção');
+}
+
+function removeSelected() {
+  const coloredIndex = findColored();
+  const taskList = document.querySelector('#lista-tarefas');
+  taskList.children[coloredIndex].remove();
+}
+
 loadAllTasks();
