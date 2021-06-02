@@ -1,5 +1,6 @@
 const buttonCreateTask = document.querySelector('#criar-tarefa');
 const list = document.querySelector('#lista-tarefas');
+const buttonRemoveAll = document.querySelector('#apaga-tudo');
 
 function createTask() {
   const newTask = document.createElement('li');
@@ -18,6 +19,7 @@ function isSelectedOrCompleted(task, nameClass) {
 }
 
 buttonCreateTask.addEventListener('click', createTask);
+
 list.addEventListener('click', (event) => {
   if (event.target.classList.contains('task')) {
     const previousElement = document.querySelector('.selected');
@@ -39,3 +41,9 @@ list.addEventListener('dblclick', (event) => {
     }
   }
 }, false);
+
+function clearList() {
+  list.innerHTML = '';
+}
+
+buttonRemoveAll.addEventListener('click', clearList);
