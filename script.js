@@ -22,18 +22,13 @@ button.innerText = 'Adicionar';
 
 createElementID('ol', main, 'lista-tarefas');
 const listT = document.querySelector('#lista-tarefas');
-//
 
-// Limpa a caixa de texto do input.
-function buttonClickClear() {
-  input.value = '';
-}
-
-// Adiciona o texto do input a lista.
+// Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
   const inputValue = input.value;
   CreateElementClass('li', listT, 'list-item');
   listT.lastChild.innerText = inputValue;
+  input.value = '';
 }
 
 // Reseta a cor do background dos list-item quando são clicados.
@@ -53,10 +48,21 @@ function listClickBg(e) {
   }
 }
 
+// Adiciona e retira o text decoretion line-through, quando clicado.
+function listClickLine(e) {
+  if (e.target.classList.contains('list-item')) {
+    if (e.target.classList.contains('completed')) {
+      e.target.className = 'list-item';
+    } else {
+      e.target.className += ' completed';
+    }
+  }
+}
+
 // Event Listener.
 button.addEventListener('click', buttonClickAddList);
-button.addEventListener('click', buttonClickClear);
 
 document.addEventListener('click', listClickResetBg);
 document.addEventListener('click', listClickBg);
-//
+
+document.addEventListener('dblclick', listClickLine);
