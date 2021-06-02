@@ -10,7 +10,7 @@ function getText()  {
   let ol = document.getElementById('lista-tarefas')
   ol.appendChild(li)
   // console.log(ol)
-  document.getElementById('texto-tarefa').value = '';
+  document.getElementById('texto-tarefa').value = null;
 }
 
 
