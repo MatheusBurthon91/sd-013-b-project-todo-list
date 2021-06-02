@@ -1,6 +1,8 @@
 // Variáveis iniciais de captura de elementos
 let creationButton = document.getElementById('criar-tarefa');
 let list = document.getElementById('lista-tarefas');
+let removeAllButton = document.getElementById('apaga-tudo');
+let removeCompletedButton = document.getElementById('remover-finalizados');
 
 // Adicionar uma tarefa na ol
 function addLi(listPath) {
@@ -48,9 +50,28 @@ function mark(listPath) {
   }
 }
 
+// Esvaziar conteúdo da ol
+function removeAll(listPath) {
+  listPath.innerHTML = '';
+}
+
+// Apagar os itens finalizados
+function removeCompleted() {
+  let completedArray = document.getElementsByClassName('completed');
+  for (let index = completedArray.length - 1; index >= 0; index -= 1) {
+    completedArray[index].parentNode.removeChild(completedArray[index]);
+  }
+}
+
 // Clicar no botão para adicionar uma tarefa
 creationButton.onclick = function() {
   addLi(list);
   greyBackground(list);
   mark(list);
 };
+
+// Clicar no botão para apagar a lista toda
+removeAllButton.onclick = function() {removeAll(list)};
+
+// Clicar no botão apaga os itens finalizados
+removeCompletedButton.onclick = function() {removeCompleted(list)};
