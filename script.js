@@ -8,3 +8,11 @@ buttonCreateTask.addEventListener('click', () => {
   taskList.appendChild(taskListItem);
   inputTextValue.value = '';
 });
+
+const taskList = document.querySelector('#lista-tarefas');
+
+taskList.addEventListener('click', (event) => {
+  const assistant = event.target;
+  console.log(assistant);
+  assistant.style.backgroundColor = 'rgb(128, 128, 128)';
+});
