@@ -13,3 +13,7 @@
   background-color: white;
   width: 500px;
 }
+
+.selected {
+  background-color: gray;
+}

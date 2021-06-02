@@ -8,7 +8,7 @@ title.innerText = 'Minha Lista de Tarefas';
 // Requisito 2
 const paragraph1 = document.createElement('p');
 title.appendChild(paragraph1);
-paragraph1.id = 'funcionamento'
+paragraph1.id = 'funcionamento';
 paragraph1.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
 
 // Requisito 3
@@ -24,7 +24,7 @@ const button1 = document.createElement('button');
 section0.appendChild(button1);
 button1.id = 'criar-tarefa';
 button1.innerText = 'criar tarefa';
-button1.addEventListener('click', addTask)
+button1.addEventListener('click', addTask);
 // fazer com que ao clicar no botao oq estiver no input va para lista;
 const myList = document.getElementById('lista-tarefas');
 const input = document.getElementById('texto-tarefa');
@@ -38,13 +38,16 @@ function addTask() {
 }
 
 // Exercicio 7
-function createBackgroundColor(event) {
-  const element = event.target;
-  if (element.className === 'item-list') {
-    element.style.backgroundColor = 'rgb(128, 128, 128)';
-    element.classList.add('selected');
+function changeColor(event) {
+  const item1 = document.querySelector('.selected');
+  if (item1 != null) {
+    item1.style.backgroundColor = 'white';
+    item1.classList.remove('selected');
   }
+  const listItem = event.target;
+  listItem.style.backgroundColor = 'rgb(128,128,128)';
+  listItem.classList.add('selected');
 }
-addEventListener('click', createBackgroundColor)
+myList.addEventListener('click', changeColor);
 
-// Exercicio 8
+
