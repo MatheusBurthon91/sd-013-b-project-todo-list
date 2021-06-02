@@ -36,3 +36,10 @@ function riskItem(event) {
 }
 
 orderedList.addEventListener('dblclick', riskItem);
+
+// Adiciona Botao Apaga-tudo
+function clearAll() {
+  orderedList.innerHTML = '';
+}
+
+document.getElementById('apaga-tudo').addEventListener('click', clearAll);
