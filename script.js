@@ -1,5 +1,3 @@
-const { RuleTester } = require("eslint");
-
 const ol = document.getElementById('lista-tarefas');
 function addAssigment() {
   const TextBox = document.getElementById('texto-tarefa');
