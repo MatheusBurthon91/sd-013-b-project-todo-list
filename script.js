@@ -48,13 +48,22 @@ function removeAllTask() {
   }
 }
 
+function removeCompletedTask() {
+  const listItem = document.querySelectorAll('.completed');
+  for (let key = 1; key <= listItem.length; key += 1) {
+    listItem[listItem.length - key].remove();
+  }
+}
+
 function init() {
-  const buttonAddTask = document.getElementById('criar-tarefa');
   const orderList = document.getElementById('lista-tarefas');
+  const buttonAddTask = document.getElementById('criar-tarefa');
   const buttonRemoveAllTask = document.getElementById('apaga-tudo');
+  const buttonRemoveCompletedTask = document.getElementById('remover-finalizados');
 
   buttonAddTask.addEventListener('click', createTask);
   buttonRemoveAllTask.addEventListener('click', removeAllTask);
+  buttonRemoveCompletedTask.addEventListener('click', removeCompletedTask);
   orderList.addEventListener('click', createSelected);
   orderList.addEventListener('dblclick', createLineThrough);
 }
