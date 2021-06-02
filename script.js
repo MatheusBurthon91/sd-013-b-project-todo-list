@@ -1,14 +1,21 @@
+const list = document.querySelector('#lista-tarefas');
+
 function addList() {
-  const list = document.querySelector('#lista-tarefas');
   const task = document.createElement('li');
   task.innerText = document.querySelector('#texto-tarefa').value;
   list.appendChild(task);
   document.querySelector('#texto-tarefa').value = '';
 }
 
-function appendList() {
-  const button = document.querySelector('#criar-tarefa');
-  button.addEventListener('click', addList);
+document.querySelector('#criar-tarefa').addEventListener('click', addList);
+
+function addBackground(event) {
+  const listArray = document.querySelector('#lista-tarefas').children;
+  for (let index = 0; index < listArray.length; index += 1) {
+    listArray[index].style.backgroundColor = '';
+  }
+  const selectedList = event.target;
+  selectedList.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
-appendList();
+list.addEventListener('click', addBackground);
