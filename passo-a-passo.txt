@@ -1,0 +1,16 @@
+# como eu fiz o desafio 5
+
+criar um elemento li
+
+colocar esse elemento como filho da ol 
+
+o innerText do elemento li precisa ser
+a mesma coisa do que foi colocado no 
+input
+
+colocar no botao um evento que espera
+o click busca na funçao o li criado
+
+para resetar o input é preciso 
+colocar .reset()
+# como eu fiz o desafio 6
