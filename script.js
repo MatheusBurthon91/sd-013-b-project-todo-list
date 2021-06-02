@@ -1,5 +1,6 @@
 const inputTextoTarefa = document.getElementById('texto-tarefa');
 const btnCriarTarefa = document.getElementById('criar-tarefa');
+const btnApagaTudo = document.getElementById('apaga-tudo');
 const olListaTarefas = document.getElementById('lista-tarefas');
 
 function clearInputTextoTarefa() {
@@ -62,4 +63,13 @@ function createTarefa() {
   construaLiClicavel();
 }
 
+function clearAllTarefas() {
+  for (let index = 0; index < tarefas.length; index += 1) {
+    const currentTarefa = tarefas[index];
+    currentTarefa.parentNode.removeChild(currentTarefa);
+  }
+}
+
 btnCriarTarefa.addEventListener('click', createTarefa);
+
+btnApagaTudo.addEventListener('click', clearAllTarefas);
