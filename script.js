@@ -37,7 +37,7 @@ function addTask() {
   input.value = '';
 }
 
-// Exercicio 7
+// exercise 7 and 8
 function changeColor(event) {
   const item1 = document.querySelector('.selected');
   if (item1 != null) {
@@ -50,4 +50,16 @@ function changeColor(event) {
 }
 myList.addEventListener('click', changeColor);
 
+// exercise 8 
+addEventListener('dblclick', riskItem)
 
+function riskItem(event) {
+  const element = event.target;
+  if(element.classList.contains('completed')) {
+    element.classList.remove('completed');
+  } else {
+    element.classList.add('completed');
+  }
+}
+
+// exer
