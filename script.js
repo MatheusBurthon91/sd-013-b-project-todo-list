@@ -1,7 +1,19 @@
+const taskList = document.getElementById('lista-tarefas');
+// global functions
+function loadStorage() {
+  if (localStorage.length > 0) {
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const newTask = document.createElement('li');
+      taskList.appendChild(newTask);
+      newTask.outerHTML = localStorage.getItem(`item${index}`);
+    }
+  }
+
+}
+// events
 document.getElementById('criar-tarefa').addEventListener('click', () => {
   const input = document.getElementById('texto-tarefa');
-  const taskList = document.getElementById('lista-tarefas');
-  //  uma li
+  // criar uma li
   const newTask = document.createElement('li');
   newTask.classList.add('list-item');
   // colocar o texto do input na li
@@ -12,8 +24,8 @@ document.getElementById('criar-tarefa').addEventListener('click', () => {
   input.value = '';
 });
 document.addEventListener('click', (listItem) => {
-  const itemClicked = listItem.target;
   const otherItems = document.getElementsByClassName('list-item');
+  const itemClicked = listItem.target;
   if (itemClicked.classList.contains('list-item')) {
     for (let index = 0; index < otherItems.length; index += 1) {
       otherItems[index].style.backgroundColor = 'white';
@@ -30,9 +42,9 @@ document.addEventListener('dblclick', (listItem) => {
   }
 });
 document.getElementById('apaga-tudo').addEventListener('click', () => {
-  const list = document.getElementById('lista-tarefas');
-  while (list.firstChild) {
-    list.removeChild(list.firstChild);
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+    localStorage.clear();
   }
 });
 document.getElementById('remover-finalizados').addEventListener('click', () => {
@@ -42,3 +54,14 @@ document.getElementById('remover-finalizados').addEventListener('click', () => {
     completedItems[0].remove();
   }
 });
+
+document.getElementById('salvar-tarefas').addEventListener('click', () => {
+  const allItems = document.getElementsByClassName('list-item');
+  console.log(allItems);
+  for (let index = 0; index < allItems.length; index += 1) {
+    localStorage.setItem(`item${index}`, allItems[index].outerHTML);
+  }
+  alert('Seus itens foram salvos!');
+});
+
+window.onload = loadStorage;
