@@ -9,7 +9,7 @@ function listBackground(eventoDeOrigem) { // função para adicionar fundo a tar
     if (list[index] !== evento) {
       list[index].classList = 'list';
     } else {
-      list[index].classList = 'list selected';
+      list[index].classList.add('selected');
     }
   }
 }
@@ -17,6 +17,21 @@ function addEventListBackground() { // função para adicionar evento que ao cli
   const list = document.querySelectorAll('.list');
   for (let index = 0; index < list.length; index += 1) {
     list[index].addEventListener('click', listBackground);
+  }
+}
+function listSublinha(eventoDeOrigem) {
+  const list = document.querySelectorAll('.list');
+  const evento = eventoDeOrigem.target;
+  for (let index = 0; index < list.length; index += 1) {
+    if (list[index] === evento) {
+      list[index].classList.toggle('completed');
+    }
+  }
+}
+function addEventListSublinha() {
+  const list = document.querySelectorAll('.list');
+  for (let index = 0; index < list.length; index += 1) {
+    list[index].addEventListener('dblclick', listSublinha);
   }
 }
 function taskSubmit() { // função que adiciona o elemento com o valor do input, e chama a função anterior para adicionar evento que muda o fundo;
@@ -28,6 +43,7 @@ function taskSubmit() { // função que adiciona o elemento com o valor do input
   list.appendChild(newElement);
   document.querySelector('#texto-tarefa').value = '';
   addEventListBackground();
+  addEventListSublinha();
 }
 const taskBtn = document.querySelector('#criar-tarefa');
 taskBtn.addEventListener('click', taskSubmit); // evento que adiciona tarefa a lista;
