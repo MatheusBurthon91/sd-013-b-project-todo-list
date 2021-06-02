@@ -25,3 +25,10 @@ document.addEventListener('click', (e) => {
     e.target.style.background = 'rgb(128, 128, 128)';
   }
 });
+
+document.addEventListener('dblclick', (e) => {
+  if (e.target.classList.contains('task')) {
+    const element = e.target;
+    element.classList.toggle('completed');
+  }
+});
