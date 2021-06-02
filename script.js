@@ -15,9 +15,20 @@ function changeColor(event) {
   if (click.target.className === 'listItem') {
     if (click.target.style.backgroundColor === 'rgb(128, 128, 128)') {
       click.target.style.backgroundColor = '';
-    } else {
+    } else {      
       click.target.style.backgroundColor = 'rgb(128, 128, 128)';
     }
   }
+  switchSelected(click);
 }
 document.querySelector('#lista-tarefas').addEventListener('click', changeColor);
+function switchSelected(click) {
+  const selectedActual = document.querySelector('.selected');
+  if (selectedActual === null) {
+    click.target.classList.add('selected');
+  } else {
+    selectedActual.style.backgroundColor = '';
+    selectedActual.classList.remove('selected');
+    click.target.classList.add('selected');
+  }
+}
