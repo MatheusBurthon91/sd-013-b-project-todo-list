@@ -47,6 +47,14 @@ function cleanListBehavior(_event) {
   }
 }
 
+function cleanCompletedBehavior(_event) {
+  const completedTask = document.querySelectorAll('.completed');
+
+  for (let index = 0; index < completedTask.length; index += 1) {
+    completedTask[index].remove();
+  }
+}
+
 // Waiting page to load
 function clickEvents() {
   document.body.addEventListener('click', (event) => {
@@ -60,6 +68,9 @@ function clickEvents() {
       break;
     case 'clean-list':
       cleanListBehavior(event);
+      break;
+    case 'clean-completed':
+      cleanCompletedBehavior(event);
       break;
     default:
       break;
