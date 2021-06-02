@@ -1,6 +1,7 @@
 const inputTextoTarefa = document.getElementById('texto-tarefa');
 const btnCriarTarefa = document.getElementById('criar-tarefa');
 const btnApagaTudo = document.getElementById('apaga-tudo');
+const btnRemoveFinalizados = document.getElementById('remover-finalizados');
 const olListaTarefas = document.getElementById('lista-tarefas');
 
 function clearInputTextoTarefa() {
@@ -70,6 +71,17 @@ function clearAllTarefas() {
   }
 }
 
+function clearCompletedTarefa() {
+  for (let index = 0; index < tarefas.length; index += 1) {
+    if (tarefas[index].className.includes(' completed')) {
+      const currentTarefa = tarefas[index];
+      currentTarefa.parentNode.removeChild(currentTarefa);
+    }
+  }
+}
+
 btnCriarTarefa.addEventListener('click', createTarefa);
 
 btnApagaTudo.addEventListener('click', clearAllTarefas);
+
+btnRemoveFinalizados.addEventListener('click', clearCompletedTarefa);
