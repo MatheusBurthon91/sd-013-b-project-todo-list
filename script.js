@@ -6,21 +6,17 @@ function criaTarefa() {
   return texto;
 }
 
-function adicionaLista(eventoClick) {
+function adicionaLista() {
   const addlist = document.querySelector('#lista-tarefas');
-  let limpa = document.querySelector('#texto-tarefa');
-  
-  if (criaTarefa() != ''){
-    let lista = document.createElement('li');
+  const limpa = entradaDeTexto;
+  if (criaTarefa() !== '') {
+    const lista = document.createElement('li');
     lista.innerText = criaTarefa();
     addlist.appendChild(lista);
-    limpa.value ='';
+    limpa.value = '';
   }
-  limpa.value ='';
+  limpa.value = '';
 }
-
-
 
 entradaDeTexto.addEventListener('change', criaTarefa);
 botao.addEventListener('click', adicionaLista);
-

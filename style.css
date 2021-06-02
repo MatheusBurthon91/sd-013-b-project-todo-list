@@ -1,0 +1,25 @@
+#conteudo {
+  display: inline-block;
+  margin-top: 1em;
+}
+
+#texto-tarefa {
+  border-radius: 5px;
+}
+
+#criar-tarefa {
+  border: none;
+  border-radius: 50%;
+  background-color: darkgray;
+  color: white;
+  font-family: monospace;
+  font-weight: 800;
+}
+
+#conteudo-lista {
+  background-color: rgb(255 , 156 , 255);
+  border-radius: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 50%;
+}
