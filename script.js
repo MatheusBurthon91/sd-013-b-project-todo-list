@@ -11,8 +11,16 @@ function addTask() {
   ol.appendChild(createLi());
 }
 
+function removeBackgroundColor() {
+  const ol = document.getElementById('lista-tarefas');
+  for (let index = 0; index < ol.children.length; index += 1) {
+    ol.children[index].style.backgroundColor = 'transparent';
+  }
+}
+
 function backgroundColorItem(event) {
   const eventTarget = event.target;
+  removeBackgroundColor();
   eventTarget.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
