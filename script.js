@@ -1,15 +1,14 @@
 const buttonAdd = document.querySelector('#criar-tarefa');
+const list = document.querySelector('#lista-tarefas');
 
 buttonAdd.addEventListener('click', () => {
   const lista = document.querySelector('#lista-tarefas');
   const input = document.querySelector('#texto-tarefa');
   const li = document.createElement('li');
   lista.appendChild(li);
-  li.innerText = input.value;
+  li.innerHTML = input.value;
   input.value = '';
 });
-
-const list = document.querySelector('#lista-tarefas');
 
 function classRemove() {
   const classTrue = document.getElementsByClassName('liSelectedColor')[0];
@@ -21,3 +20,7 @@ list.addEventListener('click', (event) => {
   classRemove();
   event.target.classList.add('liSelectedColor');
 });
+
+list.addEventListener('dblclick', (event) => {
+  event.target.classList.toggle('completed')
+})
