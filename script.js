@@ -19,12 +19,14 @@ function selectTaskLi(event) {
   const currentTask = document.querySelector('.selected');
   const clickedTask = event.target;
 
-  if (currentTask.className === null) {
-    clickedTask.className += ' selected';
-    
+  if (clickedTask.classList.contains("selected")) {
+    clickedTask.classList.remove('selected');
+
   } else {
-    currentTask.className = '';
+    clickedTask.classList.add('selected');
+
   }
+
   console.log(currentTask);
 
 
