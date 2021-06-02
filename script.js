@@ -28,6 +28,17 @@ function toggleTaskBehavior(event) {
   }
 }
 
+function completeTaskBehavior(event) {
+  const task = event.target;
+
+  if (task.classList.contains('completed')) {
+    task.classList.remove('completed');
+  } else {
+    task.classList.add('completed');
+  }
+
+}
+
 // Waiting page to load
 window.onload = () => {
   // Event Bubbling
@@ -40,6 +51,17 @@ window.onload = () => {
       break;
     case 'task':
       toggleTaskBehavior(event);
+      break;
+    default:
+      break;
+    }
+  });
+  document.body.addEventListener('dblclick', (event) => {
+    const targetClass = event.target.classList[0];
+
+    switch (targetClass) {
+    case 'task':
+      completeTaskBehavior(event);
       break;
     default:
       break;

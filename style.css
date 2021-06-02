@@ -11,6 +11,10 @@ header {
   padding: 16px;
 }
 
+.completed {
+  text-decoration: line-through solid rgb(0, 0, 0);
+}
+
 .selected {
   background-color: rgb(128, 128, 128);
 }
