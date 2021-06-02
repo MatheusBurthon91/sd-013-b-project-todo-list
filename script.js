@@ -1,9 +1,13 @@
 window.onload = function () {
   const btnOk = document.getElementById('criar-tarefa')
   const olTasks = document.getElementById('lista-tarefas')
+  const btnApagar = document.getElementById('apaga-tudo')
+  const btnApagComplet = document.getElementById('remover-finalizados')
   btnOk.addEventListener('click', createTasks)
   olTasks.addEventListener('click', changeBackGround)
   olTasks.addEventListener('dblclick', completeTasks)
+  btnApagar.addEventListener('click', clearConteiner);
+  btnApagComplet.addEventListener('click', clearCompleted)
 
 }
 
@@ -60,4 +64,21 @@ function changeBackGround(event) {
 
 
 
+}
+
+function clearConteiner() {
+  const divLimpar = document.getElementById('lista-tarefas')
+  divLimpar.innerHTML = '';
+
+
+}
+
+function clearCompleted() {
+  const divLimpar = document.getElementById('lista-tarefas')
+  const concluidos = document.getElementsByClassName('completed')
+  while (concluidos.length !== 0) {
+    i = 0;
+    concluidos[i].remove()
+    i += 1
+  }
 }
