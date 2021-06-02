@@ -1,6 +1,7 @@
 const botaoCriarTarefa = document.querySelector('#criar-tarefa');
 const caixaDeInput = document.querySelector('#texto-tarefa');
 const listaTarefas = document.querySelector('#lista-tarefas');
+const botaoApagaTudo = document.querySelector('#apaga-tudo');
 
 // Requesito 5 && 6 - evento click no botao e entrega valor de input na lista
 // texto no button
@@ -40,3 +41,12 @@ function tarefaCompletada(event) {
   evento.target.className = 'item-tarefa completed';
 }
 itemTarefasOl.addEventListener('dblclick', tarefaCompletada);
+
+// requesito 10- botao apaga tudo criado no html
+// quando clicar apaga todos itens da lista
+botaoApagaTudo.innerText = 'Apagar tudo';
+
+function LimparLista() {
+  itemTarefasOl.innerText = '';
+}
+botaoApagaTudo.addEventListener('click', LimparLista);
