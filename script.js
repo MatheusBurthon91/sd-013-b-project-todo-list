@@ -18,10 +18,19 @@ const toDoListItem = document.getElementsByClassName('toDoListItem');
 // SOURCE: https://stackoverflow.com/questions/9012537/how-to-get-the-element-clicked-for-the-whole-document
 window.onclick = (e) => {
   for (let index = 0; index < toDoListItem.length; index += 1) {
-    toDoListItem[index].setAttribute('class', 'toDoListItem');
+    toDoListItem[index].classList.remove('class', 'selected');
   }
   const ab = e.target.tagName;
   if (ab.toString() === 'LI') {
     e.target.className += ' selected';
+    e.target.addEventListener('dblclick', () => {
+      e.target.classList.add('completed');
+    });
+    if (e.target.classList.contains('completed')) {
+      e.target.addEventListener('dblclick', () => {
+        e.target.classList.remove('class', 'completed');
+      });
+    }
   }
 };
+// e.target.className += ' completed';
