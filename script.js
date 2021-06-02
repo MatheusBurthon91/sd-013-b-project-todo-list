@@ -12,22 +12,39 @@ function addLi(listPath) {
   input.value = '';
 }
 
-// Pintar o background de cinza
-function backgroundPainter(element) {
+// Auxiliar a pintar o background da li selecionada de cinza
+function greyBackgroundHelper(element) {
   let searchingForGrey = document.querySelector('.grey');
   if (searchingForGrey === null) {
-    element.className = 'grey';
+    element.classList.add('grey');
   } else {
     searchingForGrey.classList.remove('grey');
-    element.className = 'grey';
+    element.classList.add('grey');
   }
 }
 
-// Tornar o fundo de um item da lista cinza
+// Pintar o background da li selecionada de cinza
 function greyBackground(listPath) {
   let liArray = listPath.children;
   for (let index = 0; index < liArray.length; index += 1) {
-    liArray[index].onclick = function() {backgroundPainter(liArray[index])}
+    liArray[index].onclick = function() {greyBackgroundHelper(liArray[index])}
+  }
+}
+
+// Auxiliar a riscar item da lista
+function markHelper(element) {
+  if (element.classList.contains('completed') === true) {
+    element.classList.remove('completed');
+  } else {
+    element.classList.add('completed');
+  }
+}
+
+// Riscar item da lista
+function mark(listPath) {
+  let liArray = listPath.children;
+  for (let index = 0; index < liArray.length; index += 1) {
+    liArray[index].ondblclick = function() {markHelper(liArray[index])}
   }
 }
 
@@ -35,4 +52,5 @@ function greyBackground(listPath) {
 creationButton.onclick = function() {
   addLi(list);
   greyBackground(list);
-}
+  mark(list);
+};
