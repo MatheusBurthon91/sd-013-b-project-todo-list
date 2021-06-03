@@ -50,19 +50,22 @@ function setBackGroundColor(event) {
     event.target.style.backgroundColor = 'rgb(128,128,128)';
     event.target.classList.add('selected');
   }
-//   if(selected !== null){
-//     selected.classList.remove('selected'); 
-//   } else {
-//     event.target.style.backgroundColor = 'rgb(128,128,128)';
-//     event.target.classList.add('selected');
-//   }
 }   
+
+function actionCompleted(event) {
+    if (event.target.classList.contains('completed')) {
+        event.target.classList.remove('completed');
+    } else {
+        event.target.classList.add('completed');
+    }
+}
 
 function addAssignment() {
   const list = document.querySelector('#lista-tarefas');
   const input = document.querySelector('#texto-tarefa');
   const itemList = document.createElement('li');
   itemList.addEventListener('click',setBackGroundColor);
+  itemList.addEventListener('dblclick',actionCompleted);
   itemList.innerText = input.value;
   itemList.className = 'item';
   list.appendChild(itemList);
