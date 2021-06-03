@@ -2,6 +2,7 @@ const botaoCriarTarefa = document.querySelector('#criar-tarefa');
 const caixaDeInput = document.querySelector('#texto-tarefa');
 const listaTarefas = document.querySelector('#lista-tarefas');
 const botaoApagaTudo = document.querySelector('#apaga-tudo');
+const botaoApagaFinalizados = document.querySelector('#remover-finalizados');
 
 // Requesito 5 && 6 - evento click no botao e entrega valor de input na lista
 // texto no button
@@ -34,7 +35,6 @@ itemTarefasOl.addEventListener('click', alteraCorItemLista);
 function tarefaCompletada(event) {
   const evento = event;
   const itemLi = document.querySelectorAll('li');
-  console.log('click OK2');
   for (let index = 0; index < itemLi.length; index += 1) {
     itemLi[index].className = 'item-tarefa';
   }
@@ -42,11 +42,23 @@ function tarefaCompletada(event) {
 }
 itemTarefasOl.addEventListener('dblclick', tarefaCompletada);
 
-// requesito 10- botao apaga tudo criado no html
-// quando clicar apaga todos itens da lista
+// requesito 10- botao apaga tudo quando clicar apaga todos itens da lista
+// botao criado direto no html
 botaoApagaTudo.innerText = 'Apagar tudo';
 
 function LimparLista() {
   itemTarefasOl.innerText = '';
 }
 botaoApagaTudo.addEventListener('click', LimparLista);
+
+// requesito 11- Botao que remove elementos finalizados da lista
+// botao criado direto  no html
+botaoApagaFinalizados.innerText = 'Apaga Finalizados';
+
+function LimpaFinalizados() {
+  const finalizado = document.querySelector('.completed');
+  finalizado.innerText = '';
+  finalizado.remove();
+}
+
+botaoApagaFinalizados.addEventListener('click', LimpaFinalizados);
