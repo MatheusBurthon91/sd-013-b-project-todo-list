@@ -26,20 +26,19 @@ taskList.addEventListener('click', (event) => {
 
 taskList.addEventListener('dblclick', (event) => {
   const assistant = event;
-  const classToRemove = document.querySelector('.completed');
-  if (classToRemove === null) {
+  if (assistant.target.classList.contains('completed')) {
+    assistant.target.classList.remove('completed');
+    assistant.target.style.textDecoration = '';
+  } else {
     assistant.target.classList.add('completed');
     assistant.target.style.textDecoration = 'line-through solid rgb(0 , 0 , 0)';
-  } else {
-    classToRemove.classList.remove('completed');
-    classToRemove.style.textDecoration = '';
   }
 });
 
 function createRemoveButton() {
   const removeButton = document.createElement('button');
   removeButton.id = 'apaga-tudo';
-  removeButton.innerHTML = 'Apaga tudo';
+  removeButton.innerHTML = 'X - Apaga tudo';
   section.appendChild(removeButton);
 }
 
@@ -50,5 +49,23 @@ const removeAllChildsButton = document.getElementById('apaga-tudo');
 removeAllChildsButton.addEventListener('click', () => {
   while (taskList.firstChild) {
     taskList.removeChild(taskList.lastChild);
+  }
+});
+
+function createCompletedTask() {
+  const removeCompleted = document.createElement('button');
+  removeCompleted.id = 'remover-finalizados';
+  removeCompleted.innerHTML = 'Ø - Remover finalizados';
+  section.appendChild(removeCompleted);
+}
+
+createCompletedTask();
+
+const removeAllCompletedButton = document.getElementById('remover-finalizados');
+
+removeAllCompletedButton.addEventListener('click', () => {
+  const objectToRemove = document.querySelectorAll('.completed');
+  for (let index = 0; index < objectToRemove.length; index += 1) {
+    objectToRemove[index].remove();
   }
 });
