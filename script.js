@@ -1,3 +1,4 @@
+const lista = document.querySelector('#lista-tarefas');
 function criaElemento(elemento) { // função pra criar elemento;
   const element = document.createElement(elemento);
   return element;
@@ -35,7 +36,6 @@ function addEventListSublinha() { // essa função adiciona evento que sublinha,
   }
 }
 function clearALl() { // essa função ao ser chamada limpa todas as tarefas da lista;
-  const lista = document.querySelector('#lista-tarefas');
   lista.innerHTML = '';
 }
 function addEventClear() { // essa função adiciona evento de apagar todas as tarefas, chamando a função anterior;
@@ -43,9 +43,9 @@ function addEventClear() { // essa função adiciona evento de apagar todas as t
   elemento.addEventListener('click', clearALl);
 }
 function clearFinished() { // essa função ao ser chamada limpa todas as tarefas concluídas da lista;
-  const lista = document.querySelectorAll('.completed');
-  for (let index = 0; index < lista.length; index += 1) {
-    lista[index].parentNode.removeChild(lista[index]);
+  const list = document.querySelectorAll('.completed');
+  for (let index = 0; index < list.length; index += 1) {
+    list[index].parentNode.removeChild(list[index]);
   }
 }
 function addEventClearFinished() { // essa função adiciona evento de apagar todas as tarefas concluídas, chamando a função anterior;
@@ -53,8 +53,8 @@ function addEventClearFinished() { // essa função adiciona evento de apagar to
   elemento.addEventListener('click', clearFinished);
 }
 function listSaved() { // essa função salva no localStorage o html da lista;
-  let object = {
-    tasks: document.querySelector('#lista-tarefas').innerHTML,
+  const object = {
+    tasks: lista.innerHTML,
   };
   localStorage.setItem('tasks', object.tasks);
 }
@@ -64,11 +64,10 @@ function addEventSaved() { // essa função adiciona evento que ao ser acionada,
 }
 function addElementsSaved() { // essa função ao ser executada, trás o html salvo para a pagina
   const tasks = localStorage.getItem('tasks');
-  document.querySelector('#lista-tarefas').innerHTML = tasks;
+  lista.innerHTML = tasks;
 }
 function moveUp() { // essa função move item selecionado para cima;
-  let selected = document.querySelector('.selected');
-  const lista = document.querySelector('#lista-tarefas');
+  const selected = document.querySelector('.selected');
   const item = lista.firstElementChild;
   if (selected !== item) {
     lista.insertBefore(selected, selected.previousSibling);
@@ -79,11 +78,10 @@ function addEventMoveUp() { // essa função adiciona evento de mover para cima;
   movedUp.addEventListener('click', moveUp);
 }
 function moveDown() { // essa função move item selecionado para baixo;
-  let selected = document.querySelector('.selected');
-  const lista = document.querySelector('#lista-tarefas');
+  const selected = document.querySelector('.selected');
   const item = lista.lastElementChild;
   if (selected !== item) {
-    lista.insertBefore(selected, selected.nextElementSibling.nextSibling)
+    lista.insertBefore(selected, selected.nextElementSibling.nextSibling);
   }
 }
 function addEventMoveDown() { // essa função adiciona evento de mover para baixo;
@@ -92,11 +90,10 @@ function addEventMoveDown() { // essa função adiciona evento de mover para bai
 }
 function taskSubmit() { // função que adiciona o elemento com o valor do input, e chama a função anterior para adicionar evento que muda o fundo;
   const taskValue = document.querySelector('#texto-tarefa').value;
-  const list = document.querySelector('#lista-tarefas');
   const newElement = criaElemento('li');
   newElement.innerText = taskValue;
   newElement.classList = 'list';
-  list.appendChild(newElement);
+  lista.appendChild(newElement);
   document.querySelector('#texto-tarefa').value = '';
   addEventListBackground();
   addEventListSublinha();
