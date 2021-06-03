@@ -119,5 +119,5 @@ btnSalvarTarefas.addEventListener('click', saveAllTarefas);
 window.addEventListener('load', () => {
   if (localStorage.length !== 0) {
     restoredSession();
-  };
+  }
 }, false);
