@@ -3,6 +3,8 @@ const btnCriarTarefa = document.getElementById('criar-tarefa');
 const btnApagaTudo = document.getElementById('apaga-tudo');
 const btnRemoveFinalizados = document.getElementById('remover-finalizados');
 const btnSalvarTarefas = document.getElementById('salvar-tarefas');
+const btnMoverCima = document.getElementById('mover-cima');
+const btnMoverBaixo = document.getElementById('mover-baixo');
 const olListaTarefas = document.getElementById('lista-tarefas');
 
 function clearInputTextoTarefa() {
@@ -107,6 +109,44 @@ function restoredSession() {
   getTarefas();
 }
 
+function moveTarefaCima() {
+  let tarefaSelecionada = 0;
+  let tarefaSelecionadaName = '';
+  let tarefaSelecionadaClass = '';
+  for (let index = 0; index < tarefas.length; index += 1) {
+    if (tarefas[index].className.includes(' selected')) {
+      tarefaSelecionada = index;
+      tarefaSelecionadaName = tarefas[index].innerText;
+      tarefaSelecionadaClass = tarefas[index].className;
+    }
+  }
+  if (tarefaSelecionada !== 0) {
+    tarefas[tarefaSelecionada].innerText = tarefas[tarefaSelecionada - 1].innerText;
+    tarefas[tarefaSelecionada].className = tarefas[tarefaSelecionada - 1].className;
+    tarefas[tarefaSelecionada - 1].innerText = tarefaSelecionadaName;
+    tarefas[tarefaSelecionada - 1].className = tarefaSelecionadaClass;
+  }
+}
+
+function moveTarefaBaixo() {
+  let tarefaSelecionada = tarefas.length - 1;
+  let tarefaSelecionadaName = '';
+  let tarefaSelecionadaClass = '';
+  for (let index = 0; index < tarefas.length; index += 1) {
+    if (tarefas[index].className.includes(' selected')) {
+      tarefaSelecionada = index;
+      tarefaSelecionadaName = tarefas[index].innerText;
+      tarefaSelecionadaClass = tarefas[index].className;
+    }
+  }
+  if (tarefaSelecionada !== tarefas.length - 1) {
+    tarefas[tarefaSelecionada].innerText = tarefas[tarefaSelecionada + 1].innerText;
+    tarefas[tarefaSelecionada].className = tarefas[tarefaSelecionada + 1].className;
+    tarefas[tarefaSelecionada + 1].innerText = tarefaSelecionadaName;
+    tarefas[tarefaSelecionada + 1].className = tarefaSelecionadaClass;
+  }
+}
+
 btnCriarTarefa.addEventListener('click', createTarefaBtn);
 
 btnApagaTudo.addEventListener('click', clearAllTarefas);
@@ -114,6 +154,10 @@ btnApagaTudo.addEventListener('click', clearAllTarefas);
 btnRemoveFinalizados.addEventListener('click', clearCompletedTarefa);
 
 btnSalvarTarefas.addEventListener('click', saveAllTarefas);
+
+btnMoverCima.addEventListener('click', moveTarefaCima);
+
+btnMoverBaixo.addEventListener('click', moveTarefaBaixo);
 
 // Conteúdo encontrado no https://stackoverflow.com/questions/20180251/when-to-use-window-onload
 window.addEventListener('load', () => {
