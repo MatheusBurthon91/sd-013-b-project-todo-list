@@ -6,6 +6,7 @@ const eraseFinishedButton = document.querySelector('#remover-finalizados');
 const saveListButton = document.getElementById('salvar-tarefas')
 const moveUpButton = document.querySelector('#mover-cima');
 const moveDownButton = document.querySelector('#mover-baixo');
+const selectDelButton = document.querySelector('#remover-selecionado');
 
 // Imprime a lista salva e configura os eventlisteners
 function loadSavedList(){
@@ -21,6 +22,7 @@ function loadSavedList(){
       savedItem.innerText = savedTaskList[index5].text
       listContainer.appendChild(savedItem);
     }
+    removeSelectedClass('selected');
   }
 }
 
@@ -36,7 +38,7 @@ function removeBackground() {
 saveListButton.addEventListener('click', saveOnLocalStorage);
 
 
-function removeSelectedClass(element, classToRemove){
+function removeSelectedClass(classToRemove){
   const listToRemove = document.querySelectorAll('.'+classToRemove)
   for (let index6 of  listToRemove) {
     index6.classList.remove(classToRemove);
@@ -46,7 +48,7 @@ function removeSelectedClass(element, classToRemove){
 // Criação da Função que torna o Background do item selecionado cinza e adciona a classe selected a penas a esse item.
 function changeBackground(event1) {
   removeBackground();
-  removeSelectedClass(event1.target, 'selected');
+  removeSelectedClass('selected');
   event1.target.classList.add('selected');
   event1.target.style.backgroundColor = 'rgb(128,128,128)';
 }
@@ -103,12 +105,32 @@ function saveOnLocalStorage() {
   localStorage.setItem('saveList', JSON.stringify(obj));
 
 }
-function moverCima(){
-  const itemToMove = document.querySelectorAll('.toDoTask');
+// Insere EventListener no botão mover para cima e cria Função que move item selecionado para a cima.
+function moveUp(){
   const itemToMove1 = document.querySelector('.selected');
-  console.log(itemToMove1)
-  itemToMove.forEach(item => {
-    console.log(item);
-  })
+  if (itemToMove1 !== null) {
+    if ( itemToMove1.previousElementSibling) {
+      itemToMove1.parentNode.insertBefore(itemToMove1, itemToMove1.previousElementSibling);
+    }
+  }
 }
-moveUpButton.addEventListener('click', moverCima);
+moveUpButton.addEventListener('click', moveUp);
+
+// Insere EventListener no botão mover para baixo e cria Função que move item selecionado para a baixo.
+function moveDown(){
+  const itemToMove2 = document.querySelector('.selected');
+  console.log(itemToMove2);
+  if (itemToMove2 !== null){
+    if (itemToMove2.nextElementSibling) {
+      itemToMove2.parentNode.insertBefore(itemToMove2.nextElementSibling, itemToMove2);
+    }
+  }
+}
+moveDownButton.addEventListener('click', moveDown);
+
+// Adciona EventListener ao botão Remover Selecionado e Função que Remove apenas o Item selecionado.
+function removeSelectedItem() {
+  const selectedItem = document.querySelector('.selected');
+  selectedItem.remove();
+}
+selectDelButton.addEventListener('click', removeSelectedItem);
