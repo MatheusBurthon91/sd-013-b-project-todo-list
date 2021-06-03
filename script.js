@@ -56,8 +56,6 @@ function pegaTexto()  {
 //entender isso melhor na monitoria ;)
 function rmIt(){
   let ol = document.getElementById('lista-tarefas')
-  let lis = document.getElementsByTagName('li')
-  console.log(lis,'teste')
   while(ol.hasChildNodes()){
     ol.removeChild(ol.firstChild)
   }
