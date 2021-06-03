@@ -52,8 +52,7 @@ function clearAll() {
   }
 }
 function clearComplets() {
-  document.querySelectorAll('.completed').forEach(element => element.remove());
+  document.querySelectorAll('.completed').forEach((element) => element.remove());
 }
 document.getElementById('apaga-tudo').addEventListener('click', clearAll);
 document.getElementById('remover-finalizados').addEventListener('click', clearComplets);
-// document.getElementsByClassName('completed')
