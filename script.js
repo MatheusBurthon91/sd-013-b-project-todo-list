@@ -1,12 +1,15 @@
 const botaoAdi = document.querySelector('#criar-tarefa');
 const textTarefa = document.querySelector('#texto-tarefa');
 const listaTarefa = document.querySelector('#lista-tarefas');
-const botaoApaga=document.querySelector('#apaga-tudo')
+const botaoApaga = document.querySelector('#apaga-tudo');
+const botaoFinalizados=document.querySelector('#remover-finalizados');
+const botaoAddTarefas=document.querySelector('#salvar-tarefas');
 
 function adicionarTarefa() {
   let input = textTarefa.value;
   let li = document.createElement('li');
   li.innerText = input;
+  li.id='li';
   textTarefa.value = '';
   listaTarefa.appendChild(li);
 }
@@ -33,24 +36,24 @@ listaTarefa.addEventListener('dblclick', (doubleclick) => {
   doubleclick.target.classList.toggle('completed');
 });
 
-botaoApaga.addEventListener('click',()=>{
-   let apagar=document.getElementById('lista-tarefas');
-   if(apagar.parentNode){
-     apagar.parentNode.removeChild(apagar)
-   }
+botaoApaga.addEventListener('click', () => {
+  const apagaSelecionado=document.querySelectorAll('li');
+  for(let index=0;index<apagaSelecionado.length;index+=1){
+    apagaSelecionado[index].remove();
+  }
 });
-
-botaoApaga.addEventListener('click',()=>{
-   let apagar=document.getElementsByTagName('li');
-  for(let key of apagar){
-    if(apagar[key].classList.contains('completed')){
-      apagar[key].remove()
-    }
+botaoFinalizados.addEventListener('click', () => {
+  const apagaFinalizado=document.querySelectorAll('.completed');
+  for(let index=0;index<apagaFinalizado.length;index+=1){
+    apagaFinalizado[index].remove();
   }
 });
 
+botaoAddTarefas.addEventListener('click',()=>{
+  let completed=document.querySelectorAll('.completed');
+    
+  localStorage.setItem('li',completed)
 
 
 
-
-
+})
