@@ -1,6 +1,7 @@
 const inputText = document.getElementById('texto-tarefa');
 const btnCreateTask = document.getElementById('criar-tarefa');
 const olTaskList = document.getElementById('lista-tarefas');
+const btnDeleteTask = document.getElementById('apaga-tudo');
 
 function clearSelected() {
   const taskCreated = document.querySelectorAll('.task');
@@ -51,4 +52,12 @@ function createTask() {
   createClickable();
 }
 
+function deleteTask() {
+  const lista = document.getElementsByTagName('section')[1];
+  const itens = lista.getElementsByTagName('ol');
+  lista.removeChild(itens[0]);
+  document.location.reload(true);
+}
+
 btnCreateTask.addEventListener('click', createTask);
+btnDeleteTask.addEventListener('click', deleteTask);
