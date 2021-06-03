@@ -51,8 +51,18 @@ const addTaskOnList = (event) => {
   saveTaskList();
 };
 
+const deleteList = () => {
+  Array.from(taskList.children).forEach((li) => {
+    li.remove();
+    localStorage.removeItem('task-list');
+  });
+};
+
 document
   .getElementById('controle-inserir-tarefa')
   .addEventListener('submit', addTaskOnList);
 
+document
+  .getElementById('apaga-tudo')
+  .addEventListener('click', deleteList);
 window.onload = () => setTaskList();
