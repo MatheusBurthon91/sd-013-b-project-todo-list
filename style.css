@@ -6,17 +6,27 @@
   padding: 0;
 }
 
-.fas {
-  pointer-events: none;
+body {
+  background-color: rgba(225 , 210 , 190);
 }
 
-header {
+#header {
   background-color: black;
   padding: 16px;
+  margin-bottom: 8px;
+}
+
+#main {
+  padding: 16px;
+  margin: 8px 0;
 }
 
 .completed {
   text-decoration: line-through solid black;
+}
+
+.fas {
+  pointer-events: none;
 }
 
 .selected {
@@ -25,6 +35,30 @@ header {
 
 .task:hover {
   background-color: rgb(188 , 188 , 188);
+}
+
+.task-form {
+  padding: 8px;
+}
+
+.task-form .task-input {
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  color: antiquewhite;
+  font-size: 1rem;
+  margin-right: 8px;
+  padding: 8px;
+  transition: box-shadow 0.5s;
+}
+
+.task-input:focus {
+  outline: none;
+  box-shadow: 3px 3px 2px gray;
+}
+
+.task-input::placeholder {
+  color: rgba(250 , 235 , 215 , 0.855);
 }
 
 .title {
