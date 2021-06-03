@@ -1,6 +1,7 @@
 // Declrando constantes
-const constants = {
-  taskList: Node,
+const appState = {
+  taskList: undefined,
+  selectedTask: undefined,
 };
 
 // Funções de comportamento/resposta a eventos
@@ -13,7 +14,7 @@ function addTaskBehavior(_event) {
     task.classList.add('task');
     task.innerHTML = taskInput.value;
 
-    constants.taskList.appendChild(task);
+    appState.taskList.appendChild(task);
   }
 
   taskInput.value = '';
@@ -28,15 +29,14 @@ function cleanCompletedBehavior(_event) {
 }
 
 function cleanListBehavior(_event) {
-  while (constants.taskList.hasChildNodes()) {
-    constants.taskList.removeChild(constants.taskList.firstChild);
+  while (appState.taskList.hasChildNodes()) {
+    appState.taskList.removeChild(appState.taskList.firstChild);
   }
 }
 
 function cleanSelectedBehavior(_event) {
-  const selectedTask = document.querySelector('.task.selected');
-  if (selectedTask) {
-    selectedTask.remove();
+  if (appState.selectedTask) {
+    appState.selectedTask.remove();
   }
 }
 
@@ -51,18 +51,16 @@ function completeTaskBehavior(event) {
 }
 
 function moveDownBehavior(_event) {
-  const selectedTask = document.querySelector('.task.selected');
-
-  if (selectedTask && selectedTask !== constants.taskList.lastChild) {
-    selectedTask.nextElementSibling.insertAdjacentElement('afterend', selectedTask);
+  if (appState.selectedTask && appState.selectedTask !== appState.taskList.lastChild) {
+    const nextSibling = appState.selectedTask.nextElementSibling;
+    nextSibling.insertAdjacentElement('afterend', appState.selectedTask);
   }
 }
 
 function moveUpBehavior(_event) {
-  const selectedTask = document.querySelector('.task.selected');
-
-  if (selectedTask && selectedTask !== constants.taskList.firstChild) {
-    selectedTask.previousElementSibling.insertAdjacentElement('beforebegin', selectedTask);
+  if (appState.selectedTask && appState.selectedTask !== appState.taskList.firstChild) {
+    const previousSibling = appState.selectedTask.previousElementSibling;
+    previousSibling.insertAdjacentElement('beforebegin', appState.selectedTask);
   }
 }
 
@@ -83,30 +81,35 @@ function saveListBehavior(_event) {
 
 function toggleTaskBehavior(event) {
   const task = event.target;
-  const selectedTask = document.querySelector('.task.selected');
 
-  if (selectedTask) {
-    selectedTask.classList.remove('selected');
+  if (appState.selectedTask) {
+    appState.selectedTask.classList.remove('selected');
   }
 
   task.classList.add('selected');
+  appState.selectedTask = task;
 }
 
 // Funções de gerenciamento de eventos
-function buttonSwitch(event) {
+// Botões
+function formButtonsSwitch(event) {
   const targetClass = event.target.classList[1];
   switch (targetClass) {
   case 'add-task': addTaskBehavior(event);
     break;
+  default:
+    break;
+  }
+}
+
+function editButtonsSwitch(event) {
+  const targetClass = event.target.classList[1];
+  switch (targetClass) {
   case 'clean-completed': cleanCompletedBehavior(event);
     break;
   case 'clean-list': cleanListBehavior(event);
     break;
   case 'clean-selected': cleanSelectedBehavior(event);
-    break;
-  case 'move-down': moveDownBehavior(event);
-    break;
-  case 'move-up': moveUpBehavior(event);
     break;
   case 'save-list': saveListBehavior(event);
     break;
@@ -115,6 +118,33 @@ function buttonSwitch(event) {
   }
 }
 
+function interactionButtonsSwitch(event) {
+  const targetClass = event.target.classList[1];
+  switch (targetClass) {
+  case 'move-down': moveDownBehavior(event);
+    break;
+  case 'move-up': moveUpBehavior(event);
+    break;
+  default:
+    break;
+  }
+}
+
+function buttonSwitch(event) {
+  const targetClass = event.target.parentElement.classList[0];
+  switch (targetClass) {
+  case 'edit-buttons': editButtonsSwitch(event);
+    break;
+  case 'interaction-buttons': interactionButtonsSwitch(event);
+    break;
+  case 'task-form': formButtonsSwitch(event);
+    break;
+  default:
+    break;
+  }
+}
+
+// Gerais
 function clickEvents() {
   document.body.addEventListener('click', (event) => {
     const targetClass = event.target.classList[0];
@@ -152,14 +182,17 @@ function loadList(savedTasks) {
 
     task.className = tasks[taskKey];
     task.innerHTML = taskName;
+    if (task.classList.contains('selected')) {
+      appState.selectedTask = task;
+    }
 
-    constants.taskList.appendChild(task);
+    appState.taskList.appendChild(task);
   });
 }
 
 window.onload = () => {
   // Setando constantes
-  constants.taskList = document.querySelector('#lista-tarefas');
+  appState.taskList = document.querySelector('#lista-tarefas');
 
   // Checking for existing list
   const savedTasks = localStorage.getItem('sd-13-todo-list-project:task-list');
