@@ -51,7 +51,7 @@ function listClickResetBg(e) {
   const itens = listT.children;
   if (e.target.classList.contains('list-item')) {
     for (let index = 0; index < itens.length; index += 1) {
-      itens[index].style.backgroundColor = 'white';
+      itens[index].classList.remove('selected');
     }
   }
 }
@@ -59,7 +59,7 @@ function listClickResetBg(e) {
 // Adiciona background color nos list-item quando são clicados.
 function listClickBg(e) {
   if (e.target.classList.contains('list-item')) {
-    e.target.style.backgroundColor = 'rgb(128, 128, 128)';
+    e.target.className += ' selected';
   }
 }
 
@@ -103,7 +103,7 @@ window.onload = function start() {
   if (storageCheck !== undefined) {
     listT.innerHTML = storageCheck;
   }
-  // aprendi como salvar e aplicar o que foi salvo neste link:
+  // aprendi como salvar e aplicar o que foi salvo, neste link:
   // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/
 };
 
