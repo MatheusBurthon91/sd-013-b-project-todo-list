@@ -4,10 +4,11 @@
   font-size: 16px;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 body {
-  background-color: rgba(225 , 210 , 190);
+  background-color: rgba(215 , 200 , 180);
 }
 
 #header {
@@ -19,6 +20,17 @@ body {
 #main {
   padding: 16px;
   margin: 8px 0;
+}
+
+.button {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  margin: 8px;
+  padding: 8px;
+}
+
+.button:hover {
+  background-color: rgb(230, 215, 195);
 }
 
 .completed {
