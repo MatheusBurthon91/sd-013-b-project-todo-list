@@ -1,370 +1,302 @@
 function adicionaInput() {
-  const pai = document.getElementById('inputArea')
-  const input = document.createElement('input')
-  input.id = "texto-tarefa"
-  input.className = "campo"
-  pai.appendChild(input)
-
-
+  const pai = document.getElementById('inputArea');
+  const input = document.createElement('input');
+  input.id = 'texto-tarefa';
+  input.className = 'campo';
+  pai.appendChild(input);
 }
 
 adicionaInput();
 
+const listaTarefas = 'lista-tarefas';
 
 function criaLista() {
-  const pai = document.getElementById('listArea')
-  const lista = document.createElement('ol')
-  lista.id = "lista-tarefas"
-  pai.appendChild(lista)
+  const pai = document.getElementById('listArea');
+  const lista = document.createElement('ol');
+  lista.id = listaTarefas;
+  pai.appendChild(lista);
 }
 criaLista();
+function confereCampo() {
+  const campo = document.getElementById('texto-tarefa');
+  const temp = campo.value;
+  if (campo.value) {
+    campo.value = '';
+    return temp;
+  }
+}
 
+function removeFundo() {
+  const atual = document.getElementsByClassName('bg')[0];
+  if (atual) {
+    atual.classList.remove('bg');
+  }
+}
+
+function alteraFundo(value) {
+  removeFundo();
+  value.target.classList.add('bg');
+}
+
+function verificaCompleted(alvo) {
+  const lista = alvo;
+  for (let i = 0; i < lista.length; i += 1) {
+    if (lista[i] === 'completed') {
+      return true;
+    }
+  }
+  return false;
+}
+
+function riscaConteudo(value) {
+  const alvo = value.target;
+  if (verificaCompleted(alvo.classList)) {
+    alvo.classList.remove('completed');
+  } else {
+    alvo.classList.add('completed');
+  }
+}
+
+function adicionaTarefa() {
+  const lista = document.getElementById(listaTarefas);
+  const item = document.createElement('li');
+  item.textContent = confereCampo();
+  item.className = 'item';
+  item.addEventListener('click', alteraFundo);
+  item.addEventListener('dblclick', riscaConteudo);
+  lista.appendChild(item);
+}
 
 function adicionaBotao() {
-  const pai = document.getElementById('inputArea')
-  const btn = document.createElement('button')
-  btn.id = "criar-tarefa"
-  btn.addEventListener('click', adicionaTarefa)
-  btn.textContent = "Adicionar"
-  btn.className = "btnAdicionar"
-  pai.appendChild(btn)
+  const pai = document.getElementById('inputArea');
+  const btn = document.createElement('button');
+  btn.id = 'criar-tarefa';
+  btn.addEventListener('click', adicionaTarefa);
+  btn.textContent = 'Adicionar';
+  btn.className = 'btnAdicionar';
+  pai.appendChild(btn);
 }
 
 adicionaBotao();
 
-
-function adicionaTarefa() {
-  const lista = document.getElementById('lista-tarefas')
-  const item = document.createElement('li')
-  item.textContent = confereCampo()
-  item.className = "item"
-  item.addEventListener('click', alteraFundo)
-  item.addEventListener('dblclick', riscaConteudo)
-  lista.appendChild(item)
-  
-  
-}
-
-
-function confereCampo() {
-  const campo = document.getElementById('texto-tarefa')
-  let temp = campo.value
-  if(campo.value){
-    campo.value = ""
-    return temp
-  }
-
-}
-
-function alteraFundo(value) {
-  removeFundo()
-  value.target.classList.add('bg')
-
-}
-
-function removeFundo() {
-  const atual = document.getElementsByClassName('bg')[0]
-  if(atual){
-    atual.classList.remove('bg')
-  }
-
-
-
-}
-
-function riscaConteudo(value) {
-  const alvo = value.target
-  if(verificaCompleted(alvo.classList)){
-    alvo.classList.remove('completed')
-  } else {
-    alvo.classList.add('completed')
-  }
-}
-
-
-function verificaCompleted(alvo) {
-  let lista = alvo
-  for(let i = 0; i < lista.length; i += 1){
-    if(lista[i] === 'completed'){
-      return true
-    }
-  }
-  return false
-
-}
-
-
-
-function adicionaLimpar(){
-  const pai = document.getElementById('btnsArea')
-  let btn = document.createElement('button')
-  btn.id = "apaga-tudo",
-  btn.className = "btnAdicionar"
-  btn.textContent = "Limpar"
-  btn.addEventListener('click', limpaTudo)
-  pai.appendChild(btn)
-  
-
-
-
-
-}
-
-adicionaLimpar()
-
 function limpaTudo() {
-  const pai = document.getElementById('lista-tarefas')
-  const filhos = document.getElementsByClassName('item')
-  let quant = filhos.length
-  for(let i = quant -1; i >= 0; i -= 1){
-    pai.removeChild(filhos[i])
+  const pai = document.getElementById(listaTarefas);
+  const filhos = document.getElementsByClassName('item');
+  const quant = filhos.length;
+  for (let i = quant - 1; i >= 0; i -= 1) {
+    pai.removeChild(filhos[i]);
   }
-  
-  
 }
 
-
-function adicionaRemover() {
-  const pai = document.getElementById('btnsArea')
-  const btn = document.createElement('button')
-  btn.className = "btnAdicionar"
-  btn.textContent = "Limpar Completos"
-  btn.id = "remover-finalizados"
-  btn.addEventListener('click', removeFinalizados)
-  pai.appendChild(btn)
-}
-
-adicionaRemover()
-
-function removeFinalizados() {
-  const pai = document.getElementById('lista-tarefas')
-  const filhos = document.getElementsByClassName('completed')
-  let quant = filhos.length;
-  for(let i = quant - 1; i >= 0; i -= 1){
-    pai.removeChild(filhos[i])
-  }
-
-}
-
-
-
-function adicionaSalvar() {
+function adicionaLimpar() {
   const pai = document.getElementById('btnsArea');
   const btn = document.createElement('button');
-  btn.className = "btnAdicionar"
-  btn.textContent = "Salvar"
-  btn.id = "salvar-tarefas"
-  btn.addEventListener('click', salvaTarefas)
-  pai.appendChild(btn)
+  btn.id = 'apaga-tudo';
+  btn.className = 'btnAdicionar';
+  btn.textContent = 'Limpar';
+  btn.addEventListener('click', limpaTudo);
+  pai.appendChild(btn);
 }
 
-adicionaSalvar()
+adicionaLimpar();
 
-
-
-function salvaTarefas(){
-  const itens = document.getElementsByClassName('item')
-  let lista = transformaArray(itens)
-  let classes = getClasses(itens)
-  salvaLocal(lista, classes)
+function removeFinalizados() {
+  const pai = document.getElementById(listaTarefas);
+  const filhos = document.getElementsByClassName('completed');
+  const quant = filhos.length;
+  for (let i = quant - 1; i >= 0; i -= 1) {
+    pai.removeChild(filhos[i]);
+  }
 }
 
+function adicionaRemover() {
+  const pai = document.getElementById('btnsArea');
+  const btn = document.createElement('button');
+  btn.className = 'btnAdicionar';
+  btn.textContent = 'Limpar Completos';
+  btn.id = 'remover-finalizados';
+  btn.addEventListener('click', removeFinalizados);
+  pai.appendChild(btn);
+}
+
+adicionaRemover();
 
 function transformaArray(save) {
-  let itens = save
-  let arr = []
-  for(let i = 0; i < itens.length; i += 1){
-    arr.push(itens[i].textContent)
+  const itens = save;
+  const arr = [];
+  for (let i = 0; i < itens.length; i += 1) {
+    arr.push(itens[i].textContent);
   }
-  return JSON.stringify(arr)
+  return JSON.stringify(arr);
+}
+
+function transformaClasses(arr) {
+  return JSON.stringify(arr);
+}
+console.log()
+function getClasses(itens) {
+  const arr = [];
+
+
+  for (let i = 0; i < itens.length; i += 1) {
+    arr.push(itens[i].className);
+  }
+
+  return transformaClasses(arr);
 }
 
 function salvaLocal(tarefas, classes) {
   localStorage.clear();
-  localStorage.setItem("tarefas", tarefas)
-  localStorage.setItem("classes", classes)
-  
-
+  localStorage.setItem('tarefas', tarefas);
+  localStorage.setItem('classes', classes);
 }
 
-function getClasses(itens) {
-  let arr = []
+function salvaTarefas() {
+  const itens = document.getElementsByClassName('item');
+  const lista = transformaArray(itens);
+  const classes = getClasses(itens);
+  salvaLocal(lista, classes);
+}
 
-  for(let i = 0; i < itens.length; i += 1){
-    arr.push(itens[i].className)
+function adicionaSalvar() {
+  const pai = document.getElementById('btnsArea');
+  const btn = document.createElement('button');
+  btn.className = 'btnAdicionar';
+  btn.textContent = 'Salvar';
+  btn.id = 'salvar-tarefas';
+  btn.addEventListener('click', salvaTarefas);
+  pai.appendChild(btn);
+}
+
+adicionaSalvar();
+
+function adicionaSalvos(tarefa, classe) {
+  const tarefas = JSON.parse(tarefa);
+  const classes = JSON.parse(classe);
+  const pai = document.getElementById(listaTarefas);
+  for (let i = 0; i < tarefas.length; i += 1) {
+    const filho = document.createElement('li');
+    filho.addEventListener('click', alteraFundo);
+    filho.addEventListener('dblclick', riscaConteudo);
+    filho.className = classes[i];
+    filho.textContent = tarefas[i];
+    pai.appendChild(filho);
   }
-
-  return transformaClasses(arr)
-
-
 }
-
-
-function transformaClasses(arr){
-  return JSON.stringify(arr)
-
-}
-
 
 function verificaSalvos() {
-  const tarefas = localStorage.getItem('tarefas')
-  const classes = localStorage.getItem('classes')
+  const tarefas = localStorage.getItem('tarefas');
+  const classes = localStorage.getItem('classes');
 
-  if(tarefas && classes){
-    adicionaSalvos(tarefas, classes)
-
+  if (tarefas && classes) {
+    adicionaSalvos(tarefas, classes);
   }
 }
 
 verificaSalvos();
-
-
-function adicionaSalvos(tarefa, classe) {
-  let tarefas = JSON.parse(tarefa)
-  let classes = JSON.parse(classe)
-  const pai = document.getElementById('lista-tarefas')
-  for(let i = 0; i < tarefas.length; i += 1) {
-    const filho = document.createElement('li')
-    filho.addEventListener('click', alteraFundo)
-    filho.addEventListener('dblclick', riscaConteudo)
-    filho.className = classes[i]
-    filho.textContent = tarefas[i]
-    pai.appendChild(filho)
-
+function transforma(objeto) {
+  const arr = [];
+  for (let i = 0; i < objeto.length; i += 1) {
+    arr.push(objeto[i]);
   }
-
+  return arr;
 }
 
-
-
-function adicionaMover(){
-  const pai = document.getElementById('btnsArea')
-  const subir = document.createElement('button')
-  const descer = document.createElement('button')
-
-  subir.id = "mover-cima"
-  descer.id = "mover-baixo"
-
-  subir.className = "btnAdicionar"
-  descer.className = "btnAdicionar"
-
-  subir.textContent = "Subir"
-  descer.textContent = "Descer"
-
-  subir.addEventListener('click', sobeItem)
-  descer.addEventListener('click', desceItem)
-
-  pai.appendChild(subir)
-  pai.appendChild(descer)
-
-
-
-
-
-}
-
-
-adicionaMover();
-
-
-//13
-function sobeItem() {
-  const selecionado = document.getElementsByClassName('bg')[0]
-  let lugar = posicao(selecionado);
-  sobe(lugar)
-}
-
-function desceItem() {
-  const selecionado = document.getElementsByClassName('bg')[0]
-  let lugar = posicao(selecionado);
-  desce(lugar)
-}
-
-
-function posicao(selecionado) {
-  const selected = selecionado
-  const filhos = document.getElementsByClassName('item')
-  for(let i = 0; i < filhos.length; i += 1){
-    if(selected === filhos[i]){
-      return i
-    }
+function refaz(novo) {
+  limpaTudo();
+  const pai = document.getElementById(listaTarefas);
+  for (let i = 0; i < novo.length; i += 1) {
+    pai.appendChild(novo[i]);
   }
-  
 }
 
 function sobe(pos) {
-  if(pos === 0){
-    return
+  if (pos === 0) {
+    return;
   }
-  let temp;
-  let filhos = document.getElementsByClassName('item')
-  let novo = transforma(filhos)
-  temp = novo[pos - 1]
-  novo[pos - 1] = novo[pos]
-  novo[pos] = temp
-  refaz(novo)
+  const filhos = document.getElementsByClassName('item');
+  const novo = transforma(filhos);
+  const temp = novo[pos - 1];
+  novo[pos - 1] = novo[pos];
+  novo[pos] = temp;
+  refaz(novo);
 }
 
-function transforma(objeto) {
-  let arr = []
-  for(let i = 0; i < objeto.length; i += 1){
-    arr.push(objeto[i])
-  }
-  return arr
-}
-
-
-function refaz(novo) {
-  limpaTudo()
-  const pai = document.getElementById('lista-tarefas')
-  for(let i = 0; i < novo.length; i += 1){
-    pai.appendChild(novo[i])
+function posicao(selecionado) {
+  const selected = selecionado;
+  const filhos = document.getElementsByClassName('item');
+  for (let i = 0; i < filhos.length; i += 1) {
+    if (selected === filhos[i]) {
+      return i;
+    }
   }
 }
 
+function sobeItem() {
+  const selecionado = document.getElementsByClassName('bg')[0];
+  const lugar = posicao(selecionado);
+  sobe(lugar);
+}
 
 function desce(pos) {
-  let filhos = document.getElementsByClassName('item')
-  if(pos === filhos.length - 1) {
-    return
+  const filhos = document.getElementsByClassName('item');
+  if (pos === filhos.length - 1) {
+    return;
   }
-
-  let temp;
-  let novo = transforma(filhos)
-
-  temp = novo[pos + 1]
-  novo[pos + 1] = novo[pos]
-  novo[pos] = temp
-
-  refaz(novo)
-
-
-}
-// acaba 13
-
-function adicionaRemoverSelecionado(){
-  const pai = document.getElementById("btnsArea")
-  let filho = document.createElement('button')
-  filho.id = "remover-selecionado"
-  filho.className = "btnAdicionar"
-  filho.textContent = "Remover Selecionado"
-  filho.addEventListener('click', removeSelecionado)
-  pai.appendChild(filho)
-
+  const novo = transforma(filhos);
+  const temp = novo[pos + 1];
+  novo[pos + 1] = novo[pos];
+  novo[pos] = temp;
+  refaz(novo);
 }
 
+function desceItem() {
+  const selecionado = document.getElementsByClassName('bg')[0];
+  const lugar = posicao(selecionado);
+  desce(lugar);
+}
 
-adicionaRemoverSelecionado()
+function criaSubir() {
+  const subir = document.createElement('button');
+  subir.id = 'mover-cima';
+  subir.className = 'btnAdicionar';
+  subir.textContent = 'Subir';
+  subir.addEventListener('click', sobeItem);
+  return subir;
+}
 
+function criaDescer() {
+  const descer = document.createElement('button');
+  descer.id = 'mover-baixo';
+  descer.className = 'btnAdicionar';
+  descer.textContent = 'Descer';
+  descer.addEventListener('click', desceItem);
+  return descer;
+}
 
+function adicionaMover() {
+  const pai = document.getElementById('btnsArea');
+  pai.appendChild(criaSubir);
+  pai.appendChild(criaDescer);
+}
+adicionaMover();
 
 function removeSelecionado() {
-  const selecionado = document.getElementsByClassName('bg')[0]
-  const pai = document.getElementById('lista-tarefas')
-  if(selecionado){
-    pai.removeChild(selecionado)
-
+  const selecionado = document.getElementsByClassName('bg')[0];
+  const pai = document.getElementById(listaTarefas);
+  if (selecionado) {
+    pai.removeChild(selecionado);
   }
-  
-
 }
+
+function adicionaRemoverSelecionado() {
+  const pai = document.getElementById('btnsArea');
+  const filho = document.createElement('button');
+  filho.id = 'remover-selecionado';
+  filho.className = 'btnAdicionar';
+  filho.textContent = 'Remover Selecionado';
+  filho.addEventListener('click', removeSelecionado);
+  pai.appendChild(filho);
+}
+
+adicionaRemoverSelecionado();
