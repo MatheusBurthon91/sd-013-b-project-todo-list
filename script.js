@@ -9,8 +9,14 @@ function selecao(objeto) {
   elemento.classList.toggle('selecionado');
 }
 
+function completo (objeto) {
+  let elemento = objeto.target;
+  elemento.classList.toggle('completed');
+}
+
 function criaObjetoClicavel(objeto) {
   objeto.addEventListener('click', selecao);
+  objeto.addEventListener('dblclick', completo);
 }
 
 function adicionarItem() {
