@@ -38,6 +38,12 @@ buttonList.firstElementChild.nextElementSibling.nextElementSibling.innerText = '
 createElementID('button', buttonList, 'reset-save');
 document.querySelector('#reset-save').innerText = 'Apagar lista salva';
 
+createElementID('button', buttonList, 'mover-cima');
+document.querySelector('#mover-cima').innerText = 'Mover pra cima';
+
+createElementID('button', buttonList, 'mover-baixo');
+document.querySelector('#mover-baixo').innerText = 'Mover pra baixo';
+
 // Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
   const inputValue = input.value;
@@ -112,6 +118,32 @@ function clickResetSave() {
   localStorage.removeItem('list');
 }
 
+// Move o item selecionado para a posição acima dele.
+function clickUp() {
+  const selected = document.querySelector('.selected');
+  if (selected !== null) {
+    const save = selected.previousSibling;
+    if (selected.previousSibling !== null) {
+      listT.removeChild(selected.previousSibling);
+      listT.insertBefore(save, selected.nextElementSibling);
+    }
+    // Aprendi sobre o insertBefore, neste link:
+    // https://www.w3schools.com/jsref/met_node_insertbefore.asp
+  }
+}
+
+// Move item salecionado para a posição abaixo dele.
+function clickDown() {
+  const selected = document.querySelector('.selected');
+  if (selected !== null) {
+    const save = selected.nextElementSibling;
+    if (selected.nextElementSibling !== null) {
+      listT.removeChild(selected.nextElementSibling);
+      listT.insertBefore(save, selected);
+    }
+  }
+}
+
 // Event Listener.
 addButton.addEventListener('click', buttonClickAddList);
 
@@ -125,3 +157,6 @@ document.querySelector('#remover-finalizados').addEventListener('click', clickCl
 
 document.querySelector('#salvar-tarefas').addEventListener('click', clickSave);
 document.querySelector('#reset-save').addEventListener('click', clickResetSave);
+
+document.querySelector('#mover-cima').addEventListener('click', clickUp);
+document.querySelector('#mover-baixo').addEventListener('click', clickDown);
