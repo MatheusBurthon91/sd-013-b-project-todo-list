@@ -2,18 +2,20 @@
 const botao = document.getElementById('criar-tarefa');
 const input = document.getElementById('texto-tarefa');
 const listaTarefas = document.getElementById('lista-tarefas');
+const apagar = document.getElementById('apaga-tudo');
 
 function criaTarefa() {
   const tarefa = document.createElement('li');
   // Referencia da propriedade value https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onkeyup_addeventlistener
   tarefa.innerText = input.value;
+  tarefa.className = 'tarefa';
   listaTarefas.appendChild(tarefa);
   input.value = '';
 }
 botao.addEventListener('click', criaTarefa);
 
 function pintaSoUm(event) {
-  let x = event.target;
+  const x = event.target;
   for (let i = 0; i < listaTarefas.childElementCount; i += 1) {
     listaTarefas.children[i].style.backgroundColor = 'white';
   }
@@ -22,16 +24,24 @@ function pintaSoUm(event) {
 listaTarefas.addEventListener('click', pintaSoUm);
 
 function riscaTarefaCompletada(event) {
-  let x = event.target;
-  if (x.className == 'completed') {
+  const x = event.target;
+  if (x.className === 'tarefa completed') {
     x.style.textDecoration = 'none';
-    x.className = '';
-  }
-  else {
+    x.className = 'tarefa';
+  } else {
     x.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
-    x.className = 'completed';
+    x.className = 'tarefa completed';
   }
-  
+
+}
+listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
+// A função abaixo foi baseado nessa referencia https://stackoverflow.com/questions/4777077/removing-elements-by-class-name
+
+function removeElementsByClass(){
+    const elements = document.getElementsByClassName('tarefa');
+    while(elements.length > 0){
+        listaTarefas.removeChild(elements[0]);
+    }
 }
 
-listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
+apagar.addEventListener('click', removeElementsByClass);
