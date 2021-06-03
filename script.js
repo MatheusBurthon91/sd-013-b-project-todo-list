@@ -17,24 +17,15 @@ function createTask() {
 
 btnCreateTask.addEventListener('click', createTask);
 
-let taskCreated = document.querySelectorAll('.task');
-
-//function getTasks(){
- //   let taskCreated = document.querySelectorAll('.task');
-//}
-
 function taskSelected(event) {
- //   getTasks();
+ let taskCreated = document.querySelectorAll('.task');
     console.log("entrou")
     const selected = event.target;
-    selected.className = 'task-item-selected'
-  //  for (let index = 0; index < taskCreated.length; index += 1) {
-   //     if (taskCreated[index] === selected) {
-   //       taskCreated[index].className = 'tarefa selected';
-  //      } else {
-  //          taskCreated[index].className = 'tarefa';
-   //       }
-  //      }
+   for (let index = 0; index < taskCreated.length; index += 1) {
+       if (taskCreated[index] === selected) {
+        selected.classList.toggle('task-item-selected')
+       } 
+      }
       }
 
 function createClickable() {
