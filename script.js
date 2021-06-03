@@ -1,13 +1,19 @@
 const taskList = document.getElementById('lista-tarefas');
 
-const changeBGColor = (event) => {
-  const li = event.target;
-  li.style.backgroundColor = 'rgb(128, 128, 128)';
+const selectItem = (event) => {
+  const itemToSelect = event.target;
+  Array.from(taskList.children).forEach((li) => {
+    if (li.classList.contains('selected') && li !== itemToSelect) {
+      li.classList.remove('selected');
+    }
+  });
+
+  itemToSelect.classList.add('selected');
 };
 
 const createTask = (taskName) => {
   const li = document.createElement('li');
-  li.addEventListener('click', changeBGColor);
+  li.addEventListener('click', selectItem);
   li.innerText = taskName;
   return li;
 };
