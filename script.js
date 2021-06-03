@@ -5,6 +5,7 @@ const btnRemoveFinalizados = document.getElementById('remover-finalizados');
 const btnSalvarTarefas = document.getElementById('salvar-tarefas');
 const btnMoverCima = document.getElementById('mover-cima');
 const btnMoverBaixo = document.getElementById('mover-baixo');
+const btnRemoverSelecionado = document.getElementById('remover-selecionado');
 const olListaTarefas = document.getElementById('lista-tarefas');
 
 function clearInputTextoTarefa() {
@@ -147,6 +148,16 @@ function moveTarefaBaixo() {
   }
 }
 
+function removerSelecionado() {
+  for (let index = 0; index < tarefas.length; index += 1) {
+    if (tarefas[index].className.includes(' selected')) {
+      const currentTarefa = tarefas[index];
+      currentTarefa.parentNode.removeChild(currentTarefa);
+    }
+  }
+  getTarefas();
+}
+
 btnCriarTarefa.addEventListener('click', createTarefaBtn);
 
 btnApagaTudo.addEventListener('click', clearAllTarefas);
@@ -158,6 +169,8 @@ btnSalvarTarefas.addEventListener('click', saveAllTarefas);
 btnMoverCima.addEventListener('click', moveTarefaCima);
 
 btnMoverBaixo.addEventListener('click', moveTarefaBaixo);
+
+btnRemoverSelecionado.addEventListener('click', removerSelecionado);
 
 // Conteúdo encontrado no https://stackoverflow.com/questions/20180251/when-to-use-window-onload
 window.addEventListener('load', () => {
