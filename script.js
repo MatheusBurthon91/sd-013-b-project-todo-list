@@ -24,3 +24,7 @@ list.addEventListener('click', (event) => {
   classRemove();
   event.target.classList.add('selected');
 });
+
+list.addEventListener('dblclick', (event) => {
+  event.target.classList.toggle('completed');
+});
