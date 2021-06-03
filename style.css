@@ -8,18 +8,17 @@
 }
 
 body {
-  background-color: rgba(215 , 200 , 180);
+  background-color: rgb(215, 200, 180);
 }
 
 #header {
   background-color: black;
   padding: 16px;
-  margin-bottom: 8px;
 }
 
 #main {
   padding: 16px;
-  margin: 8px 0;
+  margin: 16px 0;
 }
 
 .button {
@@ -30,11 +29,23 @@ body {
 }
 
 .button:hover {
-  background-color: rgb(230 , 215 , 195);
+  filter: brightness(90%);
 }
 
 .completed {
   text-decoration: line-through solid black;
+}
+
+.clean-list {
+  background-color: red;
+}
+
+.clean-selected {
+  background-color: yellow;
+}
+
+.edit-buttons {
+  padding: 8px;
 }
 
 .fas {
@@ -54,6 +65,10 @@ body {
   display: flex;
   margin: 16px 0;
   padding: 8px;
+}
+
+.save-list {
+  background-color: lightgreen;
 }
 
 .selected {
