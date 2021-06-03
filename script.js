@@ -41,6 +41,17 @@ function createClickable() {
     let taskCreated = document.querySelectorAll('.task');
     for (let index = 0; index < taskCreated.length; index += 1) {
         taskCreated[index].addEventListener('click', taskSelected)
+        taskCreated[index].addEventListener('dblclick', completedTask)
     }
+}
+
+function completedTask (event){
+    const taskClick = event.target
+    const classTaskClick = taskClick.className;
+  if (classTaskClick.includes(' completed')) {
+    taskClick.className = classTaskClick.replace(/completed/, '');
+  } else {
+    taskClick.className += ' completed';
+  }
 }
 
