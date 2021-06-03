@@ -58,24 +58,36 @@ document.getElementById('remover-finalizados').addEventListener('click', removeF
 function getProprieties(item) {
   const text = item.innerText;
   const itemClass = item.className;
-  return [text, itemClass];
+  return {texto: text, class: itemClass};
 }
 
 function saveTaskList () {
+  localStorage.clear();
+  let tasks = [];
   const listItems = document.getElementsByTagName('li');
   for (let index = 0; index < listItems.length; index += 1) {
-    const arrayItem = (getProprieties(listItems[index]));
-    localStorage.setItem(index.toString(), arrayItem);
+    const proprieties = getProprieties(listItems[index]);
+    tasks.push(proprieties);
   }
-}
-
-function readProprieties () {
-
+  localStorage.setItem('taskList', JSON.stringify(tasks));
 }
 
 document.getElementById('salvar-tarefas').addEventListener('click', saveTaskList);
-window.onload = function checkLocalStorage () {
-    for (let index = 0; index < localStorage.length; index += 1) {
-        console.log(localStorage.)
-    }
+
+function savedTask(object) {
+  const classe = object.class;
+  const texto = object.texto;
+  const listItem = document.createElement('li');
+  listItem.innerText = texto;
+  if (classe === 'completed' || classe === 'selected completed') {
+    listItem.className = 'completed';
 }
+  orderedList.appendChild(listItem);
+}
+
+window.onload = function () {
+  const taskList = JSON.parse(localStorage.taskList);
+  for (let index = 0; index < taskList.length; index += 1) {
+    savedTask(taskList[index]);
+  }
+};
