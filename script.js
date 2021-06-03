@@ -3,6 +3,16 @@ let creationButton = document.getElementById('criar-tarefa');
 let list = document.getElementById('lista-tarefas');
 let removeAllButton = document.getElementById('apaga-tudo');
 let removeCompletedButton = document.getElementById('remover-finalizados');
+let saveChangesButton = document.getElementById('salvar-tarefas');
+let mensagem = document.getElementById("mensagem-alerta");
+
+// Recuperar alterações através do localStorage
+if (typeof(Storage) !== "undefined") {
+  let changes = localStorage.getItem("listChanges");
+  list.innerHTML = changes;
+} else {
+  mensagem.innerHTML = "Rapaz, eta navegadorzinho ruim esse teu, hein?";
+}
 
 // Adicionar uma tarefa na ol
 function addLi(listPath) {
@@ -63,6 +73,15 @@ function removeCompleted() {
   }
 }
 
+// Salvar lista no localStorage
+function saveListChanges () {
+  if (typeof(Storage) !== "undefined") {
+    localStorage.setItem("listChanges", document.getElementById('lista-tarefas').innerHTML);
+  } else {
+    document.getElementById("mensagem-alerta").innerHTML = "Rapaz, eta navegadorzinho ruim esse teu, hein?";
+  }
+}
+
 // Clicar no botão para adicionar uma tarefa
 creationButton.onclick = function() {
   addLi(list);
@@ -71,7 +90,16 @@ creationButton.onclick = function() {
 };
 
 // Clicar no botão para apagar a lista toda
-removeAllButton.onclick = function() {removeAll(list)};
+removeAllButton.onclick = function() {
+  removeAll(list);
+};
 
 // Clicar no botão apaga os itens finalizados
-removeCompletedButton.onclick = function() {removeCompleted(list)};
+removeCompletedButton.onclick = function() {
+  removeCompleted(list);
+};
+
+// Clicar no botão vai salvar a lista no localStorage
+saveChangesButton.onclick = function() {
+  saveListChanges();
+};
