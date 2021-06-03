@@ -21,6 +21,7 @@ function criaObjetoClicavel(objeto) {
 
 function adicionarItem() {
   let itemList = document.createElement('li');
+  itemList.className = 'item';
   let texto = document.createTextNode(document.getElementById('texto-tarefa').value);
   itemList.appendChild(texto);
   criaObjetoClicavel(itemList);
@@ -30,4 +31,11 @@ function adicionarItem() {
 
 function limparLista() {
   document.getElementById('lista-tarefas').innerHTML = '';
+}
+
+function removerFinalizados() {
+  let lista = document.querySelectorAll('.item');
+  for (let index = 0; index < lista.length; index += 1) {
+    if (lista[index].classList.contains('completed')) lista[index].remove();
+  }
 }

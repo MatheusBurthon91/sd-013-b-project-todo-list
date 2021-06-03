@@ -27,7 +27,7 @@ button {
 }
 
 .selecionado {
-  background-color: rgb(128, 128, 128);
+  background-color: gray;
 }
 
 .completed {
@@ -37,10 +37,22 @@ button {
 #apaga-tudo {
   background-color: white;
   color: black;
-  border: 2px solid #2fe49f;
+  border: 2px solid #00b16d;
 }
 
 #apaga-tudo:hover {
-  background-color: #2fe49f;
+  background-color: #00b16d;
+  color: white;
+}
+
+#remover-finalizados {
+  padding: 2px 16px;
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
+}
+
+#remover-finalizados:hover {
+  background-color: #008cba;
   color: white;
 }
