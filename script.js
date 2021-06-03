@@ -43,9 +43,3 @@ function removerFinalizados() {
 function salvar() {
   //document.getElementById('lista-tarefas');
 }
-
-window.onload 
-adicionarItem;
-limparLista;
-removerFinalizados;
-salvar;
