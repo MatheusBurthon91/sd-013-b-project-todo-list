@@ -19,7 +19,8 @@ btnCreateTask.addEventListener('click', createTask);
 
 function taskSelected(event) {
  let taskCreated = document.querySelectorAll('.task');
-    console.log("entrou")
+ clearSelected();
+    //console.log("entrou")
     const selected = event.target;
    for (let index = 0; index < taskCreated.length; index += 1) {
        if (taskCreated[index] === selected) {
@@ -27,6 +28,14 @@ function taskSelected(event) {
        } 
       }
       }
+
+function clearSelected(){
+    let taskCreated = document.querySelectorAll('.task');
+    for (index = 0; index < taskCreated.length; index += 1){
+    const itemSelected = taskCreated[index].className
+    taskCreated[index].className = itemSelected.replace(/-item-selected/, '');
+    }
+}
 
 function createClickable() {
     let taskCreated = document.querySelectorAll('.task');
