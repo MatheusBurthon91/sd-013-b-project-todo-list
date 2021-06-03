@@ -1,3 +1,4 @@
+// FUNÇÕES PARA AS TAREFAS DA LISTA
 function selecionarItem(itemEvento) {
   const selecionado = document.querySelector('.selecionado');
   const clicado = itemEvento.target;
@@ -11,15 +12,12 @@ function selecionarItem(itemEvento) {
 
 function tarefaCumprida(itemEvento) {
   const doisClicks = itemEvento.target;
-  if (doisClicks.classList.contains('completed')) {
-    doisClicks.classList.remove('completed');
-  } else {
-    doisClicks.classList.add('completed');
-  }
+  doisClicks.classList.toggle('completed');
 }
+const lista = document.getElementById('lista-tarefas');
 
+// FUNÇÕES PARA OS BOTÕES
 function adicionarTarefa() {
-  const lista = document.getElementById('lista-tarefas');
   const novoItem = document.createElement('li');
   const entrada = document.getElementById('texto-tarefa');
   novoItem.innerText = entrada.value;
@@ -29,6 +27,22 @@ function adicionarTarefa() {
   entrada.value = '';
 }
 
+function apagarTudo() {
+  lista.innerHTML = '';
+}
+
+function apagarFinalizados() {
+  const finalizados = document.getElementsByClassName('completed');
+  while (finalizados.length > 0) {
+    finalizados[0].parentNode.removeChild(finalizados[0]);
+  }
+}
+
+// BOTÕES
 const botaoCriar = document.getElementById('criar-tarefa');
+const botaoApagarTudo = document.getElementById('apaga-tudo');
+const botaoFinalizar = document.getElementById('remover-finalizados');
 
 botaoCriar.addEventListener('click', adicionarTarefa);
+botaoApagarTudo.addEventListener('click', apagarTudo);
+botaoFinalizar.addEventListener('click', apagarFinalizados);
