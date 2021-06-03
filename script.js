@@ -1,17 +1,31 @@
 
 
-
 //essa funcao seleciona a tarefa dentro da ol
-function mudaClasse()  {
-  const li = event.target;
-  console.log(li.classList)
-  if (li.className === 'non-selected'){
+function mudaClasse(event)  {
+  let li = event.target
+  const lItem = document.getElementsByClassName('selected')[0] 
+  if (lItem)  { 
+    lItem.classList.remove('selected') 
+  } 
   li.classList.add('selected')
-  li.classList.remove('non-selected')}
-  else {li.classList.add('non-selected')
-  li.classList.remove('selected')} 
-  
 }
+
+
+
+//Clicar 2x faz com que ele seja riscado, indicando que foi completo.
+//deve ser possivel desfazer ssa acao clicando novamente duas x no item
+function markComplete(event) {
+  let li = event.target
+  
+  if (li.className !== 'item completed selected'){
+    li.classList.add('completed')
+  } else {
+    li.classList.remove('completed')
+    console.log(li.className)
+  }
+} 
+
+
 
 
 //funcao para colocar a skill na lista
@@ -21,7 +35,8 @@ function getText()  {
   let li = document.createElement('li')
   li.innerText = document.getElementById('texto-tarefa').value
   li.addEventListener('click', mudaClasse)
-  li.className = ('non-selected')
+  li.addEventListener('dblclick', markComplete)
+  li.className = ('item')
   let ol = document.getElementById('lista-tarefas')
   ol.appendChild(li)
   // console.log(ol)
@@ -34,6 +49,23 @@ function pegaTexto()  {
   const adiciona = document.getElementById('criar-tarefa')
   adiciona.addEventListener('click', getText)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
