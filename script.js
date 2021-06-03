@@ -41,3 +41,14 @@ function eraseCompleted() {
 }
 
 document.querySelector('#remover-finalizados').addEventListener('click', eraseCompleted);
+
+function saveList() {
+  localStorage.setItem('savedList', list.innerHTML);
+}
+function retrieveList() {
+  list.innerHTML = localStorage.getItem('savedList');
+}
+
+retrieveList();
+
+document.querySelector('#salvar-tarefas').addEventListener('click', saveList);
