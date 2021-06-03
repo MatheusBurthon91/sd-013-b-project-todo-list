@@ -19,7 +19,6 @@ function changeSelected() {
   for (let key = 0; key < listItem.length; key += 1) {
     if (listItem[key].className === 'listItem selected') {
       listItem[key].classList.remove('selected');
-      listItem[key].style.backgroundColor = 'rgb(255, 255, 255)';
     }
   }
 }
@@ -85,17 +84,37 @@ function saveTaskImplementer() {
   }
 }
 
+function changeItemUp() {
+  const element = document.getElementsByClassName('selected')[0];
+  const orderList = document.getElementById(idOrderList);
+  if (element !== orderList.firstChild && element) {
+    element.previousSibling.before(element);
+  }
+}
+
+function changeItemDown() {
+  const element = document.getElementsByClassName('selected')[0];
+  const orderList = document.getElementById(idOrderList);
+  if (element !== orderList.lastChild && element) {
+    element.nextSibling.after(element);
+  }
+}
+
 function init() {
   const orderList = document.getElementById(idOrderList);
   const buttonAddTask = document.getElementById('criar-tarefa');
   const buttonRemoveAllTask = document.getElementById('apaga-tudo');
   const buttonRemoveCompletedTask = document.getElementById('remover-finalizados');
   const buttonSaveTask = document.getElementById('salvar-tarefas');
+  const buttonMoveUp = document.getElementById('mover-cima');
+  const buttonMoveDown = document.getElementById('mover-baixo');
 
   buttonAddTask.addEventListener('click', createTask);
   buttonRemoveAllTask.addEventListener('click', removeAllTask);
   buttonRemoveCompletedTask.addEventListener('click', removeCompletedTask);
   buttonSaveTask.addEventListener('click', saveTask);
+  buttonMoveUp.addEventListener('click', changeItemUp);
+  buttonMoveDown.addEventListener('click', changeItemDown);
   orderList.addEventListener('click', createSelected);
   orderList.addEventListener('dblclick', createLineThrough);
 }
