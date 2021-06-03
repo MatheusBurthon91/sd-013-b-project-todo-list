@@ -40,8 +40,17 @@ window.onload = function () {
 
   const buttonApaga = document.getElementById('apaga-tudo');
 
-  buttonApaga.addEventListener('click', function() {
+  buttonApaga.addEventListener('click', function () {
     const apagarLista = lista;
     apagarLista.innerHTML = '';
-  })
+  });
+
+  const buttonFinal = document.getElementById('remover-finalizados');
+
+  buttonFinal.addEventListener('click', function () {
+    const listaFinal = document.querySelectorAll('.completed')
+    for (let index = 0; index < listaFinal.length; index += 1) {
+      listaFinal[index].parentElement.removeChild(listaFinal[index]);
+    }
+  });
 };
