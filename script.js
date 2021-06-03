@@ -27,3 +27,7 @@ function adicionarItem() {
   document.getElementById('lista-tarefas').appendChild(itemList);
   document.getElementById('texto-tarefa').value = '';
 }
+
+function limparLista() {
+  document.getElementById('lista-tarefas').innerHTML = '';
+}

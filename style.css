@@ -33,3 +33,14 @@ button {
 .completed {
   text-decoration: line-through;
 }
+
+#apaga-tudo {
+  background-color: white;
+  color: black;
+  border: 2px solid #2fe49f;
+}
+
+#apaga-tudo:hover {
+  background-color: #2fe49f;
+  color: white;
+}
