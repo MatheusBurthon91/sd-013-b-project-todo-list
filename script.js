@@ -1,12 +1,12 @@
 const buttonAdd = document.querySelector('#criar-tarefa');
 const list = document.querySelector('#lista-tarefas');
 const clearButton = document.querySelector('#apaga-tudo');
+const clearCheked = document.querySelector('#remover-finalizados');
 
 buttonAdd.addEventListener('click', () => {
-  const lista = document.querySelector('#lista-tarefas');
   const input = document.querySelector('#texto-tarefa');
   const li = document.createElement('li');
-  lista.appendChild(li);
+  list.appendChild(li);
   li.innerHTML = input.value;
   input.value = '';
 });
@@ -29,8 +29,14 @@ list.addEventListener('dblclick', (event) => {
 
 clearButton.addEventListener('click', () => {
   const li = document.querySelectorAll('li');
-  const maxValor = li.length;
-  for (let index = 0; index < maxValor; index += 1) {
+  for (let index = 0; index < li.length; index += 1) {
     li[index].remove();
+  }
+});
+
+clearCheked.addEventListener('click', () => {
+  const completed = document.querySelectorAll('.completed');
+  for (let index = 0; index < completed.length; index += 1) {
+    completed[index].remove();
   }
 });
