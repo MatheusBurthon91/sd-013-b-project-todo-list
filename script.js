@@ -4,8 +4,12 @@ let button = document.getElementById("criar-tarefa")
 
 let list = document.getElementById("lista-tarefas")
 
+let dell = document.getElementById("apaga-tudo")
+
+
+
 function clearValue (){
-    inpute.value ="";
+    inpute.value="";
 }
 
 function creatAction (){
@@ -15,6 +19,11 @@ function creatAction (){
     li.innerText= creat;
     list.appendChild(li);
     clearValue()
+
+    dell.addEventListener("click",function() {
+        list.removeChild(li);
+        
+})
 }
 
 
@@ -25,3 +34,10 @@ list.addEventListener("click",function (){
     event.target.style.backgroundColor= 'rgb(128, 128, 128)'
     
 })
+
+
+
+console.log(list)
+
+
+
