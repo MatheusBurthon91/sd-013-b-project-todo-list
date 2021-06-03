@@ -1,6 +1,7 @@
+const ol = document.getElementById('lista-tarefas');
+
 function adicionarTarefaEvento() {
   document.getElementById('criar-tarefa').addEventListener('click', () => {
-    const ol = document.getElementById('lista-tarefas');
     const li = document.createElement('li');
     li.innerText = document.getElementById('texto-tarefa').value;
     li.className = 'tarefas';
@@ -12,14 +13,30 @@ function adicionarTarefaEvento() {
 adicionarTarefaEvento();
 
 function mudarCorDoItem() {
-  document.getElementById('lista-tarefas').addEventListener('click', (event) => {
+  ol.addEventListener('click', (event) => {
     const evento = event.target;
-    if (evento.style.backgroundColor === '') {
-      evento.style.backgroundColor = 'rgb(128,128,128)';
+    if (evento.classList.contains('tarefaMarcada') === true) {
+      evento.classList.remove('tarefaMarcada');
     } else {
-      evento.style.backgroundColor = '';
+      if (document.querySelector('.tarefaMarcada') != null) {
+        document.querySelector('.tarefaMarcada').classList.remove('tarefaMarcada');
+      }
+      evento.classList.add('tarefaMarcada');
     }
   });
 }
 
 mudarCorDoItem();
+
+function riscarItem() {
+  ol.addEventListener('dblclick', (event) => {
+    const evento = event.target;
+    if (evento.classList.contains('completed') === true) {
+      evento.classList.remove('completed');
+    } else {
+      evento.classList.add('completed');
+    }
+  });
+}
+
+riscarItem();

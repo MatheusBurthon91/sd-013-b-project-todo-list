@@ -1,0 +1,8 @@
+.tarefaMarcada {
+  background-color: rgb(128,128,128);
+  /* text-decoration: line-through; */
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}
