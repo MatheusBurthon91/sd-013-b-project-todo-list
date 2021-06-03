@@ -21,7 +21,7 @@ function markComplete(event) {
     li.classList.add('completed')
   } else {
     li.classList.remove('completed')
-    console.log(li.className)
+    // console.log(li.className)
   }
 } 
 
@@ -53,22 +53,24 @@ function pegaTexto()  {
 
 
 
+//entender isso melhor na monitoria ;)
+function rmIt(){
+  let ol = document.getElementById('lista-tarefas')
+  let lis = document.getElementsByTagName('li')
+  console.log(lis,'teste')
+  while(ol.hasChildNodes()){
+    ol.removeChild(ol.firstChild)
+  }
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function rmAll()  {
+  const rmButt = document.getElementById('apaga-tudo')
+  rmButt.addEventListener('click', rmIt)
+}
 
 
 pegaTexto()
+rmAll()
 
