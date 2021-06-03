@@ -44,6 +44,9 @@ document.querySelector('#mover-cima').innerText = 'Mover pra cima';
 createElementID('button', buttonList, 'mover-baixo');
 document.querySelector('#mover-baixo').innerText = 'Mover pra baixo';
 
+createElementID('button', buttonList, 'remover-selecionado');
+document.querySelector('#remover-selecionado').innerText = 'Remover selecionado';
+
 // Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
   const inputValue = input.value;
@@ -113,7 +116,7 @@ window.onload = function start() {
   // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/
 };
 
-// Remove a entrada referente a key = 'list'
+// Remove a entrada referente a key = 'list'.
 function clickResetSave() {
   localStorage.removeItem('list');
 }
@@ -144,6 +147,16 @@ function clickDown() {
   }
 }
 
+// Remove o item selecionado.
+function removeSelected() {
+  const list = listT.children;
+  for (let index = 0; index < list.length; index += 1) {
+    if (list[index].classList.contains('selected')) {
+      listT.removeChild(list[index]);
+    }
+  }
+}
+
 // Event Listener.
 addButton.addEventListener('click', buttonClickAddList);
 
@@ -160,3 +173,5 @@ document.querySelector('#reset-save').addEventListener('click', clickResetSave);
 
 document.querySelector('#mover-cima').addEventListener('click', clickUp);
 document.querySelector('#mover-baixo').addEventListener('click', clickDown);
+
+document.querySelector('#remover-selecionado').addEventListener('click', removeSelected);
