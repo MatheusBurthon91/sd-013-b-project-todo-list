@@ -2,6 +2,7 @@ const inputTextoTarefa = document.getElementById('texto-tarefa');
 const btnCriarTarefa = document.getElementById('criar-tarefa');
 const btnApagaTudo = document.getElementById('apaga-tudo');
 const btnRemoveFinalizados = document.getElementById('remover-finalizados');
+const btnSalvarTarefas = document.getElementById('salvar-tarefas');
 const olListaTarefas = document.getElementById('lista-tarefas');
 
 function clearInputTextoTarefa() {
@@ -53,15 +54,20 @@ function construaLiClicavel() {
   }
 }
 
-function createTarefa() {
-  const tarefa = inputTextoTarefa.value;
+function createTarefa(tarefa, classe) {
   const li = document.createElement('li');
   li.innerText = tarefa;
-  li.className = 'tarefa';
+  li.className = classe;
   olListaTarefas.appendChild(li);
   clearInputTextoTarefa();
-  inputTextoTarefa.focus();
   construaLiClicavel();
+}
+
+function createTarefaBtn() {
+  const tarefa = inputTextoTarefa.value;
+  const classe = 'tarefa';
+  createTarefa(tarefa, classe);
+  inputTextoTarefa.focus();
 }
 
 function clearAllTarefas() {
@@ -80,8 +86,35 @@ function clearCompletedTarefa() {
   }
 }
 
-btnCriarTarefa.addEventListener('click', createTarefa);
+function saveAllTarefas() {
+  getTarefas();
+  const session = {
+    tarefas: [],
+  };
+  for (let index = 0; index < tarefas.length; index += 1) {
+    session.tarefas.push({ tarefa: tarefas[index].innerText, class: tarefas[index].className });
+  }
+  localStorage.setItem('session', JSON.stringify(session));
+}
+
+function restoredSession() {
+  const atualSession = JSON.parse(localStorage.getItem('session'));
+  for (let index = 0; index < atualSession.tarefas.length; index += 1) {
+    const tarefaAtual = atualSession.tarefas[index].tarefa;
+    const classeAtual = atualSession.tarefas[index].class;
+    createTarefa(tarefaAtual, classeAtual);
+  }
+}
+
+btnCriarTarefa.addEventListener('click', createTarefaBtn);
 
 btnApagaTudo.addEventListener('click', clearAllTarefas);
 
 btnRemoveFinalizados.addEventListener('click', clearCompletedTarefa);
+
+btnSalvarTarefas.addEventListener('click', saveAllTarefas);
+
+window.onload = function() {
+  restoredSession();
+  getTarefas();
+};
