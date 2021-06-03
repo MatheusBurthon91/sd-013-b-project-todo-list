@@ -2,7 +2,6 @@
 const botao = document.getElementById('criar-tarefa');
 const input = document.getElementById('texto-tarefa');
 const listaTarefas = document.getElementById('lista-tarefas');
-const apagar = document.getElementById('apaga-tudo');
 
 function criaTarefa() {
   const tarefa = document.createElement('li');
@@ -32,16 +31,24 @@ function riscaTarefaCompletada(event) {
     x.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
     x.className = 'tarefa completed';
   }
-
 }
 listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
 // A função abaixo foi baseado nessa referencia https://stackoverflow.com/questions/4777077/removing-elements-by-class-name
 
-function removeElementsByClass(){
-    const elements = document.getElementsByClassName('tarefa');
-    while(elements.length > 0){
-        listaTarefas.removeChild(elements[0]);
-    }
+function removeTudo() {
+  const elementos = document.getElementsByClassName('tarefa');
+  while(elementos.length > 0) {
+    listaTarefas.removeChild(elementos[0]);
+  }
 }
 
-apagar.addEventListener('click', removeElementsByClass);
+document.getElementById('apaga-tudo').addEventListener('click', removeTudo);
+
+function removeFinalizados() {
+  const elementos = document.getElementsByClassName('tarefa completed');
+  while(elementos.length > 0) {
+    listaTarefas.removeChild(elementos[0]);
+  }
+}
+
+document.getElementById('remover-finalizados').addEventListener('click', removeFinalizados);
