@@ -32,6 +32,12 @@ buttonList.firstElementChild.innerText = 'Apagar tudo';
 createElementID('button', buttonList, 'remover-finalizados');
 buttonList.firstElementChild.nextElementSibling.innerText = 'Apagar os finalizados';
 
+createElementID('button', buttonList, 'salvar-tarefas');
+buttonList.firstElementChild.nextElementSibling.nextElementSibling.innerText = 'Salvar';
+
+createElementID('button', buttonList, 'reset-save');
+document.querySelector('#reset-save').innerText = 'Apagar lista salva';
+
 // Adiciona o texto do input a lista e limpa a caixa de texto.
 function buttonClickAddList() {
   const inputValue = input.value;
@@ -57,7 +63,7 @@ function listClickBg(e) {
   }
 }
 
-// Adiciona e retira o text decoretion line-through, quando clicado.
+// Adiciona e retira o text decoration line-through, quando clicado.
 function listClickLine(e) {
   if (e.target.classList.contains('list-item')) {
     if (e.target.classList.contains('completed')) {
@@ -86,14 +92,36 @@ function clickClearCompleted() {
   }
 }
 
+// Salva as li no localStorage.
+function clickSave() {
+  localStorage.setItem('list', listT.innerHTML);
+}
+
+window.onload = function start() {
+  // Checa se tem algo salvo no lacalStorage e se tiver aplica na pagina.
+  const storageCheck = localStorage.getItem('list');
+  if (storageCheck !== undefined) {
+    listT.innerHTML = storageCheck;
+  }
+  // aprendi como salvar e aplicar o que foi salvo neste link:
+  // https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/
+};
+
+// Remove a entrada referente a key = 'list'
+function clickResetSave() {
+  localStorage.removeItem('list');
+}
+
 // Event Listener.
 addButton.addEventListener('click', buttonClickAddList);
 
 document.addEventListener('click', listClickResetBg);
 document.addEventListener('click', listClickBg);
-
 document.addEventListener('dblclick', listClickLine);
 
 document.querySelector('#apaga-tudo').addEventListener('click', clickClearList);
 
 document.querySelector('#remover-finalizados').addEventListener('click', clickClearCompleted);
+
+document.querySelector('#salvar-tarefas').addEventListener('click', clickSave);
+document.querySelector('#reset-save').addEventListener('click', clickResetSave);
