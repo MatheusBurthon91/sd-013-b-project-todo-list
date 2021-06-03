@@ -57,6 +57,11 @@ function clearList(){
 buttonClear.addEventListener('click', clearList);
 
 function clearCompl(){
-
+  let item = document.getElementsByClassName('completed');
+  let size = item.length;
+  for (let index = 0 ; index < size; index +=1){
+    item[item.length - 1].remove();
+  }
 }
+
 buttonClearCompl.addEventListener('click', clearCompl);
