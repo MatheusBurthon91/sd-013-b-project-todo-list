@@ -26,18 +26,20 @@ function creatAction (){
 })
 }
 
+button.addEventListener("click",creatAction);
 
+function  removeclass() {
+    let vdd = document.getElementsByClassName("liColor")[0];
+    if(vdd) {
+        vdd.classList.remove("liColor")
+    }
+};
 
-button.addEventListener("click",creatAction)
+list.addEventListener("click",(event) => {
+    removeclass();
+    event.target.classList.add("liColor")
+});
 
-list.addEventListener("click",function (){
-    event.target.style.backgroundColor= 'rgb(128, 128, 128)'
-    
-})
-
-
-
-console.log(list)
-
-
-
+    list.addEventListener("dblclick", (event) =>{
+        event.target.classList.toggle("completed")
+    });
