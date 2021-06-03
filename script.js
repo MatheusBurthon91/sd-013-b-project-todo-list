@@ -1,15 +1,15 @@
+const ListaTarefas = 'lista-tarefas';
+
 function selecao(objeto) {
   let elemento = objeto.target;
-  let lista = document.getElementById('lista-tarefas').children;
+  let lista = document.getElementById(ListaTarefas).children;
   for (let index = 0; index < lista.length; index += 1) {
-    //if (lista[index].classList.contains('selecionado') && elemento !== lista[index]) {
-      lista[index].classList.remove('selecionado');
-    //}
+    lista[index].classList.remove('selecionado');
   }
   elemento.classList.toggle('selecionado');
 }
 
-function completo (objeto) {
+function completo(objeto) {
   let elemento = objeto.target;
   elemento.classList.toggle('completed');
 }
@@ -25,12 +25,12 @@ function adicionarItem() {
   let texto = document.createTextNode(document.getElementById('texto-tarefa').value);
   itemList.appendChild(texto);
   criaObjetoClicavel(itemList);
-  document.getElementById('lista-tarefas').appendChild(itemList);
+  document.getElementById(ListaTarefas).appendChild(itemList);
   document.getElementById('texto-tarefa').value = '';
 }
 
 function limparLista() {
-  document.getElementById('lista-tarefas').innerHTML = '';
+  document.getElementById(ListaTarefas).innerHTML = '';
 }
 
 function removerFinalizados() {
@@ -39,3 +39,13 @@ function removerFinalizados() {
     if (lista[index].classList.contains('completed')) lista[index].remove();
   }
 }
+
+function salvar() {
+  //document.getElementById('lista-tarefas');
+}
+
+window.onload 
+adicionarItem;
+limparLista;
+removerFinalizados;
+salvar;
