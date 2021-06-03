@@ -5,6 +5,8 @@ let removeAllButton = document.getElementById('apaga-tudo');
 let removeCompletedButton = document.getElementById('remover-finalizados');
 let saveChangesButton = document.getElementById('salvar-tarefas');
 let mensagem = document.getElementById("mensagem-alerta");
+let upwardButton = document.getElementById('mover-cima');
+let downwardButton = document.getElementById('mover-baixo');
 
 // Recuperar alterações através do localStorage
 if (typeof(Storage) !== "undefined") {
@@ -82,6 +84,62 @@ function saveListChanges () {
   }
 }
 
+// Mover o elemento selecionado para cima
+function moveUpward(listPath) {
+  let greyLi = document.querySelector('.grey');
+  let neededArray = listPath.childNodes;
+  for (let index = 1; index < neededArray.length; index += 1) {
+    if (neededArray[index] === greyLi) {
+      let classes1 = neededArray[index].className;
+      let value1 = neededArray[index].innerText;
+      let value2 = neededArray[index - 1].innerText;
+      if (neededArray[index - 1].className !== '') {
+        let classes2 = neededArray[index - 1].className;
+        neededArray[index].innerText = value2;
+        neededArray[index].className = '';
+        neededArray[index].className = classes2;
+        neededArray[index - 1].innerText = value1;
+        neededArray[index - 1].className = '';
+        neededArray[index - 1].className = classes1;
+      } else {
+        neededArray[index].innerText = value2;
+        neededArray[index].className = '';
+        neededArray[index - 1].innerText = value1;
+        neededArray[index - 1].className = '';
+        neededArray[index - 1].className = classes1;
+      }
+    }
+  }
+}
+
+// Mover o elemento selecionado para baixo
+function moveDownward(listPath) {
+  let greyLi = document.querySelector('.grey');
+  let neededArray = listPath.childNodes;
+  for (let index = neededArray.length - 2; index >= 0; index -= 1) {
+    if (neededArray[index] === greyLi) {
+      let classes1 = neededArray[index].className;
+      let value1 = neededArray[index].innerText;
+      let value2 = neededArray[index + 1].innerText;
+      if (neededArray[index + 1].className !== '') {
+        let classes2 = neededArray[index + 1].className;
+        neededArray[index].innerText = value2;
+        neededArray[index].className = '';
+        neededArray[index].className = classes2;
+        neededArray[index + 1].innerText = value1;
+        neededArray[index + 1].className = '';
+        neededArray[index + 1].className = classes1;
+      } else {
+        neededArray[index].innerText = value2;
+        neededArray[index].className = '';
+        neededArray[index + 1].innerText = value1;
+        neededArray[index + 1].className = '';
+        neededArray[index + 1].className = classes1;
+      }
+    }
+  }
+}
+
 // Clicar no botão para adicionar uma tarefa
 creationButton.onclick = function() {
   addLi(list);
@@ -102,4 +160,14 @@ removeCompletedButton.onclick = function() {
 // Clicar no botão vai salvar a lista no localStorage
 saveChangesButton.onclick = function() {
   saveListChanges();
+};
+
+// Clicar no botão irá mover o elemento da lista selecionado para a posição de cima
+upwardButton.onclick = function() {
+  moveUpward(list);
+};
+
+// Clicar no botão irá mover o elemento da lista selecionado para a posição de baixo
+downwardButton.onclick = function() {
+  moveDownward(list);
 };
