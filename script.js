@@ -100,6 +100,11 @@ function changeItemDown() {
   }
 }
 
+function removeSelected() {
+  const element = document.getElementsByClassName('selected')[0];
+  element.remove();
+}
+
 function init() {
   const orderList = document.getElementById(idOrderList);
   const buttonAddTask = document.getElementById('criar-tarefa');
@@ -108,6 +113,7 @@ function init() {
   const buttonSaveTask = document.getElementById('salvar-tarefas');
   const buttonMoveUp = document.getElementById('mover-cima');
   const buttonMoveDown = document.getElementById('mover-baixo');
+  const buttonRemoveSelected = document.getElementById('remover-selecionado');
 
   buttonAddTask.addEventListener('click', createTask);
   buttonRemoveAllTask.addEventListener('click', removeAllTask);
@@ -115,6 +121,7 @@ function init() {
   buttonSaveTask.addEventListener('click', saveTask);
   buttonMoveUp.addEventListener('click', changeItemUp);
   buttonMoveDown.addEventListener('click', changeItemDown);
+  buttonRemoveSelected.addEventListener('click', removeSelected);
   orderList.addEventListener('click', createSelected);
   orderList.addEventListener('dblclick', createLineThrough);
 }
