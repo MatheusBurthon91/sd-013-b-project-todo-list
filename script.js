@@ -33,8 +33,15 @@ window.onload = function () {
     if (event.target.classList.contains('completed')) {
       event.target.classList.remove('completed');
     } else {
-        event.target.classList.add('completed');
-      }
+      event.target.classList.add('completed');
+    }
   }
   lista.addEventListener('dblclick', riscado);
+
+  const buttonApaga = document.getElementById('apaga-tudo');
+
+  buttonApaga.addEventListener('click', function() {
+    const apagarLista = lista;
+    apagarLista.innerHTML = '';
+  })
 };
