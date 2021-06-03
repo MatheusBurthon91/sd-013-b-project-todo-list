@@ -1,0 +1,17 @@
+const header = document.createElement('header');
+document.body.appendChild(header);
+const titleHeader = document.createElement('h1');
+titleHeader.innerHTML = 'Minha Lista de Tarefas';
+header.appendChild(titleHeader);
+header.style.textAlign = 'center';
+header.style.color = 'red';
+const paragraphHeader = document.createElement('p');
+paragraphHeader.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
+header.appendChild(paragraphHeader);
+paragraphHeader.style.color = 'green';
+paragraphHeader.id = 'funcionamento';
+const inputSection = document.createElement('section');
+document.body.appendChild(inputSection);
+const input = document.createElement('input');
+inputSection.appendChild(input);
+input.id = 'texto-tarefa';
