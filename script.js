@@ -52,17 +52,26 @@ const addTaskOnList = (event) => {
 };
 
 const deleteList = () => {
+  Array.from(taskList.children).forEach((li) => li.remove());
+  saveTaskList();
+};
+
+const deleteCompleted = () => {
   Array.from(taskList.children).forEach((li) => {
-    li.remove();
-    localStorage.removeItem('task-list');
+    if (li.classList.contains('completed')) li.remove();
   });
+
+  saveTaskList();
 };
 
 document
   .getElementById('controle-inserir-tarefa')
   .addEventListener('submit', addTaskOnList);
 
+document.getElementById('apaga-tudo').addEventListener('click', deleteList);
+
 document
-  .getElementById('apaga-tudo')
-  .addEventListener('click', deleteList);
+  .getElementById('remover-finalizados')
+  .addEventListener('click', deleteCompleted);
+
 window.onload = () => setTaskList();
