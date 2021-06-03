@@ -71,30 +71,43 @@ saveButton.addEventListener('click', () => {
 });
 
 // requisito 13 Up
+const getClassSelected = document.getElementsByClassName('selected');
+// const getClassSelectedOne = getClassSelected[0];
 const moveUp = document.getElementById('mover-cima');
 moveUp.addEventListener('click', () => {
-  //   if (getClassChecked.length > 0) {
-  //     for (let index = 0; index <= getClassChecked.length; index += 1) {
-  //       getClassChecked[0].remove();
-  //     }
-  //   }
+  if (
+    getClassSelected.length > 0
+    && getClassSelected[0].previousElementSibling !== null
+  ) {
+    const classSelectedItem = getClassSelected[0];
+    const classSelectedItemPreviousSibling = getClassSelected[0].previousElementSibling;
+    classSelectedItem.parentNode.insertBefore(
+      classSelectedItemPreviousSibling,
+      classSelectedItem.nextElementSibling,
+    );
+  }
   console.log('bobUp');
 });
 
 // requisito 13 Down
 const moveDown = document.getElementById('mover-baixo');
 moveDown.addEventListener('click', () => {
-  //   if (getClassChecked.length > 0) {
-  //     for (let index = 0; index <= getClassChecked.length; index += 1) {
-  //       getClassChecked[0].remove();
-  //     }
-  //   }
+  if (
+    getClassSelected.length > 0
+    && getClassSelected[0].nextElementSibling !== null
+  ) {
+    const classSelectedItem = getClassSelected[0];
+    const classSelectedItemNextSibling = getClassSelected[0].nextElementSibling;
+    classSelectedItem.parentNode.insertBefore(
+      classSelectedItemNextSibling,
+      classSelectedItem,
+    );
+  }
   console.log('bobDown');
 });
 
 // requisito 14
 const clearSelectedButton = document.getElementById('remover-selecionado');
-const getClassSelected = document.getElementsByClassName('selected');
 clearSelectedButton.addEventListener('click', () => {
   if (getClassSelected.length > 0) {
     getClassSelected[0].remove();
