@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Minha Lista de Tarefas</h1>
-      <p id="funcionamento">
-        Clique duas vezes em um item para marcá-lo como completo
-      </p>
-    </header>
+    <div id="main">
+      <header>
+        <h1>Minha Lista de Tarefas</h1>
+        <p id="funcionamento">
+          Clique duas vezes em um item para marcá-lo como completo
+        </p>
+      </header>
+      <input id="texto-tarefa" type="text" />
+      <button id="criar-tarefa" class="adicionar">Adicionar</button>
+      <ol id="lista-tarefas" class="li-event"></ol>
+      <button id="apaga-tudo">Limpar Lista</button>
+      <button id="remover-finalizados">Apagar</button>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

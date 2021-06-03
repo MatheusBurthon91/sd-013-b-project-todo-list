@@ -1,0 +1,20 @@
+body{
+  background-color: rgb(85, 85, 85);
+}
+#main {
+  background-color: #e0b16b;
+  height: 100%;
+  width: 700px;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.adicionar {
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
