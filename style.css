@@ -9,7 +9,7 @@ header {
 }
 
 h1 {
-  background-image: url(/img/faixa-todo.png);
+  background-image: url('/img/faixa-todo.png');
   background-repeat: no-repeat;
   background-position: center;
   color: gold;
@@ -17,12 +17,12 @@ h1 {
   font-size: 40px;
   height: 60px;
   letter-spacing: 3px;
-  margin: 15px 0 0 0;
-  text-shadow: rgb(20, 0, 0) 2px 2px 2px;
+  margin: 15px 0 0 ;
+  text-shadow: rgb(20 , 0 , 0) 2px 2px 2px;
 }
 
 #funcionamento {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Times New Roman, Times, serif;
   font-style: italic;
   margin: 5px 0 15px;
 }
@@ -32,12 +32,12 @@ button {
   border-radius: 10px;
   box-shadow: black 1px 1px 2px;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   margin: 0 5px;
   padding: 1px 20px;
 }
 
-#remover-selecionado, #apaga-tudo {
+#remover-selecionado , #apaga-tudo {
   background-color: darkred;
 }
 
@@ -45,7 +45,7 @@ button {
   background-color: orangered;
 }
 
-#remover-finalizados, #criar-tarefa {
+#remover-finalizados , #criar-tarefa {
   background-color: dodgerblue;
 }
 
@@ -78,7 +78,7 @@ footer {
 }
 
 ol {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
   font-size: 15px;
   line-height: 20px;
   width: 94%;
