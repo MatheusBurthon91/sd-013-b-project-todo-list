@@ -13,4 +13,22 @@ o click busca na funçao o li criado
 
 para resetar o input é preciso 
 colocar .reset()
-# como eu fiz o desafio 6
+
+# como eu fiz o desafio 7
+
+1- criei uma funçao que remove em todos
+os elementos no array da classe .tarefa
+a classe 'selected'
+Depois disso ela adiciona a classe selected
+se ocorrer um evento
+
+2- criei uma funcao que adiciona o addEventListener
+no elemento pai das Li, AS LO.
+As li herdam a classe do pai, portanto
+todas as li possuem o eventListener.
+Quando elas recebem o 'click', ela chama
+a funcao de criar a classe.
+
+3- As propriedades da classe esta no classe
+
+# como eu fiz o desafio 8
