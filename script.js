@@ -11,6 +11,7 @@ function addAssigment() {
 }
 document.getElementById('criar-tarefa').addEventListener('click', addAssigment);
 function switchSelected(click) {
+  console.log(click.type)
   const selectedActual = document.querySelector('.selected');
   if (selectedActual === null) {
     click.target.classList.toggle('selected');
@@ -34,10 +35,13 @@ function changeColor(event) {
 }
 
 function risca() {
-  if (EventTarget.className === 'listItem') {
-    EventTarget.className += ' completed';
+  console.log(event.type);
+  if (event.target.classList.contains('completed')) {
+    event.target.classList.remove('completed');
+  } else {
+    event.target.classList.add('completed');
   }
 }
 const lista = document.querySelector('#lista-tarefas');
 lista.addEventListener('click', changeColor);
-// lista.addEventListener('dblclick', risca);
+lista.addEventListener('dblclick', risca);
