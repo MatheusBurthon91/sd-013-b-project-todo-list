@@ -1,23 +1,25 @@
-let itemLista;
-let tarefa;
-let textoTarefa;
+let itemList;
+let task;
+let taskText;
 let isSelected;
 let isComplete;
-let listaSelect = document.querySelector('#lista-tarefas');
-const lista = document.getElementById('lista-tarefas');
-const botao = document.getElementById('criar-tarefa');
+let listSelect = document.querySelector('#lista-tarefas');
+const list = document.getElementById('lista-tarefas');
+const buttonAdd = document.getElementById('criar-tarefa');
+const buttonClear = document.getElementById('apaga-tudo');
+const buttonClearCompl = document.getElementById('remover-finalizados');
 
 function addToList() {
-  tarefa = document.getElementById('texto-tarefa').value;
-  textoTarefa = document.createTextNode(tarefa);
-  itemLista = document.createElement('li');
-  itemLista.classList.add('list');
-  lista.appendChild(itemLista);
-  itemLista.appendChild(textoTarefa);
+  task = document.getElementById('texto-tarefa').value;
+  taskText = document.createTextNode(task);
+  itemList = document.createElement('li');
+  itemList.classList.add('list');
+  list.appendChild(itemList);
+  itemList.appendChild(taskText);
   document.getElementById('texto-tarefa').value = ('');
 }
 
-botao.addEventListener('click', addToList);
+buttonAdd.addEventListener('click', addToList);
 
 function colorBackground(event) {
   const clicado = event.target;
@@ -32,7 +34,7 @@ function colorBackground(event) {
   }
 }
 
-listaSelect.addEventListener('click', colorBackground);
+listSelect.addEventListener('click', colorBackground);
 
 function completeTask(event){
   const clicado = event.target;
@@ -42,4 +44,19 @@ function completeTask(event){
   }
 }
 
-listaSelect.addEventListener('dblclick', completeTask)
+listSelect.addEventListener('dblclick', completeTask)
+
+function clearList(){
+  let item = document.getElementsByClassName('list');
+  let size = item.length;
+  for (let index = 0 ; index < size; index +=1){
+    item[item.length - 1].remove();
+  }
+}
+
+buttonClear.addEventListener('click', clearList);
+
+function clearCompl(){
+
+}
+buttonClearCompl.addEventListener('click', clearCompl);
