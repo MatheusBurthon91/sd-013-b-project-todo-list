@@ -11,9 +11,15 @@ const selectItem = (event) => {
   itemToSelect.classList.add('selected');
 };
 
+const completeTask = (event) => {
+  const task = event.target;
+  task.classList.toggle('completed');
+};
+
 const createTask = (taskName) => {
   const li = document.createElement('li');
   li.addEventListener('click', selectItem);
+  li.addEventListener('dblclick', completeTask);
   li.innerText = taskName;
   return li;
 };
