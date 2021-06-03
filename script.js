@@ -40,3 +40,24 @@ function riscarItem() {
 }
 
 riscarItem();
+
+function apagarTudo() {
+  document.getElementById('apaga-tudo').addEventListener('click', () => {
+    const pai = document.getElementById('lista-tarefas');
+    pai.innerHTML = '';
+  });
+}
+
+apagarTudo();
+
+function removerFinalizados() {
+  document.getElementById('remover-finalizados').addEventListener('click', () => {
+    const finalizados = document.getElementsByClassName('completed');
+    const comprimento = finalizados.length;
+    for (let index = 0; index < comprimento; index += 1) {
+      finalizados[0].remove();
+    }
+  });
+}
+
+removerFinalizados();
