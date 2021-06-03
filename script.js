@@ -24,12 +24,13 @@ listaTarefas.addEventListener('click', pintaSoUm);
 
 function riscaTarefaCompletada(event) {
   const x = event.target;
-  if (x.className === 'tarefa completed') {
+  const nomeDaClasse = x.className;
+  if (nomeDaClasse === 'tarefa completed') {
     x.style.textDecoration = 'none';
-    x.className = 'tarefa';
+    nomeDaClasse = 'tarefa';
   } else {
     x.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
-    x.className = 'tarefa completed';
+    nomeDaClasse = 'tarefa completed';
   }
 }
 listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
@@ -37,7 +38,7 @@ listaTarefas.addEventListener('dblclick', riscaTarefaCompletada);
 
 function removeTudo() {
   const elementos = document.getElementsByClassName('tarefa');
-  while(elementos.length > 0) {
+  while (elementos.length > 0) {
     listaTarefas.removeChild(elementos[0]);
   }
 }
@@ -46,7 +47,7 @@ document.getElementById('apaga-tudo').addEventListener('click', removeTudo);
 
 function removeFinalizados() {
   const elementos = document.getElementsByClassName('tarefa completed');
-  while(elementos.length > 0) {
+  while (elementos.length > 0) {
     listaTarefas.removeChild(elementos[0]);
   }
 }
