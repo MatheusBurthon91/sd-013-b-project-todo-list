@@ -89,21 +89,22 @@ function clearCompletedTarefa() {
 function saveAllTarefas() {
   getTarefas();
   const session = {
-    tarefas: [],
+    allTarefas: [],
   };
   for (let index = 0; index < tarefas.length; index += 1) {
-    session.tarefas.push({ tarefa: tarefas[index].innerText, class: tarefas[index].className });
+    session.allTarefas.push({ tarefa: tarefas[index].innerText, class: tarefas[index].className });
   }
   localStorage.setItem('session', JSON.stringify(session));
 }
 
 function restoredSession() {
   const atualSession = JSON.parse(localStorage.getItem('session'));
-  for (let index = 0; index < atualSession.tarefas.length; index += 1) {
-    const tarefaAtual = atualSession.tarefas[index].tarefa;
-    const classeAtual = atualSession.tarefas[index].class;
+  for (let index = 0; index < atualSession.allTarefas.length; index += 1) {
+    const tarefaAtual = atualSession.allTarefas[index].tarefa;
+    const classeAtual = atualSession.allTarefas[index].class;
     createTarefa(tarefaAtual, classeAtual);
   }
+  getTarefas();
 }
 
 btnCriarTarefa.addEventListener('click', createTarefaBtn);
@@ -114,7 +115,9 @@ btnRemoveFinalizados.addEventListener('click', clearCompletedTarefa);
 
 btnSalvarTarefas.addEventListener('click', saveAllTarefas);
 
-window.onload = function() {
-  restoredSession();
-  getTarefas();
-};
+// Conteúdo encontrado no https://stackoverflow.com/questions/20180251/when-to-use-window-onload
+window.addEventListener('load', () => {
+  if (localStorage.length !== 0) {
+    restoredSession();
+  };
+}, false);
