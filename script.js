@@ -21,4 +21,7 @@ function creatAction (){
 
 button.addEventListener("click",creatAction)
 
-
+list.addEventListener("click",function (){
+    event.target.style.backgroundColor= 'rgb(128, 128, 128)'
+    
+})
