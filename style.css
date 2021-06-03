@@ -13,3 +13,11 @@ header {
   width: 60px;
   height: 18px;
 }
+
+li {
+  font-size: 30px;
+}
+
+.taskSelected {
+  background-color: rgb(128, 128, 128);
+}
