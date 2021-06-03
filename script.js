@@ -2,6 +2,7 @@ const inputText = document.getElementById('texto-tarefa');
 const btnCreateTask = document.getElementById('criar-tarefa');
 const olTaskList = document.getElementById('lista-tarefas');
 const btnDeleteTask = document.getElementById('apaga-tudo');
+const btnDeleteCompleted = document.getElementById('remover-finalizados');
 
 function clearSelected() {
   const taskCreated = document.querySelectorAll('.task');
@@ -14,7 +15,6 @@ function clearSelected() {
 function taskSelected(event) {
   const taskCreated = document.querySelectorAll('.task');
   clearSelected();
-  // console.log("entrou")
   const selected = event.target;
   for (let index = 0; index < taskCreated.length; index += 1) {
     if (taskCreated[index] === selected) {
@@ -52,12 +52,26 @@ function createTask() {
   createClickable();
 }
 
+let taskCreated = document.querySelectorAll('.task');
+
 function deleteTask() {
-  const lista = document.getElementsByTagName('section')[1];
-  const itens = lista.getElementsByTagName('ol');
-  lista.removeChild(itens[0]);
-  document.location.reload(true);
+  taskCreated = document.querySelectorAll('.task');
+  for (let index = 0; index < taskCreated.length; index += 1) {
+    const currentTask = taskCreated[index];
+    currentTask.parentNode.removeChild(currentTask);
+  }
+}
+
+function deleteCompleted() {
+  taskCreated = document.querySelectorAll('.task');
+  for (let index = 0; index < taskCreated.length; index += 1) {
+    if (taskCreated[index].className.includes(' completed')) {
+      const currentTask = taskCreated[index];
+      currentTask.parentNode.removeChild(currentTask);
+    }
+  }
 }
 
 btnCreateTask.addEventListener('click', createTask);
 btnDeleteTask.addEventListener('click', deleteTask);
+btnDeleteCompleted.addEventListener('click', deleteCompleted);
