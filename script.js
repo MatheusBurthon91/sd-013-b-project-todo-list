@@ -69,6 +69,43 @@ const deleteCompleted = () => {
   });
 };
 
+const deleteSelected = () => {
+  Array.from(taskList.children).forEach((li) => {
+    if (li.classList.contains('selected')) li.remove();
+  });
+};
+
+const moveItemUp = () => {
+  const list = Array.from(taskList.children);
+
+  for (let ind = 0; ind < list.length; ind += 1) {
+    if (list[ind].classList.contains('selected') && ind !== 0) {
+      list.splice(ind - 1, 0, list.splice(ind, 1)[0]);
+      break;
+    }
+  }
+
+  list.forEach((item) => {
+    taskList.appendChild(item);
+  });
+};
+
+const moveItemDown = () => {
+  const list = Array.from(taskList.children);
+  const lastIndex = list.length - 1;
+
+  for (let ind = 0; ind < list.length; ind += 1) {
+    if (list[ind].classList.contains('selected') && ind !== lastIndex) {
+      list.splice(ind + 1, 0, list.splice(ind, 1)[0]);
+      break;
+    }
+  }
+
+  list.forEach((item) => {
+    taskList.appendChild(item);
+  });
+};
+
 document
   .getElementById('controle-inserir-tarefa')
   .addEventListener('submit', addTaskOnList);
@@ -80,7 +117,15 @@ document
   .addEventListener('click', deleteCompleted);
 
 document
+  .getElementById('remover-selecionado')
+  .addEventListener('click', deleteSelected);
+
+document
   .getElementById('salvar-tarefas')
   .addEventListener('click', saveTaskList);
+
+document.getElementById('mover-cima').addEventListener('click', moveItemUp);
+
+document.getElementById('mover-baixo').addEventListener('click', moveItemDown);
 
 window.onload = () => setTaskList();
