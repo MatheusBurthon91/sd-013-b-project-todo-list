@@ -30,7 +30,7 @@ body {
 }
 
 .button:hover {
-  background-color: rgb(230, 215, 195);
+  background-color: rgb(230 , 215 , 195);
 }
 
 .completed {
@@ -41,8 +41,29 @@ body {
   pointer-events: none;
 }
 
+.interaction-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 200px;
+  position: sticky;
+  top: 0;
+}
+
+.list-container {
+  display: flex;
+  margin: 16px 0;
+  padding: 8px;
+}
+
 .selected {
   background-color: gray;
+}
+
+.task {
+  font-size: 1rem;
+  margin: 4px 0;
+  padding: 4px;
 }
 
 .task:hover {
@@ -71,6 +92,14 @@ body {
 
 .task-input::placeholder {
   color: rgba(250 , 235 , 215 , 0.855);
+}
+
+.task-list {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 0 8px;
+  padding: 16px 16px 16px 32px;
 }
 
 .title {
