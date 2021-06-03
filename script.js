@@ -2,8 +2,7 @@ let itemList;
 let task;
 let taskText;
 let isSelected;
-let isComplete;
-let listSelect = document.querySelector('#lista-tarefas');
+const listSelect = document.querySelector('#lista-tarefas');
 const list = document.getElementById('lista-tarefas');
 const buttonAdd = document.getElementById('criar-tarefa');
 const buttonClear = document.getElementById('apaga-tudo');
@@ -36,7 +35,7 @@ function colorBackground(event) {
 
 listSelect.addEventListener('click', colorBackground);
 
-function completeTask(event){
+function completeTask(event) {
   const clicado = event.target;
   isComplete = document.querySelector('.completed');
   if (clicado.id !== 'lista-tarefas') {
@@ -44,22 +43,22 @@ function completeTask(event){
   }
 }
 
-listSelect.addEventListener('dblclick', completeTask)
+listSelect.addEventListener('dblclick', completeTask);
 
-function clearList(){
-  let item = document.getElementsByClassName('list');
-  let size = item.length;
-  for (let index = 0 ; index < size; index +=1){
+function clearList() {
+  const item = document.getElementsByClassName('list');
+  const size = item.length;
+  for (let index = 0; index < size; index += 1) {
     item[item.length - 1].remove();
   }
 }
 
 buttonClear.addEventListener('click', clearList);
 
-function clearCompl(){
-  let item = document.getElementsByClassName('completed');
-  let size = item.length;
-  for (let index = 0 ; index < size; index +=1){
+function clearCompl() {
+  const item = document.getElementsByClassName('completed');
+  const size = item.length;
+  for (let index = 0; index < size; index += 1) {
     item[item.length - 1].remove();
   }
 }
