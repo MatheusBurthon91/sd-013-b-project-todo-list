@@ -7,6 +7,7 @@ let saveChangesButton = document.getElementById('salvar-tarefas');
 let mensagem = document.getElementById("mensagem-alerta");
 let upwardButton = document.getElementById('mover-cima');
 let downwardButton = document.getElementById('mover-baixo');
+let removeSelectedButton = document.getElementById('remover-selecionado');
 
 // Recuperar alterações através do localStorage
 if (typeof(Storage) !== "undefined") {
@@ -140,6 +141,12 @@ function moveDownward(listPath) {
   }
 }
 
+// Remover o elemento selecionado
+function removeSelected() {
+  let toBeDeleted = document.querySelector('.grey');
+  toBeDeleted.parentNode.removeChild(toBeDeleted);
+}
+
 // Clicar no botão para adicionar uma tarefa
 creationButton.onclick = function() {
   addLi(list);
@@ -155,6 +162,8 @@ removeAllButton.onclick = function() {
 // Clicar no botão apaga os itens finalizados
 removeCompletedButton.onclick = function() {
   removeCompleted(list);
+  greyBackground(list);
+  mark(list);
 };
 
 // Clicar no botão vai salvar a lista no localStorage
@@ -165,9 +174,20 @@ saveChangesButton.onclick = function() {
 // Clicar no botão irá mover o elemento da lista selecionado para a posição de cima
 upwardButton.onclick = function() {
   moveUpward(list);
+  greyBackground(list);
+  mark(list);
 };
 
 // Clicar no botão irá mover o elemento da lista selecionado para a posição de baixo
 downwardButton.onclick = function() {
   moveDownward(list);
+  greyBackground(list);
+  mark(list);
+};
+
+// Clicar no botão irá remover o elemento selecionado
+removeSelectedButton.onclick = function() {
+  removeSelected();
+  greyBackground(list);
+  mark(list);
 };
