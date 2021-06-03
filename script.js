@@ -1,17 +1,26 @@
 const taskInput = document.getElementById('texto-tarefa');
 const list = document.getElementById('lista-tarefas');
 const Button = document.getElementById('criar-tarefa');
+const listItem = document.createElement('li');
+listItem.className = 'list-item';
 
 function addTask() {
-  const listItem = document.createElement('li');
-  listItem.className = 'list-item';
-  listItem.innerText = taskInput.value;
-  list.appendChild(listItem);
+  const listItems = document.createElement('li');
+  listItems.className = 'list-item';
+  listItems.innerText = taskInput.value;
+  list.appendChild(listItems);
   taskInput.value = '';
 }
 Button.addEventListener('click', addTask);
 
+function classRemove() {
+  const classTrue = document.getElementsByClassName('selected')[0];
+  if (classTrue) {
+    classTrue.classList.remove('selected');
+  }
+}
+
 list.addEventListener('click', (event) => {
-  const turnGray = event.target;
-  turnGray.style.backgroundColor = 'rgb(128, 128, 128)';
+  classRemove();
+  event.target.classList.add('selected');
 });
