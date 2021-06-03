@@ -1,9 +1,10 @@
 let itemLista;
 let tarefa;
 let textoTarefa;
+let isSelected;
+let listaSelect = document.querySelector('#lista-tarefas');
 const lista = document.getElementById('lista-tarefas');
 const botao = document.getElementById('criar-tarefa');
-let listaSelect = document.querySelector('#lista-tarefas');
 
 function addToList() {
   tarefa = document.getElementById('texto-tarefa').value;
@@ -19,8 +20,14 @@ botao.addEventListener('click', addToList);
 
 function pintaFundo(event) {
   let clicado = event.target;
+  isSelected = document.querySelector('.listBackground');
   if (clicado.id != 'lista-tarefas'){
-    clicado.classList.toggle('listBackground');
+    if (isSelected === null){
+      clicado.classList.toggle('listBackground');
+    } else {
+      isSelected.classList.toggle('listBackground');
+      clicado.classList.toggle('listBackground');
+    }
   }
 }
 listaSelect.addEventListener('click', pintaFundo);
