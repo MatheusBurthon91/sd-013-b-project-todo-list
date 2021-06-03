@@ -1,5 +1,18 @@
 const taskList = document.getElementById('lista-tarefas');
 
+const saveTaskList = () => {
+  const list = Array.from(taskList.children).map((li) => {
+    const task = {
+      name: li.textContent,
+      pending: !li.classList.contains('completed'),
+    };
+
+    return task;
+  });
+  localStorage.removeItem('task-list');
+  localStorage.setItem('task-list', JSON.stringify(list));
+};
+
 const selectItem = (event) => {
   const itemToSelect = event.target;
   Array.from(taskList.children).forEach((li) => {
@@ -16,25 +29,21 @@ const completeTask = (event) => {
   task.classList.toggle('completed');
 };
 
-const createTask = (taskName) => {
+const createTask = (task) => {
   const li = document.createElement('li');
   li.addEventListener('click', selectItem);
   li.addEventListener('dblclick', completeTask);
-  li.innerText = taskName;
+  li.innerText = task.name;
+
+  if (!task.pending) li.classList.add('completed');
   return li;
 };
 
-const saveTaskList = () => {
-  const list = Array.from(taskList.children).map((li) => li.textContent);
-  localStorage.removeItem('task-list');
-  localStorage.setItem('task-list', list);
-};
-
 const setTaskList = () => {
-  const list = localStorage.getItem('task-list');
+  const list = JSON.parse(localStorage.getItem('task-list') || '[]');
 
   if (!list) return;
-  list.split(',').forEach((task) => {
+  list.forEach((task) => {
     const li = createTask(task);
     taskList.appendChild(li);
   });
@@ -44,24 +53,20 @@ const addTaskOnList = (event) => {
   event.preventDefault();
 
   const data = Array.from(event.target.children);
-  const li = createTask(data[0].value);
+  const li = createTask({ name: data[0].value, pending: true });
 
   data[0].value = '';
   taskList.appendChild(li);
-  saveTaskList();
 };
 
 const deleteList = () => {
   Array.from(taskList.children).forEach((li) => li.remove());
-  saveTaskList();
 };
 
 const deleteCompleted = () => {
   Array.from(taskList.children).forEach((li) => {
     if (li.classList.contains('completed')) li.remove();
   });
-
-  saveTaskList();
 };
 
 document
@@ -73,5 +78,9 @@ document.getElementById('apaga-tudo').addEventListener('click', deleteList);
 document
   .getElementById('remover-finalizados')
   .addEventListener('click', deleteCompleted);
+
+document
+  .getElementById('salvar-tarefas')
+  .addEventListener('click', saveTaskList);
 
 window.onload = () => setTaskList();
