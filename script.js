@@ -1,6 +1,7 @@
 let ol = document.querySelector('#lista-tarefas');
 let tarefa = document.querySelector('#criar-tarefa');
 let apaga = document.querySelector('#apaga-tudo');
+let finalizados = document.querySelector('#remover-finalizados')
 
 
 function criarTarefa(){
@@ -42,4 +43,16 @@ function apagarTudo() {
 }
 
 apaga.addEventListener('click', apagarTudo)
+
+
+function removerFinalizados() {
+  let finali = document.querySelectorAll('.completed')
+
+  for (let i = 0; i < finali.length; i += 1) {
+    ol.removeChild(finali[i]);
+  }
+}
+
+finalizados.addEventListener('click', removerFinalizados)
+
 
