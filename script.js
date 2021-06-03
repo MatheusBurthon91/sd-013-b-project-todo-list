@@ -101,6 +101,15 @@ function moveDown() {
   }
 }
 
+function removeSelected() {
+  const li = document.querySelectorAll('li');
+  for (let index = 0; index < li.length; index += 1) {
+    if (li[index].classList.contains('selected')) {
+      li[index].parentNode.removeChild(li[index]);
+    }
+  }
+}
+
 function start() {
   loadTasks();
 
@@ -125,6 +134,9 @@ function start() {
 
   const buttonMoveDown = document.getElementById('mover-baixo');
   buttonMoveDown.addEventListener('click', moveDown);
+
+  const buttonRemoveSelected = document.getElementById('remover-selecionado');
+  buttonRemoveSelected.addEventListener('click', removeSelected);
 }
 
 window.onload = start;
