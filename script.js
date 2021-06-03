@@ -1,5 +1,7 @@
+const idOrderList = 'lista-tarefas';
+
 function createItemList(value) {
-  const orderList = document.getElementById('lista-tarefas');
+  const orderList = document.getElementById(idOrderList);
   const element = document.createElement('li');
   element.innerText = value;
   element.classList.add('listItem');
@@ -26,7 +28,6 @@ function createSelected(event) {
   const element = event.target;
   if (element.className === 'listItem') {
     changeSelected();
-    element.style.backgroundColor = 'rgb(128, 128, 128)';
     element.classList.add('selected');
   }
 }
@@ -55,19 +56,51 @@ function removeCompletedTask() {
   }
 }
 
+function saveTask() {
+  const listItem = document.getElementsByClassName('listItem');
+  const arrayListItemText = [];
+  const arrayListItemClass = [];
+  for (let key = 0; key < listItem.length; key += 1) {
+    arrayListItemText.push(listItem[key].textContent);
+    arrayListItemClass.push(listItem[key].className);
+  }
+  localStorage.setItem('listText', JSON.stringify(arrayListItemText));
+  localStorage.setItem('listClass', JSON.stringify(arrayListItemClass));
+}
+
+function changeSaveList(key, className) {
+  const orderList = document.getElementById(idOrderList);
+  const orderListChild = orderList.children;
+  orderListChild[key].className = className;
+}
+
+function saveTaskImplementer() {
+  if (localStorage.listText) {
+    const saveListText = JSON.parse(localStorage.listText);
+    const saveListClass = JSON.parse(localStorage.listClass);
+    for (let key = 0; key < saveListText.length; key += 1) {
+      createItemList(saveListText[key]);
+      changeSaveList(key, saveListClass[key]);
+    }
+  }
+}
+
 function init() {
-  const orderList = document.getElementById('lista-tarefas');
+  const orderList = document.getElementById(idOrderList);
   const buttonAddTask = document.getElementById('criar-tarefa');
   const buttonRemoveAllTask = document.getElementById('apaga-tudo');
   const buttonRemoveCompletedTask = document.getElementById('remover-finalizados');
+  const buttonSaveTask = document.getElementById('salvar-tarefas');
 
   buttonAddTask.addEventListener('click', createTask);
   buttonRemoveAllTask.addEventListener('click', removeAllTask);
   buttonRemoveCompletedTask.addEventListener('click', removeCompletedTask);
+  buttonSaveTask.addEventListener('click', saveTask);
   orderList.addEventListener('click', createSelected);
   orderList.addEventListener('dblclick', createLineThrough);
 }
 
 window.onload = () => {
   init();
+  saveTaskImplementer();
 };
