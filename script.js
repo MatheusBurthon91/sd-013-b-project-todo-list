@@ -1,6 +1,12 @@
+window.onload = function printSavedTasks() {
+  const itens = document.querySelector('ol');
+  itens.innerHTML = localStorage.getItem('task-list');
+};
 const button = document.querySelector('#criar-tarefa');
 const secondButton = document.querySelector('#apaga-tudo');
 const thirdButton = document.querySelector('#remover-finalizados');
+const fourthButton = document.querySelector('#remover-selecionado');
+const fifhtButton = document.querySelector('#salvar-tarefas');
 
 function setClass(element) {
   element.addEventListener('click', () => {
@@ -61,3 +67,23 @@ function clearFinishedTasks() {
 }
 
 thirdButton.addEventListener('click', clearFinishedTasks);
+
+function saveTasks() {
+  const itens = document.querySelector('ol');
+  localStorage.setItem('task-list', itens.innerHTML);
+}
+
+fifhtButton.addEventListener('click', saveTasks);
+
+function clearSelectedTasks() {
+  const itens = document.querySelectorAll('li');
+  if (itens.length > 0) {
+    for (let index = 0; index < itens.length; index += 1) {
+      if (itens[index].classList.contains('selected')) {
+        itens[index].remove();
+      }
+    }
+  }
+}
+
+fourthButton.addEventListener('click', clearSelectedTasks);
