@@ -1,77 +1,104 @@
-function inputTaskList() {
-  const inputTaskValue = document.getElementById('texto-tarefa').value;
-  if (inputTaskValue) {
-    const todoList = document.getElementById('lista-tarefas');
-    const listItem = document.createElement('li');
-    listItem.innerText = inputTaskValue;
-    listItem.addEventListener('click', () => {
-      for (item of todoList.children) {
-        if (item.style.backgroundColor === 'rgb(128, 128, 128)') {
-          item.style.backgroundColor = 'white';
-        }
-      }
-      listItem.style.backgroundColor = 'rgb(128, 128, 128)';
-    });
-    listItem.addEventListener('dblclick', () => {
-      if (listItem.className.includes('completed')) {
-        listItem.classList.remove('completed');
-      } else {
-        listItem.classList.add('completed');
-      }
-    });
-    todoList.appendChild(listItem);
-  }
-  document.getElementById('texto-tarefa').value = '';
+function createListItemObject(listItem) {
+  return {
+    innerText: listItem.innerText,
+    className: listItem.className,
+  };
 }
 
-function mountObjectToHtmlELement(itemObject) {
-  const item = document.createElement('li');
-  item.classList = itemObject.classList;
-  item.style.backgroundColor = itemObject.backgroundColor;
-  item.innerText = itemObject.innerText;
-  return item;
+function selectionEventAssigner(target) {
+  target.addEventListener('click', () => {
+    for (listItem of target.parentNode.children) {
+      if (listItem.className.includes('selected')) {
+        listItem.classList.remove('selected');
+      }
+    }
+    target.classList.add('selected');
+  });
+}
+
+function completedEventAssigner(target) {
+  target.addEventListener('dblclick', () => {
+    if (target.className.includes('completed')) {
+      target.classList.remove('completed');
+    } else {
+      target.classList.add('completed');
+    }
+  });
+}
+
+function createListItemHtmlElement(listItemObject) {
+  const listItem = document.createElement('li');
+  listItem.innerText = listItemObject.innerText;
+  listItem.className = listItemObject.className;
+  selectionEventAssigner(listItem);
+  completedEventAssigner(listItem);
+  return listItem;
+}
+
+function clearList(list) {
+  const listSize = list.children.length;
+  for (let index = 0; index < listSize; index += 1) {
+    list.removeChild(list.firstChild);
+  }
+}
+
+function removeItemsByClass(list, targetClass) {
+  const items = list.querySelectorAll(`.${targetClass}`);
+  for (item of items) {
+    item.parentNode.removeChild(item);
+  }
+}
+
+function saveList(list) {
+  for (let index = 0; index < list.children.length; index += 1) {
+    const itemObject = createListItemObject(list.children[index]);
+    localStorage.setItem(`listItem-${index}`, JSON.stringify(itemObject));
+  }
 }
 
 window.onload = () => {
+  const inputListItemButton = document.getElementById('criar-tarefa');
+  const clearListButton = document.getElementById('apaga-tudo');
+  const removeFishedListItemButton = document.getElementById('remover-finalizados');
+  const saveListButton = document.getElementById('salvar-tarefas');
+  const moveUpListItemButton = document.getElementById('mover-cima');
+  const moveDownListItemButton = document.getElementById('mover-baixo');
+  const removeSelectedListItemButton = document.getElementById('remover-selecionado');
+  
   const todoList = document.getElementById('lista-tarefas');
-  for (let index = 0; localStorage.getItem(`@listItem${index}`); index += 1) {
-    const newItemObject = JSON.parse(localStorage.getItem(`@listItem${index}`));
-    const newItem = mountObjectToHtmlELement(newItemObject);  
+
+  for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
+    const newItemObject = JSON.parse(localStorage.getItem(`listItem-${index}`));
+    const newItem = createListItemHtmlElement(newItemObject);
     todoList.appendChild(newItem);
   }
-  const createTaskButton = document.getElementById('criar-tarefa');
-  createTaskButton.addEventListener('click', inputTaskList);
-
-  // BOTAO LIMPA
-  const clearButton = document.getElementById('apaga-tudo');
-  clearButton.addEventListener('click', () => {
-    const todoList = document.getElementById('lista-tarefas');
-    const listSize = todoList.children.length;
-    for (let index = 0; index < listSize; index += 1) {
-      todoList.removeChild(todoList.firstChild);
-    }
-  });
-
-  // REMOVER FINALIZADOS
-  const removeFinishedItemsButton = document.getElementById('remover-finalizados');
-  removeFinishedItemsButton.addEventListener('click', () => {
-    const finishedItems =  document.querySelectorAll('.completed');
-    for (item of finishedItems) {
-      item.parentNode.removeChild(item);
-    }
-  });
-
-  // Salvar Button
-  const saveListButton = document.getElementById('salvar-tarefas');
-  saveListButton.addEventListener('click', () => {
-    const todoList = document.getElementById('lista-tarefas');
-    for (let index = 0; index < todoList.children.length; index += 1) {
-      const itemObjectMount = {
-        innerText: `${todoList.children[index].innerText}`,
-        backgroundColor: `${todoList.children[index].style.backgroundColor}`,
-        classList: `${todoList.children[index].classList}`,
+  
+  inputListItemButton.addEventListener('click', () => {
+    const inputElement = document.getElementById('texto-tarefa');
+    if (inputElement.value) {
+      const listObject = {
+        innerText: inputElement.value,
+        classList: '',
       };
-      localStorage.setItem(`@listItem${index}`, JSON.stringify(itemObjectMount));
+      const listElement = createListItemHtmlElement(listObject);
+      todoList.appendChild(listElement);
+      inputElement.value = '';
     }
   });
-};
+  
+  clearListButton.addEventListener('click', () => {
+    clearList(todoList);
+  });
+
+  removeFishedListItemButton.addEventListener('click', () => {
+    removeItemsByClass(todoList, 'completed');
+  });
+
+  saveListButton.addEventListener('click', () => {
+    saveList(todoList);
+  });
+
+  removeSelectedListItemButton.addEventListener('click', () => {
+    removeItemsByClass(todoList, 'selected');
+  });
+}
