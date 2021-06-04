@@ -4,6 +4,9 @@ const listaTarefa = document.querySelector('#lista-tarefas');
 const botaoApaga = document.querySelector('#apaga-tudo');
 const botaoFinalizados = document.querySelector('#remover-finalizados');
 const botaoAddTarefas = document.querySelector('#salvar-tarefas');
+const botaoCima = document.querySelector('#mover-cima');
+const botaoBaixo = document.querySelector('#mover-baixo');
+const botaoApagaSelecionado = document.querySelector('#remover-selecionado');
 
 function adicionarTarefa() {
   const input = textTarefa.value;
@@ -74,7 +77,7 @@ window.onload = () => {
   // armazendo os items
   let items = localStorage.getItem('items');
   if (items !== null && items.length > 0) {
-  // usa o json para voltar ao array
+    // usa o json para voltar ao array
     items = JSON.parse(items);
     const completeds = JSON.parse(localStorage.getItem('completeds'));
 
@@ -89,3 +92,24 @@ window.onload = () => {
     });
   }
 };
+// Essa função foi inspirada nesse link: https://www.ti-enxame.com/pt/javascript/mover-um-elemento-um-lugar-para-cima-ou-para-baixo-na-arvore-do-dom-com-javascript/822635469/
+
+botaoCima.addEventListener('click', () => {
+  const li = document.querySelector('.selected');
+  // aqui estou pegando o no pai da li e adicionando a li selected no elemento anterior
+  if (li != null && li.previousElementSibling) {
+    li.parentNode.insertBefore(li, li.previousElementSibling);
+  }
+});
+
+botaoBaixo.addEventListener('click', () => {
+  const li = document.querySelector('.selected');
+  if (li != null && li.nextElementSibling) {
+    li.parentNode.insertBefore(li.nextElementSibling, li);
+  }
+});
+
+botaoApagaSelecionado.addEventListener('click', () => {
+  const selecionado = document.querySelector('.selected');
+  selecionado.remove();
+});
