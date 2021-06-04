@@ -3,6 +3,8 @@ const list = document.querySelector('#lista-tarefas');
 const clearButton = document.querySelector('#apaga-tudo');
 const clearCheked = document.querySelector('#remover-finalizados');
 const saveTasks = document.querySelector('#salvar-tarefas');
+const upButton = document.querySelector('#mover-cima');
+const downButton = document.querySelector('#mover-baixo');
 
 buttonAdd.addEventListener('click', () => {
   const input = document.querySelector('#texto-tarefa');
@@ -71,3 +73,17 @@ window.onload = () => {
     });
   }
 };
+
+upButton.addEventListener('click', () => {
+  const selected = document.querySelector('.liSelectedColor');
+  if (selected != null && selected.previousElementSibling) {
+    selected.parentNode.insertBefore(selected, selected.previousElementSibling);
+  }
+});
+
+downButton.addEventListener('click', () => {
+  const selected = document.querySelector('.liSelectedColor');
+  if (selected != null && selected.nextElementSibling) {
+    selected.parentNode.insertBefore(selected.nextElementSibling, selected);
+  }
+});
