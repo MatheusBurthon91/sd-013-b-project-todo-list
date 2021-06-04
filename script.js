@@ -78,56 +78,38 @@ function moveDownSelectedItem(list) {
   return false;
 }
 
-window.onload = () => {
-  const inputListItemButton = document.getElementById('criar-tarefa');
-  const clearListButton = document.getElementById('apaga-tudo');
-  const removeFishedListItemButton = document.getElementById('remover-finalizados');
-  const saveListButton = document.getElementById('salvar-tarefas');
-  const moveUpListItemButton = document.getElementById('mover-cima');
-  const moveDownListItemButton = document.getElementById('mover-baixo');
-  const removeSelectedListItemButton = document.getElementById('remover-selecionado');
-  const todoList = document.getElementById('lista-tarefas');
+const inputListItemButton = document.getElementById('criar-tarefa');
+const clearListButton = document.getElementById('apaga-tudo');
+const removeFishedButton = document.getElementById('remover-finalizados');
+const saveListButton = document.getElementById('salvar-tarefas');
+const moveUpListItemButton = document.getElementById('mover-cima');
+const moveDownListItemButton = document.getElementById('mover-baixo');
+const removeSelectedButton = document.getElementById('remover-selecionado');
+const list = document.getElementById('lista-tarefas');
 
-  for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
-    const newItemObject = JSON.parse(localStorage.getItem(`listItem-${index}`));
-    const newItem = createListItemHtmlElement(newItemObject);
-    todoList.appendChild(newItem);
+for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
+  const newItemObject = JSON.parse(localStorage.getItem(`listItem-${index}`));
+  const newItem = createListItemHtmlElement(newItemObject);
+  list.appendChild(newItem);
+}
+
+inputListItemButton.addEventListener('click', () => {
+  const inputElement = document.getElementById('texto-tarefa');
+  if (inputElement.value) {
+    const listObject = {
+      innerText: inputElement.value,
+      className: '',
+    };
+    const listElement = createListItemHtmlElement(listObject);
+    list.appendChild(listElement);
+    inputElement.value = '';
   }
-
-  inputListItemButton.addEventListener('click', () => {
-    const inputElement = document.getElementById('texto-tarefa');
-    if (inputElement.value) {
-      const listObject = {
-        innerText: inputElement.value,
-        className: '',
-      };
-      const listElement = createListItemHtmlElement(listObject);
-      todoList.appendChild(listElement);
-      inputElement.value = '';
-    }
-  });
-
-  clearListButton.addEventListener('click', () => {
-    clearList(todoList);
-  });
-
-  removeFishedListItemButton.addEventListener('click', () => {
-    removeItemsByClass(todoList, 'completed');
-  });
-
-  saveListButton.addEventListener('click', () => {
-    saveList(todoList);
-  });
-
-  removeSelectedListItemButton.addEventListener('click', () => {
-    removeItemsByClass(todoList, 'selected');
-  });
-
-  moveUpListItemButton.addEventListener('click', () => {
-    moveUpSelectedItem(todoList);
-  });
-
-  moveDownListItemButton.addEventListener('click', () => {
-    moveDownSelectedItem(todoList);
-  });
-};
+});
+clearListButton.addEventListener('click', () => { clearList(list); });
+removeFishedButton.addEventListener('click', () => { removeItemsByClass(list, 'completed'); });
+saveListButton.addEventListener('click', () => { saveList(list); });
+removeSelectedButton.addEventListener('click', () => { removeItemsByClass(list, 'selected'); });
+moveUpListItemButton.addEventListener('click', () => { moveUpSelectedItem(list); });
+moveDownListItemButton.addEventListener('click', () => { moveDownSelectedItem(list); });
+// window.onload = () => {
+// };
