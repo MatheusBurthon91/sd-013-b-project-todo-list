@@ -30,7 +30,7 @@ function addEventMoveUp() { // essa função adiciona evento de mover para cima;
   movedUp.addEventListener('click', () => {
     const selected = document.querySelector('.selected');
     const item = lista.firstElementChild;
-    if (selected !== item) {
+    if (selected !== item && selected !== null) {
       lista.insertBefore(selected, selected.previousSibling);
     }
   });
@@ -40,7 +40,7 @@ function addEventMoveDown() { // essa função adiciona evento de mover para bai
   movedDown.addEventListener('click', () => {
     const selected = document.querySelector('.selected');
     const item = lista.lastElementChild;
-    if (selected !== item) {
+    if (selected !== item && selected !== null) {
       lista.insertBefore(selected, selected.nextElementSibling.nextSibling);
     }
   });
