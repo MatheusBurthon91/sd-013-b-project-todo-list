@@ -39,8 +39,14 @@ a funcao confere se existe a classe
 se ja existe, a função retira a classe
 se não existe, a função adiciona a classe
 
-# como eu fiz o desafio
+# como eu fiz o desafio 10
 
 seleciona todos os filhos do OL ( as li's);
 passa um loop do ultimo elemento ate o primeiro. 
 em todos os indices ele remove o filho da OL.
+
+#como eu fiz o desafio 11 
+criei uma função que seleciona todos os elementos da classe completed
+coloquei um for para percorrer em todos os elementos do array
+coloquei para percorrer do ultimo elemento ate o primeiro
+toda vez q passa em um indice ele remove a div
