@@ -57,7 +57,6 @@ botaoApagaFinalizados.innerText = 'Limpar Completados';
 
 function LimpaFinalizados() {
   const finalizado = document.querySelector('.completed');
-  finalizado.innerText = '';
   finalizado.remove();
 }
 
