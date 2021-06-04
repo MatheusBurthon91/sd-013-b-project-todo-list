@@ -48,7 +48,6 @@ saveTasks.addEventListener('click', () => {
   const completeds = [];
   for (let index = 0; index < li.length; index += 1) {
     items.push(li[index].innerText);
-    
     if (li[index].classList.contains('completed') === true) {
       completeds.push(index);
     }
@@ -59,13 +58,11 @@ saveTasks.addEventListener('click', () => {
 
 window.onload = () => {
   let items = localStorage.getItem('items');
-  
   if (items !== null && items.length > 0) {
     items = JSON.parse(items);
     const completeds = JSON.parse(localStorage.getItem('completeds'));
     items.forEach((value, index) => {
       const li = document.createElement('li');
-      
       if (completeds.indexOf(index) !== -1) {
         li.className = 'completed';
       }
