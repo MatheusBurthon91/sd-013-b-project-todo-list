@@ -14,7 +14,7 @@ function criaItemLista() {
   caixaDeInput.value = '';
 }
 botaoCriarTarefa.addEventListener('click', criaItemLista);
-botaoCriarTarefa.innerText = 'Criar Tarefa';
+botaoCriarTarefa.innerText = 'Adicionar Tarefa';
 
 // requesito 7- alterar cor de fundo do item da lista tarefas
 // Requesito 8 - alterar apenas uma cor por vez
@@ -44,7 +44,7 @@ itemTarefasOl.addEventListener('dblclick', tarefaCompletada);
 
 // requesito 10- botao apaga tudo quando clicar apaga todos itens da lista
 // botao criado direto no html
-botaoApagaTudo.innerText = 'Apagar tudo';
+botaoApagaTudo.innerText = 'Limpar Lista';
 
 function LimparLista() {
   itemTarefasOl.innerText = '';
@@ -53,7 +53,7 @@ botaoApagaTudo.addEventListener('click', LimparLista);
 
 // requesito 11- Botao que remove elementos finalizados da lista
 // botao criado direto  no html
-botaoApagaFinalizados.innerText = 'Apaga Finalizados';
+botaoApagaFinalizados.innerText = 'Limpar Completados';
 
 function LimpaFinalizados() {
   const finalizado = document.querySelector('.completed');
