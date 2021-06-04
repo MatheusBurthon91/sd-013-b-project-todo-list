@@ -20,6 +20,11 @@ btnClearAll.id = 'apaga-tudo';
 btnClearAll.innerText = 'Apagar Lista';
 containerButtons.appendChild(btnClearAll);
 
+const btnClearSelectioned = document.createElement('button');
+btnClearSelectioned.id = 'remover-finalizados';
+btnClearSelectioned.innerHTML = 'Limpar Completos';
+containerButtons.appendChild(btnClearSelectioned);
+
 const ordemList = document.createElement('ol');
 ordemList.id = 'lista-tarefas';
 containerTasks.appendChild(ordemList);
@@ -78,5 +83,12 @@ btnClearAll.addEventListener('click', () => {
   const listOrden = document.querySelectorAll('.item-list');
   for (let index = 0; index < listOrden.length; index += 1) {
     listOrden[index].remove();
+  }
+});
+
+btnClearSelectioned.addEventListener('click', () => {
+  const completeds = document.querySelectorAll('.completed');
+  for (let index = 0; index < completeds.length; index += 1) {
+    completeds[index].remove();
   }
 });
