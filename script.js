@@ -3,6 +3,8 @@ const eraseAllBtn = document.getElementById('apaga-tudo');
 const eraseCompletedBtn = document.getElementById('remover-finalizados');
 const mainList = document.getElementById('lista-tarefas');
 const saveBtn = document.getElementById('salvar-tarefas');
+const upBtn = document.getElementById('mover-cima');
+const downBtn = document.getElementById('mover-baixo');
 
 function selectedItem(event) {
   const item = event.target;
@@ -86,6 +88,25 @@ function recoverLocalStorage() {
   }
 }
 
+function moveUp() {
+  for (let index = 0; index < mainList.children.length; index += 1) {
+    if (mainList.children[index].classList.contains('selected') && index > 0) {
+      mainList.insertBefore(mainList.children[index], mainList.children[index - 1]);
+    }
+  }
+}
+
+function moveDown() {
+  for (let index = 0; index < mainList.children.length; index += 1) {
+    if (mainList.children[index].classList.contains('selected')) {
+      mainList.insertBefore(mainList.children[index], mainList.children[index + 2]);
+      return
+    }
+  }
+}
+
+downBtn.addEventListener('click', moveDown);
+upBtn.addEventListener('click', moveUp);
 saveBtn.addEventListener('click', saveListContent);
 buttonText.addEventListener('click', clickAddList);
 eraseAllBtn.addEventListener('click', eraseAll);
