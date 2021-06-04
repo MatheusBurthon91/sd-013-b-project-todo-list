@@ -16,6 +16,7 @@ function adciona(){
     console.log(input.value)
     li.innerText = input.value;
     lista.appendChild(li);
+    input.value = '';
     colore();
     risca();
 }
