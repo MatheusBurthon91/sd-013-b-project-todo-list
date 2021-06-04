@@ -24,11 +24,25 @@ function inputTaskList() {
   document.getElementById('texto-tarefa').value = '';
 }
 
+function mountObjectToHtmlELement(itemObject) {
+  const item = document.createElement('li');
+  item.classList = itemObject.classList;
+  item.style.backgroundColor = itemObject.backgroundColor;
+  item.innerText = itemObject.innerText;
+  return item;
+}
+
 window.onload = () => {
+  const todoList = document.getElementById('lista-tarefas');
+  for (let index = 0; localStorage.getItem(`@listItem${index}`); index += 1) {
+    const newItemObject = JSON.parse(localStorage.getItem(`@listItem${index}`));
+    const newItem = mountObjectToHtmlELement(newItemObject);  
+    todoList.appendChild(newItem);
+  }
   const createTaskButton = document.getElementById('criar-tarefa');
   createTaskButton.addEventListener('click', inputTaskList);
 
-  //BOTAO LIMPA
+  // BOTAO LIMPA
   const clearButton = document.getElementById('apaga-tudo');
   clearButton.addEventListener('click', () => {
     const todoList = document.getElementById('lista-tarefas');
@@ -38,12 +52,26 @@ window.onload = () => {
     }
   });
 
-  //REMOVER FINALIZADOS
+  // REMOVER FINALIZADOS
   const removeFinishedItemsButton = document.getElementById('remover-finalizados');
   removeFinishedItemsButton.addEventListener('click', () => {
     const finishedItems =  document.querySelectorAll('.completed');
     for (item of finishedItems) {
       item.parentNode.removeChild(item);
+    }
+  });
+
+  // Salvar Button
+  const saveListButton = document.getElementById('salvar-tarefas');
+  saveListButton.addEventListener('click', () => {
+    const todoList = document.getElementById('lista-tarefas');
+    for (let index = 0; index < todoList.children.length; index += 1) {
+      const itemObjectMount = {
+        innerText: `${todoList.children[index].innerText}`,
+        backgroundColor: `${todoList.children[index].style.backgroundColor}`,
+        classList: `${todoList.children[index].classList}`,
+      };
+      localStorage.setItem(`@listItem${index}`, JSON.stringify(itemObjectMount));
     }
   });
 };
