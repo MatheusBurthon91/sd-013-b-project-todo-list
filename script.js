@@ -10,7 +10,7 @@ function addItem(){
     document.querySelector('input').value = '';
 }
 
-let button = document.querySelector("button");
+const button = document.querySelector("button");
 button.addEventListener("click", addItem);
 
 const itemList =  document.querySelector('#lista-tarefas');
@@ -20,7 +20,6 @@ itemList.addEventListener("click", function () {
     }
 })
 
-
 const itemListCompleted =  document.querySelector('#lista-tarefas');
 itemListCompleted.addEventListener("dblclick", function () {
     for (let index = 0; index < itemListCompleted.children.length; index += 1) {
@@ -28,3 +27,12 @@ itemListCompleted.addEventListener("dblclick", function () {
     }
 })
 
+const deleteEveryt = document.querySelector('#apaga-tudo');
+function deleteItems (e) {
+	while (itemList.hasChildNodes()){
+		itemList.removeChild(itemList.firstChild);
+	}
+	console.log(e.target);
+}
+
+deleteEveryt.addEventListener("click", deleteItems);
