@@ -10,12 +10,11 @@ function addList() {
 document.querySelector('#criar-tarefa').addEventListener('click', addList);
 
 function addBackground(event) {
-  const listArray = list.children;
-  for (let index = 0; index < listArray.length; index += 1) {
-    listArray[index].style.backgroundColor = '';
+  if (document.querySelector('#selected')) {
+    document.querySelector('#selected').removeAttribute('id');
   }
   const selectedList = event.target;
-  selectedList.style.backgroundColor = 'rgb(128, 128, 128)';
+  selectedList.setAttribute('id', 'selected');
 }
 
 function taskCompleted(event) {
@@ -52,3 +51,29 @@ function retrieveList() {
 retrieveList();
 
 document.querySelector('#salvar-tarefas').addEventListener('click', saveList);
+
+function moveDown() {
+  const selected = document.querySelector('#selected');
+  if (selected === null || selected.nextSibling === null) return false;
+  const siblingText = selected.nextSibling.innerText;
+  const sibling = selected.nextSibling;
+  selected.nextSibling.innerText = selected.innerText;
+  selected.innerText = siblingText;
+  selected.removeAttribute('id');
+  sibling.setAttribute('id', 'selected');
+}
+
+function moveUp() {
+  const selected = document.querySelector('#selected');
+  if (selected === null || selected.previousSibling === null) return false;
+  const siblingText = selected.previousSibling.innerText;
+  const sibling = selected.previousSibling;
+  selected.previousSibling.innerText = selected.innerText;
+  selected.innerText = siblingText;
+  selected.removeAttribute('id');
+  sibling.setAttribute('id', 'selected');
+}
+
+document.querySelector('#mover-cima').addEventListener('click', moveUp);
+
+document.querySelector('#mover-baixo').addEventListener('click', moveDown);
