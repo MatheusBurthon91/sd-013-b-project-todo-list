@@ -1,7 +1,79 @@
+body {
+  background-color: lightgrey;
+}
+
 .grey {
   background-color: grey;
 }
 
 .completed {
   text-decoration: line-through;
+}
+
+header {
+  font-family: Amatic SC, cursive;
+  font-size: 40px;
+  text-align: center;
+  background-color: white;
+  width: 800px;
+  margin: 0 auto;
+  border: 3px solid black;
+  margin-bottom: 30px;
+  border-radius: 100%;
+  padding-bottom: 50px;
+}
+
+section {
+  text-align: center;
+}
+
+button {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 18px;
+  border: 3px solid;
+}
+
+li {
+  font-family: Caveat, cursive;
+  font-size: 40px;
+  border-bottom: 2px solid rgb(22 , 26 , 29);
+  text-align: center;
+  background-color: white;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  border: 3px solid rgb(22 , 26 , 29);
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+ol {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.red {
+  color: white;
+  background-color: rgb(229 , 56 , 59);
+  border-color: rgb(102 , 7 , 8);
+}
+
+.green {
+  color: rgb(0 , 48 , 73);
+  background-color: rgb(204 , 255 , 51);
+  border-color: rgb(0 , 75 , 35);
+}
+
+.blue {
+  color: rgb(3 , 4 , 94);
+  background-color: rgb(144 , 224 , 239);
+  border-color: rgb(0 , 119 , 182);
 }

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>To Do List</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Caveat&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -12,15 +14,15 @@
   </header>
   <section>
     <input id="texto-tarefa" type="text">
-    <button id="criar-tarefa">Adicionar tarefa</button>
-    <button id="apaga-tudo">Apagar lista</button>
-    <button id="remover-finalizados">Apagar finalizados</button>
-    <button id="salvar-tarefas">Salvar lista</button>
-    <button id="mover-cima">Mover item selecionado para cima</button>
-    <button id="mover-baixo">Mover item selecionado para baixo</button>
-    <button id="remover-selecionado">X</button>
+    <button id="criar-tarefa" class="green">Adicionar tarefa</button>
     <ol id="lista-tarefas">
     </ol>
+    <button id="remover-selecionado" class="red">X</button>
+    <button id="mover-cima" class="green">↑</button>
+    <button id="mover-baixo" class="green">↓</button>
+    <button id="apaga-tudo" class="red">Apagar lista</button>
+    <button id="remover-finalizados" class="red">Apagar marcados</button>
+    <button id="salvar-tarefas" class="blue">Salvar lista</button>
   </section>
   <footer>
     <h5 id="mensagem-alerta"></h5>
