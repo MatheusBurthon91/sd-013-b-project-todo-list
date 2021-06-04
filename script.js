@@ -1,21 +1,24 @@
-let buttonAdicionar = document.querySelector('#criar-tarefa');
-let listaOrdenada = document.querySelector('#lista-tarefas');
-let li = document.querySelector('.lista');
+const buttonAdicionar = document.querySelector('#criar-tarefa');
+const listaOrdenada = document.querySelector('#lista-tarefas');
+const lista = document.querySelector('li');
 function tarefa() {
-  let textInp = document.querySelector('#texto-tarefa');
-  let creatLi = document.createElement('li');
-  creatLi.className = 'lista';
+  const textInp = document.querySelector('#texto-tarefa');
+  const creatLi = document.createElement('li');
   listaOrdenada.appendChild(creatLi);
   creatLi.innerText = textInp.value;
   textInp.value = '';
 }
+
 buttonAdicionar.addEventListener('click', tarefa);
 
-// criar uma funcao que ao clicar no botao o elemento da lista fique com a cor cinza
-
-function colorElement() {
-  let list = document.querySelector('.lista');
-  list.style.background = 'rgb(128, 128, 128)';
+function colorElement(event) {
+  console.log(event.target.classList[0]);
+  let classLista = document.querySelector('.lista');
+  console.log(classLista);
+  if (classLista !== null) {
+    classLista.classList.remove('lista');
+  }
+  event.target.className = 'lista';
 }
 
 listaOrdenada.addEventListener('click', colorElement);
