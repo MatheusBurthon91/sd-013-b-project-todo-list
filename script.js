@@ -33,19 +33,24 @@ function clearTask() {
 }
 function clearCompleted() {
   const completed = document.querySelectorAll('.completed');
-  for (let i = completed.length - 1; i >= 0; i-= 1) {
+  for (let i = completed.length - 1; i >= 0; i -= 1) {
     completed[i].remove();
   }
 }
-
+function removeSelected() {
+  const selected = document.querySelector('.selected');
+  selected.remove();
+}
 function addEventListener() { // cria o event listener nas li's
   const ol = document.querySelector('#lista-tarefas');
   const clearAll = document.querySelector('#apaga-tudo');
   const removeButton = document.querySelector('#remover-finalizados');
+  const removeSelectedButton = document.querySelector('#remover-selecionado');
   ol.addEventListener('click', selectedTask);
   ol.addEventListener('dblclick', completedTask);
   clearAll.addEventListener('click', clearTask);
   removeButton.addEventListener('click', clearCompleted);
+  removeSelectedButton.addEventListener('click', removeSelected);
 }
 
 window.onload = () => {
