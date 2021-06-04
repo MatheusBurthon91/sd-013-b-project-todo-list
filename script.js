@@ -20,10 +20,8 @@ window.onload = function () {
     for (let index = 0; index < itensLi.length; index += 1) {
       if (itensLi[index].classList.contains('check')) {
         itensLi[index].classList.remove('check');
-        itensLi[index].style.backgroundColor = 'white';
       } else {
         event.target.classList.add('check');
-        event.target.style.backgroundColor = 'rgb(128,128,128)';
       }
     }
   }
@@ -72,9 +70,14 @@ window.onload = function () {
 
   const buttonRemove = document.getElementById('remover-selecionado');
 
+  function remover(event) {
+    event.target.classList.toggle('remove');
+  }
+
   function apagarSel() {
-    const select = document.querySelector('.check')
+    const select = document.querySelector('.remove');
     select.remove();
   }
+  lista.addEventListener('click', remover);
   buttonRemove.addEventListener('click', apagarSel);
 };

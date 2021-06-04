@@ -1,3 +1,6 @@
 .completed {
   text-decoration: line-through;
 }
+.check {
+  background-color: rgb(128,128,128);
+}
