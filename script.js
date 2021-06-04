@@ -11,7 +11,7 @@ function createNew() {
   input.value = '';
 }
 
-function selecting() {
+function selecting(event) {
   if (event.target.classList.contains('item')) {
     const lastItem = document.querySelector('.selectedItem');
     event.target.classList.add('selectedItem');
@@ -21,7 +21,7 @@ function selecting() {
   }
 }
 
-function completed() {
+function completed(event) {
   if (event.target.classList.contains('completed')) {
     event.target.classList.remove('completed');
   } else {
