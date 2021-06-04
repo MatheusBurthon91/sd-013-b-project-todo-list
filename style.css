@@ -10,3 +10,8 @@ body {
 .item-container {
   display: inline-block;
 }
+
+.item-list {
+  width: 33%;
+  background-color: transparent;
+}
