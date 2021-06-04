@@ -5,6 +5,8 @@ const clearCheked = document.querySelector('#remover-finalizados');
 const saveTasks = document.querySelector('#salvar-tarefas');
 const upButton = document.querySelector('#mover-cima');
 const downButton = document.querySelector('#mover-baixo');
+const clearSelected = document.querySelector('#remover-selecionado');
+const selected = '.liSelectedColor';
 
 buttonAdd.addEventListener('click', () => {
   const input = document.querySelector('#texto-tarefa');
@@ -75,15 +77,20 @@ window.onload = () => {
 };
 
 upButton.addEventListener('click', () => {
-  const selected = document.querySelector('.liSelectedColor');
-  if (selected != null && selected.previousElementSibling) {
-    selected.parentNode.insertBefore(selected, selected.previousElementSibling);
+  const upSelected = document.querySelector(selected);
+  if (upSelected != null && upSelected.previousElementSibling) {
+    upSelected.parentNode.insertBefore(upSelected, upSelected.previousElementSibling);
   }
 });
 
 downButton.addEventListener('click', () => {
-  const selected = document.querySelector('.liSelectedColor');
-  if (selected != null && selected.nextElementSibling) {
-    selected.parentNode.insertBefore(selected.nextElementSibling, selected);
+  const downSelected = document.querySelector(selected);
+  if (downSelected != null && downSelected.nextElementSibling) {
+    downSelected.parentNode.insertBefore(downSelected.nextElementSibling, downSelected);
   }
+});
+
+clearSelected.addEventListener('click', () => {
+  const removeSelected = document.querySelector(selected);
+  removeSelected.remove();
 });
