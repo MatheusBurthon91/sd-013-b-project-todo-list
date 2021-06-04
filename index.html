@@ -2,7 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>To Do</title>
+    <title>Tarefas</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,21 +12,23 @@
         <h1>Minha Lista de Tarefas</h1>
     </header>
     <main>
-        <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+        <div class="entrada">
+            <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+            
+            <input type="text" id="texto-tarefa">
         
-        <input type="text" id="texto-tarefa">
-    
-        <button id="criar-tarefa">Adicionar Tarefa</button>
+            <button id="criar-tarefa">ADICIONAR TAREFA</button>
+        </div>
 
         <ol id="lista-tarefas"></ol>
-        <section id="botoes">
-            <button id="remover-selecionado">Apagar Selecionado</button>
-            <button id="remover-finalizados">Apagar Completos</button>
-            <button id="apaga-tudo">Apagar Tudo</button>
+        <div id="botoes">
+            <button id="remover-selecionado">x</button>
             <button id="mover-cima">↑</button>
             <button id="mover-baixo">↓</button>
-            <button id="salvar-tarefas">Salvar</button>
-        </section>
+            <button id="remover-finalizados">APAGAR COMPLETOS</button>
+            <button id="apaga-tudo">APAGAR TUDO</button>
+            <button id="salvar-tarefas">SALVAR</button>
+        </div>
     </main>
 
     <script src="script.js"></script>
