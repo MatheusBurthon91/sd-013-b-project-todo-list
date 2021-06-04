@@ -48,9 +48,25 @@ window.onload = function () {
   const buttonFinal = document.getElementById('remover-finalizados');
 
   buttonFinal.addEventListener('click', function () {
-    const listaFinal = document.querySelectorAll('.completed')
+    const listaFinal = document.querySelectorAll('.completed');
     for (let index = 0; index < listaFinal.length; index += 1) {
       listaFinal[index].parentElement.removeChild(listaFinal[index]);
     }
   });
+
+  const buttonSalve = document.getElementById('salvar-tarefas');
+
+  function salvar() {
+    localStorage.tarefas = lista.innerHTML;
+  }
+
+  buttonSalve.addEventListener('click', salvar);
+
+  function load() {
+    if (localStorage !== undefined) {
+      const reload = lista;
+      reload.innerHTML = localStorage.tarefas;
+    }
+  }
+  load();
 };
