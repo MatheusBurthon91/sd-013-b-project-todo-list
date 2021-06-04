@@ -14,6 +14,11 @@ function addEventClearFinished() { // essa função adiciona evento de apagar to
     }
   });
 }
+function addEventClearSelect() {
+  const element = document.querySelector('#remover-selecionado');
+  const elementSelect = document.querySelector('.selected');
+  element.addEventListener('click', () => { elementSelect.remove(); });
+}
 function addEventSaved() { // essa função adiciona evento que ao ser acionada, executa a função anterior salvando a lista;
   const elementoSaved = document.querySelector('#salvar-tarefas');
   elementoSaved.addEventListener('click', () => {
@@ -74,9 +79,11 @@ lista.addEventListener('dblclick', (eventoDeOrigem) => {
 });
 const taskBtn = document.querySelector('#criar-tarefa');
 taskBtn.addEventListener('click', taskSubmit); // evento que adiciona tarefa a lista;
+
 window.onload = () => {
   addElementsSaved();
   addEventClearFinished();
+  addEventClearSelect();
   addEventSaved();
   addEventMoveUp();
   addEventMoveDown();
