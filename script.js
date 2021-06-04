@@ -56,7 +56,23 @@ function saveList(list) {
   }
 }
 
-window.onload = () => {
+function moveSelectedItem(list, direction) {
+  let directionAssignValue = 0;
+  if (direction === 'up') {
+    directionAssignValue = -1;
+  }
+  if (direction === 'down') {
+    directionAssignValue = 2;
+  }
+  for (let index = 0; index < list.children.length; index += 1) {
+    if (list.children[index].className.includes('selected') && !(!index && direction ==='up')) {
+      list.insertBefore(list.children[index], list.children[index + directionAssignValue]);
+      return directionAssignValue;
+    }
+  }
+}
+
+window.onload = function () {
   const inputListItemButton = document.getElementById('criar-tarefa');
   const clearListButton = document.getElementById('apaga-tudo');
   const removeFishedListItemButton = document.getElementById('remover-finalizados');
@@ -64,7 +80,7 @@ window.onload = () => {
   const moveUpListItemButton = document.getElementById('mover-cima');
   const moveDownListItemButton = document.getElementById('mover-baixo');
   const removeSelectedListItemButton = document.getElementById('remover-selecionado');
-  
+
   const todoList = document.getElementById('lista-tarefas');
 
   for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
@@ -72,20 +88,20 @@ window.onload = () => {
     const newItem = createListItemHtmlElement(newItemObject);
     todoList.appendChild(newItem);
   }
-  
+
   inputListItemButton.addEventListener('click', () => {
     const inputElement = document.getElementById('texto-tarefa');
     if (inputElement.value) {
       const listObject = {
         innerText: inputElement.value,
-        classList: '',
+        className: '',
       };
       const listElement = createListItemHtmlElement(listObject);
       todoList.appendChild(listElement);
       inputElement.value = '';
     }
   });
-  
+
   clearListButton.addEventListener('click', () => {
     clearList(todoList);
   });
@@ -101,4 +117,12 @@ window.onload = () => {
   removeSelectedListItemButton.addEventListener('click', () => {
     removeItemsByClass(todoList, 'selected');
   });
-}
+
+  moveUpListItemButton.addEventListener('click', () => {
+    moveSelectedItem(todoList, 'up');
+  });
+
+  moveDownListItemButton.addEventListener('click', () => {
+    moveSelectedItem(todoList, 'down');
+  });
+};
