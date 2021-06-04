@@ -16,10 +16,15 @@ clickButton.addEventListener('click', addChore);
 // Função para alterar o fundo dos itens da lista para rgb(128,128,128);
 function listItemColor(event) {
   const selectItem = event;
+  let choreClassVar = document.getElementsByClassName('choreClass')
+  for (let index = 0; index < choreClassVar.length; index += 1){
+    choreClassVar[index].classList.remove('choreClass');
+  }
   if (selectItem.target.classList.contains('chores')){
-    selectItem.target.style.backgroundColor = 'rgb(128,128,128)';
+    selectItem.target.classList.add('choreClass');
   }
 }
 
+// Adicionando evento para alterar a background color do item da lista de tarefa
 const selectList = document.getElementById('lista-tarefas');
 selectList.addEventListener('click', listItemColor);
