@@ -7,7 +7,8 @@ function createListItemObject(listItem) {
 
 function selectionEventAssigner(target) {
   target.addEventListener('click', () => {
-    for (listItem of target.parentNode.children) {
+    for (let index = 0; index < target.parentNode.children.length; index += 1) {
+      const listItem = target.parentNode.children[index];
       if (listItem.className.includes('selected')) {
         listItem.classList.remove('selected');
       }
@@ -44,7 +45,8 @@ function clearList(list) {
 
 function removeItemsByClass(list, targetClass) {
   const items = list.querySelectorAll(`.${targetClass}`);
-  for (item of items) {
+  for (let index = 0; index < items.length; index += 1) {
+    const item = items[index];
     item.parentNode.removeChild(item);
   }
 }
@@ -56,23 +58,27 @@ function saveList(list) {
   }
 }
 
-function moveSelectedItem(list, direction) {
-  let directionAssignValue = 0;
-  if (direction === 'up') {
-    directionAssignValue = -1;
-  }
-  if (direction === 'down') {
-    directionAssignValue = 2;
-  }
+function moveUpSelectedItem(list) {
   for (let index = 0; index < list.children.length; index += 1) {
-    if (list.children[index].className.includes('selected') && !(!index && direction ==='up')) {
-      list.insertBefore(list.children[index], list.children[index + directionAssignValue]);
-      return directionAssignValue;
+    if (list.children[index].className.includes('selected') && index > 0) {
+      list.insertBefore(list.children[index], list.children[index - 1]);
+      return true;
     }
   }
+  return false;
 }
 
-window.onload = function () {
+function moveDownSelectedItem(list) {
+  for (let index = 0; index < list.children.length; index += 1) {
+    if (list.children[index].className.includes('selected')) {
+      list.insertBefore(list.children[index], list.children[index + 2]);
+      return true;
+    }
+  }
+  return false;
+}
+
+window.onload = () => {
   const inputListItemButton = document.getElementById('criar-tarefa');
   const clearListButton = document.getElementById('apaga-tudo');
   const removeFishedListItemButton = document.getElementById('remover-finalizados');
@@ -80,7 +86,6 @@ window.onload = function () {
   const moveUpListItemButton = document.getElementById('mover-cima');
   const moveDownListItemButton = document.getElementById('mover-baixo');
   const removeSelectedListItemButton = document.getElementById('remover-selecionado');
-
   const todoList = document.getElementById('lista-tarefas');
 
   for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
@@ -119,10 +124,10 @@ window.onload = function () {
   });
 
   moveUpListItemButton.addEventListener('click', () => {
-    moveSelectedItem(todoList, 'up');
+    moveUpSelectedItem(todoList);
   });
 
   moveDownListItemButton.addEventListener('click', () => {
-    moveSelectedItem(todoList, 'down');
+    moveDownSelectedItem(todoList);
   });
 };
