@@ -28,3 +28,18 @@ function listItemColor(event) {
 // Adicionando evento para alterar a background color do item da lista de tarefa
 const selectList = document.getElementById('lista-tarefas');
 selectList.addEventListener('click', listItemColor);
+
+// Função para riscar o texto das tarefas cumpridas
+function riskChore(event) {
+  const selectedChore = event;
+  if (selectedChore.target.classList.contains('completed')) {
+    selectedChore.target.classList.remove('completed');
+    return;
+  }
+  if (selectedChore.target.classList.contains('chores')) {
+    selectedChore.target.classList.add('completed');
+  }
+}
+
+// Adicionando evento para riscar
+selectList.addEventListener('dblclick', riskChore);
