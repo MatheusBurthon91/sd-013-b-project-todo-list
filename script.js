@@ -17,10 +17,10 @@ function mudaClasse(event)  {
 function markComplete(event) {
   let li = event.target
   
-  if (li.className !== 'item completed selected'){
-    li.classList.add('completed')
-  } else {
+  if (li.classList.contains('completed')){
     li.classList.remove('completed')
+  } else {
+    li.classList.add('completed')
     // console.log(li.className)
   }
 } 
@@ -59,7 +59,6 @@ function rmIt(){
   while(ol.hasChildNodes()){
     ol.removeChild(ol.firstChild)
   }
-
 }
 
 
