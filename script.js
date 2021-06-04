@@ -2,6 +2,7 @@ const taskInput = document.getElementById('texto-tarefa');
 const list = document.getElementById('lista-tarefas');
 const Button = document.getElementById('criar-tarefa');
 const listItem = document.createElement('li');
+const Button2 = document.getElementById ('apaga-tudo')
 listItem.className = 'list-item';
 
 function addTask() {
@@ -28,3 +29,9 @@ list.addEventListener('click', (event) => {
 list.addEventListener('dblclick', (event) => {
   event.target.classList.toggle('completed');
 });
+
+function removeAll() {
+  list.innerHTML = '';
+}
+document.getElementById('apaga-tudo').addEventListener('click', removeAll);
+
