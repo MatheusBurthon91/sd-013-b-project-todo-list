@@ -69,4 +69,12 @@ window.onload = function () {
     }
   }
   load();
+
+  const buttonRemove = document.getElementById('remover-selecionado');
+
+  function apagarSel() {
+    const select = document.querySelector('.check')
+    select.remove();
+  }
+  buttonRemove.addEventListener('click', apagarSel);
 };
