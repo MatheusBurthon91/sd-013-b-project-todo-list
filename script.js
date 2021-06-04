@@ -37,20 +37,38 @@ function clearCompleted() {
     completed[i].remove();
   }
 }
-function removeSelected() {
+function removeSelected() { // remover o item riscado
   const selected = document.querySelector('.selected');
   selected.remove();
+}
+function up() { // subir o item selecionado
+  const selected = document.getElementsByClassName('selected')[0]; // pega o primeiro elemento da lista
+  const ol = document.getElementById('lista-tarefas'); // cria um array com os elementos da lista
+  if (selected !== ol.firstChild && selected) { // elemento selecionado for diferente do primeiro ou do selecionado
+    selected.previousSibling.before(selected); // coloca o proximo filho como antes do elemento selecionado
+  }
+}
+function down() { // descer o item selecionado
+  const selected = document.getElementsByClassName('selected')[0]; // pega o primeiro elemento da lista selected
+  const ol = document.getElementById('lista-tarefas'); // cria um array com os elementos da lista
+  if (selected !== ol.lastChild && selected) { // elemento selecionado for diferente do ultimo elemento ou do proprio selecionado
+    selected.nextSibling.after(selected); // coloque o proximo elemento da lista como proximo do elemento selecionado
+  }
 }
 function addEventListener() { // cria o event listener nas li's
   const ol = document.querySelector('#lista-tarefas');
   const clearAll = document.querySelector('#apaga-tudo');
   const removeButton = document.querySelector('#remover-finalizados');
   const removeSelectedButton = document.querySelector('#remover-selecionado');
+  const upButton = document.querySelector('#mover-cima');
+  const downButton = document.querySelector('#mover-baixo');
   ol.addEventListener('click', selectedTask);
   ol.addEventListener('dblclick', completedTask);
   clearAll.addEventListener('click', clearTask);
   removeButton.addEventListener('click', clearCompleted);
   removeSelectedButton.addEventListener('click', removeSelected);
+  upButton.addEventListener('click', up);
+  downButton.addEventListener('click', down);
 }
 
 window.onload = () => {
