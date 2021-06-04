@@ -25,13 +25,21 @@ function completedTask(event) {
     event.target.classList.add('completed');
   }
 }
-function addSelectedEventListener() { // cria o event listener nas li's
+function clearTask() {
+  const tasks = document.querySelector('#lista-tarefas').children;
+  for (let i = tasks.length - 1; i >= 0; i -= 1) { // essa linha de codigo foi feita baseada no projeto do pedro spelta. Tentei fazer do indice 0 ate o ultimo, mas so apagava metade. Do ultimo ate o primeiro apaga todos.
+    tasks[i].remove();
+  }
+}
+function addEventListener() { // cria o event listener nas li's
   const ol = document.querySelector('#lista-tarefas');
+  const clearAll = document.querySelector('#apaga-tudo');
   ol.addEventListener('click', selectedTask);
   ol.addEventListener('dblclick', completedTask);
+  clearAll.addEventListener('click', clearTask);
 }
 
 window.onload = () => {
   addEventListenerButton();
-  addSelectedEventListener();
+  addEventListener();
 };

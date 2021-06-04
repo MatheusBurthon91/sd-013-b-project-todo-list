@@ -31,12 +31,16 @@ a funcao de criar a classe.
 
 3- As propriedades da classe esta no classe
 
-# como eu fiz o desafio 8
+# como eu fiz o desafio 9
 
-funcao que faz 
+primeiramente precisa criar um eventlistener de dobleclick
+com a funçao de colocar a class 
+a funcao confere se existe a classe
+se ja existe, a função retira a classe
+se não existe, a função adiciona a classe
 
-funcao para ter
-se tiver o style deleta
-se não tiver o style cria
+# como eu fiz o desafio
 
-quando eu der dblclick
+seleciona todos os filhos do OL ( as li's);
+passa um loop do ultimo elemento ate o primeiro. 
+em todos os indices ele remove o filho da OL.
