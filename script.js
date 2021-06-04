@@ -74,6 +74,13 @@ function moveUp() {
   sibling.setAttribute('id', 'selected');
 }
 
+function removeSelected() {
+  if (document.querySelector('#selected')) document.querySelector('#selected').remove();
+  return false;
+}
+
+document.querySelector('#remover-selecionado').addEventListener('click', removeSelected);
+
 document.querySelector('#mover-cima').addEventListener('click', moveUp);
 
 document.querySelector('#mover-baixo').addEventListener('click', moveDown);
