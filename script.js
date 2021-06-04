@@ -52,3 +52,24 @@ olId.addEventListener('dblclick', (event) => {
     event.target.classList.remove('completed');
   }
 });
+
+const deleteButton = document.getElementsByTagName('button')[1];
+deleteButton.setAttribute('id', 'apaga-tudo');
+deleteButton.innerHTML = 'Apagar';
+
+deleteButton.addEventListener('click', () => {
+  const liCount = document.querySelector('ol');
+  liCount.innerHTML = '';
+});
+
+const throughDeleteButton = document.getElementsByTagName('button')[2];
+throughDeleteButton.setAttribute('id', 'remover-finalizados');
+throughDeleteButton.innerHTML = 'Apagar Tarefas Finalizadas';
+
+throughDeleteButton.addEventListener('click', () => {
+  const completedClassSelect = document.querySelectorAll('.completed');
+  console.log(completedClassSelect);
+  for (let index = 0; index < completedClassSelect.length; index += 1) {
+    completedClassSelect[index].remove();
+  }
+});
