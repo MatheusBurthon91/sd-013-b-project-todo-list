@@ -32,3 +32,11 @@ a funcao de criar a classe.
 3- As propriedades da classe esta no classe
 
 # como eu fiz o desafio 8
+
+funcao que faz 
+
+funcao para ter
+se tiver o style deleta
+se não tiver o style cria
+
+quando eu der dblclick
