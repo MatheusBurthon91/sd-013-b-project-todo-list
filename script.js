@@ -1,6 +1,7 @@
 
 
 //essa funcao seleciona a tarefa dentro da ol
+//a ser entendido melhor
 function mudaClasse(event)  {
   let li = event.target
   const lItem = document.getElementsByClassName('selected')[0] 
@@ -68,6 +69,38 @@ function rmAll()  {
 }
 
 
+
+
+
+
+
+
+
+
+function rmCom()  {
+  let ol = document.getElementById('lista-tarefas')
+  let lis = document.querySelectorAll('.completed')
+  for (let index = 0; index < lis.length; index += 1){
+    ol.removeChild(lis[index])
+  }
+}
+
+
+
+
+function rmvSel() {
+  const rmSel = document.getElementById('remover-finalizados')
+  rmSel.addEventListener('click', rmCom)
+}
+
+
+
+
+
+
+
+
+
 pegaTexto()
 rmAll()
-
+rmvSel()
