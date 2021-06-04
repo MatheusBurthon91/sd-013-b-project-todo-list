@@ -42,3 +42,15 @@ function strikeOutCompletedTask() {
   });
 }
 strikeOutCompletedTask();
+
+// Botão para limpar tudo
+const buttonClean = document.getElementById('apaga-tudo');
+
+function buttonToCleanAll() {
+  buttonClean.addEventListener('click', function () {
+    //for (let index = 0; index < li.length; index += 1) {
+      ol.innerHTML = '';
+    //}
+  })
+}
+buttonToCleanAll();
