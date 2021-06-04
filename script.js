@@ -5,6 +5,7 @@ const mainList = document.getElementById('lista-tarefas');
 const saveBtn = document.getElementById('salvar-tarefas');
 const upBtn = document.getElementById('mover-cima');
 const downBtn = document.getElementById('mover-baixo');
+const removeSelectBtn = document.getElementById('remover-selecionado');
 
 function selectedItem(event) {
   const item = event.target;
@@ -100,11 +101,21 @@ function moveDown() {
   for (let index = 0; index < mainList.children.length; index += 1) {
     if (mainList.children[index].classList.contains('selected')) {
       mainList.insertBefore(mainList.children[index], mainList.children[index + 2]);
-      return
+      return;
     }
   }
 }
 
+function eraseSelected() {
+  for (let index = 0; index < mainList.children.length; index += 1) {
+    if (mainList.children[index].classList.contains('selected')) {
+      mainList.removeChild(mainList.children[index]);
+      return;
+    }
+  }
+}
+
+removeSelectBtn.addEventListener('click', eraseSelected);
 downBtn.addEventListener('click', moveDown);
 upBtn.addEventListener('click', moveUp);
 saveBtn.addEventListener('click', saveListContent);
