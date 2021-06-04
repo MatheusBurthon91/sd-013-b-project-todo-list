@@ -1,9 +1,8 @@
 const buttonText = document.getElementById('criar-tarefa');
-const listItem = document.getElementsByTagName('li');
 const eraseAllBtn = document.getElementById('apaga-tudo');
 const eraseCompletedBtn = document.getElementById('remover-finalizados');
 const mainList = document.getElementById('lista-tarefas');
-console.log(listItem);
+const saveBtn = document.getElementById('salvar-tarefas');
 
 function selectedItem(event) {
   const item = event.target;
@@ -38,16 +37,12 @@ function clickAddList() {
   mainList.lastElementChild.addEventListener('dblclick', completedItem);
 }
 
-buttonText.addEventListener('click', clickAddList);
-
 function eraseAll() {
   const childList = document.getElementsByTagName('li');
   while (childList[0]) {
     mainList.removeChild(childList[0]);
   }
 }
-
-eraseAllBtn.addEventListener('click', eraseAll);
 
 function eraseCompleted() {
   const childList = document.getElementsByTagName('li');
@@ -59,4 +54,41 @@ function eraseCompleted() {
   }
 }
 
+function createObjectList(list) {
+  return {
+    innerText: list.innerText,
+    className: list.className,
+  };
+}
+
+function recoverSavedList(list) {
+  const listItem = document.createElement('li');
+  listItem.innerText = list.innerText;
+  listItem.className = list.className;
+  return listItem;
+}
+
+function saveListContent() {
+  for (let index = 0; index < mainList.children.length; index += 1) {
+    const listObj = createObjectList(mainList.children[index]);
+    localStorage.setItem(`taskValue${index}`, JSON.stringify(listObj));
+  }
+}
+
+function recoverLocalStorage() {
+  for (let index = 0; localStorage.getItem(`taskValue${index}`); index += 1) {
+    const savedObject = JSON.parse(localStorage.getItem(`taskValue${index}`));
+    localStorage.removeItem(`taskValue${index}`);
+    const listItem = recoverSavedList(savedObject);
+    mainList.appendChild(listItem);
+    mainList.lastElementChild.addEventListener('click', selectedItem);
+    mainList.lastElementChild.addEventListener('dblclick', completedItem);
+  }
+}
+
+saveBtn.addEventListener('click', saveListContent);
+buttonText.addEventListener('click', clickAddList);
+eraseAllBtn.addEventListener('click', eraseAll);
 eraseCompletedBtn.addEventListener('click', eraseCompleted);
+
+window.onload = recoverLocalStorage;

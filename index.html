@@ -6,23 +6,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Minha Lista de Tarefas</h1>
-    </header>
-    <p id='funcionamento'>Clique duas vezes em um item para marcá-lo como completo</p>
-    <section>
-      <input id='texto-tarefa' type="text">
-      <button id='criar-tarefa'>Adicionar</button>
-      <ol id='lista-tarefas'></ol>
-    </section>
-    <section id='ultimos-btn'>
-      <button id='apaga-tudo'>Limpar Lista</button>
-      <button id='remover-finalizados'>Limpar Completados</button>
-    </section>
-
-
-
-
+  <main>
+    <section id='mainSection'>
+        <header>
+            <h1>Minha Lista de Tarefas</h1>
+        </header>
+        <p id='funcionamento'>Clique duas vezes em um item para marcá-lo como completo</p>
+        <section id='sectionText'>
+          <input id='texto-tarefa' type="text">
+          <button id='criar-tarefa'>Adicionar</button>
+          <ol id='lista-tarefas'></ol>
+        </section>
+        <section id='ultimos-btn'>
+          <button id='remover-selecionado'>X</button>
+          <button id='mover-baixo'>↓</button>
+          <button id='mover-cima'>↑</button>
+          <button id='remover-finalizados'>Limpar Completados</button>
+          <button id='apaga-tudo'>Limpar Lista</button>
+          <button id='salvar-tarefas'>Salvar Lista</button>
+        </section>
+      </section>
+    </main>
+    <footer id='footer'>
+      <p>Created by Alef Sloan</p>
+    </footer>
 <script src=script.js></script>
 </body>
 </html>
