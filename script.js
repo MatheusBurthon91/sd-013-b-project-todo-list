@@ -24,7 +24,7 @@ olSelect.setAttribute('id', 'lista-tarefas');
 
 buttonSelect.setAttribute('id', 'criar-tarefa');
 
-const olId = document.getElementById('lista-tarefas');
+const olId = document.querySelector('#lista-tarefas');
 
 buttonSelect.addEventListener('click', () => {
   const liCreat = document.createElement('li');
@@ -34,12 +34,21 @@ buttonSelect.addEventListener('click', () => {
 });
 
 olId.addEventListener('click', (event) => {
-  const listOfTasks = document.getElementsByTagName('li');
+  // const listOfTasks = document.getElementsByTagName('li');
   const taskId = document.getElementsByClassName('taskSelected');
   if (taskId !== []) {
     for (let index = 0; index < taskId.length; index += 1) {
       taskId[index].classList.remove('taskSelected');
     }
   }
-  event.target.className = 'taskSelected';
+  event.target.classList.add('taskSelected');
+});
+
+olId.addEventListener('dblclick', (event) => {
+  const selectCompleted = event.target.classList.value;
+  if (selectCompleted === 'taskSelected') {
+    event.target.classList.add('completed');
+  } else {
+    event.target.classList.remove('completed');
+  }
 });
