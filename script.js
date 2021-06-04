@@ -89,6 +89,7 @@ const list = document.getElementById('lista-tarefas');
 
 for (let index = 0; localStorage.getItem(`listItem-${index}`); index += 1) {
   const newItemObject = JSON.parse(localStorage.getItem(`listItem-${index}`));
+  localStorage.removeItem(`listItem-${index}`);
   const newItem = createListItemHtmlElement(newItemObject);
   list.appendChild(newItem);
 }
