@@ -2,9 +2,9 @@ const containerTasks = document.getElementById('container-tasks');
 
 const inputTasks = document.createElement('input');
 inputTasks.id = 'texto-tarefa';
-inputTasks.type = 'text';
-inputTasks.placeholder = 'Digite aqui sua tarefa...';
-inputTasks.size = '50';
+// inputTasks.type = 'text';
+// inputTasks.placeholder = 'Digite aqui sua tarefa...';
+// inputTasks.size = '50';
 inputTasks.className = 'item-container';
 containerTasks.appendChild(inputTasks);
 
@@ -22,6 +22,16 @@ const corDefault = 'rgb(128, 128, 128)';
 
 // localStorage.setItem(`tarefa ${ordemList.childElementCount}.`, itemList.innerText);
 
+function clearSelect() {
+  const listItem = document.getElementsByClassName('selectioned');
+  for (let index = 0; index < listItem.length; index += 1) {
+    if (listItem[index].className === 'selectioned') {
+      listItem[index].style.backgroundColor = 'transparent';
+      listItem[index].className = 'item-list';
+    }
+  }
+}
+
 btnCreateTasks.addEventListener('click', () => {
   const itemList = document.createElement('li');
   itemList.innerText = inputTasks.value;
@@ -29,28 +39,15 @@ btnCreateTasks.addEventListener('click', () => {
   inputTasks.value = '';
   ordemList.appendChild(itemList);
   itemList.addEventListener('click', () => {
-    itemList.style.backgroundColor = corDefault;
+    if (itemList.style.backgroundColor !== corDefault) {
+      itemList.style.backgroundColor = corDefault;
+      clearSelect();
+      itemList.className = 'selectioned';
+    } else {
+      itemList.style.backgroundColor = 'transparent';
+      itemList.className = 'item-list';
+    }
   });
 });
-
-// for (let index = 1; index < selectItem.length; index += 1) {
-//   selectItem.children[index].addEventListener('click', () => {
-//    alert('oi');
-//   });
-// }
-
-// btnCreateTasks.addEventListener('click', () => {
-
-// for (let index = 0; index < selectItem.length; index += 1) {
-//  const corFundo = selectItem[index].style.backgroundColor;
-
-//   if (corDefault === corFundo) {
-//     selectItem[index].className += ' selectioned';
-//   }
-// selectItem[index].addEventListener('click', () => {
-//   // selectItem[index].style.backgroundColor = 'transparent';
-// });
-
-// });
 
 localStorage.clear();

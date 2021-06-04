@@ -3,15 +3,12 @@ body {
 }
 
 #container-tasks {
-  width: 100%;
-  display: inline-block;
+  width: 50%;
 }
 
 .item-container {
-  display: inline-block;
 }
 
 .item-list {
-  width: 33%;
   background-color: transparent;
 }
