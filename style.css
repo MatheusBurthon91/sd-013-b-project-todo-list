@@ -1,3 +1,12 @@
 #texto-tarefa {
   display: inline-block;
 }
+.liClicada {
+  background-color: yellow;
+}
+.white {
+  background-color: red;
+}
+.cinza {
+  background-color: rgb(128, 128, 128);
+}
