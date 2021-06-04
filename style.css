@@ -6,9 +6,10 @@ body {
   width: 50%;
 }
 
-.item-container {
-}
-
 .item-list {
   background-color: transparent;
+}
+
+.completed {
+  text-decoration: line-through;
 }

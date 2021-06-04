@@ -2,9 +2,9 @@ const containerTasks = document.getElementById('container-tasks');
 
 const inputTasks = document.createElement('input');
 inputTasks.id = 'texto-tarefa';
-// inputTasks.type = 'text';
-// inputTasks.placeholder = 'Digite aqui sua tarefa...';
-// inputTasks.size = '50';
+inputTasks.type = 'text';
+inputTasks.placeholder = 'Digite aqui sua tarefa...';
+inputTasks.size = '30';
 inputTasks.className = 'item-container';
 containerTasks.appendChild(inputTasks);
 
@@ -21,14 +21,36 @@ containerTasks.appendChild(ordemList);
 const corDefault = 'rgb(128, 128, 128)';
 
 // localStorage.setItem(`tarefa ${ordemList.childElementCount}.`, itemList.innerText);
+// localStorage.clear();
 
 function clearSelect() {
-  const listItem = document.getElementsByClassName('selectioned');
+  const listItem = document.getElementsByClassName('item-list');
   for (let index = 0; index < listItem.length; index += 1) {
-    if (listItem[index].className === 'selectioned') {
+    if (listItem[index].title === 'selected') {
       listItem[index].style.backgroundColor = 'transparent';
-      listItem[index].className = 'item-list';
+      listItem[index].title = 'deselected';
     }
+  }
+}
+
+function selectioned(item) {
+  const itemSelectioned = item;
+  if (itemSelectioned.style.backgroundColor !== corDefault) {
+    itemSelectioned.style.backgroundColor = corDefault;
+    clearSelect();
+    itemSelectioned.title = 'selected';
+  } else {
+    itemSelectioned.title = 'deselected';
+    itemSelectioned.style.backgroundColor = 'transparent';
+  }
+}
+
+function completed(item) {
+  const itemCompleted = item;
+  if (itemCompleted.className !== 'completed') {
+    itemCompleted.className = 'completed';
+  } else {
+    itemCompleted.className = 'item-list';
   }
 }
 
@@ -38,16 +60,10 @@ btnCreateTasks.addEventListener('click', () => {
   itemList.className = 'item-list';
   inputTasks.value = '';
   ordemList.appendChild(itemList);
+  itemList.addEventListener('dblclick', () => {
+    completed(itemList);
+  });
   itemList.addEventListener('click', () => {
-    if (itemList.style.backgroundColor !== corDefault) {
-      itemList.style.backgroundColor = corDefault;
-      clearSelect();
-      itemList.className = 'selectioned';
-    } else {
-      itemList.style.backgroundColor = 'transparent';
-      itemList.className = 'item-list';
-    }
+    selectioned(itemList);
   });
 });
-
-localStorage.clear();
