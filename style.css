@@ -3,7 +3,17 @@ body {
 }
 
 #container-tasks {
+  height: 300px;
   width: 50%;
+  background-color: rgb(219 215 215);
+}
+
+#container-buttons {
+  display: inline-block;
+}
+
+.item-container {
+  display: inline-block;
 }
 
 .item-list {

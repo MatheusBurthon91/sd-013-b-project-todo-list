@@ -1,4 +1,5 @@
 const containerTasks = document.getElementById('container-tasks');
+const containerButtons = document.getElementById('container-buttons');
 
 const inputTasks = document.createElement('input');
 inputTasks.id = 'texto-tarefa';
@@ -13,6 +14,11 @@ btnCreateTasks.id = 'criar-tarefa';
 btnCreateTasks.innerText = 'Adiconar';
 btnCreateTasks.className = 'item-container';
 containerTasks.appendChild(btnCreateTasks);
+
+const btnClearAll = document.createElement('button');
+btnClearAll.id = 'apaga-tudo';
+btnClearAll.innerText = 'Apagar Lista';
+containerButtons.appendChild(btnClearAll);
 
 const ordemList = document.createElement('ol');
 ordemList.id = 'lista-tarefas';
@@ -66,4 +72,11 @@ btnCreateTasks.addEventListener('click', () => {
   itemList.addEventListener('click', () => {
     selectioned(itemList);
   });
+});
+
+btnClearAll.addEventListener('click', () => {
+  const listOrden = document.querySelectorAll('.item-list');
+  for (let index = 0; index < listOrden.length; index += 1) {
+    listOrden[index].remove();
+  }
 });
