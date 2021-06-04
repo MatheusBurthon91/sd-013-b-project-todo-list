@@ -43,3 +43,13 @@ function riskChore(event) {
 
 // Adicionando evento para riscar
 selectList.addEventListener('dblclick', riskChore);
+
+// Função para apagar toda a lista
+function clearChoreList() {
+  const clearChores = document.getElementById('lista-tarefas');
+  clearChores.innerHTML = '';
+}
+
+// Adiciona o evento ao clicar no botão limpar lista
+const clickClearButton = document.getElementById('apaga-tudo');
+clickClearButton.addEventListener('click', clearChoreList);
