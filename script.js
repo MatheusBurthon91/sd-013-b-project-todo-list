@@ -77,7 +77,9 @@ function addEventClearSelect() {
   const elementSelect = document.querySelector('#remover-selecionado');
   elementSelect.addEventListener('click', () => {
     const element = document.querySelector('.selected');
-    element.remove();
+    if (element !== null) {
+      element.remove();
+    }
   });
 }
 const taskBtn = document.querySelector('#criar-tarefa');
@@ -91,11 +93,3 @@ window.onload = () => {
   addEventMoveUp();
   addEventMoveDown();
 };
-
-// corrigir erro 'uncaught:exception'
-// referencia https://stackoverflow.com/questions/53845493/cypress-uncaught-assertion-error-despite-cy-onuncaughtexception
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // returning false here prevents Cypress from
-  // failing the test
-  return false;
-});
