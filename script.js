@@ -48,9 +48,21 @@ const buttonClean = document.getElementById('apaga-tudo');
 
 function buttonToCleanAll() {
   buttonClean.addEventListener('click', function () {
-    //for (let index = 0; index < li.length; index += 1) {
-      ol.innerHTML = '';
-    //}
-  })
+    ol.innerHTML = '';
+  });
 }
 buttonToCleanAll();
+
+// Botão para remover tarefas finalizadas
+const buttonRemoveTasks = document.getElementById('remover-finalizados');
+
+function removeTasksFinished() {
+  buttonRemoveTasks.addEventListener('click', function () {
+    for (let index = li.length - 1; index >= 0; index -= 1) {
+      if (li[index].className.includes('completed')) {
+        li[index].remove('.completed');
+      }
+    }
+  });
+}
+removeTasksFinished();
