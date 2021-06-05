@@ -5,3 +5,29 @@
 .selectedItem {
   background-color: gray;
 }
+
+#criar-tarefa {
+  background-color: cadetblue;
+  margin-left: 10px;
+  width: 55px;
+  height: 20px;
+}
+
+#apaga-tudo {
+  background-color: red;
+  margin-top: 20px;
+  width: 78px;
+  height: 35px;
+}
+
+#remover-finalizados {
+  background-color: darkgoldenrod;
+  margin-top: 20px;
+  width: 78px;
+  height: 35px;
+}
+
+#buttons {
+  display: inline-block;
+  max-width: none;
+}

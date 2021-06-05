@@ -1,6 +1,8 @@
 const list = document.getElementById('lista-tarefas');
 const button = document.getElementById('criar-tarefa');
 const input = document.getElementById('texto-tarefa');
+const removeAll = document.getElementById('apaga-tudo');
+const removeRisk = document.getElementById('remover-finalizados');
 
 function createNew() {
   const listItem = document.createElement('li');
@@ -28,6 +30,20 @@ function completed(event) {
   }
 }
 
+function removeList() {
+  while (list.firstChild);
+  list.removeChild(list.firstChild);
+}
+
+function removeCompleted () {
+  const done = document.querySelectorAll('.completed')
+  for (let index = 0; index < done.length; index += 1) {
+    done[index].remove()
+  }
+}
+
+removeRisk.addEventListener('click', removeCompleted);
+removeAll.addEventListener('click', removeList);
 button.addEventListener('click', createNew);
 list.addEventListener('click', selecting);
 list.addEventListener('dblclick', completed);
