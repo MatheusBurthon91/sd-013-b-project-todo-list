@@ -34,7 +34,6 @@ buttonSelect.addEventListener('click', () => {
 });
 
 olId.addEventListener('click', (event) => {
-  // const listOfTasks = document.getElementsByTagName('li');
   const taskId = document.getElementsByClassName('taskSelected');
   if (taskId !== []) {
     for (let index = 0; index < taskId.length; index += 1) {
@@ -45,12 +44,14 @@ olId.addEventListener('click', (event) => {
 });
 
 olId.addEventListener('dblclick', (event) => {
-  const selectCompleted = event.target.classList.value;
-  if (selectCompleted === 'taskSelected') {
-    event.target.classList.add('completed');
-  } else {
-    event.target.classList.remove('completed');
-  }
+  // const selectCompleted = event.target.classList.value;
+  // if (selectCompleted === 'taskSelected') {
+  //   event.target.classList.add('completed');
+  // } else {
+  //   event.target.classList.remove('completed');
+  // }
+// refatorando
+  event.target.classList.toggle('completed');
 });
 
 const deleteButton = document.getElementsByTagName('button')[1];
@@ -73,3 +74,17 @@ throughDeleteButton.addEventListener('click', () => {
     completedClassSelect[index].remove();
   }
 });
+
+const saveLocalButton = document.getElementsByTagName('button')[3];
+saveLocalButton.setAttribute('id', 'salvar-tarefas');
+saveLocalButton.innerHTML = 'Save tasks';
+
+saveLocalButton.addEventListener('click', () => {
+  localStorage.setItem('tasks', olId.innerHTML);
+});
+
+const importList = localStorage.getItem('tasks');
+
+if (importList) {
+  olId.innerHTML = importList;
+}
