@@ -1,4 +1,4 @@
-
+// INCLUI UM ITEM NA LISTA
 let botaoCria = document.querySelector('#criar-tarefa');
 botaoCria.addEventListener('click', input);
 
@@ -16,18 +16,38 @@ function input (){
 }
 // -----------------------------------------------------------
 
+// 8 - SELECIONA UM ITEM DA LISTA / FUNDO CINZA
 lista.addEventListener('click', click);
 
 function click(event) {
 
-  const lastItem = document.querySelector('.cinza');
-
+  let selecItem = document.querySelector('.cinza');
+  
   if (event.target.classList.contains('pintar')) {
+    
+      event.target.classList.add('cinza');
 
-    event.target.classList.add('cinza');
-
-    if (lastItem) {
-    lastItem.classList.remove('cinza');
-    }
+      if (selecItem) {
+        selecItem.classList.remove('cinza');
+      }
   }
 }
+// ------------------------------------------------------------
+
+// 9 - DOUBLE CLICK RISCA O ITEM DA LISTA 
+
+lista.addEventListener('dblclick', risca);
+
+function risca(event) {
+
+  if (event.target.classList.contains('completed')) {
+    
+    event.target.classList.remove('completed');
+  }
+  else {
+    event.target.classList.add('completed');
+  }
+}
+// -------------------------------------------------------------
+
+
