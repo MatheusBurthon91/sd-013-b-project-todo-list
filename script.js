@@ -35,10 +35,10 @@ function removeList() {
   list.removeChild(list.firstChild);
 }
 
-function removeCompleted () {
-  const done = document.querySelectorAll('.completed')
+function removeCompleted() {
+  const done = document.querySelectorAll('.completed');
   for (let index = 0; index < done.length; index += 1) {
-    done[index].remove()
+    done[index].remove();
   }
 }
 
