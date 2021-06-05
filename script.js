@@ -31,8 +31,10 @@ function completed(event) {
 }
 
 function removeList() {
-  while (list.firstChild);
-  list.removeChild(list.firstChild);
+  const item = document.querySelectorAll('.item');
+  for (let index = 0; index < item.length; index += 1) {
+  item[index].remove();
+  }
 }
 
 function removeCompleted() {
