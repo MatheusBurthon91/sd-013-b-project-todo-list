@@ -15,6 +15,7 @@ document.body.appendChild(inputSection);
 const input = document.createElement('input');
 input.setAttribute('type', 'text');
 input.setAttribute('value', '');
+input.style.marginLeft = '30px';
 inputSection.appendChild(input);
 input.id = 'texto-tarefa';
 const todoListDiv = document.createElement('div');
@@ -27,8 +28,20 @@ document.body.appendChild(divButtons);
 const listAddButton = document.createElement('button');
 listAddButton.id = 'criar-tarefa';
 listAddButton.innerText = 'Adicionar tarefa';
+listAddButton.style.marginLeft = '30px';
+const listDeleteAllButton = document.createElement('button');
+listDeleteAllButton.id = 'apaga-tudo';
+listDeleteAllButton.innerText = 'Apagar TODAS as tarefas';
+listDeleteAllButton.style.marginLeft = '30px';
+const listDeleteSelectedButton = document.createElement('button');
+listDeleteSelectedButton.id = 'remover-finalizados';
+listDeleteSelectedButton.innerText = 'Apagar as tarefas selecionadas';
+listDeleteSelectedButton.style.marginLeft = '30px';
 divButtons.appendChild(listAddButton);
+divButtons.appendChild(listDeleteAllButton);
+divButtons.appendChild(listDeleteSelectedButton);
 function clickListCheck(event) {
+  // cumprido com auxílio do estudante Lucas Caribé, gente fina, contratem ele também.
   const clickedItem = event.target;
   const selectedItem = document.querySelector('.selected');
   // se não houver item selecionado, adicionar classe selected ao item clicado
@@ -49,7 +62,7 @@ function doubleClickedItem(event) {
 function addItem() {
   const orderList = document.querySelector('#lista-tarefas');
   const taskButton = document.querySelector('#criar-tarefa');
-  // desafio cumprido com auxílio de estudos do w3Scholl, 
+  // desafio cumprido com auxílio de estudos do w3Scholl,
   // uso de input e valores;
   taskButton.addEventListener('click', (event) => {
     const inputId = document.getElementById('texto-tarefa').value;
@@ -63,3 +76,15 @@ function addItem() {
   });
 }
 addItem();
+
+function removeItems(event) {
+  const clearAllButton = document.querySelector('#apaga-tudo');
+  clearAllButton.addEventListener('click', (event) => {
+    document.getElementById('lista-tarefas').innerHTML = '';
+  });
+}
+removeItems();
+
+function removeSelectedItems(event) {
+  
+}
