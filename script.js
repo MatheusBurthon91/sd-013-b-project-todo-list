@@ -69,7 +69,6 @@ removeAllCompletedButton.addEventListener('click', () => {
   for (let index = 0; index < objectToRemove.length; index += 1) {
     objectToRemove[index].remove();
   }
-
 });
 
 function createButtonSaveTask() {
@@ -84,7 +83,7 @@ createButtonSaveTask();
 const saveButton = document.querySelector('#salvar-tarefas');
 
 saveButton.addEventListener('click', () => {
-  if (typeof(Storage) !== "undefined") {
+  if (typeof (Storage) !== 'undefined') {
     localStorage.setItem('taskListItem', taskList.innerHTML);
   } else {
     alert('Sorry! No Web Storage support.');
@@ -92,8 +91,51 @@ saveButton.addEventListener('click', () => {
 });
 
 const saved = localStorage.getItem('taskListItem');
-console.log(saved);
 
 if (saved) {
   taskList.innerHTML = saved;
 }
+
+function createMoveUpButton() {
+  const moveUpButton = document.createElement('button');
+  moveUpButton.id = 'mover-cima';
+  moveUpButton.innerHTML = '↑ - Mover para cima';
+  section.appendChild(moveUpButton);
+}
+
+createMoveUpButton();
+
+function createMoveDownButton() {
+  const moveDownButton = document.createElement('button');
+  moveDownButton.id = 'mover-baixo';
+  moveDownButton.innerHTML = '↓ - Mover para baixo';
+  section.appendChild(moveDownButton);
+}
+
+createMoveDownButton();
+
+const upperButton = document.getElementById('mover-cima');
+
+upperButton.addEventListener('click', () => {
+  const itemSelected = document.querySelector('.selected');
+  if (itemSelected === taskList.firstChild) {
+    alert('Não é possível mover o item');
+  } else if (itemSelected === null) {
+    alert('Selecione um item primeiro');
+  } else {
+    itemSelected.parentNode.insertBefore(itemSelected, itemSelected.previousSibling);
+  }
+});
+
+const downButton = document.getElementById('mover-baixo');
+
+downButton.addEventListener('click', () => {
+  const itemSelected = document.querySelector('.selected');
+  if (itemSelected === taskList.lastChild) {
+    alert('Não é possível mover o item');
+  } else if (itemSelected === null) {
+    alert('Selecione um item primeiro');
+  } else {
+    itemSelected.parentNode.insertBefore(itemSelected, itemSelected.nextSibling.nextSibling);
+  }
+});

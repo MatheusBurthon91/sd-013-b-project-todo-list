@@ -5,3 +5,11 @@
 #remover-finalizados {
   display: block;
 }
+
+#mover-cima {
+  display: block;
+}
+
+#mover-baixo {
+  display: block;
+}
