@@ -25,3 +25,11 @@ function changeItemColor(eventoColor) {
 }
 
 ol.addEventListener('click', changeItemColor);
+
+function riskItem(eventoCompleted) {
+  if (eventoCompleted.target.tagName === 'LI') {
+    eventoCompleted.target.classList.toggle('completed');
+  }
+}
+
+ol.addEventListener('dblclick', riskItem);
