@@ -5,12 +5,12 @@ font-family: 'Noto Sans JP', sans-serif;
 */
 
 html {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: Noto Sans JP, sans-serif;
   color: white;
 }
 
 body {
-  background: linear-gradient(to right , #4369a5 , #491d74);
+  background: linear-gradient(to right , rgb(67 , 104 , 163) , rgb(73 , 29 , 116));
   background-repeat: none;
   background-size: cover;
 }
@@ -19,7 +19,7 @@ h1 {
   font-weight: 500;
   text-align: center;
   margin: auto;
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  text-shadow: 2px 2px 5px rgba(255 , 255 , 255 , 0.8);
 }
 
 #funcionamento {
@@ -43,7 +43,7 @@ h1 {
 }
 
 button {
-  background-color: #4571ac;
+  background-color: rgb(69 , 113 , 172);
   border: none;
   height: 25px;
   font-weight: 600;
