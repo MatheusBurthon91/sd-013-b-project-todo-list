@@ -68,4 +68,22 @@ removeAllCompletedButton.addEventListener('click', () => {
   for (let index = 0; index < objectToRemove.length; index += 1) {
     objectToRemove[index].remove();
   }
+
 });
+
+function createButtonSaveTask() {
+  const saveTasksButtons = document.createElement('button');
+  saveTasksButtons.id = 'salvar-tarefas';
+  saveTasksButtons.innerHTML = '✓ - Salvar tarefas';
+  section.appendChild(saveTasksButtons);
+}
+
+createButtonSaveTask();
+
+function saveTasks() {
+  if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+  } else {
+    alert('Sorry! No Web Storage support.');
+  }
+}
