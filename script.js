@@ -33,7 +33,7 @@ function completed(event) {
 function removeList() {
   const item = document.querySelectorAll('.item');
   for (let index = 0; index < item.length; index += 1) {
-  item[index].remove();
+    item[index].remove();
   }
 }
 
