@@ -67,6 +67,33 @@ function completed(item) {
   }
 }
 
+function createItemRestored(item, className, title, color) {
+  const itemList = document.createElement('li');
+  itemList.innerText = item;
+  itemList.className = className;
+  itemList.title = title;
+  itemList.style.backgroundColor = color;
+  ordemList.appendChild(itemList);
+  itemList.addEventListener('dblclick', () => {
+    completed(itemList);
+  });
+  itemList.addEventListener('click', () => {
+    selectioned(itemList);
+  });
+}
+
+function restoreList() {
+  for (let index = 0; index < localStorage.length; index += 4) {
+    if (localStorage[index] !== null) {
+      createItemRestored(localStorage[index],
+        localStorage[index + 1],
+        localStorage[index + 2],
+        localStorage[index + 3]);
+    }
+  }
+}
+restoreList();
+
 btnCreateTasks.addEventListener('click', () => {
   const itemList = document.createElement('li');
   itemList.innerText = inputTasks.value;
@@ -80,33 +107,6 @@ btnCreateTasks.addEventListener('click', () => {
     selectioned(itemList);
   });
 });
-
-function createItemRestored(item, className, title, color) {
-  const itemList = document.createElement('li');
-  itemList.innerText = item;
-  itemList.className = className;
-  itemList.title = title;
-  itemList.backgroundColor = color;
-  ordemList.appendChild(itemList);
-  // itemList.addEventListener('dblclick', () => {
-  //   completed();
-  // });
-  // itemList.addEventListener('click', () => {
-  //   selectioned();
-  // });
-}
-
-function restoreList() {
-  for (let key = 0; key < ordemList.children.length * 4; key += 4) {
-    // if (localStorage.getItem(key) !== null) {
-    createItemRestored(localStorage.getItem[key],
-      localStorage.getItem[key + 1],
-      localStorage.getItem[key + 2],
-      localStorage.getItem[key + 3]);
-    // };
-  }
-}
-restoreList();
 
 btnClearAll.addEventListener('click', () => {
   const listOrden = document.querySelectorAll('.item-list');
@@ -128,15 +128,14 @@ btnClearSelectioned.addEventListener('click', () => {
 });
 
 btnSaveTasks.addEventListener('click', () => {
-  let keyItem = 0;
+  localStorage.clear();
+  let indexItem = 0;
   for (let index = 0; index < ordemList.children.length * 4; index += 4) {
-    localStorage.setItem([index], ordemList.children[keyItem].innerText);
-    localStorage.setItem([index + 1], ordemList.children[keyItem].className);
-    localStorage.setItem([index + 2], ordemList.children[keyItem].title);
-    localStorage.setItem([index + 3], ordemList.children[keyItem].style.backgroundColor);
+    localStorage.setItem([index], ordemList.children[indexItem].innerText);
+    localStorage.setItem([index + 1], ordemList.children[indexItem].className);
+    localStorage.setItem([index + 2], ordemList.children[indexItem].title);
+    localStorage.setItem([index + 3], ordemList.children[indexItem].style.backgroundColor);
     console.log(index);
-    keyItem += 1;
+    indexItem += 1;
   }
 });
-
-console.log(localStorage[5]);
