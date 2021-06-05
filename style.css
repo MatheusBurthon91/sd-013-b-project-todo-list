@@ -1,12 +1,12 @@
 .completed {
   text-decoration: line-through;
-} 
+}
 
 .selected {
   background-color: gray;
   width: 80px;
 }
 
-.buttons{
+.buttons {
   border-radius: 105px;
 }
