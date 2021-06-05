@@ -119,7 +119,7 @@ moveTaskDownButton.innerHTML = 'move-down';
 
 //  function to move selected li up
 function moveUp(selectedClass) {
-  const nextElement = document.querySelector('.taskSelected').previousElementSibling;
+  const nextElement = selectedClass.previousElementSibling;
   if (nextElement !== null) {
     selectedClass.insertAdjacentElement('afterend', nextElement);
   }
@@ -134,15 +134,28 @@ moveTaskUPButton.addEventListener('click', () => {
 });
 
 function moveDown(selectedClass) {
-  const nextElement = document.querySelector('.taskSelected').nextElementSibling;
+  const nextElement = selectedClass.nextElementSibling;
   if (nextElement !== null) {
     selectedClass.insertAdjacentElement('beforebegin', nextElement);
   }
 }
 
-moveTaskDownButton.addEventListener('click', (event) => {
+moveTaskDownButton.addEventListener('click', () => {
   const selectedClass = document.querySelector('.taskSelected');
   if (selectedClass !== null) {
     moveDown(selectedClass);
+  }
+});
+
+//  add a dynamic button;
+const removeSelectedButton = document.getElementsByTagName('button')[6];
+removeSelectedButton.setAttribute('id', 'remover-selecionado');
+removeSelectedButton.innerHTML = 'remove selected';
+
+//  remove selected task
+removeSelectedButton.addEventListener('click', () => {
+  const selectedClass = document.querySelector('.taskSelected');
+  if (selectedClass !== null) {
+    selectedClass.remove();
   }
 });
