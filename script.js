@@ -58,12 +58,12 @@ document.getElementById('remover-finalizados').addEventListener('click', removeF
 function getProprieties(item) {
   const text = item.innerText;
   const itemClass = item.className;
-  return {texto: text, class: itemClass};
+  return { texto: text, class: itemClass };
 }
 
-function saveTaskList () {
+function saveTaskList() {
   localStorage.clear();
-  let tasks = [];
+  const tasks = [];
   const listItems = document.getElementsByTagName('li');
   for (let index = 0; index < listItems.length; index += 1) {
     const proprieties = getProprieties(listItems[index]);
@@ -76,18 +76,59 @@ document.getElementById('salvar-tarefas').addEventListener('click', saveTaskList
 
 function savedTask(object) {
   const classe = object.class;
-  const texto = object.texto;
+  const { texto } = object;
   const listItem = document.createElement('li');
   listItem.innerText = texto;
   if (classe === 'completed' || classe === 'selected completed') {
     listItem.className = 'completed';
-}
+  }
   orderedList.appendChild(listItem);
 }
 
-window.onload = function () {
-  const taskList = JSON.parse(localStorage.taskList);
-  for (let index = 0; index < taskList.length; index += 1) {
-    savedTask(taskList[index]);
+function captureTasks () {
+  if (localStorage.taskList) {
+    const taskList = JSON.parse(localStorage.taskList);
+    for (let index = 0; index < taskList.length; index += 1) {
+      savedTask(taskList[index]);
+    }
   }
-};
+}
+
+window.onload = captureTasks();
+
+// Botões mover para cima e para baixo
+
+function upPosition() {
+  const listItems = document.getElementsByTagName('li');
+  for (let index = 1; index < listItems.length; index += 1) {
+    const actualItem = listItems[index];
+    const itemBefore = listItems[index - 1];
+    if (actualItem.classList.contains('selected')) {
+      itemBefore.insertAdjacentElement('beforebegin', actualItem);
+    }
+  }
+}
+
+function downPosition () {
+  const listItems = document.getElementsByTagName('li');
+  for (let index = 0; index < listItems.length - 1; index += 1) {
+    const actualItem = listItems[index];
+    const itemAfter = listItems[index + 1];
+    if (actualItem.classList.contains('selected')) {
+      actualItem.insertAdjacentElement('beforebegin', itemAfter);
+      return;
+    }
+  }
+}
+
+document.getElementById('mover-cima').addEventListener('click', upPosition);
+
+document.getElementById('mover-baixo').addEventListener('click', downPosition);
+
+// Botão Remover Selecioando
+function removeSelected () {
+  const selected = document.querySelector('.selected');
+  orderedList.removeChild(selected);
+}
+
+document.getElementById('remover-selecionado').addEventListener('click' ,removeSelected);
