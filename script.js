@@ -55,6 +55,7 @@ function pegaTexto()  {
 
 
 //entender isso melhor na monitoria ;)
+//funcao q acaba tudo
 function rmIt(){
   let ol = document.getElementById('lista-tarefas')
   while(ol.hasChildNodes()){
@@ -76,7 +77,8 @@ function rmAll()  {
 
 
 
-
+//pergunta, existe um removeChild usando o proprio elemento html?
+//essa funcao remove os itens concluidos(risacados) da lista
 function rmCom()  {
   let ol = document.getElementById('lista-tarefas')
   let lis = document.querySelectorAll('.completed')
@@ -101,6 +103,70 @@ function rmvSel() {
 
 
 
+//funcao para salvar os dados e reabrir ao abrir a pagina
+//duvida, e possivel salvar o elemento html para depois appendar??
+function sav() {
+  let lis = document.getElementsByTagName('li')
+  let arrayText = [];
+  let arrayClass = [];
+  for (let index = 0; index < lis.length; index += 1){
+    arrayText.push(lis[index].innerHTML) 
+    arrayClass.push(lis[index].className)
+  } 
+  localStorage.setItem('texto', JSON.stringify(arrayText))
+  localStorage.setItem('classes', JSON.stringify(arrayClass))
+  console.log(arrayClass)
+}
+
+
+
+
+function save() {
+  const saveButt = document.getElementById('salvar-tarefas')
+  saveButt.addEventListener('click', sav)
+}
+
+
+
+
+
+
+//funcao para restaurar
+
+function restore()  {
+    const ol = document.getElementById('lista-tarefas')
+    let textos = (JSON.parse(localStorage.texto))
+    let classes = (JSON.parse(localStorage.classes))
+    for (let index = 0; index < textos.length; index += 1){
+      let li = document.createElement('li')
+      li.addEventListener('dblclick', markComplete)
+      li.addEventListener('click', mudaClasse)
+      li.innerHTML = textos[index]
+      li.className = classes[index]
+      li.classList.add('item')
+      ol.appendChild(li)
+    }
+}
+
+
+// let li = document.createElement('li')
+// li.addEventListener('click', mudaClasse)
+// li.addEventListener('dblclick', markComplete)
+// li.className = ('item')
+// li.innerHTML = localStorage[index]
+// ol.appendChild(li)
+
+
+
+
 pegaTexto()
 rmAll()
 rmvSel()
+save()
+if (localStorage.texto !== undefined){
+  restore()
+  pegaTexto()
+  rmAll()
+  rmvSel()
+  save()
+}
