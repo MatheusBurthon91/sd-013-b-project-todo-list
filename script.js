@@ -31,16 +31,19 @@ divButtons.appendChild(listAddButton);
 function clickListCheck(event) {
   const clickedItem = event.target;
   const selectedItem = document.querySelector('.selected');
-  
   // se não houver item selecionado, adicionar classe selected ao item clicado
-  if (selectedItem === null){
+  if (selectedItem === null) {
     clickedItem.classList.add('selected');
+    // e se ele não é nulo? tirar de onde está e passar pro próximo clicado.
   } else {
     selectedItem.classList.remove('selected');
     clickedItem.classList.add('selected');
   }
-  // e se ele não é nulo? tirar de onde estar e passar pro próximo clicado.
+}
 
+function doubleClickedItem(event) {
+  const doubleClickedItemList = event.target;
+  doubleClickedItemList.classList.toggle('completed');
 }
 
 function addItem() {
@@ -54,6 +57,7 @@ function addItem() {
     listItem.innerText = inputId;
     listItem.classList = 'list-itens';
     listItem.addEventListener('click', clickListCheck);
+    listItem.addEventListener('dblclick', doubleClickedItem);
     orderList.appendChild(listItem);
     document.getElementById('texto-tarefa').value = '';
   });
