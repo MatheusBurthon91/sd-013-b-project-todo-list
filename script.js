@@ -1,3 +1,4 @@
+//  dynamic page creation;
 const h1 = document.createElement('h1');
 
 document.querySelector('header').appendChild(h1);
@@ -24,16 +25,18 @@ olSelect.setAttribute('id', 'lista-tarefas');
 
 buttonSelect.setAttribute('id', 'criar-tarefa');
 
-const olId = document.querySelector('#lista-tarefas');
+const classListaTarefas = document.querySelector('#lista-tarefas');
 
+//  Create a new li whit value of the text box;
 buttonSelect.addEventListener('click', () => {
   const liCreat = document.createElement('li');
   const input = document.querySelector('input').value;
-  olId.appendChild(liCreat).innerText = input;
+  classListaTarefas.appendChild(liCreat).innerText = input;
   document.querySelector('input').value = '';
 });
 
-olId.addEventListener('click', (event) => {
+//  function, to add or remove class .taskSelected;
+function unselectClass(event) {
   const taskId = document.getElementsByClassName('taskSelected');
   if (taskId !== []) {
     for (let index = 0; index < taskId.length; index += 1) {
@@ -41,32 +44,45 @@ olId.addEventListener('click', (event) => {
     }
   }
   event.target.classList.add('taskSelected');
+}
+
+//  event, comparing if the click will only work at li`s;
+classListaTarefas.addEventListener('click', (event) => {
+  if (event.target.tagName === 'LI') {
+    unselectClass(event);
+  }
 });
 
-olId.addEventListener('dblclick', (event) => {
+classListaTarefas.addEventListener('dblclick', (event) => {
+  if (event.target.tagName === 'LI') {
+    event.target.classList.toggle('completed');
+  }
+  // refactoring code;
   // const selectCompleted = event.target.classList.value;
   // if (selectCompleted === 'taskSelected') {
   //   event.target.classList.add('completed');
   // } else {
   //   event.target.classList.remove('completed');
   // }
-// refatorando
-  event.target.classList.toggle('completed');
 });
 
+//  add a dYnamic button;
 const deleteButton = document.getElementsByTagName('button')[1];
 deleteButton.setAttribute('id', 'apaga-tudo');
 deleteButton.innerHTML = 'Apagar';
 
+//  event to delete all ol content;
 deleteButton.addEventListener('click', () => {
   const liCount = document.querySelector('ol');
   liCount.innerHTML = '';
 });
 
+//  add a dynamic button;
 const throughDeleteButton = document.getElementsByTagName('button')[2];
 throughDeleteButton.setAttribute('id', 'remover-finalizados');
 throughDeleteButton.innerHTML = 'Apagar Tarefas Finalizadas';
 
+//  event to remove line-through tasks;
 throughDeleteButton.addEventListener('click', () => {
   const completedClassSelect = document.querySelectorAll('.completed');
   console.log(completedClassSelect);
@@ -75,16 +91,58 @@ throughDeleteButton.addEventListener('click', () => {
   }
 });
 
+//  add a dynamic button;
 const saveLocalButton = document.getElementsByTagName('button')[3];
 saveLocalButton.setAttribute('id', 'salvar-tarefas');
 saveLocalButton.innerHTML = 'Save tasks';
 
+//  save in local storage;
 saveLocalButton.addEventListener('click', () => {
-  localStorage.setItem('tasks', olId.innerHTML);
+  localStorage.setItem('tasks', classListaTarefas.innerHTML);
 });
 
 const importList = localStorage.getItem('tasks');
 
 if (importList) {
-  olId.innerHTML = importList;
+  classListaTarefas.innerHTML = importList;
 }
+
+//  add a dynamic button;
+const moveTaskUPButton = document.getElementsByTagName('button')[4];
+moveTaskUPButton.setAttribute('id', 'mover-cima');
+moveTaskUPButton.innerHTML = 'move-up';
+
+//  add a dynamic button;
+const moveTaskDownButton = document.getElementsByTagName('button')[5];
+moveTaskDownButton.setAttribute('id', 'mover-baixo');
+moveTaskDownButton.innerHTML = 'move-down';
+
+//  function to move selected li up
+function moveUp(selectedClass) {
+  const nextElement = document.querySelector('.taskSelected').previousElementSibling;
+  if (nextElement !== null) {
+    selectedClass.insertAdjacentElement('afterend', nextElement);
+  }
+}
+
+//  checking if there is a li selected
+moveTaskUPButton.addEventListener('click', () => {
+  const selectedClass = document.querySelector('.taskSelected');
+  if (selectedClass !== null) {
+    moveUp(selectedClass);
+  }
+});
+
+function moveDown(selectedClass) {
+  const nextElement = document.querySelector('.taskSelected').nextElementSibling;
+  if (nextElement !== null) {
+    selectedClass.insertAdjacentElement('beforebegin', nextElement);
+  }
+}
+
+moveTaskDownButton.addEventListener('click', (event) => {
+  const selectedClass = document.querySelector('.taskSelected');
+  if (selectedClass !== null) {
+    moveDown(selectedClass);
+  }
+});
