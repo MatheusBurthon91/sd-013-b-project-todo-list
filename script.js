@@ -1,6 +1,7 @@
 const ol = document.getElementById('lista-tarefas');
 const button = document.getElementById('criar-tarefa');
 let li = document.createElement('li');
+const buttonClear = document.getElementById('apaga-tudo');
 
 function createItem() {
   const input = document.getElementById('texto-tarefa').value;
@@ -33,3 +34,10 @@ function riskItem(eventoCompleted) {
 }
 
 ol.addEventListener('dblclick', riskItem);
+
+function clearList() {
+  ol.innerHTML = '';
+  // ol.removeChild(ol.childNodes[0]);
+}
+
+buttonClear.addEventListener('click', clearList);
