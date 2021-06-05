@@ -5,6 +5,7 @@ const section = document.querySelector('section');
 buttonCreateTask.addEventListener('click', () => {
   const inputTextValue = document.querySelector('#texto-tarefa');
   const taskListItem = document.createElement('li');
+  taskListItem.classList.add('list');
   taskListItem.innerHTML = inputTextValue.value;
   taskList.appendChild(taskListItem);
   inputTextValue.value = '';
@@ -80,10 +81,19 @@ function createButtonSaveTask() {
 
 createButtonSaveTask();
 
-function saveTasks() {
+const saveButton = document.querySelector('#salvar-tarefas');
+
+saveButton.addEventListener('click', () => {
   if (typeof(Storage) !== "undefined") {
-    // Code for localStorage/sessionStorage.
+    localStorage.setItem('taskListItem', taskList.innerHTML);
   } else {
     alert('Sorry! No Web Storage support.');
   }
+});
+
+const saved = localStorage.getItem('taskListItem');
+console.log(saved);
+
+if (saved) {
+  taskList.innerHTML = saved;
 }
