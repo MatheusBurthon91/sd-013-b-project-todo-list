@@ -36,8 +36,9 @@ function riskItem(eventoCompleted) {
 ol.addEventListener('dblclick', riskItem);
 
 function clearList() {
-  ol.innerHTML = '';
-  // ol.removeChild(ol.childNodes[0]);
+  ol.textContent = ''; // Works, and it is the faster option.
+  // ol.innerHTML = ''; Works, but is slower
+  // ol.removeChild(ol.childNodes[0]); Works, but remove one by one.
 }
 
 buttonClear.addEventListener('click', clearList);
