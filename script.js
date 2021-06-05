@@ -139,3 +139,23 @@ downButton.addEventListener('click', () => {
     itemSelected.parentNode.insertBefore(itemSelected, itemSelected.nextSibling.nextSibling);
   }
 });
+
+function createRemoveSelectedButton() {
+  const removeSelected = document.createElement('button');
+  removeSelected.id = 'remover-selecionado';
+  removeSelected.innerHTML = 'Remover selecionado'
+  section.appendChild(removeSelected);
+}
+
+createRemoveSelectedButton();
+
+const removeSelectedButton = document.getElementById('remover-selecionado');
+
+removeSelectedButton.addEventListener('click', () => {
+  const itemSelected = document.querySelector('.selected');
+  if (itemSelected === null) {
+    alert('Selecione um item primeiro');
+  } else {
+    itemSelected.remove();
+  }
+});
