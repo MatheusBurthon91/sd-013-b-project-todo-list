@@ -85,16 +85,14 @@ function savedTask(object) {
   orderedList.appendChild(listItem);
 }
 
-function captureTasks () {
+window.onload = function captureTasks() {
   if (localStorage.taskList) {
     const taskList = JSON.parse(localStorage.taskList);
     for (let index = 0; index < taskList.length; index += 1) {
       savedTask(taskList[index]);
     }
   }
-}
-
-window.onload = captureTasks();
+};
 
 // Botões mover para cima e para baixo
 
@@ -109,7 +107,7 @@ function upPosition() {
   }
 }
 
-function downPosition () {
+function downPosition() {
   const listItems = document.getElementsByTagName('li');
   for (let index = 0; index < listItems.length - 1; index += 1) {
     const actualItem = listItems[index];
@@ -126,9 +124,9 @@ document.getElementById('mover-cima').addEventListener('click', upPosition);
 document.getElementById('mover-baixo').addEventListener('click', downPosition);
 
 // Botão Remover Selecioando
-function removeSelected () {
+function removeSelected() {
   const selected = document.querySelector('.selected');
   orderedList.removeChild(selected);
 }
 
-document.getElementById('remover-selecionado').addEventListener('click' ,removeSelected);
+document.getElementById('remover-selecionado').addEventListener('click', removeSelected);
