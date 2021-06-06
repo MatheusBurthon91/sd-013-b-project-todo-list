@@ -33,13 +33,53 @@ const listDeleteAllButton = document.createElement('button');
 listDeleteAllButton.id = 'apaga-tudo';
 listDeleteAllButton.innerText = 'Apagar TODAS as tarefas';
 listDeleteAllButton.style.marginLeft = '30px';
+const listDeleteCompletedButton = document.createElement('button');
+listDeleteCompletedButton.id = 'remover-finalizados';
+listDeleteCompletedButton.innerText = 'Apagar as tarefas concluídas';
+listDeleteCompletedButton.style.marginLeft = '30px';
+const saveTasksButton = document.createElement('button');
+saveTasksButton.id = 'salvar-tarefas';
+saveTasksButton.innerText = 'Salve sua lista de tarefas ^^';
+saveTasksButton.style.marginLeft = '30px';
 const listDeleteSelectedButton = document.createElement('button');
-listDeleteSelectedButton.id = 'remover-finalizados';
 listDeleteSelectedButton.innerText = 'Apagar as tarefas selecionadas';
+listDeleteSelectedButton.id = 'remover-selecionado';
 listDeleteSelectedButton.style.marginLeft = '30px';
+listDeleteSelectedButton.style.marginTop = '15px';
+const listItemUpButton = document.createElement('button');
+listItemUpButton.id = 'mover-cima';
+listItemUpButton.innerText = 'Mover item para cima';
+listItemUpButton.style.marginLeft = '30px';
+listItemUpButton.style.marginTop = '15px';
+const listItemDownButton = document.createElement('button');
+listItemDownButton.id = 'mover-baixo';
+listItemDownButton.innerText = 'Mover item para baixo';
+listItemDownButton.style.marginLeft = '30px';
+listItemDownButton.style.marginTop = '15px';
 divButtons.appendChild(listAddButton);
 divButtons.appendChild(listDeleteAllButton);
+divButtons.appendChild(listDeleteCompletedButton);
+divButtons.appendChild(saveTasksButton);
 divButtons.appendChild(listDeleteSelectedButton);
+divButtons.appendChild(listItemUpButton);
+divButtons.appendChild(listItemDownButton);
+
+function getSaveListItems() {
+  // cumprido com auxílio do estudante Lucas Caribé, gente fina, contratem ele também.
+  const savedItems = JSON.parse(localStorage.getItem('My-todo-list'));
+  if (savedItems === null) {
+    return;
+  }
+  // colocar na li o que está salvo no meu localStorage;
+  for (let index = 0; index < savedItems.length; index += 1) {
+    const savedItemsIntoList = document.createElement('li');
+    savedItemsIntoList.classList = savedItems[index].class;
+    savedItemsIntoList.innerText = savedItems[index].textContent;
+    todoList.appendChild(savedItemsIntoList);
+  }
+}
+getSaveListItems();
+
 function clickListCheck(event) {
   // cumprido com auxílio do estudante Lucas Caribé, gente fina, contratem ele também.
   const clickedItem = event.target;
@@ -85,7 +125,7 @@ function removeItems(event) {
 }
 removeItems();
 
-function removeSelectedItems(event) {
+function removeCompletedItems(event) {
   const clearDoneButton = document.querySelector('#remover-finalizados');
   clearDoneButton.addEventListener('click', (event) => {
     const listMarkedItems = document.querySelectorAll('.completed');
@@ -96,5 +136,42 @@ function removeSelectedItems(event) {
     }
   });
 }
-removeSelectedItems();
+removeCompletedItems();
 
+function saveListToObject() {
+  const listItems = document.getElementsByTagName('li');
+  const todoListSaveTasks = [];
+  for (let index = 0; index < listItems.length; index += 1) {
+    const infoListObject = {
+      class: listItems[index].className,
+      textContent: listItems[index].innerText,
+    };
+    todoListSaveTasks.push(infoListObject);
+  }
+  return todoListSaveTasks;
+}
+
+function saveTaskEventListener(event) {
+  // cumprido com auxílio do estudante Lucas Caribé e Lucas T França,.
+  // gente fina, contratem ele também.  
+  saveTasksButton.addEventListener('click', () => {
+    const listToObject = saveListToObject();
+    // pego o valor que eu quero e salvo no local storage, transformo em string
+    // salvei um trecho, que é o "texto - innerHTML".
+    localStorage.setItem('My-todo-list', JSON.stringify(listToObject));
+  });
+}
+saveTaskEventListener();
+
+function removeSelectedItems(event) {
+  const clearDoneButton = document.querySelector('#remover-selecionado');
+  clearDoneButton.addEventListener('click', (event) => {
+    const listSelectedItems = document.querySelectorAll('.selected');
+    if (listSelectedItems !== null) {
+      for (let index = 0; index < listSelectedItems.length; index += 1) {
+        listSelectedItems[index].remove();
+      }
+    }
+  });
+}
+removeSelectedItems();
