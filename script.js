@@ -38,3 +38,12 @@ function completarTarefa(event) {
   itemClicado.classList.toggle('completed');
 }
 olTarefas.addEventListener('dblclick', completarTarefa);
+
+let btnApagarTudo = document.querySelector('#apaga-tudo');
+function apagarTudo() {
+  let filhos = document.querySelectorAll('#lista-tarefas li');
+  for (let i = 0; i < filhos.length; i += 1) {
+    filhos[i].remove();
+  }
+}
+btnApagarTudo.addEventListener('click', apagarTudo);
