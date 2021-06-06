@@ -72,3 +72,29 @@ function removerSelecionada() {
   }
 }
 btnRemoverSelecionada.addEventListener('click', removerSelecionada);
+
+/* OK está salvando no localstorage */
+let btnSalvar = document.querySelector('#salvar-tarefas');
+function salvarTarefas() {
+  let itemLista = document.querySelectorAll('li');
+
+  if (localStorage.length !== 0) {
+    localStorage.clear();
+  }
+
+  for (let i = 0; i < itemLista.length; i += 1) {
+    localStorage.setItem('item'+[i],itemLista[i].innerText);
+  }
+}
+btnSalvar.addEventListener('click', salvarTarefas);
+
+/** recuperar do local */
+window.onload = function() {
+  for (let i = 0; i < localStorage.length; i += 1) {    
+    let liItem = document.createElement('li');
+    // esse 'i' concatenado com 'item' é para gerar chaves diferentes, item0, item1 ... item[i]
+    liItem.innerText = localStorage.getItem('item'+[i]);
+    // olTarefas é o PAI dos li  
+    olTarefas.appendChild(liItem);
+  }
+}
