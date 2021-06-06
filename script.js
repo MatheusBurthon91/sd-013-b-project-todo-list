@@ -62,9 +62,23 @@ function removeCompleted() {
     if (listItems[index].classList.contains('completed')){
       list.removeChild(listItems[index]);
     }
-    console.log(listItems[index])
   }
 }
 
+// Evendo para clicar no botão de remover tarefas completas
 const clickDoneItems = document.getElementById('remover-finalizados');
 clickDoneItems.addEventListener('click', removeCompleted);
+
+// Função para remover o item selecionado
+function removeSelected() {
+  let listItems = document.querySelectorAll('#lista-tarefas li');
+  let list = document.getElementById('lista-tarefas');
+  for (let index = 0; index < listItems.length; index += 1){
+    if(listItems[index].classList.contains('choreClass')){
+      list.removeChild(listItems[index]);
+    }
+  }
+}
+
+const clickSelectedItems = document.getElementById('remover-selecionado');
+clickSelectedItems.addEventListener('click', removeSelected);
