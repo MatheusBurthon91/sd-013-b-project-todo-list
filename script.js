@@ -1,3 +1,5 @@
+const toDoList = document.querySelector('#lista-tarefas');
+
 function resetColor() {
   const liColor = document.querySelectorAll('li');
   for (let index = 0; index < liColor.length; index += 1) {
@@ -37,7 +39,7 @@ function newList() {
     const listli = document.createElement('li');
     listli.className = 'list';
     listli.innerHTML = text.value;
-    document.querySelector('#lista-tarefas').appendChild(listli);
+    toDoList.appendChild(listli);
     text.value = '';
     changeColor();
   });
@@ -47,7 +49,7 @@ newList();
 function deleteList() {
   const button = document.querySelector('#apaga-tudo');
   button.addEventListener('click', () => {
-    document.querySelector('#lista-tarefas').replaceChildren();
+    toDoList.replaceChildren();
   });
 }
 deleteList();
@@ -57,10 +59,35 @@ function removeFinished() {
   button.addEventListener('click', () => {
     const list = document.querySelectorAll('.list');
     for (let index = 0; index < list.length; index += 1) {
-      if (list[index].className === 'list completed') {
+      if (list[index].className.includes('completed')) {
         list[index].remove();
       }
     }
   });
 }
 removeFinished();
+
+function saveTheList() {
+  const button = document.querySelector('#salvar-tarefas');
+  button.addEventListener('click', () => {
+    const list = document.querySelectorAll('.list');
+    localStorage.clear();
+    for (let index = 0; index < list.length; index += 1) {
+      localStorage.setItem(`list ${[index]}`, `${list[index].innerHTML}`);
+      localStorage.setItem(`class ${[index]}`, `${list[index].className}`);
+    }
+  });
+}
+saveTheList();
+
+function returnList() {
+  const storage = localStorage.length / 2;
+  for (let index = 0; index < storage; index += 1) {
+    const list = document.createElement('li');
+    list.innerHTML = localStorage.getItem(`list ${[index]}`);
+    list.className = localStorage.getItem(`class ${[index]}`);
+    toDoList.appendChild(list);
+  }
+  changeColor();
+}
+returnList();
