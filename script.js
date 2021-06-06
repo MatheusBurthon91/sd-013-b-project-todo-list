@@ -53,3 +53,18 @@ function clearChoreList() {
 // Adiciona o evento ao clicar no botão limpar lista
 const clickClearButton = document.getElementById('apaga-tudo');
 clickClearButton.addEventListener('click', clearChoreList);
+
+// Função para remover os itens finalizados
+function removeCompleted() {
+  let listItems = document.querySelectorAll('#lista-tarefas li');
+  let list = document.getElementById('lista-tarefas');
+  for (let index = 0; index < listItems.length; index += 1){
+    if (listItems[index].classList.contains('completed')){
+      list.removeChild(listItems[index]);
+    }
+    console.log(listItems[index])
+  }
+}
+
+const clickDoneItems = document.getElementById('remover-finalizados');
+clickDoneItems.addEventListener('click', removeCompleted);
