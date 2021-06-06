@@ -50,18 +50,17 @@ taskBtn.addEventListener('click', () => {
 // Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
   const selectedItemClass = document.querySelector('.selected-item');
-  // const liTarget = event.target;
-  const liTarget = event.target.classList;
+  const liTarget = event.target.classList.add('selected-item');
 
   if (selectedItemClass === null) {
-    liTarget.add('selected-item');
+    liTarget;
   } else {
     selectedItemClass.classList.remove('selected-item');
-    liTarget.add('selected-item');
+    liTarget;
   }
 });
 
-// Add 'completed' no item selecionado 
+// Add 'completed' no item selecionado
 olTodoList.addEventListener('dblclick', (event) => {
   if (event.target.classList.contains('completed')) {
     event.target.classList.remove('completed');
