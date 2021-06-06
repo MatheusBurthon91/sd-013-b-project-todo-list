@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Minha Lista de Tarefas</h1>
-      <p id="funcionamento">
-        Clique duas vezes em um item para marcá-lo como completo
-      </p>
-    </header>
-    <input id="texto-tarefa" type="Adicione algo a sua lista!" />
-    <ol id="lista-tarefas"></ol>
-    <button id="criar-tarefa">ADD</button>
-    <button id="apaga-tudo">Clear</button>
-    <button id="remover-finalizados">Remove completed</button>
+    <main id="principal">
+      <header>
+        <h1>Minha Lista de Tarefas</h1>
+        <p id="funcionamento">
+          Clique duas vezes em um item para marcá-lo como completo
+        </p>
+      </header>
+      <div id="form-add">
+        <input id="texto-tarefa" type="Adicione algo a sua lista!" />
+        <button id="criar-tarefa" class="button">ADD</button>
+      </div>
+      <ol id="lista-tarefas"></ol>
+      <button id="apaga-tudo" class="button">Clear</button>
+      <button id="remover-finalizados" class="button">Remove completed</button>
+      <button id="salvar-tarefas" class="button">Salvar Lista</button>
+    </main>
+    <img id="imagem" src="barco.jpg" alt="">
     <script src="script.js"></script>
   </body>
 </html>
