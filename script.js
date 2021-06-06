@@ -25,12 +25,12 @@ body.appendChild(olTodoList);
 
 // ------------------- FUNÇÕES -------------------
 taskBtn.addEventListener('click', () => {
-  let taskItem = inputToDoText.value;
+  const taskItem = inputToDoText.value;
 
-  if (!(taskItem === '')) {
+  if (taskItem !== '') {
     const liTag = document.createElement('li');
     liTag.innerText = taskItem;
-  
+
     olTodoList.appendChild(liTag);
     inputToDoText.value = '';
   }
@@ -38,14 +38,33 @@ taskBtn.addEventListener('click', () => {
 
 olTodoList.addEventListener('click', (event) => {
   const selectedItemClass = document.querySelector('.selected-item');
+  const liTarget = event.target;
 
   if (selectedItemClass === null) {
-    event.target.classList.add('selected-item');
+    liTarget.classList.add('selected-item');
   } else {
     selectedItemClass.classList.remove('selected-item');
-    event.target.classList.add('selected-item');
+    liTarget.classList.add('selected-item');
+  }
+});
+
+olTodoList.addEventListener('dblclick', (event) => {
+  if (event.target.classList.contains('completed')){
+    event.target.classList.remove('completed');
+  } else {
+    event.target.classList.add('completed');
   }
 });
 
 
 // ------------------- CHAMADA DAS FUNÇÕES -------------------
+
+const eraseAllBtn = document.createElement('button');
+eraseAllBtn.id = 'apaga-tudo';
+/*
+button com o id apaga-tudo
+
+Será verificado que, dado que uma lista possui tarefas, um clique no botão a deixa vazia
+
+
+*/

@@ -8,5 +8,11 @@ header {
 }
 
 .selected-item {
-  background-color: rgb(128 , 128 , 128);
+  background-color: gray;
+
+  /* background-color: rgb(128 , 128 , 128); */
+}
+
+.completed {
+  text-decoration: line-through;
 }
