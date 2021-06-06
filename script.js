@@ -1,3 +1,4 @@
+// ------------------- VARIAVEIS -------------------
 const body = document.querySelector('body');
 const headerTag = document.createElement('header');
 headerTag.innerText = 'Minha Lista de Tarefas';
@@ -13,21 +14,36 @@ inputToDoText.id = 'texto-tarefa';
 inputToDoText.placeholder = 'Digite aqui a sua tarefa';
 body.appendChild(inputToDoText);
 
-const olTodoList = document.createElement('ol');
-olTodoList.id = 'lista-tarefas';
-body.appendChild(olTodoList);
-
 const taskBtn = document.createElement('button');
 taskBtn.innerText = 'Criar tarefa';
 taskBtn.id = 'criar-tarefa';
 body.appendChild(taskBtn);
 
+const olTodoList = document.createElement('ol');
+olTodoList.id = 'lista-tarefas';
+body.appendChild(olTodoList);
+
+// ------------------- FUNÇÕES -------------------
 taskBtn.addEventListener('click', () => {
   let taskItem = inputToDoText.value;
 
-  const liTag = document.createElement('li');
-  liTag.innerText = taskItem;
+  if (!(taskItem === '')) {
+    const liTag = document.createElement('li');
+    liTag.innerText = taskItem;
+  
+    olTodoList.appendChild(liTag);
+    inputToDoText.value = '';
+  }
+});
 
-  olTodoList.appendChild(liTag);
-  inputToDoText.value = '';
+
+
+// ------------------- CHAMADA DAS FUNÇÕES -------------------
+
+olTodoList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('selected-item')) {
+    event.target.classList.remove('selected-item')
+  } else {
+    event.target.classList.add('selected-item');
+  }
 });

@@ -6,3 +6,7 @@ header {
 #funcionamento {
   font-size: 13px;
 }
+
+.selected-item {
+  background-color: rgb(128 , 128 , 128);
+}
