@@ -52,11 +52,11 @@ containerTasks.appendChild(ordemList);
 const corDefault = 'rgb(128, 128, 128)';
 
 function clearSelect() {
-  const listItem = document.getElementsByClassName('item-list');
+  const listItem = document.getElementsByTagName('li');
   for (let index = 0; index < listItem.length; index += 1) {
-    if (listItem[index].title === 'selected') {
+    if (listItem[index].id === 'selected') {
       listItem[index].style.backgroundColor = 'transparent';
-      listItem[index].title = 'deselected';
+      listItem[index].id = 'deselected';
     }
   }
 }
@@ -66,9 +66,9 @@ function selectioned(item) {
   if (itemSelectioned.style.backgroundColor !== corDefault) {
     itemSelectioned.style.backgroundColor = corDefault;
     clearSelect();
-    itemSelectioned.title = 'selected';
+    itemSelectioned.id = 'selected';
   } else {
-    itemSelectioned.title = 'deselected';
+    itemSelectioned.id = 'deselected';
     itemSelectioned.style.backgroundColor = 'transparent';
   }
 }
@@ -82,11 +82,11 @@ function completed(item) {
   }
 }
 
-function createItemRestored(item, className, title, color) {
+function createItemRestored(item, className, id, color) {
   const itemList = document.createElement('li');
   itemList.innerText = item;
   itemList.className = className;
-  itemList.title = title;
+  itemList.id = id;
   itemList.style.backgroundColor = color;
   ordemList.appendChild(itemList);
   itemList.addEventListener('dblclick', () => {
@@ -148,44 +148,27 @@ btnSaveTasks.addEventListener('click', () => {
   for (let index = 0; index < ordemList.children.length * 4; index += 4) {
     localStorage.setItem([index], ordemList.children[indexItem].innerText);
     localStorage.setItem([index + 1], ordemList.children[indexItem].className);
-    localStorage.setItem([index + 2], ordemList.children[indexItem].title);
+    localStorage.setItem([index + 2], ordemList.children[indexItem].id);
     localStorage.setItem([index + 3], ordemList.children[indexItem].style.backgroundColor);
     indexItem += 1;
   }
 });
 
-function moveItemUp(itemMove) {
-  if (itemMove.previousElementSibling) {
-    ordemList.insertBefore(itemMove, itemMove.previousElementSibling);
-  }
-}
-
-function moveItemDown(itemMove) {
-  if (itemMove.nextElementSibling) {
-    ordemList.insertBefore(itemMove.nextElementSibling, itemMove);
-  }
-}
-
 btnMoveUp.addEventListener('click', () => {
-  for (let index = 0; index < ordemList.children.length; index += 1) {
-    if (ordemList.children[index].title === 'selected') {
-      moveItemUp(ordemList.children[index]);
-    }
+  const listItem = document.querySelector('#selected');
+  if (listItem !== null && listItem.previousElementSibling) {
+    listItem.parentElement.insertBefore(listItem, listItem.previousElementSibling);
   }
 });
 
 btnMoveDown.addEventListener('click', () => {
-  for (let index = 0; index < ordemList.children.length; index += 1) {
-    if (ordemList.children[index].title === 'selected') {
-      moveItemDown(ordemList.children[index]);
-    }
+  const listItem = document.querySelector('#selected');
+  if (listItem !== null && listItem.nextElementSibling) {
+    listItem.parentElement.insertBefore(listItem.nextElementSibling, listItem);
   }
 });
 
 btnClearSelectioned.addEventListener('click', () => {
-  for (let index = 0; index < ordemList.children.length; index += 1) {
-    if (ordemList.children[index].title === 'selected') {
-      ordemList.children[index].remove();
-    }
-  }
+  const listItem = document.querySelector('#selected');
+  if (listItem !== null) { listItem.remove(); }
 });
