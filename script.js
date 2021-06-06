@@ -50,19 +50,20 @@ taskBtn.addEventListener('click', () => {
 // Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
   const selectedItemClass = document.querySelector('.selected-item');
-  const liTarget = event.target;
+  // const liTarget = event.target;
+  const liTarget = event.target.classList;
 
   if (selectedItemClass === null) {
-    liTarget.classList.add('selected-item');
+    liTarget.add('selected-item');
   } else {
     selectedItemClass.classList.remove('selected-item');
-    liTarget.classList.add('selected-item');
+    liTarget.add('selected-item');
   }
 });
 
 // Add 'completed' no item selecionado 
 olTodoList.addEventListener('dblclick', (event) => {
-  if (event.target.classList.contains('completed')){
+  if (event.target.classList.contains('completed')) {
     event.target.classList.remove('completed');
   } else {
     event.target.classList.add('completed');
@@ -85,8 +86,3 @@ removeCompletedBtn.addEventListener('click', () => {
     completedTasks[index].remove();
   }
 });
-
-// ------------------- CHAMADA DAS FUNÇÕES -------------------
-/*
-button com o id remover-finalizados
-*/
