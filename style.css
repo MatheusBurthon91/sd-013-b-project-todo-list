@@ -20,6 +20,10 @@
   text-decoration: line-through;
 }
 
+input:focus {
+  background-color: yellow;
+}
+
 button {
   font-weight: 600;
 }

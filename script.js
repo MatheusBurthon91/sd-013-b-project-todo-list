@@ -155,16 +155,16 @@ btnSaveTasks.addEventListener('click', () => {
 });
 
 btnMoveUp.addEventListener('click', () => {
-  const listItem = document.querySelector('#selected');
-  if (listItem !== null && listItem.previousElementSibling) {
-    listItem.parentElement.insertBefore(listItem, listItem.previousElementSibling);
+  const listItemUp = document.querySelector('#selected');
+  if (listItemUp !== null && listItemUp.previousElementSibling) {
+    listItemUp.parentNode.insertBefore(listItemUp, listItemUp.previousElementSibling);
   }
 });
 
 btnMoveDown.addEventListener('click', () => {
-  const listItem = document.querySelector('#selected');
-  if (listItem !== null && listItem.nextElementSibling) {
-    listItem.parentElement.insertBefore(listItem.nextElementSibling, listItem);
+  const listItemDown = document.querySelector('#selected');
+  if (listItemDown !== null && listItemDown.nextElementSibling) {
+    listItemDown.parentNode.insertBefore(listItemDown.nextElementSibling, listItemDown);
   }
 });
 
