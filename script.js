@@ -86,5 +86,15 @@ function removeItems(event) {
 removeItems();
 
 function removeSelectedItems(event) {
-  
+  const clearDoneButton = document.querySelector('#remover-finalizados');
+  clearDoneButton.addEventListener('click', (event) => {
+    const listMarkedItems = document.querySelectorAll('.completed');
+    if (listMarkedItems !== null) {
+      for (let index = 0; index < listMarkedItems.length; index += 1) {
+        listMarkedItems[index].remove();
+      }
+    }
+  });
 }
+removeSelectedItems();
+
