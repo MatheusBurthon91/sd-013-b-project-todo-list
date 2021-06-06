@@ -19,6 +19,11 @@ taskBtn.innerText = 'Criar tarefa';
 taskBtn.id = 'criar-tarefa';
 body.appendChild(taskBtn);
 
+const removeCompletedBtn = document.createElement('button');
+removeCompletedBtn.innerText = 'Remover finalizados';
+removeCompletedBtn.id = 'remover-finalizados';
+body.appendChild(removeCompletedBtn);
+
 const eraseAllBtn = document.createElement('button');
 eraseAllBtn.id = 'apaga-tudo';
 eraseAllBtn.innerHTML = 'Apagar <strong>todas</strong> tarefas';
@@ -28,8 +33,8 @@ const olTodoList = document.createElement('ol');
 olTodoList.id = 'lista-tarefas';
 body.appendChild(olTodoList);
 
-
 // ------------------- FUNÇÕES -------------------
+// Cria tarefa ao clicar no botao
 taskBtn.addEventListener('click', () => {
   const taskItem = inputToDoText.value;
 
@@ -42,6 +47,7 @@ taskBtn.addEventListener('click', () => {
   }
 });
 
+// Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
   const selectedItemClass = document.querySelector('.selected-item');
   const liTarget = event.target;
@@ -54,6 +60,7 @@ olTodoList.addEventListener('click', (event) => {
   }
 });
 
+// Add 'completed' no item selecionado 
 olTodoList.addEventListener('dblclick', (event) => {
   if (event.target.classList.contains('completed')){
     event.target.classList.remove('completed');
@@ -64,16 +71,22 @@ olTodoList.addEventListener('dblclick', (event) => {
 
 // Procurei na internet em como remover filhos sem for
 // https://attacomsian.com/blog/javascript-dom-remove-all-children-of-an-element
+// deletar todas as tarefas
 eraseAllBtn.addEventListener('click', () => {
   while (olTodoList.lastChild) {
     olTodoList.removeChild(olTodoList.lastChild);
   }
 });
 
+// Remove item com a classe 'completed'
+removeCompletedBtn.addEventListener('click', () => {
+  const completedTasks = document.querySelectorAll('.completed');
+  for (let index = 0; index < completedTasks.length; index += 1) {
+    completedTasks[index].remove();
+  }
+});
+
 // ------------------- CHAMADA DAS FUNÇÕES -------------------
-
-
 /*
-button com o id apaga-tudo
-Será verificado que, dado que uma lista possui tarefas, um clique no botão a deixa vazia
+button com o id remover-finalizados
 */
