@@ -36,14 +36,16 @@ taskBtn.addEventListener('click', () => {
   }
 });
 
-
-
-// ------------------- CHAMADA DAS FUNÇÕES -------------------
-
 olTodoList.addEventListener('click', (event) => {
-  if (event.target.classList.contains('selected-item')) {
-    event.target.classList.remove('selected-item')
+  const selectedItemClass = document.querySelector('.selected-item');
+
+  if (selectedItemClass === null) {
+    event.target.classList.add('selected-item');
   } else {
+    selectedItemClass.classList.remove('selected-item');
     event.target.classList.add('selected-item');
   }
 });
+
+
+// ------------------- CHAMADA DAS FUNÇÕES -------------------
