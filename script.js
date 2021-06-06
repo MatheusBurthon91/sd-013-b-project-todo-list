@@ -47,3 +47,14 @@ function apagarTudo() {
   }
 }
 btnApagarTudo.addEventListener('click', apagarTudo);
+
+let btnExcluirFinalizadas = document.querySelector('#remover-finalizados');
+function excluirFinalizadas() {
+  let itens = document.querySelectorAll('.completed');
+  
+  for (let i = 0; i < itens.length; i += 1) {
+    itens[i].remove();
+  }
+  
+}
+btnExcluirFinalizadas.addEventListener('click', excluirFinalizadas);
