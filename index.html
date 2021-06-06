@@ -3,6 +3,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
 
   <title> Projeto 4 | To Do List | Minha Lista de Tarefas</title>
 </head>
@@ -11,11 +12,14 @@
   <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
 
   <div>
-    <input id="texto-tarefa" type="text" value="O que tem para hoje?">
+      <input id="texto-tarefa" type="text">
+      <button id="criar-tarefa">Adicionar tarefa</button> 
   </div>
   <div>
-    <ol id="lista-tarefas"></ol>
+    <ol id="lista-tarefas">
+    </ol>    
   </div>
   
+  <script src="script.js"></script>
 </body>
 </html>
