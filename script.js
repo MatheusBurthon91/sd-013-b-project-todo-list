@@ -58,3 +58,17 @@ function excluirFinalizadas() {
   
 }
 btnExcluirFinalizadas.addEventListener('click', excluirFinalizadas);
+
+let btnRemoverSelecionada = document.querySelector('#remover-selecionado');
+function removerSelecionada() {
+  let selecionada = document.querySelector('.selecionado');
+  
+  if (filhosTarefas.length === 0) {
+    alert('Sua lista está vazia. Aproveite seu tempo livre!');
+  } else if (selecionada === null) {
+    alert('Por favor, selecione uma tarefa!');
+  } else {
+    selecionada.remove();
+  }
+}
+btnRemoverSelecionada.addEventListener('click', removerSelecionada);
