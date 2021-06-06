@@ -1,6 +1,6 @@
 #container-tasks {
   height: 300px;
-  width: 50%;
+  width: 60%;
   background-color: rgb(219 215 215);
 }
 
@@ -18,4 +18,29 @@
 
 .completed {
   text-decoration: line-through;
+}
+
+button {
+  font-weight: 600;
+}
+
+button:hover {
+  cursor: pointer;
+  color: rgb(49 169 0);
+}
+
+#mover-cima:after {
+  content: '△';
+}
+
+#mover-cima:hover:after {
+  content: '▲';
+}
+
+#mover-baixo:after {
+  content: '▽';
+}
+
+#mover-baixo:hover:after {
+  content: '▼';
 }

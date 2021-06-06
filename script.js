@@ -15,15 +15,30 @@ btnCreateTasks.innerText = 'Adiconar';
 btnCreateTasks.className = 'item-container';
 containerTasks.appendChild(btnCreateTasks);
 
+const btnClearSelectioned = document.createElement('button');
+btnClearSelectioned.id = 'remover-selecionado';
+btnClearSelectioned.innerText = ' X ';
+containerButtons.appendChild(btnClearSelectioned);
+
+const btnMoveUp = document.createElement('button');
+btnMoveUp.id = 'mover-cima';
+btnMoveUp.innerHTML = '&#8593';
+containerButtons.appendChild(btnMoveUp);
+
+const btnMoveDown = document.createElement('button');
+btnMoveDown.id = 'mover-baixo';
+btnMoveDown.innerHTML = '&#8595';
+containerButtons.appendChild(btnMoveDown);
+
+const btnClearCompleted = document.createElement('button');
+btnClearCompleted.id = 'remover-finalizados';
+btnClearCompleted.innerHTML = 'Limpar Completo';
+containerButtons.appendChild(btnClearCompleted);
+
 const btnClearAll = document.createElement('button');
 btnClearAll.id = 'apaga-tudo';
-btnClearAll.innerText = 'Apagar Lista';
+btnClearAll.innerText = 'Limpar Lista';
 containerButtons.appendChild(btnClearAll);
-
-const btnClearSelectioned = document.createElement('button');
-btnClearSelectioned.id = 'remover-finalizados';
-btnClearSelectioned.innerHTML = 'Limpar Completos';
-containerButtons.appendChild(btnClearSelectioned);
 
 const btnSaveTasks = document.createElement('button');
 btnSaveTasks.id = 'salvar-tarefas';
@@ -120,7 +135,7 @@ btnClearAll.addEventListener('click', () => {
   localStorage.clear();
 });
 
-btnClearSelectioned.addEventListener('click', () => {
+btnClearCompleted.addEventListener('click', () => {
   const completeds = document.querySelectorAll('.completed');
   for (let index = 0; index < completeds.length; index += 1) {
     completeds[index].remove();
@@ -135,7 +150,42 @@ btnSaveTasks.addEventListener('click', () => {
     localStorage.setItem([index + 1], ordemList.children[indexItem].className);
     localStorage.setItem([index + 2], ordemList.children[indexItem].title);
     localStorage.setItem([index + 3], ordemList.children[indexItem].style.backgroundColor);
-    console.log(index);
     indexItem += 1;
+  }
+});
+
+function moveItemUp(itemMove) {
+  if (itemMove.previousElementSibling) {
+    ordemList.insertBefore(itemMove, itemMove.previousElementSibling);
+  }
+}
+
+function moveItemDown(itemMove) {
+  if (itemMove.nextElementSibling) {
+    ordemList.insertBefore(itemMove.nextElementSibling, itemMove);
+  }
+}
+
+btnMoveUp.addEventListener('click', () => {
+  for (let index = 0; index < ordemList.children.length; index += 1) {
+    if (ordemList.children[index].title === 'selected') {
+      moveItemUp(ordemList.children[index]);
+    }
+  }
+});
+
+btnMoveDown.addEventListener('click', () => {
+  for (let index = 0; index < ordemList.children.length; index += 1) {
+    if (ordemList.children[index].title === 'selected') {
+      moveItemDown(ordemList.children[index]);
+    }
+  }
+});
+
+btnClearSelectioned.addEventListener('click', () => {
+  for (let index = 0; index < ordemList.children.length; index += 1) {
+    if (ordemList.children[index].title === 'selected') {
+      ordemList.children[index].remove();
+    }
   }
 });
