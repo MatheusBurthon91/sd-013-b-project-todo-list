@@ -8,8 +8,7 @@
 }
 
 #criar-tarefa {
-  border: none;
-  border-radius: 50%;
+  border-radius: 100%;
   background-color: darkgray;
   color: white;
   font-family: monospace;
@@ -17,9 +16,18 @@
 }
 
 #conteudo-lista {
-  background-color: rgb(255 , 156 , 255);
   border-radius: 10px;
   margin-left: 0;
   margin-right: 0;
   width: 50%;
+}
+
+.selected {
+  background-color: gray;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.completed {
+  text-decoration: line-through;
 }
