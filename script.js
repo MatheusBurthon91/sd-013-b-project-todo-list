@@ -32,3 +32,9 @@ function selecionarItem(event){
   }
 }
 olTarefas.addEventListener('click', selecionarItem);
+
+function completarTarefa(event) {
+  let itemClicado = event.target;
+  itemClicado.classList.toggle('completed');
+}
+olTarefas.addEventListener('dblclick', completarTarefa);
