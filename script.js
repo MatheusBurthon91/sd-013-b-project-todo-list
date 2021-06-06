@@ -12,3 +12,7 @@ const inputToDoText = document.createElement('input');
 inputToDoText.id = 'texto-tarefa';
 inputToDoText.placeholder = 'Digite aqui a sua tarefa';
 body.appendChild(inputToDoText);
+
+const olTodoList = document.createElement('ol');
+olTodoList.id = 'lista-tarefas';
+body.appendChild(olTodoList);
