@@ -9,8 +9,6 @@ header {
 
 .selected-item {
   background-color: gray;
-
-  /* background-color: rgb(128 , 128 , 128); */
 }
 
 .completed {

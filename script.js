@@ -19,9 +19,15 @@ taskBtn.innerText = 'Criar tarefa';
 taskBtn.id = 'criar-tarefa';
 body.appendChild(taskBtn);
 
+const eraseAllBtn = document.createElement('button');
+eraseAllBtn.id = 'apaga-tudo';
+eraseAllBtn.innerHTML = 'Apagar <strong>todas</strong> tarefas';
+body.appendChild(eraseAllBtn);
+
 const olTodoList = document.createElement('ol');
 olTodoList.id = 'lista-tarefas';
 body.appendChild(olTodoList);
+
 
 // ------------------- FUNÇÕES -------------------
 taskBtn.addEventListener('click', () => {
@@ -56,15 +62,18 @@ olTodoList.addEventListener('dblclick', (event) => {
   }
 });
 
+// Procurei na internet em como remover filhos sem for
+// https://attacomsian.com/blog/javascript-dom-remove-all-children-of-an-element
+eraseAllBtn.addEventListener('click', () => {
+  while (olTodoList.lastChild) {
+    olTodoList.removeChild(olTodoList.lastChild);
+  }
+});
 
 // ------------------- CHAMADA DAS FUNÇÕES -------------------
 
-const eraseAllBtn = document.createElement('button');
-eraseAllBtn.id = 'apaga-tudo';
+
 /*
 button com o id apaga-tudo
-
 Será verificado que, dado que uma lista possui tarefas, um clique no botão a deixa vazia
-
-
 */
