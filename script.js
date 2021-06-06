@@ -16,3 +16,18 @@ body.appendChild(inputToDoText);
 const olTodoList = document.createElement('ol');
 olTodoList.id = 'lista-tarefas';
 body.appendChild(olTodoList);
+
+const taskBtn = document.createElement('button');
+taskBtn.innerText = 'Criar tarefa';
+taskBtn.id = 'criar-tarefa';
+body.appendChild(taskBtn);
+
+taskBtn.addEventListener('click', () => {
+  let taskItem = inputToDoText.value;
+
+  const liTag = document.createElement('li');
+  liTag.innerText = taskItem;
+
+  olTodoList.appendChild(liTag);
+  inputToDoText.value = '';
+});
