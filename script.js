@@ -80,5 +80,43 @@ function removeSelected() {
   }
 }
 
+// Evento para clicar no botão e remover a tarefa selecionada
 const clickSelectedItems = document.getElementById('remover-selecionado');
 clickSelectedItems.addEventListener('click', removeSelected);
+
+// Função para mover o item para cima
+function moveUp() {
+  let listItems = document.querySelectorAll('#lista-tarefas li');
+  for (let index = 0; index < listItems.length; index += 1){
+    if(listItems[index].classList.contains('choreClass')){
+      const saveItem = listItems[index].innerHTML;
+      listItems[index].innerHTML = listItems[index - 1].innerHTML;
+      listItems[index - 1].innerHTML = saveItem;
+      listItems[index].classList.remove('choreClass');
+      listItems[index - 1].classList.add('choreClass');
+    }
+  }
+}
+
+// Evento para clicar no botão e mover a tarefa para cima
+const moveSelectedItemUp = document.getElementById('mover-cima');
+moveSelectedItemUp.addEventListener('click', moveUp);
+
+// Função para mover item para baixo
+function moveDown() {
+  let listItems = document.querySelectorAll('#lista-tarefas li');
+  for (let index = 0; index < listItems.length; index += 1){
+    if(listItems[index].classList.contains('choreClass')){
+      const saveItem = listItems[index + 1].innerHTML;
+      listItems[index + 1].innerHTML = listItems[index].innerHTML;
+      listItems[index].innerHTML = saveItem;
+      listItems[index].classList.remove('choreClass');
+      listItems[index + 1].classList.add('choreClass');
+      return
+    }
+  }
+}
+
+// Evento para clicar no botão e mover a tarefa para baixo
+const moveSelectedItemDown = document.getElementById('mover-baixo');
+moveSelectedItemDown.addEventListener('click', moveDown);
