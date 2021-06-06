@@ -1,14 +1,31 @@
-// elemento criado com o texto do input;
-// clicar no botão cria um elemento;
+// Ajuda do Baeta para entendimento da logica do exercicio 7;
+function clear() {
+  const lista = document.querySelector('#lista-tarefas');
+  // if (lista) {
+  // for (let index = 0; index < tarefas.length; index += 1) {
+  //   tarefas[index].remove();
+  // }
 
-// clicar item altera background
+  // }
+  lista.innerHTML = '';
+}
+function btn() {
+  const botao = document.querySelector('#apaga-tudo');
+  botao.addEventListener('click', clear);
+}
+btn();
+
 function color(liItem) {
-  // const liItem = document.querySelectorAll('li');
-  // for (let index = 0; index < liItem.length; index += 1) {
-  liItem.addEventListener('click', () => {
-    liItem.style.backgroundColor = 'rgb(128, 128, 128)';
+  liItem.addEventListener('click', (event) => {
+    const evento = event.target;
+    if (liItem !== evento) {
+      evento.classList.remove('.color');
+    }
+    evento.classList.add('.color');
+    evento.style.backgroundColor = 'rgb(128, 128, 128)';
   });
 }
+
 function element() {
   const text = document.querySelector('#texto-tarefa').value;
   const list = document.querySelector('#lista-tarefas');
@@ -16,6 +33,7 @@ function element() {
   color(newElement);
   document.querySelector('#texto-tarefa').value = null;
   newElement.innerText = text;
+  newElement.classList = '.completed';
   list.appendChild(newElement);
 }
 
