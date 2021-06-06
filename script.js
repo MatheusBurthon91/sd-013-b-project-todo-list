@@ -48,6 +48,23 @@ function risca(event) {
     event.target.classList.add('completed');
   }
 }
-// -------------------------------------------------------------
+// ------------------------------------------------------------
 
+// 10 - LIMPA LISTA
+let botaoLimpa = document.getElementById('apaga-tudo');
+
+botaoLimpa.addEventListener('click', apagaLista);
+
+function apagaLista (){
+
+  let listaTarefa = document.querySelector('#lista-tarefas');
+  listaTarefa.innerHTML = '';
+
+  //REMOVENDO USANDO (WHILE)
+  // let child = lista.lastElementChild;
+  // while (child) {
+  //   lista.removeChild(child);
+  //   child = lista.lastElementChild;
+  // }
+}
 
