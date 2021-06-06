@@ -1,8 +1,8 @@
 .selecionado {
-  background-color: rgba(236, 255, 63, 0.753);
+  color: white;
+  background-color: gray;
   border-radius: 30px;
-  padding: 5px 40px;
-  transition: all 0.1s linear;
+  padding: 5px 20px;
 }
 
 .completed {
@@ -17,13 +17,13 @@ body {
 }
 
 h1 {
-  font-family: 'Rock Salt', sans-serif;
+  font-family: Rock Salt, sans-serif;
   font-size: 2.5em;
-  margin: 5% auto 1% auto;
+  margin: 5% auto 1%;
   max-width: 80%;
-  padding-bottom: 0; 
+  padding-bottom: 0;
   text-align: center;
-  text-decoration: underline solid rgba(236, 255, 63, 0.753);
+  text-decoration: underline solid rgba(236 , 255 , 63 , 0.753);
   text-underline-offset: -20px;
   text-decoration-thickness: 0.5em;
   text-decoration-skip-ink: none;
@@ -33,44 +33,47 @@ h1 {
 main {
   background-color: white;
   border-radius: 30px;
-  margin: 0 auto auto auto;
-  padding: 2% 10% ;
+  margin: 0 auto auto;
+  padding: 2% 10%;
   width: 50%;
 }
 
 p {
-    font-size: 0.8em;
-    font-style: italic;
-    margin: 7px;
+  color: rgb(1 , 175 , 206);
+  font-size: 0.8em;
+  font-style: italic;
+  margin: 7px;
 }
 
 input {
-    border-radius: 30px;
-    margin: 7px;
-    font-family: 'Rock Salt', sans-serif;
-    font-size: 1.2em;
-    max-width: 100%;
-    min-width: 100px;
-    padding: 1px 20px ;
+  border-radius: 30px;
+  border-color: rgba(1 , 175 , 206 , 0.432);
+  margin: 7px;
+  font-family: Rock Salt, sans-serif;
+  font-size: 1.2em;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 1px 20px;
 }
 
 input::selection {
-    background-color: rgba(63, 255, 223, 0.493);
+  background-color: rgba(236 , 255 , 63 , 0.61);
 }
 
-input:focus{
-    outline: 2px solid rgba(236, 255, 63, 0.61);
+input:focus {
+  outline: 2px solid rgba(236 , 255 , 63 , 0.61);
 }
 
 button {
-  background-color: rgb(238, 238, 238);
+  color: white;
+  background-color: rgba(1 , 175 , 206 , 0.432);
   border: 0;
   border-radius: 30px;
   cursor: pointer;
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   margin: 7px;
-  padding: 15px 20px;
+  padding: 10px 15px;
   transition: all 0.1s linear;
 }
 
@@ -80,39 +83,44 @@ button {
   margin: 0 auto;
 }
 
-button:hover,
-button:focus {
-    background:rgba(236, 255, 63, 0.644);
+button:hover {
+  color: rgb(165 , 179 , 45);
+  background: rgba(236 , 255 , 63 , 0.644);
 }
 
-button:active{
-    background: rgb(236, 255, 63);
+button:active {
+  color: rgb(143 , 155 , 39);
+  background: rgb(236 , 255 , 63);
 }
 
-#salvar-tarefas:hover,
-#salvar-tarefas:focus {
-    background:rgba(0, 255, 21, 0.5);
+#salvar-tarefas:hover , #salvar-tarefas:focus {
+  color: rgb(0 , 168 , 14);
+  background: rgba(0 , 255 , 21 , 0.5);
 }
 
 #salvar-tarefas:active {
-    background-color: rgb(0, 255, 21);
+  color: rgb(0 , 122 , 10);
+  background-color: rgb(0 , 255 , 21);
 }
 
 #lista-tarefas {
-  border-left: 2px solid rgba(255, 192, 203, 0.562);
+  border-left: 2px solid pink;
   padding: 30px 10%;
   margin: 20px 0;
-  font-family: 'Rock Salt', sans-serif;
-  font-weight: regular;
-  font-size: 1.3em;  
+  font-family: Rock Salt, sans-serif;
+  font-size: 1.3em;
 }
 
 li {
-  border-bottom: 2px solid rgba(0, 217, 255, 0.363);
+  border-bottom: 2px solid rgba(1 , 175 , 206 , 0.432);
   cursor: pointer;
   max-width: max-content;
 }
 
+li:hover {
+  border-bottom: 2px solid rgb(1 , 175 , 206);
+}
+
 li::selection {
-    background-color: none;
+  background-color: none;
 }

@@ -1,13 +1,15 @@
 // FUNÇÕES PARA AS TAREFAS DA LISTA
+let selecionado = document.querySelector('.selecionado');
+
 function selecionarItem(itemEvento) {
-  // eslint-disable-next-line sonarjs/no-duplicate-string
-  const selecionado = document.querySelector('.selecionado');
   const clicado = itemEvento.target;
   if (selecionado !== null) {
     selecionado.classList.remove('selecionado');
     clicado.classList.add('selecionado');
+    selecionado = clicado;
   } else {
     clicado.classList.add('selecionado');
+    selecionado = clicado;
   }
 }
 
@@ -35,15 +37,13 @@ function apagarSelecionado() {
 }
 
 function moverCima() {
-  const selecionado = document.querySelector('.selecionado');
-  if (selecionado.previousElementSibling) {
+  if (selecionado !== null && selecionado.previousElementSibling) {
     selecionado.parentNode.insertBefore(selecionado, selecionado.previousSibling);
   }
 }
 
 function moverBaixo() {
-  const selecionado = document.querySelector('.selecionado');
-  if (selecionado.nextElementSibling) {
+  if (selecionado !== null && selecionado.nextElementSibling) {
     selecionado.parentNode.insertBefore(selecionado, selecionado.nextSibling.nextSibling);
   }
 }
@@ -75,7 +75,7 @@ function salvarTarefas() {
     tarefasSalvas.push(objetoTarefa);
   }
   localStorage.setItem('tarefasSalvas', JSON.stringify(tarefasSalvas));
-  window.alert('LISTA SALVA!\n\nSeus itens estarão aqui na próxima vez que voltar');
+  window.alert('LISTA SALVA!\n\ncSeus itens estarão aqui na próxima vez que voltar');
 }
 
 function recriarTarefas(item, completa) {
