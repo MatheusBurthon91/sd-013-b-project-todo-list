@@ -1,3 +1,4 @@
+
 let inputBox = document.getElementById('texto-tarefa');
 let applyButton = document.getElementById('criar-tarefa');
 let ordenatedList = document.getElementById('lista-tarefas');
@@ -29,15 +30,20 @@ function classRemover(){
 	}
 }
 
-function completeTask(){
-	for(let i in ordenatedList.children.classList){
-		if(ordenatedList.children[i].classList[i] === 'completed'){
-			return;
-		}else{
-			ordenatedList.children[i].classList.add('completed');
-		}
+
+
+//add completed 
+function completeTask(event){
+	console.log(event.target);
+	if(event.target.classList.contains('completed')){
+		event.target.classList.remove('completed');
+	}else{
+		event.target.classList.add('completed');
 	}
+	
+	
 }
+
 
 //pega o valor do array e pusha no OL
 function listFill(){
@@ -55,8 +61,10 @@ function listFill(){
 				ordenatedList.children[i].classList.add('selected');
 			})
 
+			
+			
 			//add event completed
-			ordenatedList.children[i].addEventListener('dbclick', completeTask);
+			ordenatedList.children[i].addEventListener('dblclick', completeTask);
 
 		}
 
