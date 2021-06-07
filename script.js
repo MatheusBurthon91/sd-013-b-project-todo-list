@@ -19,6 +19,11 @@ taskBtn.innerText = 'Criar tarefa';
 taskBtn.id = 'criar-tarefa';
 body.appendChild(taskBtn);
 
+const saveTaksBtn = document.createElement('button');
+saveTaksBtn.id = 'salvar-tarefas';
+saveTaksBtn.innerText = 'Salvar tarefas';
+body.appendChild(saveTaksBtn);
+
 const removeCompletedBtn = document.createElement('button');
 removeCompletedBtn.innerText = 'Remover finalizados';
 removeCompletedBtn.id = 'remover-finalizados';
@@ -84,4 +89,21 @@ removeCompletedBtn.addEventListener('click', () => {
   for (let index = 0; index < completedTasks.length; index += 1) {
     completedTasks[index].remove();
   }
+});
+
+saveTaksBtn.addEventListener('click', () => {
+  const itemSelected = document.querySelectorAll('#lista-tarefas li');
+  const arrayItens = [];
+
+  console.log(itemSelected[0]);
+
+  for (let index = 0; index < itemSelected.length; index += 1) {
+    arrayItens.push({
+      classes: itemSelected[index].className,
+      innerText: itemSelected[index].innerText,
+    });
+  }
+
+  console.log(JSON.stringify(arrayItens));
+  localStorage.setItem('tasks', JSON.stringify(arrayItens));
 });
