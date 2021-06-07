@@ -1,0 +1,40 @@
+/* cabeçalho */
+
+h1{
+  color: rgb(255 , 255 , 255);
+  background-color: rgb(99 , 102 , 96);
+  text-align: center;
+}
+
+#funcionamento {
+  color: rgb(255 , 127 , 80);
+}
+
+/* Box para escrever as tarefas */
+
+#texto-tarefa {
+  width: 300px;
+  height: 50px;
+  background-color: rgb(234 , 245 , 245);
+}
+
+/* Botão para add tarefas */
+
+#criar-tarefa {
+  background-color: rgb(62 , 160 , 206);
+  border-radius: 10%;
+}
+
+/* Lista de tarefas */
+
+#lista-tarefas {
+
+}
+
+.selected {
+  background-color: rgb(128, 128, 128);
+}
+
+.completed {
+  text-decoration: line-through;
+}
