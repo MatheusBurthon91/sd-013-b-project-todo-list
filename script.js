@@ -26,11 +26,19 @@ function eventCompleted(event) {
   }
 }
 
+function deleteAllTasks(event) {
+  while (taskList.hasChildNodes()) {
+    taskList.removeChild(taskList.firstChild);
+  }
+}
+
 const createTaskButton = document.getElementById('criar-tarefa');
+const deleteAllTasksButton = document.getElementById('apaga-tudo');
 let taskToBeCreated = document.getElementById('texto-tarefa');
 let taskList = document.getElementById('lista-tarefas');
 
 // Eventos dos elementos
 createTaskButton.addEventListener('click', createTask);
+deleteAllTasksButton.addEventListener('click', deleteAllTasks);
 taskList.addEventListener('click', changeBackgroundColor);
 taskList.addEventListener('dblclick', eventCompleted);
