@@ -1,23 +1,23 @@
-let buttonTaskCreated = document.querySelector('#criar-tarefa');
-let textInputTask = document.querySelector('#texto-tarefa');
-let tasksList = document.querySelector('#lista-tarefas');
+const buttonTaskCreated = document.querySelector('#criar-tarefa');
+const txtInput = document.querySelector('#texto-tarefa');
+const tasksList = document.querySelector('#lista-tarefas');
 
-function createTaskBtn() {
-    let task = textInputTask.value;
-    let classOfTask = 'tarefa';
-    createTask(task, classOfTask);
+function clearInputText() {
+  txtInput.value = '';
 }
 
 function createTask(task, classOfTask) {
-    let listItem = document.createElement('li');
-    listItem.innerText = task;
-    listItem.className = classOfTask;
-    tasksList.appendChild(listItem);
-    clearInputText(); // call the function to clear the input
+  const listItem = document.createElement('li');
+  listItem.innerText = task;
+  listItem.className = classOfTask;
+  tasksList.appendChild(listItem);
+  clearInputText(); // call the function to clear the input
 }
 
-function clearInputText() {
-    textInputTask.value = '';
+function createTaskBtn() {
+  const task = txtInput.value;
+  const classOfTask = 'tarefa';
+  createTask(task, classOfTask);
 }
 
 buttonTaskCreated.addEventListener('click', createTaskBtn);
