@@ -10,8 +10,12 @@ header.appendChild(h1);
 header.appendChild(paragraph);
 
 let input = document.createElement('input')
-input.id = 'texto-tarefa'
+input.id = 'texto-tarefa';
+
+let list = document.createElement('ol');
+list.id = 'lista-tarefas';
 
 let body = document.getElementsByTagName('body')[0];
 body.appendChild(header);
-body.appendChild(input)
+body.appendChild(input);
+body.appendChild(list)
