@@ -107,3 +107,58 @@ btnSave.addEventListener('click', function () {
   }
   localStorage.setItem('Tasks', JSON.stringify(savedTasks));
 });
+
+// Função para mover as tasks para cima
+function upTask(taskNumber) {
+  const position = taskNumber;
+  const taskForMoveUp = { text: taskChildren[position].innerText, style: taskChildren[position].style.backgroundColor, class: taskChildren[position].className };
+  const tempTask = { text: taskChildren[position - 1].innerText, style: taskChildren[position - 1].style.backgroundColor, class: taskChildren[position - 1].className };
+  // Move a task para cima substituindo a de cima
+  taskChildren[position - 1].innerText = taskForMoveUp.text;
+  taskChildren[position - 1].style.backgroundColor = taskForMoveUp.style;
+  taskChildren[position - 1].className = taskForMoveUp.class;
+  // Agora move a de cima para baixo
+  taskChildren[position].innerText = tempTask.text;
+  taskChildren[position].style.backgroundColor = tempTask.style;
+  taskChildren[position].className = tempTask.class;
+}
+
+// Função que implementa o botão de mover a task para cima
+const btnMoveUp = document.querySelector('#mover-cima');
+btnMoveUp.addEventListener('click', function () {
+  // Verifica se tem uma task selecionada
+  for (let index = 0; index < taskChildren.length; index += 1) {
+    const selected = taskChildren[index].style.backgroundColor;
+    if (selected === 'rgb(128, 128, 128)' && index !== 0) {
+      upTask(index);
+    }
+  }
+});
+
+// Função para mover as tasks para baixo
+function downTask(numberOfTask) {
+  const position = numberOfTask;
+  const taskForMoveDown = { text: taskChildren[position].innerText, style: taskChildren[position].style.backgroundColor, class: taskChildren[position].className };
+  const tempTask = { text: taskChildren[position + 1].innerText, style: taskChildren[position + 1].style.backgroundColor, class: taskChildren[position + 1].className };
+  // Move a task para baixo substituindo a de baixo
+  taskChildren[position + 1].innerText = taskForMoveDown.text;
+  taskChildren[position + 1].style.backgroundColor = taskForMoveDown.style;
+  taskChildren[position + 1].className = taskForMoveDown.class;
+  // Agora move a de baixo para cima
+  taskChildren[position].innerText = tempTask.text;
+  taskChildren[position].style.backgroundColor = tempTask.style;
+  taskChildren[position].className = tempTask.class;
+}
+
+// Função que implementa o botão de mover a task para baixo
+const btnMoveDown = document.querySelector('#mover-baixo');
+btnMoveDown.addEventListener('click', function () {
+  // Verifica se tem uma task selecionada
+  for (let index = 0; index < taskChildren.length; index += 1) {
+    const selected = taskChildren[index].style.backgroundColor;
+    if (selected === 'rgb(128, 128, 128)' && index !== (taskChildren.length - 1)) {
+      downTask(index);
+      index = taskChildren.length;
+    }
+  }
+});
