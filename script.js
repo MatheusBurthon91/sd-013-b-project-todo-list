@@ -9,18 +9,29 @@ function elementos() {
 
     li.innerText = text;
     list.appendChild(li);
+    //pintando background
+
     li.addEventListener('click', function (event) {
 
-        event.target.style.backgroundColor = 'grey';
-        
-    }); 
-    li.addEventListener('dblclick',function(event){
+      event.target.style.backgroundColor = 'grey';
+
+    });
+    //riscando elementos 'li' e adicionando classe completed
+    li.addEventListener('dblclick', function (event) {
         event.target.classList.add('completed');
-       
+
         event.target.style.textDecoration = 'line-through solid rgb(0,0,0)';
+
+        li.addEventListener('dblclick', tirarRisco)
+        function tirarRisco(event) {
+            event.target.classList.remove('completed');
+            event.target.style.textDecoration = 'none';
+        }
     })
-  
-  
+
+
+
+
 }
 
 
