@@ -1,6 +1,7 @@
 const createTaskBtn = document.getElementById('criar-tarefa');
 const taskListOl = document.getElementById('lista-tarefas');
 const deleteAllTasks = document.getElementById('apaga-tudo');
+const deleteAllCompleted = document.getElementById('remover-finalizados');
 
 function createTask() {
   const inputText = document.getElementById('texto-tarefa');
@@ -19,7 +20,6 @@ function selectTaskLi(event) {
 
   for (let index = 0; index < allTasks.length; index += 1) {
     const currentTask = allTasks[index];
-    
     if (currentTask === clickedTask) {
       clickedTask.classList.toggle('selected');
     } else {
@@ -40,5 +40,13 @@ window.onload = function () {
       taskListOl.removeChild(taskListOl.lastChild);
     }
   })
-  
+  deleteAllCompleted.addEventListener('click', function () {
+    const completedTasks = document.querySelectorAll('.completed');
+    console.log(completedTasks.length);
+    for (let index = 0; index < completedTasks.length; index += 1) {
+      console.log(completedTasks.length);
+        completedTasks[index].remove();
+    }
+  })
+
 };
