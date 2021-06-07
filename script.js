@@ -31,7 +31,16 @@ function taskCompleted(event) {
     selectedLine.classList.add('completed');
   }
 }
+
+function emptyTasks () {
+  const olSelect = document.querySelector('#lista-tarefas');
+  olSelect.innerText = '';
+}
+
+
 const selectorA = document.querySelector('#lista-tarefas');
+const buttonSelect = document.querySelector('#apaga-tudo');
 
 selectorA.addEventListener('click', addClickColor);
 selectorA.addEventListener('dblclick', taskCompleted);
+buttonSelect.addEventListener('click', emptyTasks);
