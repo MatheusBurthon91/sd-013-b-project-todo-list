@@ -5,6 +5,7 @@ function createTask () {
 
   const inputText = document.getElementById('texto-tarefa');
   const li = document.createElement('li');
+  li.className = 'tarefas';
 
   li.addEventListener('click', selectTaskLi);
 
@@ -16,29 +17,20 @@ function createTask () {
 }
 
 function selectTaskLi(event) {
-  const currentTask = document.querySelector('.selected');
+  const allTasks = document.querySelectorAll('.tarefas');
   const clickedTask = event.target;
 
-  if (clickedTask.classList.contains("selected")) {
-    clickedTask.classList.remove('selected');
-
-  } else {
-    clickedTask.classList.add('selected');
-
+  for (let index = 0; index < allTasks.length; index += 1) {
+    let currentTask = allTasks[index];
+    
+    if (currentTask === clickedTask) {
+      clickedTask.classList.add('selected');
+      // se comecar com null eu adiciono o select
+      // se ele ja conter o select eu removo ele
+    } else {
+      currentTask.classList.remove('selected');
+    }
   }
-
-  console.log(currentTask);
-
-
-
-  // if (eventTarget.style.backgroundColor === 'rgb(128, 128, 128)') {
-  //   eventTarget.style.backgroundColor = '';
-  // } else {
-
-  //   eventTarget.style.backgroundColor = 'rgb(128, 128, 128)';
-  // }
-
-  
 }
 
 window.onload = function () {
