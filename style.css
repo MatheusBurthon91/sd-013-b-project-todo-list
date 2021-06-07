@@ -1,3 +1,7 @@
 #lista-tarefas {
   background-color: white;
 }
+
+.selected {
+  background-color: gray;
+}
