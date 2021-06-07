@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-lines-per-function
 window.onload = function () {
   const btnOk = document.getElementById('criar-tarefa');
   const olTasks = document.getElementById('lista-tarefas');
@@ -6,6 +7,7 @@ window.onload = function () {
   const btnSalvar = document.getElementById('salvar-tarefas');
   const btnMoverCima = document.getElementById('mover-cima');
   const btnMoverBaixo = document.getElementById('mover-baixo');
+  const btnApagarSelct = document.getElementById('remover-selecionado');
 
   btnOk.addEventListener('click', createTasks);
   olTasks.addEventListener('click', changeBackGround);
@@ -15,6 +17,7 @@ window.onload = function () {
   btnSalvar.addEventListener('click', salvarTarefas);
   btnMoverCima.addEventListener('click', moverParaCima);
   btnMoverBaixo.addEventListener('click', moverParaBaixo);
+  btnApagarSelct.addEventListener('click', removerSelecionado);
 
   criarTarefas();
 
@@ -166,4 +169,12 @@ function moverParaBaixo() {
       proximoElement.className = classSelect;
     }
   }
+}
+
+function removerSelecionado() {
+  const elementSelect = document.getElementsByClassName('select')[0];
+  if (elementSelect === undefined) {
+    alert('Selecione um elemento antes de continuar');
+  }
+  elementSelect.remove();
 }
