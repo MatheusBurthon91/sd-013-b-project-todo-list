@@ -1,19 +1,23 @@
 const toDoList = document.querySelector('#lista-tarefas');
 
 function resetColor() {
-  const liColor = document.querySelectorAll('li');
-  for (let index = 0; index < liColor.length; index += 1) {
-    liColor[index].style.backgroundColor = 'white';
+  const list = document.querySelectorAll('.list');
+  for (let index = 0; index < list.length; index += 1) {
+    if (list[index].className.includes('selected')) {
+      list[index].style.backgroundColor = 'white';
+      list[index].classList.remove('selected');
+    }
   }
 }
 
 function changeColor() {
-  const liColor = document.querySelectorAll('li');
-  for (let index = 0; index < liColor.length; index += 1) {
-    liColor[index].addEventListener('click', () => {
-      if (liColor[index].style.backgroundColor !== 'rgb(128, 128, 128)') {
+  const list = document.querySelectorAll('.list');
+  for (let index = 0; index < list.length; index += 1) {
+    list[index].addEventListener('click', () => {
+      if (list[index].style.backgroundColor !== 'rgb(128, 128, 128)') {
         resetColor();
-        liColor[index].style.backgroundColor = 'rgb(128, 128, 128)';
+        list[index].classList.add('selected');
+        list[index].style.backgroundColor = 'rgb(128, 128, 128)';
       }
     });
   }
@@ -22,7 +26,7 @@ function changeColor() {
 function scratchTask() {
   document.addEventListener('dblclick', (event) => {
     if (event.target.classList.contains('list')) {
-      if (event.target.className === ('list completed')) {
+      if (event.target.className.includes('completed')) {
         event.target.classList.remove('completed');
       } else {
         event.target.classList.add('completed');
@@ -91,3 +95,55 @@ function returnList() {
   changeColor();
 }
 returnList();
+
+function moveUp() {
+  const button = document.querySelector('#mover-cima');
+  button.addEventListener('click', () => {
+    const selected = document.querySelector('.selected');
+    if (selected !== null && selected.previousSibling !== null) {
+      const selectedText = selected.innerHTML;
+      const nextSelectedText = selected.previousSibling.innerHTML;
+      const selectedClass = selected.className;
+      const nextSelectedClass = selected.previousSibling.className;
+      const selectedColor = selected.style.backgroundColor;
+      const nextSelectedColor = selected.previousSibling.style.backgroundColor;
+      selected.innerHTML = nextSelectedText;
+      selected.previousSibling.innerHTML = selectedText;
+      selected.className = nextSelectedClass;
+      selected.previousSibling.className = selectedClass;
+      selected.style.backgroundColor = nextSelectedColor;
+      selected.previousSibling.style.backgroundColor = selectedColor;
+    }
+  });
+}
+moveUp();
+
+function moveDown() {
+  const button = document.querySelector('#mover-baixo');
+  button.addEventListener('click', () => {
+    const selected = document.querySelector('.selected');
+    if (selected !== null && selected.nextSibling !== null) {
+      const selectedText = selected.innerHTML;
+      const nextSelectedText = selected.nextSibling.innerHTML;
+      const selectedClass = selected.className;
+      const nextSelectedClass = selected.nextSibling.className;
+      const selectedColor = selected.style.backgroundColor;
+      const nextSelectedColor = selected.nextSibling.style.backgroundColor;
+      selected.innerHTML = nextSelectedText;
+      selected.nextSibling.innerHTML = selectedText;
+      selected.className = nextSelectedClass;
+      selected.nextSibling.className = selectedClass;
+      selected.style.backgroundColor = nextSelectedColor;
+      selected.nextSibling.style.backgroundColor = selectedColor;
+    }
+  });
+}
+moveDown();
+
+function deleteSelected() {
+  const btnDelete = document.querySelector('#remover-selecionado');
+  btnDelete.addEventListener('click', () => {
+    document.querySelector('.selected').remove();
+  });
+}
+deleteSelected();
