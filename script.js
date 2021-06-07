@@ -1,15 +1,22 @@
+const ol = document.getElementById('lista-tarefas');
+
+function testelogico(seaparado, i, elementoAlvo) {
+  const element = elementoAlvo;
+  if (seaparado[i] === 'completed') {
+    seaparado.splice(i, 1);
+    element.className = seaparado.join(' ');
+  }
+}
+
 function completeTasks(event) {
   const elementoAlvo = event.target;
   const classList = elementoAlvo.className;
   const completed = elementoAlvo.className;
-  const seaparado = completed.split(' ');
+  const separador = completed.split(' ');
 
-  if (seaparado.length > 2) {
-    for (let i = 0; i < seaparado.length; i += 1) {
-      if (seaparado[i] === 'completed') {
-        seaparado.splice(i, 1);
-        elementoAlvo.className = seaparado.join(' ');
-      }
+  if (separador.length > 2) {
+    for (let i = 0; i < separador.length; i += 1) {
+      testelogico(separador, i, elementoAlvo);
     }
   } else {
     elementoAlvo.className = classList.replace(' completed', '');
@@ -18,7 +25,6 @@ function completeTasks(event) {
 }
 
 function createTasks() {
-  const ol = document.getElementById('lista-tarefas');
   const li = document.createElement('li');
   const conteudo = document.getElementById('texto-tarefa');
   li.innerText = conteudo.value;
@@ -94,7 +100,6 @@ function salvarTarefas() {
 }
 
 function criarTarefas() {
-  const ol = document.getElementById('lista-tarefas');
   for (let i = 0; i < localStorage.length; i += 1) {
     const li = document.createElement('li');
     let tarefas = localStorage.getItem(`${i} tarefa`);
@@ -112,7 +117,7 @@ function criarTarefas() {
 function moverParaCima() {
   const elementSelect = document.getElementsByClassName('select')[0];
   if (elementSelect === undefined) {
-    alert('Selecione um elemento antes de continuar');
+    alert('Selecione um elemento antes de continua');
   } else {
     const elementAnterior = elementSelect.previousElementSibling;
     if (elementAnterior === null) {
@@ -162,15 +167,14 @@ function removerSelecionado() {
 const btnOk = document.getElementById('criar-tarefa');
 btnOk.addEventListener('click', createTasks);
 
-window.onload = function () {
-  const olTasks = document.getElementById('lista-tarefas');
+window.onload = function onload() {
+  const olTasks = ol;
   const btnApagar = document.getElementById('apaga-tudo');
   const btnApagComplet = document.getElementById('remover-finalizados');
   const btnSalvar = document.getElementById('salvar-tarefas');
   const btnMoverCima = document.getElementById('mover-cima');
   const btnMoverBaixo = document.getElementById('mover-baixo');
   const btnApagarSelct = document.getElementById('remover-selecionado');
-
   olTasks.addEventListener('click', changeBackGround);
   olTasks.addEventListener('dblclick', completeTasks);
   btnApagar.addEventListener('click', clearConteiner);
