@@ -1,8 +1,24 @@
+* {
+  margin: 0;
+}
+
+#cabecalho {
+  text-align: center;
+  border-bottom: 4px black solid;
+  height: 80px;
+  background-color: rgb(249 , 199 , 79);
+}
+
+#principal {
+  text-align: center;
+}
+
 #criar-tarefa {
-  width: 90px;
+  width: 80px;
   height: 40px;
   margin-left: 5px;
-  background-color: green;
+  background-color: rgb(144 , 190 , 109);
+  border-radius: 20px;
 }
 
 #funcionamento {
@@ -12,6 +28,8 @@
 .item-list {
   background-color: white;
   width: 500px;
+  text-align: center;
+  margin-left: 427px;
 }
 
 .selected {
@@ -23,13 +41,34 @@
 }
 
 #apaga-tudo {
+  display: inline-flex;
   height: 40px;
   width: 90px;
   margin-top: 20px;
+  background-color: rgb(249 , 65 , 68);
+  border-radius: 20px;
 }
 
 #remover-finalizados {
-  display: block;
+  display: inline-flex;
   height: 40px;
   width: 90px;
+  margin-left: 6px;
+  background-color: rgb(243 , 114 , 44);
+  border-radius: 20px;
+}
+
+#salvar-tarefas {
+  display: inline-flex;
+  height: 40px;
+  width: 90px;
+  margin-left: 6px;
+  margin-bottom: -25px;
+  background-color: rgb(67 , 170 , 139);
+  border-radius: 20px;
+}
+
+#lista-tarefas {
+  padding: 0;
+  text-align: center;
 }

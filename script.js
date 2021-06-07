@@ -23,7 +23,7 @@ input1.type = 'text';
 const button1 = document.createElement('button');
 section0.appendChild(button1);
 button1.id = 'criar-tarefa';
-button1.innerText = 'criar tarefa';
+button1.innerText = 'Adicionar';
 // fazer com que ao clicar no botao oq estiver no input va para lista;
 const myList = document.getElementById('lista-tarefas');
 const input = document.getElementById('texto-tarefa');
@@ -62,11 +62,11 @@ function stripeItem(event) {
 myList.addEventListener('dblclick', stripeItem);
 
 // exercise 10
-const main = document.getElementById('principal');
+const buttons = document.getElementById('buttons');
 const clearButton = document.createElement('button');
 clearButton.id = 'apaga-tudo';
-main.appendChild(clearButton);
-clearButton.innerText = 'limpar tudo';
+buttons.appendChild(clearButton);
+clearButton.innerText = 'Limpar Tudo';
 
 function clearList() {
   while (myList.firstChild) {
@@ -78,9 +78,9 @@ document.getElementById('apaga-tudo').addEventListener('click', clearList);
 
 // exercise 11
 const removeFinish = document.createElement('button');
-main.appendChild(removeFinish);
+buttons.appendChild(removeFinish);
 removeFinish.id = 'remover-finalizados';
-removeFinish.innerText = 'remover finalizados';
+removeFinish.innerText = 'Remover complemento';
 function deleteFinish() {
   const classRemove = document.getElementsByClassName('completed');
   while (classRemove.length !== 0) {
@@ -88,3 +88,18 @@ function deleteFinish() {
   }
 }
 removeFinish.addEventListener('click', deleteFinish);
+
+// exercise 12
+const buttonSave = document.createElement('button');
+buttonSave.id = 'salvar-tarefas';
+buttons.appendChild(buttonSave);
+buttonSave.innerText = 'Salvar Tarefas';
+
+function saveItems() {
+  const items2 = document.getElementsByClassName('completed');
+  for (let index = 0; index < items2.length; index += 1) {
+    localStorage.setItem(`item${index}`, items2[index].innerHTML);
+  }
+  alert('Suas tarefas foram salvas!');
+}
+buttonSave.addEventListener('click', saveItems);
