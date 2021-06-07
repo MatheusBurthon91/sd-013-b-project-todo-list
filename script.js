@@ -1,18 +1,52 @@
 let inputStorage;
+let toDoList = [];
 const createButton = document.getElementById('criar-tarefa');
+const list = document.querySelector('#lista-tarefas');
+list.innerHTML = localStorage.getItem('backUp');
+
+const clearButtonPosition = document.querySelector('article');
+const clearButton = document.createElement('button');
+clearButton.innerText = 'Limpar Lista';
+clearButton.id = 'apaga-tudo';
+clearButtonPosition.appendChild(clearButton);
+
+const completedClearButtunPosition = document.querySelector('article');
+const completedClearButton = document.createElement('button');
+completedClearButton.innerText = 'Remover Tarefas Concluídas';
+completedClearButton.id = 'remover-finalizados';
+completedClearButtunPosition.appendChild(completedClearButton);
+
+const saveButtonPosition = document.querySelector('article');
+const saveButton = document.createElement('button');
+saveButton.innerText = 'Salvar Lista';
+saveButton.id = 'salvar-tarefas';
+saveButtonPosition.appendChild(saveButton);
+
+const moveUpButtonPosition = document.querySelector('article');
+const moveUpButton = document.createElement('button');
+moveUpButton.innerText = '^';
+moveUpButton.id = 'mover-cima';
+moveUpButtonPosition.appendChild(moveUpButton);
+
+const moveDownButtonPosition = document.querySelector('article');
+const moveDownButton = document.createElement('button');
+moveDownButton.innerText = 'v';
+moveDownButton.id = 'mover-baixo';
+moveDownButtonPosition.appendChild(moveDownButton);
+
+const removeButtonPosition = document.querySelector('article');
+const removeButton = document.createElement('button');
+removeButton.innerText = 'Remover Item Selecionado';
+removeButton.id = 'remover-selecionado';
+removeButtonPosition.appendChild(removeButton);
 
 function inputPickUp() {
   inputStorage = document.getElementById('texto-tarefa').value;
-  const list = document.getElementById('lista-tarefas');
-  const listIten = document.createElement('li');
-  listIten.innerText = inputStorage;
-  list.appendChild(listIten);
+  const liIten = document.createElement('li');
+  liIten.innerText = inputStorage;
+  list.appendChild(liIten);
   document.getElementById('texto-tarefa').value = '';
 }
-
-createButton.addEventListener('click', inputPickUp);
-
-let toDoList = [];
 
 function classSelected(event) {
   const e = event;
@@ -31,7 +65,6 @@ function completedIten(event) {
   if (itenList.classList.contains('completed')) {
     itenList.classList.remove('completed');
   } else {
-    // document.querySelector('.completed').classList.remove('completed');
     itenList.classList.add('completed');
   }
 }
@@ -44,29 +77,11 @@ function storeLiNodes() {
   }
 }
 
-createButton.addEventListener('click', storeLiNodes);
-
-const clearButtonPosition = document.querySelector('article');
-const clearButton = document.createElement('button');
-clearButton.innerText = 'Limpar Lista';
-clearButton.id = 'apaga-tudo';
-clearButtonPosition.appendChild(clearButton);
-
 function listClear() {
-  const list = document.getElementById('lista-tarefas');
   list.innerHTML = '';
 }
 
-clearButton.addEventListener('click', listClear);
-
-const completedClearButtunPosition = document.querySelector('article');
-const completedClearButton = document.createElement('button');
-completedClearButton.innerText = 'Remover Tarefas Concluídas';
-completedClearButton.id = 'remover-finalizados';
-completedClearButtunPosition.appendChild(completedClearButton);
-
 function clearCompleted() {
-  const list = document.querySelector('#lista-tarefas');
   const completedList = document.querySelectorAll('.completed');
   for (let index = 0; index < completedList.length; index += 1) {
     const completed = completedList[index];
@@ -76,4 +91,46 @@ function clearCompleted() {
   }
 }
 
+function savePage() {
+  const fullList = list.innerHTML;
+  localStorage.setItem('backUp', fullList);
+}
+
+function moveUp() {
+  const listUp = document.querySelector('.selected');
+  if (listUp !== null && listUp.previousElementSibling) {
+    listUp.parentNode.insertBefore(listUp, listUp.previousElementSibling);
+  }
+}
+
+function moveDown() {
+  const listDown = document.querySelector('.selected');
+  if (listDown !== null && listDown.nextElementSibling) {
+    listDown.parentNode.insertBefore(listDown.nextElementSibling, listDown);
+  }
+}
+
+function remove() {
+  const selected = document.querySelector('.selected');
+  if (selected !== null) {
+    selected.remove();
+  }
+}
+
+createButton.addEventListener('click', inputPickUp);
+
+createButton.addEventListener('click', storeLiNodes);
+
+storeLiNodes();
+
+clearButton.addEventListener('click', listClear);
+
 completedClearButton.addEventListener('click', clearCompleted);
+
+saveButton.addEventListener('click', savePage);
+
+moveUpButton.addEventListener('click', moveUp);
+
+moveDownButton.addEventListener('click', moveDown);
+
+removeButton.addEventListener('click', remove);
