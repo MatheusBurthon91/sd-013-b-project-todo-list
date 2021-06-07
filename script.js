@@ -15,9 +15,6 @@ function setClass(element) {
     if (selectedItem !== null) {
       element.classList.add('selected');
       selectedItem.classList.remove('selected');
-      if (selectedItem === element) {
-        element.classList.add('selected');
-      }
     } else {
       element.classList.add('selected');
     }
