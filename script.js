@@ -12,7 +12,6 @@ function capturar(){
 
 function limpaCinza(){
     item = lista.children;
-    console.log(item[0]);
     for (index = 0; index < item.length; index += 1){
         item[index].style.background = 'rgb(255,255,255)';
     }
@@ -43,6 +42,19 @@ function apagaTudo(event){
 
 function apagaSelecionado(event){
     lista.removeChild(itemSelecionado);
+}
+
+function apagaFinalizado(event){
+    item = lista.children;
+    console.log(item);
+    for (index = 0; index < item.length; index += 1){
+        if(item[index].className == 'completed'){
+            lista.removeChild(item[index]);
+            index = index - 1;
+            
+        }    
+    }
+    
 }
 
 
