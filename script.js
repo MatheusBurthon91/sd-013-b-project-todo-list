@@ -15,13 +15,24 @@ createButton.addEventListener('click', inputPickUp);
 let toDoList = [];
 
 function classSelected(event) {
+  const e = event;
+  const itenList = document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)];
   if (document.querySelector('.selected') === null) {
-    const e = event;
-    document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)].classList.add('selected');
+    itenList.classList.add('selected');
   } else {
     document.querySelector('.selected').classList.remove('selected');
-    const e = event;
-    document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)].classList.add('selected');
+    itenList.classList.add('selected');
+  }
+}
+
+function completedIten(event) {
+  const e = event;
+  const itenList = document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)];
+  if (itenList.classList.contains('completed')) {
+    itenList.classList.remove('completed');
+  } else {
+    // document.querySelector('.completed').classList.remove('completed');
+    itenList.classList.add('completed');
   }
 }
 
@@ -29,8 +40,22 @@ function storeLiNodes() {
   toDoList = document.querySelectorAll('li');
   for (let index = 0; index < toDoList.length; index += 1) {
     toDoList[index].addEventListener('click', classSelected);
+    toDoList[index].addEventListener('dblclick', completedIten);
   }
   console.log(toDoList);
 }
 
 createButton.addEventListener('click', storeLiNodes);
+
+const buttonPosition = document.querySelector('article');
+const clearButton = document.createElement('button');
+clearButton.innerText = 'Limpar Lista';
+clearButton.id = 'apaga-tudo';
+buttonPosition.appendChild(clearButton);
+
+function listClear() {
+  const list = document.getElementById('lista-tarefas');
+  list.innerHTML = '';
+}
+
+clearButton.addEventListener('click', listClear);
