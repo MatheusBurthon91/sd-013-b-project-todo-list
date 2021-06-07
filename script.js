@@ -4,8 +4,6 @@ let button = document.getElementById("criar-tarefa");
 
 button.addEventListener("click", addTask);
 
-let itemCounter = 0;
-
 function addTask(){
     let newLi = document.createElement("li");
     let input = document.getElementById("texto-tarefa").value;
@@ -14,6 +12,8 @@ function addTask(){
     list.appendChild(newLi);
 
     newLi.addEventListener("click", changeColor);
+    newLi.addEventListener("dblclick", doneUndone);
+
     document.getElementById("texto-tarefa").value = "";
 } 
 
@@ -31,5 +31,22 @@ function changeColor(){
             }  
 
 } 
+
+function doneUndone(){
+    let cont = 0;
+    for(let index = 0; index < event.target.classList.length; index += 1){
+       if (event.target.classList[index] === "completed"){
+            cont += 1;
+       }  
+    }   
+
+    if(cont === 1){
+        event.target.classList.remove("completed");
+    }
+        else{
+            event.target.classList.add("completed");
+        }
+
+}
 
 

@@ -1,3 +1,7 @@
 body{
-background-color: salmon;
+    background-color: salmon;
+}
+
+.completed{
+    text-decoration: line-through;   
 }
