@@ -12,7 +12,7 @@ function limparMarcações() {
     if (elementListItem[index].style.backgroundColor === 'red') {
       // Não faça nada
     } else {
-      elementListItem[index].style.backgroundColor = 'white';
+      elementListItem[index].style.backgroundColor = '';
     }
   }
 }
@@ -37,7 +37,7 @@ function todoCompleted(event) {
   } else if (eventTarget.style.backgroundColor === 'red') {
     // Se ele já for vermelho: torna a ficar branco
     eventTarget.className = '';
-    eventTarget.style.backgroundColor = 'white';
+    eventTarget.style.backgroundColor = '';
   }
 }
 
@@ -58,11 +58,13 @@ function adicionaNaLista() {
   }
 }
 
-// function addEvent(nameElement, eventName, functionSelected) {
-//   const elementList = document.getElementsByClassName(`${nameElement}`);
-//   for (let index = 0; index < elementList.length; index += 1) {
-//     elementList[index].addEventListener(`${eventName}`, functionSelected);
-//   }
-// }
+function limpaTudo() {
+  const elementoPai = document.getElementById('lista-tarefas');
+  for (let index = elementListItem.length; index > 0; index -= 1) {
+    elementoPai.removeChild(elementoPai.lastChild);
+    contador = 0;
+  }
+}
 
 document.getElementById('criar-tarefa').addEventListener('click', adicionaNaLista);
+document.getElementById('apaga-tudo').addEventListener('click', limpaTudo);
