@@ -1,5 +1,11 @@
-function createTask () {
-  let task = document.createElement('li');
+const createTaskButton = document.getElementById('criar-tarefa');
+const deleteAllTasksButton = document.getElementById('apaga-tudo');
+const deleteCompletedTasksButton = document.getElementById('remover-finalizados');
+const taskToBeCreated = document.getElementById('texto-tarefa');
+const taskList = document.getElementById('lista-tarefas');
+
+function createTask() {
+  const task = document.createElement('li');
   task.innerText = taskToBeCreated.value;
   taskToBeCreated.value = '';
   taskList.appendChild(task);
@@ -7,12 +13,13 @@ function createTask () {
 
 function changeBackgroundColor(event) {
   const selected = document.getElementsByClassName('selected');
+  const targetedEvent = event.target;
   if (selected.length === 1) {
     selected[0].style.backgroundColor = '';
     selected[0].classList.remove('selected');
   }
-  event.target.style.backgroundColor = 'rgb(128, 128, 128)';
-  event.target.classList.add('selected');
+  targetedEvent.style.backgroundColor = 'rgb(128, 128, 128)';
+  targetedEvent.classList.add('selected');
 }
 
 function eventCompleted(event) {
@@ -27,32 +34,22 @@ function eventCompleted(event) {
   console.log(completedEvent);
 }
 
-function deleteAllTasks(event) {
+function deleteAllTasks() {
   while (taskList.hasChildNodes()) {
     taskList.removeChild(taskList.firstChild);
   }
 }
 
-function deleteCompletedTasks(event) {
+function deleteCompletedTasks() {
   const tasks = taskList.children;
-  console.log(tasks);
-  let removed;
   for (let index = 0; index < tasks.length; index += 1) {
     console.log(tasks[index]);
     if (tasks[index].classList.contains('completed')) {
-      removed = taskList.removeChild(taskList.children[index]);
-      console.log('You were removed:');
-      console.log(removed);
+      taskList.removeChild(taskList.children[index]);
       index -= 1;
     }
   }
 }
-
-const createTaskButton = document.getElementById('criar-tarefa');
-const deleteAllTasksButton = document.getElementById('apaga-tudo');
-const deleteCompletedTasksButton = document.getElementById('remover-finalizados');
-let taskToBeCreated = document.getElementById('texto-tarefa');
-let taskList = document.getElementById('lista-tarefas');
 
 // Eventos dos elementos
 createTaskButton.addEventListener('click', createTask);
