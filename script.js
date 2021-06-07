@@ -11,7 +11,6 @@ function createTask() {
   li.innerText = inputText.value;
   taskListOl.appendChild(li);
   inputText.value = '';
-
 }
 
 function selectTaskLi(event) {
@@ -35,10 +34,11 @@ window.onload = function () {
     const clickedTask = event.target;
     clickedTask.classList.toggle('completed');
   })
-  deleteAllTasks.addEventListener('click', function() {
+  deleteAllTasks.addEventListener('click', function () {
     // Source from Stackoverflow: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
     while (taskListOl.firstChild) {
       taskListOl.removeChild(taskListOl.lastChild);
     }
   })
+  
 };
