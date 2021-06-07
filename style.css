@@ -1,31 +1,31 @@
 .completed {
-  text-decoration: line-through solid rgb( 0, 0, 0);
+  text-decoration: line-through solid rgb( 0, 0, 0) ;
 }
 
 body {
-  background-color: rgb(94, 94, 221);
+  background-color: rgb(94, 94, 221) ;
 }
 
 #input-style {
-  display: inline-block;
+  display: inline-block ;
 }
 
 .button {
-  border-radius: 10px;
+  border-radius: 10px ;
 }
 
 header {
-  font-size: large;
+  font-size: large ;
 }
 
 #todo-list {
-  background-color: bisque;
+  background-color: bisque ;
   padding: 2% 0 15% 2.5% ;
-  margin-left: 25%;
-  margin-right: 25%;
-  border-radius: 10px;
+  margin-left: 25% ;
+  margin-right: 25% ;
+  border-radius: 10px ;
 }
 
 #button-bottom {
-  display: inline-block;
+  display: inline-block ;
 }
