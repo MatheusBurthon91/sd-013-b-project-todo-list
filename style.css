@@ -10,3 +10,12 @@
 div {
   padding: 5px;
 }
+
+#importante {
+  color: crimson;
+  font-style: italic;
+}
+
+.mouseMao {
+  cursor:pointer;
+}

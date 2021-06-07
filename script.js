@@ -73,7 +73,6 @@ function removerSelecionada() {
 }
 btnRemoverSelecionada.addEventListener('click', removerSelecionada);
 
-/* OK está salvando no localstorage */
 let btnSalvar = document.querySelector('#salvar-tarefas');
 function salvarTarefas() {
   let itemLista = document.querySelectorAll('li');
