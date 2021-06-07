@@ -1,21 +1,37 @@
+let contador = 0;
+const elementListItem = document.getElementsByTagName('li');
+
 function createElement(nameElement, idElementPai) {
   const element = document.createElement(`${nameElement}`);
   const elementPai = document.getElementById(`${idElementPai}`);
   elementPai.appendChild(element);
 }
 
-let contador = 0;
+function changeBackground(event) {
+  const eventTarget = event.target;
+  eventTarget.style.backgroundColor = 'rgb(128,128,128)';
+}
+
 function adicionaNaLista() {
   const inputValue = document.getElementById('texto-tarefa').value;
   if (inputValue === '') {
     alert('Escreva algum item');
   } else {
     createElement('li', 'lista-tarefas');
-    const elementListItem = document.getElementsByTagName('li');
+    // Adiciona o texto do input no 'li' do HTML
     elementListItem[contador].innerHTML = inputValue;
+    elementListItem[contador].addEventListener('click', changeBackground);
+    // Reseta o texto do input e adiciona 1 no contador
     document.getElementById('texto-tarefa').value = '';
     contador += 1;
   }
 }
+
+// function addEvent(nameElement, eventName, functionSelected) {
+//   const elementList = document.getElementsByClassName(`${nameElement}`);
+//   for (let index = 0; index < elementList.length; index += 1) {
+//     elementList[index].addEventListener(`${eventName}`, functionSelected);
+//   }
+// }
 
 document.getElementById('criar-tarefa').addEventListener('click', adicionaNaLista);
