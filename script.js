@@ -42,16 +42,15 @@ function storeLiNodes() {
     toDoList[index].addEventListener('click', classSelected);
     toDoList[index].addEventListener('dblclick', completedIten);
   }
-  console.log(toDoList);
 }
 
 createButton.addEventListener('click', storeLiNodes);
 
-const buttonPosition = document.querySelector('article');
+const clearButtonPosition = document.querySelector('article');
 const clearButton = document.createElement('button');
 clearButton.innerText = 'Limpar Lista';
 clearButton.id = 'apaga-tudo';
-buttonPosition.appendChild(clearButton);
+clearButtonPosition.appendChild(clearButton);
 
 function listClear() {
   const list = document.getElementById('lista-tarefas');
@@ -59,3 +58,22 @@ function listClear() {
 }
 
 clearButton.addEventListener('click', listClear);
+
+const completedClearButtunPosition = document.querySelector('article');
+const completedClearButton = document.createElement('button');
+completedClearButton.innerText = 'Remover Tarefas Concluídas';
+completedClearButton.id = 'remover-finalizados';
+completedClearButtunPosition.appendChild(completedClearButton);
+
+function clearCompleted() {
+  const list = document.querySelector('#lista-tarefas');
+  const completedList = document.querySelectorAll('.completed');
+  for (let index = 0; index < completedList.length; index += 1) {
+    const completed = completedList[index];
+    if (completed.classList.contains('completed')) {
+      list.removeChild(completed);
+    }
+  }
+}
+
+completedClearButton.addEventListener('click', clearCompleted);
