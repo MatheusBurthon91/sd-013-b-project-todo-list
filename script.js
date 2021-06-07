@@ -12,8 +12,16 @@ function tarefas() {
     
     }
 
-    function addCinza (event) {
-        event.target.classList.add("cinza");
-        }
-        
+function addCinza (event) {
+    let listacomp = document.querySelectorAll("li");
+    for (let index = 0; index < listacomp.length; index+= 1) {
+        listacomp[index].classList.remove("cinza");  
+    } 
+    event.target.classList.add("cinza");     
+}
+
+/*function RemoveCinza (event) {
+    let la = event.target;
+    la.classList.add("cinza");  
+}*/
 
