@@ -54,14 +54,14 @@ taskBtn.addEventListener('click', () => {
 
 // Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
-  const selectedItemClass = document.querySelector('.selected-item');
-  const liTarget = event.target.classList.add('selected-item');
+  const selectItem = '.selected-item';
+  const selectedItemClass = document.querySelector(selectItem);
 
   if (selectedItemClass === null) {
-    liTarget;
+    event.target.classList.add(selectItem);
   } else {
     selectedItemClass.classList.remove('selected-item');
-    liTarget;
+    event.target.classList.add(selectItem);
   }
 });
 
@@ -91,11 +91,10 @@ removeCompletedBtn.addEventListener('click', () => {
   }
 });
 
+// Cria localstorage com os itens da lista
 saveTaksBtn.addEventListener('click', () => {
   const itemSelected = document.querySelectorAll('#lista-tarefas li');
   const arrayItens = [];
-
-  console.log(itemSelected[0]);
 
   for (let index = 0; index < itemSelected.length; index += 1) {
     arrayItens.push({
@@ -103,7 +102,22 @@ saveTaksBtn.addEventListener('click', () => {
       innerText: itemSelected[index].innerText,
     });
   }
-
-  console.log(JSON.stringify(arrayItens));
   localStorage.setItem('tasks', JSON.stringify(arrayItens));
 });
+
+// Recebe o localStorage de monta a lista
+function loadStorage() {
+  const arrayLS = JSON.parse(localStorage.getItem('tasks'));
+  for (let index = 0; index < arrayLS.length; index += 1) {
+    const liItem = document.createElement('li');
+
+    liItem.className = (arrayLS[index]['classes']);
+    liItem.innerText = (arrayLS[index]['innerText']);
+    olTodoList.appendChild(liItem);
+  }
+}
+
+
+
+// ------------------- CHAMADA DAS FUNÇÕES -------------------
+loadStorage();
