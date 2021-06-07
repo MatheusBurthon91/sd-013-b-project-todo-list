@@ -1,13 +1,20 @@
 let contador = 0;
 const elementListItem = document.getElementsByTagName('li');
-
 function createElement(nameElement, idElementPai) {
+  // Cria um elemento dentro de outro elemento existente
   const element = document.createElement(`${nameElement}`);
   const elementPai = document.getElementById(`${idElementPai}`);
   elementPai.appendChild(element);
 }
 
+function limparMarcações() {
+  for (let index = 0; index < elementListItem.length; index += 1) {
+    elementListItem[index].style.backgroundColor = 'white';
+  }
+}
+
 function changeBackground(event) {
+  limparMarcações();
   const eventTarget = event.target;
   eventTarget.style.backgroundColor = 'rgb(128,128,128)';
 }
