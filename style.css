@@ -36,3 +36,8 @@ button {
   padding: 0;
   width: 40px;
 }
+
+li {
+  margin-left: 10px;
+  list-style: none;
+}
