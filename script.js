@@ -4,12 +4,17 @@ window.onload = function () {
   const btnApagar = document.getElementById('apaga-tudo');
   const btnApagComplet = document.getElementById('remover-finalizados');
   const btnSalvar = document.getElementById('salvar-tarefas');
+  const btnMoverCima = document.getElementById('mover-cima');
+  const btnMoverBaixo = document.getElementById('mover-baixo');
+
   btnOk.addEventListener('click', createTasks);
   olTasks.addEventListener('click', changeBackGround);
   olTasks.addEventListener('dblclick', completeTasks);
   btnApagar.addEventListener('click', clearConteiner);
   btnApagComplet.addEventListener('click', clearCompleted);
   btnSalvar.addEventListener('click', salvarTarefas);
+  btnMoverCima.addEventListener('click', moverParaCima);
+  btnMoverBaixo.addEventListener('click', moverParaBaixo);
 
   criarTarefas();
 
@@ -118,5 +123,47 @@ function criarTarefas() {
     li.className = classes;
     ol.appendChild(li);
     console.log(li);
+  }
+}
+
+function moverParaCima() {
+  const elementSelect = document.getElementsByClassName('select')[0];
+  if (elementSelect === undefined) {
+    alert('Selecione um elemento antes de continuar');
+  } else {
+    const elementAnterior = elementSelect.previousElementSibling;
+    if (elementAnterior === null) {
+      alert('Não Há texto antes');
+    } else {
+      const classSelect = elementSelect.className;
+      const classAnterior = elementAnterior.className;
+      const textSelect = elementSelect.innerText;
+      const textAnterior = elementAnterior.innerText;
+      elementAnterior.className = classSelect;
+      elementAnterior.innerText = textSelect;
+      elementSelect.className = classAnterior;
+      elementSelect.innerText = textAnterior;
+    }
+  }
+}
+
+function moverParaBaixo() {
+  const elementSelect = document.getElementsByClassName('select')[0];
+  if (elementSelect === undefined) {
+    alert('Selecione um elemento antes de continuar');
+  } else {
+    const proximoElement = elementSelect.nextSibling;
+    if (proximoElement === null) {
+      alert('Não Há texto depois');
+    } else {
+      const textSelect = elementSelect.innerText;
+      const classSelect = elementSelect.className;
+      const textProximo = proximoElement.innerText;
+      const classProximo = proximoElement.className;
+      elementSelect.className = classProximo;
+      elementSelect.innerText = textProximo;
+      proximoElement.innerText = textSelect;
+      proximoElement.className = classSelect;
+    }
   }
 }
