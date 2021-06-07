@@ -44,14 +44,16 @@ olTodoList.id = 'lista-tarefas';
 body.appendChild(olTodoList);
 
 const moveUpBtn = document.createElement('button');
-moveUpBtn.id="mover-cima";
-moveUpBtn.innerText=`/\\`;
+moveUpBtn.id = 'mover-cima';
+moveUpBtn.innerText = '/\\';
 body.appendChild(moveUpBtn);
 
 const moveDownBtn = document.createElement('button');
-moveDownBtn.id="mover-baixo";
-moveDownBtn.innerText=`\\/`;
+moveDownBtn.id = 'mover-baixo';
+moveDownBtn.innerText = '\\/';
 body.appendChild(moveDownBtn);
+
+const itemSelected = '.selected-item';
 
 // ------------------- FUNÇÕES -------------------
 // Cria tarefa ao clicar no botao
@@ -70,7 +72,7 @@ taskBtn.addEventListener('click', () => {
 // Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
   const selectItem = 'selected-item';
-  const selectedItemClass = document.querySelector('.selected-item');
+  const selectedItemClass = document.querySelector(itemSelected);
 
   if (selectedItemClass === null) {
     event.target.classList.add(selectItem);
@@ -134,27 +136,27 @@ function loadStorage() {
 }
 
 // Mover item da lista para cima
-moveUpBtn.addEventListener('click', () => {
-  const selectItem = document.querySelector('.selected-item');
+moveUpBtn.addEventListener('click', function() {
+  const selectItem = document.querySelector(itemSelected);
   if (selectItem !== null) {
-    const selectItemPrev = document.querySelector('.selected-item').previousSibling;
-  
+    const selectItemPrev = document.querySelector(itemSelected).previousSibling;
+
     if (selectItemPrev !== null) {
       /*  element.parentNode.children → Returns the brothers of element, including that element.
       Array.from → Casts the constructor of children to an Array object
       indexOf → You can apply indexOf because you now have an Array object.  */
       const elementsBrother = selectItem.parentNode.children; 
       const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
-    
+
       const classNameSelected = selectItem.className;
       const innerTextSelected = selectItem.innerText;
-    
+
       const classNamePrevSelected = selectItemPrev.className;
       const innerTextPrevSelected = selectItemPrev.innerText;
-    
+
       elementsBrother[selectItemPos-1].innerText = innerTextSelected;
       elementsBrother[selectItemPos-1].className = classNameSelected;
-    
+
       elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
       elementsBrother[selectItemPos].className = classNamePrevSelected;
     }
@@ -162,28 +164,28 @@ moveUpBtn.addEventListener('click', () => {
 });
 
 // Mover item da lista para baixo
-moveDownBtn.addEventListener('click', () => {
-  const selectItem = document.querySelector('.selected-item');
+moveDownBtn.addEventListener('click', function() {
+  const selectItem = document.querySelector(itemSelected);
 
   if (selectItem !== null) {
-    const selectItemNext = document.querySelector('.selected-item').nextSibling;
-  
+    const selectItemNext = document.querySelector(itemSelected).nextSibling;
+
     if (selectItemNext !== null) {
       /*  element.parentNode.children → Returns the brothers of element, including that element.
       Array.from → Casts the constructor of children to an Array object
       indexOf → You can apply indexOf because you now have an Array object.  */
       const elementsBrother = selectItem.parentNode.children; 
       const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
-    
+
       const classNameSelected = selectItem.className;
       const innerTextSelected = selectItem.innerText;
-    
+
       const classNamePrevSelected = selectItemNext.className;
       const innerTextPrevSelected = selectItemNext.innerText;
-    
-      elementsBrother[selectItemPos+1].innerText = innerTextSelected;
-      elementsBrother[selectItemPos+1].className = classNameSelected;
-    
+
+      elementsBrother[selectItemPos + 1].innerText = innerTextSelected;
+      elementsBrother[selectItemPos + 1].className = classNameSelected;
+
       elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
       elementsBrother[selectItemPos].className = classNamePrevSelected;
     }
@@ -191,7 +193,7 @@ moveDownBtn.addEventListener('click', () => {
 });
 
 removeSelectedBtn.addEventListener('click', () => {
-  const selectedItem = document.querySelector('.selected-item');
+  const selectedItem = document.querySelector(itemSelected);
   selectedItem.remove();
 });
 
