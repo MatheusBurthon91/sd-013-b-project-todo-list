@@ -40,4 +40,9 @@ function deleteALL() {
   }
 }
 
+function deleteFinish() {
+  document.querySelectorAll('.completed').forEach((element) => element.remove());
+}
+
+document.getElementById('remover-finalizados').addEventListener('click', deleteFinish);
 document.getElementById('apaga-tudo').addEventListener('click', deleteALL);
