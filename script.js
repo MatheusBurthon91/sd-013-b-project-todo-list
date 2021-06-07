@@ -24,7 +24,6 @@ const button1 = document.createElement('button');
 section0.appendChild(button1);
 button1.id = 'criar-tarefa';
 button1.innerText = 'criar tarefa';
-button1.addEventListener('click', addTask);
 // fazer com que ao clicar no botao oq estiver no input va para lista;
 const myList = document.getElementById('lista-tarefas');
 const input = document.getElementById('texto-tarefa');
@@ -36,6 +35,7 @@ function addTask() {
   myList.appendChild(list);
   input.value = '';
 }
+button1.addEventListener('click', addTask);
 
 // exercise 7 and 8
 function changeColor(event) {
@@ -50,9 +50,7 @@ function changeColor(event) {
 }
 myList.addEventListener('click', changeColor);
 
-// exercise 8 
-addEventListener('dblclick', stripeItem);
-
+// exercise 8
 function stripeItem(event) {
   const element = event.target;
   if (element.classList.contains('completed')) {
@@ -61,6 +59,7 @@ function stripeItem(event) {
     element.classList.add('completed');
   }
 }
+myList.addEventListener('dblclick', stripeItem);
 
 // exercise 10
 const main = document.getElementById('principal');
@@ -68,27 +67,24 @@ const clearButton = document.createElement('button');
 clearButton.id = 'apaga-tudo';
 main.appendChild(clearButton);
 clearButton.innerText = 'limpar tudo';
-const todoList = document.getElementById('lista-tarefas');
 
-document.getElementById('apaga-tudo').addEventListener('click', clearList);
 function clearList() {
-  while (todoList.firstChild) {
-    todoList.removeChild(todoList.firstChild);
+  while (myList.firstChild) {
+    myList.removeChild(myList.firstChild);
     localStorage.clear();
   }
 }
+document.getElementById('apaga-tudo').addEventListener('click', clearList);
 
 // exercise 11
 const removeFinish = document.createElement('button');
 main.appendChild(removeFinish);
 removeFinish.id = 'remover-finalizados';
 removeFinish.innerText = 'remover finalizados';
-
-removeFinish.addEventListener('click', deleteFinish);
-
 function deleteFinish() {
   const classRemove = document.getElementsByClassName('completed');
   while (classRemove.length !== 0) {
     classRemove[0].remove();
   }
 }
+removeFinish.addEventListener('click', deleteFinish);
