@@ -42,12 +42,23 @@ function changeColor() {
 }
 list.addEventListener('click', changeColor);
 
-// [incompleto] 9
+// 9
 function addCompletedClass(event) {
   const clickedLi = event.target;
-  clickedLi.classList.add('completed');
+  clickedLi.classList.toggle('completed');
+  const li = document.getElementsByTagName('li');
 }
 list.addEventListener('dblclick', addCompletedClass);
+
+// function removeCompletedClass() {
+//   const li = document.getElementsByTagName('li');
+//   for (let index = 0; index < li.length; index += 1) {
+//   if (li[index].classList.contains('completed')) {
+//     li[index].classList.remove('completed');
+//     }
+//   }
+// }
+// list.addEventListener('dblclick', removeCompletedClass);
 
 // 10
 const clearButton = document.getElementById('apaga-tudo');
