@@ -9,5 +9,9 @@ let header = document.createElement('header');
 header.appendChild(h1);
 header.appendChild(paragraph);
 
+let input = document.createElement('input')
+input.id = 'texto-tarefa'
+
 let body = document.getElementsByTagName('body')[0];
 body.appendChild(header);
+body.appendChild(input)
