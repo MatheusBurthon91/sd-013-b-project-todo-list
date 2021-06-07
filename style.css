@@ -7,11 +7,11 @@
 }
 
 .cinza {
-  background-color: rgb(128 , 128 , 128);
+  background-color: gray;
 }
 
 .completed {
-  text-decoration: line-through rgb(0 , 0 , 0);
+  text-decoration: line-through black;
 }
 
 #apaga-tudo {

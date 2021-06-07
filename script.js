@@ -107,3 +107,36 @@ function removeSelectedTasks() {
   });
 }
 removeSelectedTasks();
+
+// Botão para mover item da lista para cima
+const moveToUp = document.getElementById('mover-cima');
+
+function moveTaskToUp() {
+  moveToUp.addEventListener('click', () => {
+    for (let index = 1; index < li.length; index += 1) {
+      if (li[index].className.includes('cinza')) {
+        const positionOne = document.querySelectorAll('li')[index];
+        const positionTwo = document.querySelectorAll('li')[index - 1];
+        positionOne.insertAdjacentElement('afterend', positionTwo);
+      }
+    }
+  });
+}
+moveTaskToUp();
+
+// Botão para mover item da lista para baixo
+const moveToDown = document.getElementById('mover-baixo');
+
+function moveTaskToDown() {
+  moveToDown.addEventListener('click', () => {
+    for (let index = 0; index < li.length - 1; index += 1) {
+      if (li[index].className.includes('cinza')) {
+        const positionOne = document.querySelectorAll('li')[index];
+        const positionTwo = document.querySelectorAll('li')[index + 1];
+        positionTwo.insertAdjacentElement('afterend', positionOne);
+        break;
+      }
+    }
+  });
+}
+moveTaskToDown();
