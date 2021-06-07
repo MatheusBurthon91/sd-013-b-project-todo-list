@@ -1,8 +1,7 @@
 const createTaskBtn = document.getElementById('criar-tarefa');
 const taskListOl = document.getElementById('lista-tarefas');
 
-function createTask () {
-
+function createTask() {
   const inputText = document.getElementById('texto-tarefa');
   const li = document.createElement('li');
   li.className = 'tarefas';
@@ -25,8 +24,6 @@ function selectTaskLi(event) {
     
     if (currentTask === clickedTask) {
       clickedTask.classList.add('selected');
-      // se comecar com null eu adiciono o select
-      // se ele ja conter o select eu removo ele
     } else {
       currentTask.classList.remove('selected');
     }
@@ -34,7 +31,9 @@ function selectTaskLi(event) {
 }
 
 window.onload = function () {
-
   createTaskBtn.addEventListener('click', createTask);
- 
+  taskListOl.addEventListener('dblclick', function(event) {
+    const clickedTask = event.target;
+    clickedTask.classList.toggle('completed');
+  })
 };
