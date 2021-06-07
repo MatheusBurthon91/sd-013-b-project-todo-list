@@ -12,27 +12,12 @@ function addTask() {
 }
 button.addEventListener('click', addTask);
 
-// 7
-function changeColor(event) {
-  const grayColor = 'rgb(128,128,128)';
-  const clickedLi = event.target;
-  clickedLi.style.backgroundColor = grayColor;
-}
-list.addEventListener('click', changeColor);
-
-// function changeColorPixel(event) {
-//   const colorOfSelectedClass = document.getElementsByClassName('selected')[0].style.backgroundColor;
-//   const clickedPixel = event.target;
-//   clickedPixel.style.backgroundColor = colorOfSelectedClass;
-// }
-// board.addEventListener('click', changeColorPixel);
-
-// 8
+// 7 e 8
 function removeSelectedClass() {
   const li = document.getElementsByTagName('li');
   for (let index = 0; index < li.length; index += 1) {
-    if (li[index].classList.value === 'selected') {
-      li[index].className = '';
+    if (li[index].classList.contains('selected')) {
+      li[index].classList.remove('selected');
     }
   }
 }
@@ -44,7 +29,20 @@ function changeSelectedClass(event) {
 }
 list.addEventListener('click', changeSelectedClass);
 
-// 9
+function changeColor() {
+  const grayColor = 'rgb(128,128,128)';
+  const li = document.getElementsByTagName('li');
+  for (let index = 0; index < li.length; index += 1) {
+    if (li[index].classList.contains('selected')) {
+      li[index].style.backgroundColor = grayColor;
+    } else {
+      li[index].style.backgroundColor = 'white';
+    }
+  }
+}
+list.addEventListener('click', changeColor);
+
+// [incompleto] 9
 function addCompletedClass(event) {
   const clickedLi = event.target;
   clickedLi.classList.add('completed');
