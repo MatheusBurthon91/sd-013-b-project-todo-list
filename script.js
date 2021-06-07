@@ -1,6 +1,6 @@
 const itemList = document.querySelector('#lista-tarefas');
 
-function addItem() { 
+function addItem() {
   const parentElement = document.getElementById('lista-tarefas');
   const input = document.getElementById('texto-tarefa').value;
   const newItem = document.createElement('li');
@@ -8,8 +8,8 @@ function addItem() {
   newItem.className = 'item';
   // thread do stackOverFlow me ajudou a parar a função addItem caso a condição fosse atendida: https://stackoverflow.com/questions/3536055/stopping-a-javascript-function-when-a-certain-condition-is-met;
   if (input === '') {
-			alert('Impossível adicionar item vazio à lista');
-			return;
+    alert('Impossível adicionar item vazio à lista');
+    return;
   }
   parentElement.appendChild(newItem);
   document.querySelector('input').value = '';
