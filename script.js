@@ -17,13 +17,14 @@ function changeBackgroundColor(event) {
 
 function eventCompleted(event) {
   const completedEvent = event.target;
-  if (completedEvent.style.textDecoration !== 'line-through') {
+  if (!completedEvent.classList.contains('completed')) {
     completedEvent.style.textDecoration = 'line-through';
     completedEvent.classList.add('completed');
   } else {
     completedEvent.style.textDecoration = '';
     completedEvent.classList.remove('completed');
   }
+  console.log(completedEvent);
 }
 
 function deleteAllTasks(event) {
@@ -32,13 +33,30 @@ function deleteAllTasks(event) {
   }
 }
 
+function deleteCompletedTasks(event) {
+  const tasks = taskList.children;
+  console.log(tasks);
+  let removed;
+  for (let index = 0; index < tasks.length; index += 1) {
+    console.log(tasks[index]);
+    if (tasks[index].classList.contains('completed')) {
+      removed = taskList.removeChild(taskList.children[index]);
+      console.log('You were removed:');
+      console.log(removed);
+      index -= 1;
+    }
+  }
+}
+
 const createTaskButton = document.getElementById('criar-tarefa');
 const deleteAllTasksButton = document.getElementById('apaga-tudo');
+const deleteCompletedTasksButton = document.getElementById('remover-finalizados');
 let taskToBeCreated = document.getElementById('texto-tarefa');
 let taskList = document.getElementById('lista-tarefas');
 
 // Eventos dos elementos
 createTaskButton.addEventListener('click', createTask);
 deleteAllTasksButton.addEventListener('click', deleteAllTasks);
+deleteCompletedTasksButton.addEventListener('click', deleteCompletedTasks);
 taskList.addEventListener('click', changeBackgroundColor);
 taskList.addEventListener('dblclick', eventCompleted);
