@@ -1,15 +1,3 @@
-window.onload = function() {
-  heroTitle();
-  explain();
-  input();
-  activityList();
-  createButton();
-  highlightItem();
-  completeItem();
-  clearButton();
-  clearCompletedButton();
-};
-
 function heroTitle() {
   const title = document.createElement('h1');
   title.innerText = 'Minha Lista de Tarefas';
@@ -35,6 +23,17 @@ function activityList() {
   document.querySelector('main').appendChild(list);
 }
 
+function addToList() {
+  document.querySelector('#criar-tarefa').addEventListener ('click', () => {
+    const inputText = document.querySelector('#texto-tarefa').value;
+    const newItem = document.createElement('li');
+    newItem.className = 'item';
+    newItem.innerText = inputText;
+    document.querySelector('ol').appendChild(newItem);
+    document.querySelector('#texto-tarefa').value = null;
+  });
+}
+
 function createButton() {
   const button = document.createElement('button');
   button.id = 'criar-tarefa';
@@ -43,32 +42,16 @@ function createButton() {
   addToList();
 }
 
-function addToList() {
-  document.querySelector('#criar-tarefa').addEventListener ('click', () => {
-  const inputText = document.querySelector('#texto-tarefa').value;
-  const newItem = document.createElement('li');
-  newItem.className = 'item';
-  newItem.innerText = inputText;
-  document.querySelector('ol').appendChild(newItem);
-  document.querySelector('#texto-tarefa').value = null;
-  });
-}
-
-function highlightItem() {
-  removeColor();
-  const list = document.querySelector('ol');
-  list.addEventListener('click', addColor, false);
-}
-
-// As funções a seguir, removeClass e addClass, foram feitas baseadas no código apresentado no vídeo "Handling Events for Multiple Elements" do canal KIRUPA (https://www.youtube.com/watch?v=Xwq1Hj1DyDM&t=303s)
+// As funções a seguir, removeColor e addColor, foram feitas baseadas no código apresentado no vídeo "Handling Events for Multiple Elements" do canal KIRUPA
+// (https://www.youtube.com/watch?v=Xwq1Hj1DyDM&t=303s)
 
 function removeColor() {
   const selected = document.getElementsByClassName('selected');
   const list = document.querySelector('ol');
   list.addEventListener('click', () => {
     if (selected.length !== 0) {
-    selected[0].removeAttribute('style');
-    selected[0].classList.remove('selected');
+      selected[0].removeAttribute('style');
+      selected[0].classList.remove('selected');
     }
   });
 }
@@ -81,9 +64,10 @@ function addColor(event) {
   }
 }
 
-function completeItem() {
+function highlightItem() {
+  removeColor();
   const list = document.querySelector('ol');
-  list.addEventListener('dblclick', addRemoveLine, false);
+  list.addEventListener('click', addColor, false);
 }
 
 function addRemoveLine(event) {
@@ -92,9 +76,24 @@ function addRemoveLine(event) {
     if (clickedItem.classList.contains('completed')) {
       clickedItem.classList.remove('completed');
     } else {
-    clickedItem.classList.add('completed');
+      clickedItem.classList.add('completed');
     }
   }
+}
+
+function completeItem() {
+  const list = document.querySelector('ol');
+  list.addEventListener('dblclick', addRemoveLine, false);
+}
+
+function clearList() {
+  const button = document.querySelector('#apaga-tudo');
+  const list = document.querySelector('ol');
+  button.addEventListener('click', () => {
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+  });
 }
 
 function clearButton() {
@@ -105,13 +104,16 @@ function clearButton() {
   clearList();
 }
 
-function clearList() {
-  const button = document.querySelector('#apaga-tudo');
-  const list = document.querySelector('ol');
+// Esta função foi criada com base em uma resposta pelo usuário Krasimir no Stack Overflow
+// (https://stackoverflow.com/questions/18795028/javascript-remove-li-without-removing-ul)
+
+function clearCompletedList() {
+  const button = document.querySelector('#remover-finalizados');
   button.addEventListener('click', () => {
-    while (list.firstChild) {
-      list.removeChild(list.firstChild);
-   }
+    const listItems = document.querySelectorAll('.completed');
+    for (let index = 0; li = listItems[index]; index += 1) {
+      li.parentNode.removeChild(li);
+    }
   });
 }
 
@@ -123,14 +125,14 @@ function clearCompletedButton() {
   clearCompletedList();
 }
 
-
-function clearCompletedList() {
-  const button = document.querySelector('#remover-finalizados');
-  button.addEventListener('click', () => {
-    const list = document.querySelector('#lista-tarefas');
-    const listItems = document.querySelectorAll('.completed');
-    for (let key in listItems) {
-    list.removeChild(listItems[key]);
-   }
-  });
-}
+window.onload = function () {
+  heroTitle();
+  explain();
+  input();
+  activityList();
+  createButton();
+  highlightItem();
+  completeItem();
+  clearButton();
+  clearCompletedButton();
+};
