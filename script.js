@@ -37,10 +37,17 @@ function emptyTasks () {
   olSelect.innerText = '';
 }
 
+function removingCompletedTasks () {
+  const classSelects = document.querySelectorAll('.completed');
+  for (const classSelect of classSelects) {
+    classSelect.remove();
+  }
+}
 
 const selectorA = document.querySelector('#lista-tarefas');
 const buttonSelect = document.querySelector('#apaga-tudo');
-
+const buttonSelect2 = document.querySelector('#remover-finalizados');
 selectorA.addEventListener('click', addClickColor);
 selectorA.addEventListener('dblclick', taskCompleted);
 buttonSelect.addEventListener('click', emptyTasks);
+buttonSelect2.addEventListener('click', removingCompletedTasks);
