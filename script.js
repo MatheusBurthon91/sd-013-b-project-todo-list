@@ -51,11 +51,11 @@ function changeColor(event) {
 myList.addEventListener('click', changeColor);
 
 // exercise 8 
-addEventListener('dblclick', stripeItem)
+addEventListener('dblclick', stripeItem);
 
 function stripeItem(event) {
   const element = event.target;
-  if(element.classList.contains('completed')) {
+  if (element.classList.contains('completed')) {
     element.classList.remove('completed');
   } else {
     element.classList.add('completed');
@@ -65,6 +65,17 @@ function stripeItem(event) {
 // exercise 10
 const main = document.getElementById('principal');
 const clearButton = document.createElement('button');
-clearButton.id = 'apaga-tudo'
+clearButton.id = 'apaga-tudo';
 main.appendChild(clearButton);
 clearButton.innerText = 'limpar tudo';
+const todoList = document.getElementById('lista-tarefas');
+
+document.getElementById('apaga-tudo').addEventListener('click', clearList);
+function clearList() {
+  while (todoList.firstChild) {
+    todoList.removeChild(todoList.firstChild);
+    localStorage.clear();
+  }
+}
+
+// exercise 11
