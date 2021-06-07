@@ -32,6 +32,7 @@ function addTask() {
     button.addEventListener('click', function(){
         let li = document.createElement('li');
         li.addEventListener('click', changeBackground);
+        li.addEventListener('dblclick', lineTask)
         li.innerText = input.value;
         list.appendChild(li);
         input.value = '';
@@ -44,7 +45,6 @@ addTask()
 function changeBackground(event) {
     let listx = document.getElementsByTagName('li');
     for (let index = 0; index < listx.length; index++) {
-        console.log(listx.length)
         if (listx[index].style.backgroundColor === 'rgb(128, 128, 128)') {
             listx[index].style.backgroundColor = null;
         }
@@ -52,7 +52,8 @@ function changeBackground(event) {
 }
 }
 
+//Clicar duas vezes = item riscado
 
-// function changeBackground(event) {
-//             event.target.style.backgroundColor = 'rgb(128, 128, 128)';
-//     }
+function lineTask(event) {
+        event.target.classList.toggle('completed');
+}

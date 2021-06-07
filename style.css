@@ -1,0 +1,11 @@
+.completed {
+    text-decoration: line-through solid black;
+}
+
+li {
+cursor: default;
+}
+
+li::selection{
+    background-color:transparent;
+}
