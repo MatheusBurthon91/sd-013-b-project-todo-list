@@ -30,8 +30,8 @@ body.appendChild(button);
 
 function addTask() {
     button.addEventListener('click', function(){
-        const li = document.createElement('li');
-        li.addEventListener('click', changeBackground)
+        let li = document.createElement('li');
+        li.addEventListener('click', changeBackground);
         li.innerText = input.value;
         list.appendChild(li);
         input.value = '';
@@ -42,5 +42,17 @@ addTask()
 //Trocar o fundo do item selecionado da lista
 
 function changeBackground(event) {
-    event.target.style.backgroundColor = 'rgb(128, 128, 128)'
+    let listx = document.getElementsByTagName('li');
+    for (let index = 0; index < listx.length; index++) {
+        console.log(listx.length)
+        if (listx[index].style.backgroundColor === 'rgb(128, 128, 128)') {
+            listx[index].style.backgroundColor = null;
+        }
+    event.target.style.backgroundColor = 'rgb(128, 128, 128)';
 }
+}
+
+
+// function changeBackground(event) {
+//             event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+//     }
