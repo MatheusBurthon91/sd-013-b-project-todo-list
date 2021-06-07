@@ -5,13 +5,13 @@ body {
 * {
   text-align: center;
   border: 1px solid black;
-  margin: 0;
+  margin: auto;
 }
 
 #criar-tarefa {
   font-size: large;
   width: 85px;
-  text-align: right;
+  text-align: center;
 }
 
 .selected {
@@ -21,7 +21,7 @@ body {
 #texto-tarefa {
   font-size: large;
   width: 300px;
-  height: 22px;
+  height: 40px;
 }
 
 li {
@@ -40,7 +40,12 @@ header {
   text-decoration: line-through solid black;
 }
 
-#apagar-tudo {
+#apaga-tudo {
   font-size: large;
   width: 85px;
+}
+
+#remover-finalizados {
+  font-size: large;
+  width: 100px;
 }

@@ -33,3 +33,11 @@ function lineThrough(event) {
   }
 }
 list.addEventListener('dblclick', lineThrough);
+
+function deleteALL() {
+  while (list.firstChild) {
+    list.removeChild(list.lastChild);
+  }
+}
+
+document.getElementById('apaga-tudo').addEventListener('click', deleteALL);
