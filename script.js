@@ -29,3 +29,18 @@ function concluido(event) {
   console.log(event.target);
   event.target.classList.toggle('completed');
 }
+
+//  desafio 10
+const botaoApagar = document.createElement('button');
+botaoApagar.id = 'apaga-tudo';
+botaoApagar.innerText = 'Apaga Tudo!';
+const botoesDeApagar = document.getElementById('botoes-de-apagar');
+botoesDeApagar.appendChild(botaoApagar);
+const todasLi = document.getElementsByTagName('li');
+function apagaTudo() {
+  for (let index = 0; index < todasLi.length; index += 1) {
+    todasLi[index].remove();
+    index -= 1;
+  }
+}
+botaoApagar.addEventListener('click', apagaTudo);
