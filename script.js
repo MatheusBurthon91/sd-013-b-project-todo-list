@@ -28,3 +28,10 @@ olGrey.addEventListener('dblclick', (event) => {
     }
     
 }); 
+
+function removeTask() {
+    let ol = document.querySelector('#lista-tarefas')
+    while (ol.hasChildNodes()) { // verifica se tem algum nó filho.
+        ol.removeChild(ol.firstChild); // remove o primeiro filho da ol(no caso seria as li's)
+    }
+}
