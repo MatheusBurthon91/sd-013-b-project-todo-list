@@ -15,6 +15,17 @@ function changeBackgroundColor(event) {
   event.target.classList.add('selected');
 }
 
+function eventCompleted(event) {
+  const completedEvent = event.target;
+  if (completedEvent.style.textDecoration !== 'line-through') {
+    completedEvent.style.textDecoration = 'line-through';
+    completedEvent.classList.add('completed');
+  } else {
+    completedEvent.style.textDecoration = '';
+    completedEvent.classList.remove('completed');
+  }
+}
+
 const createTaskButton = document.getElementById('criar-tarefa');
 let taskToBeCreated = document.getElementById('texto-tarefa');
 let taskList = document.getElementById('lista-tarefas');
@@ -22,3 +33,4 @@ let taskList = document.getElementById('lista-tarefas');
 // Eventos dos elementos
 createTaskButton.addEventListener('click', createTask);
 taskList.addEventListener('click', changeBackgroundColor);
+taskList.addEventListener('dblclick', eventCompleted);
