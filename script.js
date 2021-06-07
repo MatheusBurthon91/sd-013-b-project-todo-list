@@ -20,11 +20,11 @@ function selectedItem(event) {
     if (event.target.classList.contains('task')) {
       if (liArray[index].classList.contains('selected')) {
         liArray[index].classList.remove('selected');
-      } else {
-        event.target.classList.add('selected');
       }
+      event.target.classList.add('selected');
     }
   }
+  event.target.classList.add('selected');
 }
 
 taskList.addEventListener('click', selectedItem);
