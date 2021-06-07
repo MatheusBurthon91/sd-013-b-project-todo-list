@@ -26,7 +26,7 @@ function listItemColor(event) {
 }
 
 // Adicionando evento para alterar a background color do item da lista de tarefa
-const selectList = document.getElementById('lista-tarefas');
+let selectList = document.getElementById('lista-tarefas');
 selectList.addEventListener('click', listItemColor);
 
 // Função para riscar o texto das tarefas cumpridas
@@ -120,3 +120,40 @@ function moveDown() {
 // Evento para clicar no botão e mover a tarefa para baixo
 const moveSelectedItemDown = document.getElementById('mover-baixo');
 moveSelectedItemDown.addEventListener('click', moveDown);
+
+// Função para salvar a lista
+function saveList() {
+  let list = document.querySelectorAll('li');
+  let items = [];
+  let complete = [];
+  for (let index = 0; index < list.length; index += 1){
+    items.push(list[index].innerText);
+    if (list[index].classList.contains('completed') === true) {
+      complete.push(index);
+    }
+  }
+  localStorage.setItem('items',JSON.stringify(items));
+  localStorage.setItem('complete', JSON.stringify(complete));
+}
+
+const saveButton = document.querySelector('#salvar-tarefas');
+saveButton.addEventListener('click', saveList);
+
+// Função para carregar a lista
+function loadList() {
+  let items = localStorage.getItem('items');
+  if (items !== null && items.length > 0) {
+    items = JSON.parse(items);
+    const complete = JSON.parse(localStorage.getItem('complete'));
+    items.forEach((value, index) => {
+      const listItem = document.createElement('li');
+      if (complete.indexOf(index) !== -1) {
+        listItem.className = 'completed';
+      }
+      listItem.innerText = value;
+      selectList.appendChild(listItem);
+    })
+  }
+}
+
+window.onload = loadList();
