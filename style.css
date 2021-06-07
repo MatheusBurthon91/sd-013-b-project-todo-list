@@ -1,4 +1,16 @@
+body {
+  background-color: bisque;
+}
+
+p {
+  font-size: 11px;
+}
+
 ol {
   margin-top: -15px;
   margin-left: -15px;
+}
+
+.cinza {
+  background-color: rgb(128, 128, 128);
 }

@@ -1,5 +1,5 @@
 // 5
-let button = document.querySelector('#criar-tarefa');
+let botao = document.querySelector('#criar-tarefa');
 let ol = document.querySelector('#lista-tarefas');
 
 function criaIl() {
@@ -8,5 +8,16 @@ function criaIl() {
   document.querySelector('#texto-tarefa').value = '';
   ol.appendChild(novaTarefa)
 }
+botao.addEventListener('click', criaIl)
 
-button.addEventListener('click', criaIl)
+// 7
+
+let item = document.querySelector('#lista-tarefas');
+
+function changeColor(event) {
+  if (event.target.tagName === 'LI') {
+    let gray = event.target;
+    gray.classList.add('cinza');
+  }
+}
+item.addEventListener('click', changeColor);
