@@ -1,28 +1,3 @@
-// eslint-disable-next-line max-lines-per-function
-window.onload = function () {
-  const btnOk = document.getElementById('criar-tarefa');
-  const olTasks = document.getElementById('lista-tarefas');
-  const btnApagar = document.getElementById('apaga-tudo');
-  const btnApagComplet = document.getElementById('remover-finalizados');
-  const btnSalvar = document.getElementById('salvar-tarefas');
-  const btnMoverCima = document.getElementById('mover-cima');
-  const btnMoverBaixo = document.getElementById('mover-baixo');
-  const btnApagarSelct = document.getElementById('remover-selecionado');
-
-  btnOk.addEventListener('click', createTasks);
-  olTasks.addEventListener('click', changeBackGround);
-  olTasks.addEventListener('dblclick', completeTasks);
-  btnApagar.addEventListener('click', clearConteiner);
-  btnApagComplet.addEventListener('click', clearCompleted);
-  btnSalvar.addEventListener('click', salvarTarefas);
-  btnMoverCima.addEventListener('click', moverParaCima);
-  btnMoverBaixo.addEventListener('click', moverParaBaixo);
-  btnApagarSelct.addEventListener('click', removerSelecionado);
-
-  criarTarefas();
-
-}
-
 function completeTasks(event) {
   const elementoAlvo = event.target;
   const classList = elementoAlvo.className;
@@ -82,15 +57,20 @@ function clearCompleted() {
   }
 }
 
+function removerEspaçoCompleted(value) {
+  for (let i = 0; i < value.length; i += 1) {
+    if (i < 2) {
+      value.shift();
+    }
+  }
+  return value;
+}
+
 function removerEspaço(value) {
   const palavraList = value.split('');
 
   if (value === '  completed') {
-    for (let i = 0; i < palavraList.length; i += 1) {
-      if (i < 2) {
-        palavraList.shift();
-      }
-    }
+    removerEspaçoCompleted(palavraList);
   } else {
     palavraList.shift();
   }
@@ -178,3 +158,26 @@ function removerSelecionado() {
   }
   elementSelect.remove();
 }
+
+const btnOk = document.getElementById('criar-tarefa');
+btnOk.addEventListener('click', createTasks);
+
+window.onload = function () {
+  const olTasks = document.getElementById('lista-tarefas');
+  const btnApagar = document.getElementById('apaga-tudo');
+  const btnApagComplet = document.getElementById('remover-finalizados');
+  const btnSalvar = document.getElementById('salvar-tarefas');
+  const btnMoverCima = document.getElementById('mover-cima');
+  const btnMoverBaixo = document.getElementById('mover-baixo');
+  const btnApagarSelct = document.getElementById('remover-selecionado');
+
+  olTasks.addEventListener('click', changeBackGround);
+  olTasks.addEventListener('dblclick', completeTasks);
+  btnApagar.addEventListener('click', clearConteiner);
+  btnApagComplet.addEventListener('click', clearCompleted);
+  btnSalvar.addEventListener('click', salvarTarefas);
+  btnMoverCima.addEventListener('click', moverParaCima);
+  btnMoverBaixo.addEventListener('click', moverParaBaixo);
+  btnApagarSelct.addEventListener('click', removerSelecionado);
+  criarTarefas();
+};
