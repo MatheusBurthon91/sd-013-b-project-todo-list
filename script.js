@@ -66,5 +66,17 @@ function limpaTudo() {
   }
 }
 
+function removeFinalized() {
+  const elementoPai = document.getElementById('lista-tarefas');
+  for (let index = 0; index < elementListItem.length; index += 1) {
+    if (elementListItem[index].style.backgroundColor === 'red') {
+      elementoPai.removeChild(elementoPai.children[index]);
+      index -= 1;
+      contador -= 1;
+    }
+  }
+}
+
 document.getElementById('criar-tarefa').addEventListener('click', adicionaNaLista);
 document.getElementById('apaga-tudo').addEventListener('click', limpaTudo);
+document.getElementById('remover-finalizados').addEventListener('click', removeFinalized);
