@@ -9,7 +9,7 @@ body {
 }
 
 #divInterna {
-  margin: 20px; 
+  margin: 20px;
 }
 
 #funcionamento {
@@ -23,5 +23,5 @@ body {
 }
 
 .itemList {
-  background-color: rgb(128 , 128 , 128);
+  background-color: gray;
 }

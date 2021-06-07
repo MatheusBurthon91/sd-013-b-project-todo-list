@@ -1,6 +1,19 @@
 const buttonText = document.getElementById('criar-tarefa');
 const listItem = document.getElementsByTagName('li');
 
+function itemSelect(event) {
+  const item = event.target;
+  const select = document.getElementsByClassName('itemList');
+  if (item.classList.contains('itemList')) {
+    //
+  } else if (select.length === 0) {
+    item.classList.add('itemList');
+  } else {
+    select[0].classList.remove('itemList');
+    item.classList.add('itemList');
+  }
+}
+
 function clickList() {
   const mainList = document.getElementById('lista-tarefas');
   const text = document.getElementById('texto-tarefa');
@@ -12,13 +25,3 @@ function clickList() {
 }
 
 buttonText.addEventListener('click', clickList);
-
-function itemSelect(event) {
-    const item = event.target;
-    const select = document.getElementsByClassName('itemList');
-    if (item.classList.contains('itemList')) {
-        //
-    } else if (select.length === 0) {
-        item.classList.add('itemList');
-    }
-}
