@@ -1,16 +1,12 @@
 let texto = '';
-let temp = ''
 let lista = document.querySelector('#lista-tarefas');
 
 function capturar(){
-texto = document.getElementById('texto-tarefa').value;
-temp = texto;
-
-
-novoItem = document.createElement('li');
-novoItem.innerHTML = temp;
-lista.appendChild(novoItem);
-document.getElementById('texto-tarefa').value = '';
+    texto = document.getElementById('texto-tarefa').value;
+    novoItem = document.createElement('li');
+    novoItem.innerHTML = texto;
+    lista.appendChild(novoItem);
+    document.getElementById('texto-tarefa').value = '';
 }
 
 function limpaCinza(){
@@ -32,7 +28,7 @@ function risca(event){
     
     let x = event.target;
 
-    if (x.style.textDecoration == ''){
+    if (x.className == ''){
         x.classList.add("completed");
     } else {
         x.classList.remove("completed");
