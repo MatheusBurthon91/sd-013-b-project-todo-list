@@ -40,7 +40,7 @@ button.addEventListener('click', () => {
   input.value = '';
 });
 
-// Requisito 7
+// Requisito 7. Créditos ao Panta, quanto a lógica para resolver o exercicio.
 const li = document.getElementsByTagName('li');
 function changeColor() {
   orderedList.addEventListener('click', (event) => {
