@@ -79,3 +79,16 @@ function clearList() {
 }
 
 // exercise 11
+const removeFinish = document.createElement('button');
+main.appendChild(removeFinish);
+removeFinish.id = 'remover-finalizados';
+removeFinish.innerText = 'remover finalizados';
+
+removeFinish.addEventListener('click', deleteFinish);
+
+function deleteFinish() {
+  const classRemove = document.getElementsByClassName('completed');
+  while (classRemove.length !== 0) {
+    classRemove[0].remove();
+  }
+}

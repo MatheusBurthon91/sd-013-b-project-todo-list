@@ -27,3 +27,9 @@
   width: 90px;
   margin-top: 20px;
 }
+
+#remover-finalizados {
+  display: block;
+  height: 40px;
+  width: 90px;
+}
