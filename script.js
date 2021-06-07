@@ -1,6 +1,9 @@
 window.onload = () => {
   addTaskButton();
+  changeBgColor();
 }
+
+// https://www.w3schools.com/jsref/obj_event.asp
 
 function addNewTask(text) {
   const task = document.createElement('li');
@@ -20,5 +23,14 @@ function addTaskButton() {
       addNewTask(input.value);
       input.value = '';
     }
+  });
+}
+
+function changeBgColor() {
+  const bgColor = 'rgb(128,128,128)'
+  const taskList = document.querySelector('#lista-tarefas');
+  taskList.addEventListener('click', (event) => {
+    const {target} = event;
+    target.style.backgroundColor = bgColor;
   });
 }
