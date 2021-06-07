@@ -4,6 +4,7 @@ const getClick = document.getElementById('conteudo-lista');
 const clearAll = document.querySelector('#apaga-tudo');
 const rmIndividual = document.querySelector('#remover-finalizados');
 const sList = document.querySelector('#salvar-tarefas');
+const rSelected = document.querySelector('#remover-selecionado');
 
 // Resgata o que foi escrito na caixa de texto
 function criaTarefa() {
@@ -66,16 +67,21 @@ clearAll.addEventListener('click', () => {
 function remComplete() {
   const remove = document.querySelectorAll('.completed');
   for (let index = 0; index < remove.length; index += 1) {
-    const rm = remove[index];
-    rm.parentNode.removeChild(rm);
+    remove[index].remove(remove[index]);
   }
 }
+
+rSelected.addEventListener('click', () => {
+  const getSelItem = document.querySelector('.selected');
+  getSelItem.remove(getSelItem);
+});
 
 function saveList() {
   const getListItens = document.querySelector('#lista-tarefas');
   const teste = JSON.stringify(getListItens.innerHTML);
   localStorage.setItem('completeList', teste);
 }
+
 window.onload = () => {
   const getOl = document.getElementById('lista-tarefas');
   const content = JSON.parse(localStorage.getItem('completeList'));
@@ -86,6 +92,7 @@ sList.addEventListener('click', saveList);
 rmIndividual.addEventListener('click', remComplete);
 entradaDeTexto.addEventListener('change', criaTarefa);
 botao.addEventListener('click', adicionaLista);
+
 // referências
 // A referência para criar a função 'clearAll.addEventListener' foi retirada deste site https://gomakethings.com/attaching-multiple-elements-to-a-single-event-listener-in-vanilla-js/
 // E também https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
