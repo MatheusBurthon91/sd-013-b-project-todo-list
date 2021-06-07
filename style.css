@@ -1,0 +1,15 @@
+#div-um {
+  margin: 10px;
+  display: flex;
+  height: 100px;
+  align-items: center;
+}
+
+#texto-tarefa {
+  margin: 10px;
+}
+
+#criar-tarefa {
+  margin: 10px;
+  width: 30px;
+}
