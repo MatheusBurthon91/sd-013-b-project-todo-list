@@ -162,3 +162,15 @@ btnMoveDown.addEventListener('click', function () {
     }
   }
 });
+
+// Função para remover task selecionada
+const btnRemoveSelected = document.querySelector('#remover-selecionado');
+btnRemoveSelected.addEventListener('click', function () {
+  for (let index = 0; index < taskChildren.length; index += 1) {
+    const selected = taskChildren[index].style.backgroundColor;
+    if (selected === 'rgb(128, 128, 128)') {
+      const taskForRemove = taskChildren[index];
+      taskList.removeChild(taskForRemove);
+    }
+  }
+});
