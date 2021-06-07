@@ -9,16 +9,19 @@ body {
 }
 
 #divInterna {
-  margin: 20px;
-   
+  margin: 20px; 
 }
 
 #funcionamento {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #criar-tarefa {
-    background-color: rgb(37, 152, 219);
-    color: white;
-    border-radius: 5px;
+  background-color: rgb(37 , 152 , 219);
+  color: white;
+  border-radius: 5px;
+}
+
+.itemList {
+  background-color: rgb(128 , 128 , 128);
 }
