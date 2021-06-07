@@ -1,6 +1,7 @@
 const botao = document.querySelector('#criar-tarefa');
 const entradaDeTexto = document.querySelector('#texto-tarefa');
 const getClick = document.getElementById('conteudo-lista');
+const clearAll = document.querySelector('#apaga-tudo');
 
 function criaTarefa() {
   const texto = document.querySelector('#texto-tarefa').value;
@@ -45,5 +46,13 @@ getClick.addEventListener('dblclick', (clicks) => {
   }
 }, false);
 
+function rmAll(){
+  const listToRm = document.querySelectorAll('.itensLista');
+  for(let starts = 0; starts < listToRm.length; starts += 1 ) {
+    listToRm[starts].parentNode.removeChild(listToRm[starts]);
+  }
+}
+
+clearAll.addEventListener('click', rmAll);
 entradaDeTexto.addEventListener('change', criaTarefa);
 botao.addEventListener('click', adicionaLista);
