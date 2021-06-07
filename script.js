@@ -1,5 +1,5 @@
 
-//Salva as tarefas na lista ordenada e limpa o imput//
+//Salva as tarefas na lista ordenada, limpa o input e adiciona os eventos//
 function tarefas() {
     let input = document.getElementById("texto-tarefa").value;
     let lista = document.getElementById("lista-tarefas");
@@ -8,6 +8,7 @@ function tarefas() {
     lista.appendChild(itemLista);
     itemLista.innerText = input;
     itemLista.addEventListener("click", addCinza);
+    itemLista.addEventListener("dblclick", riscar);
     document.getElementById("texto-tarefa").value = '';
     
     }
@@ -19,9 +20,10 @@ function addCinza (event) {
     } 
     event.target.classList.add("cinza");     
 }
-
-/*function RemoveCinza (event) {
-    let la = event.target;
-    la.classList.add("cinza");  
-}*/
-
+function riscar (event) {
+    if (event.target !== document.querySelector(".completed")) {
+        event.target.classList.add("completed")
+    } else if (event.target === document.querySelector(".completed")) {
+        event.target.classList.remove("completed");
+    }
+}
