@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>Minha Lista de Tarefas</header>
@@ -12,8 +13,10 @@
         <button type="submit" onclick="capturar()" id="criar-tarefa">Adicionar</button> 
         
     </form>
-    <ol onclick="paint(event)" id="lista-tarefas"></ol>
-
+    <ol onclick="paint(event)" ondblclick="risca(event)" id="lista-tarefas"></ol>
+    <section>
+        <button onclick="apagaTudo() "id="apaga-tudo">Apagar tarefas</button>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>

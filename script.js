@@ -23,11 +23,25 @@ function limpaCinza(){
 
 function paint(event){
     limpaCinza();
-    let x = event.target
+    let x = event.target;
     console.log(x);
     x.style.background = 'rgb(128,128,128)';
 }
 
+function risca(event){
+    
+    let x = event.target;
+
+    if (x.style.textDecoration == ''){
+        x.classList.add("completed");
+    } else {
+        x.classList.remove("completed");
+    }
+}
+
+function apagaTudo(event){
+    lista.innerHTML = '';
+}
 
 
 
