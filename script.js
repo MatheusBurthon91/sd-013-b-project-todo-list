@@ -24,6 +24,11 @@ saveTaksBtn.id = 'salvar-tarefas';
 saveTaksBtn.innerText = 'Salvar tarefas';
 body.appendChild(saveTaksBtn);
 
+const removeSelectedBtn = document.createElement('button');
+removeSelectedBtn.id = 'remover-selecionado';
+removeSelectedBtn.innerText = 'Remover selecionado';
+body.appendChild(removeSelectedBtn);
+
 const removeCompletedBtn = document.createElement('button');
 removeCompletedBtn.innerText = 'Remover finalizados';
 removeCompletedBtn.id = 'remover-finalizados';
@@ -37,6 +42,16 @@ body.appendChild(eraseAllBtn);
 const olTodoList = document.createElement('ol');
 olTodoList.id = 'lista-tarefas';
 body.appendChild(olTodoList);
+
+const moveUpBtn = document.createElement('button');
+moveUpBtn.id="mover-cima";
+moveUpBtn.innerText=`/\\`;
+body.appendChild(moveUpBtn);
+
+const moveDownBtn = document.createElement('button');
+moveDownBtn.id="mover-baixo";
+moveDownBtn.innerText=`\\/`;
+body.appendChild(moveDownBtn);
 
 // ------------------- FUNÇÕES -------------------
 // Cria tarefa ao clicar no botao
@@ -54,13 +69,13 @@ taskBtn.addEventListener('click', () => {
 
 // Add 'selected-item'no item selecionado
 olTodoList.addEventListener('click', (event) => {
-  const selectItem = '.selected-item';
-  const selectedItemClass = document.querySelector(selectItem);
+  const selectItem = 'selected-item';
+  const selectedItemClass = document.querySelector('.selected-item');
 
   if (selectedItemClass === null) {
     event.target.classList.add(selectItem);
   } else {
-    selectedItemClass.classList.remove('selected-item');
+    selectedItemClass.classList.remove(selectItem);
     event.target.classList.add(selectItem);
   }
 });
@@ -108,16 +123,77 @@ saveTaksBtn.addEventListener('click', () => {
 // Recebe o localStorage de monta a lista
 function loadStorage() {
   const arrayLS = JSON.parse(localStorage.getItem('tasks'));
-  for (let index = 0; index < arrayLS.length; index += 1) {
-    const liItem = document.createElement('li');
-
-    liItem.className = (arrayLS[index]['classes']);
-    liItem.innerText = (arrayLS[index]['innerText']);
-    olTodoList.appendChild(liItem);
+  if (arrayLS !== null) {
+    for (let index = 0; index < arrayLS.length; index += 1) {
+      const liItem = document.createElement('li');
+      liItem.className = (arrayLS[index].classes);
+      liItem.innerText = (arrayLS[index].innerText);
+      olTodoList.appendChild(liItem);
+    }
   }
 }
 
+// Mover item da lista para cima
+moveUpBtn.addEventListener('click', () => {
+  const selectItem = document.querySelector('.selected-item');
+  if (selectItem !== null) {
+    const selectItemPrev = document.querySelector('.selected-item').previousSibling;
+  
+    if (selectItemPrev !== null) {
+      /*  element.parentNode.children → Returns the brothers of element, including that element.
+      Array.from → Casts the constructor of children to an Array object
+      indexOf → You can apply indexOf because you now have an Array object.  */
+      const elementsBrother = selectItem.parentNode.children; 
+      const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
+    
+      const classNameSelected = selectItem.className;
+      const innerTextSelected = selectItem.innerText;
+    
+      const classNamePrevSelected = selectItemPrev.className;
+      const innerTextPrevSelected = selectItemPrev.innerText;
+    
+      elementsBrother[selectItemPos-1].innerText = innerTextSelected;
+      elementsBrother[selectItemPos-1].className = classNameSelected;
+    
+      elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
+      elementsBrother[selectItemPos].className = classNamePrevSelected;
+    }
+  }
+});
 
+// Mover item da lista para baixo
+moveDownBtn.addEventListener('click', () => {
+  const selectItem = document.querySelector('.selected-item');
+
+  if (selectItem !== null) {
+    const selectItemNext = document.querySelector('.selected-item').nextSibling;
+  
+    if (selectItemNext !== null) {
+      /*  element.parentNode.children → Returns the brothers of element, including that element.
+      Array.from → Casts the constructor of children to an Array object
+      indexOf → You can apply indexOf because you now have an Array object.  */
+      const elementsBrother = selectItem.parentNode.children; 
+      const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
+    
+      const classNameSelected = selectItem.className;
+      const innerTextSelected = selectItem.innerText;
+    
+      const classNamePrevSelected = selectItemNext.className;
+      const innerTextPrevSelected = selectItemNext.innerText;
+    
+      elementsBrother[selectItemPos+1].innerText = innerTextSelected;
+      elementsBrother[selectItemPos+1].className = classNameSelected;
+    
+      elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
+      elementsBrother[selectItemPos].className = classNamePrevSelected;
+    }
+  }
+});
+
+removeSelectedBtn.addEventListener('click', () => {
+  const selectedItem = document.querySelector('.selected-item');
+  selectedItem.remove();
+});
 
 // ------------------- CHAMADA DAS FUNÇÕES -------------------
 loadStorage();
