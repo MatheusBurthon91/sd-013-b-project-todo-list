@@ -1,12 +1,12 @@
 body {
   text-align: center;
   background-color: antiquewhite;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 
 #lista-tarefas {
   border: 1px solid black;
-  background-color: rgb(77, 71, 82);
+  background-color: rgb(77 ,71 ,82);
   color: whitesmoke;
   list-style: none;
   padding: 1px;
@@ -26,10 +26,10 @@ body {
 }
 
 .completed {
-  text-decoration: line-through solid rgb(0, 0, 0);  
+  text-decoration: line-through solid black;  
 }
 
-button, input {
+button ,input {
   margin: 5px;
   height: 30px;
   width: 160px;
