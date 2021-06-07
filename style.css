@@ -25,3 +25,7 @@ body {
 .itemList {
   background-color: gray;
 }
+
+.completed {
+  text-decoration: line-through;
+}
