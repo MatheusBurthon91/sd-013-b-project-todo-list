@@ -1,15 +1,10 @@
-
 let inputBox = document.getElementById('texto-tarefa');
 let applyButton = document.getElementById('criar-tarefa');
 let ordenatedList = document.getElementById('lista-tarefas');
 
 let listArray = [];
 
-//APAGAR DEPOIS
-function auxiliar(){
-	console.log(listArray);
-	console.log(inputBox.value.length);
-}
+
 
 
 
@@ -20,7 +15,7 @@ applyButton.addEventListener('click', function(){
 	}
 
 
-	auxiliar();
+	
 })
 
 //remove class selected
@@ -34,7 +29,7 @@ function classRemover(){
 
 //add completed 
 function completeTask(event){
-	console.log(event.target);
+	
 	if(event.target.classList.contains('completed')){
 		event.target.classList.remove('completed');
 	}else{
@@ -47,7 +42,7 @@ function completeTask(event){
 
 //pega o valor do array e pusha no OL
 function listFill(){
-	console.log(inputBox.value);
+	
 	if(inputBox.value.length > 0){
 		
 		ordenatedList.appendChild(document.createElement('li'));
@@ -85,19 +80,43 @@ for(let i =0; i<document.getElementsByClassName('liGenerated').length; i++){
 	document.getElementsByClassName('liGenerated')[i]
 }
 
-
-
-
-
-
-/*
-function completeTask(){
-	for(let i in document.getElementsByClassName('liGenerated').classList){
-		if(ordenatedList.children[i].classList[i] === 'completed'){
-			return;
-		}else{
-			ordenatedList.children[i].classList.add('completed');
-		}
-	}
+//apaga tudo
+function clearList(){
+	ordenatedList.innerHTML = '';
+	listArray = [];
 }
-*/
+document.getElementById('apaga-tudo').addEventListener('click', clearList);
+
+
+function deleteSelected(){
+	let auxiliar = [];
+	
+	for(let i = 0; i<listArray.length; i++){
+		if(ordenatedList.children[i].classList.contains('completed') === false){
+			auxiliar.push(listArray[i]);
+		}
+		console.log(auxiliar)
+	}
+
+	listArray = auxiliar;
+	ordenatedList.innerHTML =''; 
+
+	for(let i in listArray){
+		ordenatedList.appendChild(document.createElement('li'))
+		
+		ordenatedList.children[i].innerText = listArray[i];
+		ordenatedList.children[i].className = 'liGenerated';
+
+		//remove selected e add selected
+		ordenatedList.children[i].addEventListener('click', function(){
+			classRemover();
+			ordenatedList.children[i].classList.add('selected');
+		})
+
+		//add event completed
+		ordenatedList.children[i].addEventListener('dblclick', completeTask);
+	}
+	
+}
+
+document.getElementById('remover-finalizados').addEventListener('click', deleteSelected);
