@@ -1,39 +1,54 @@
 // Requisito 1
-let header = document.createElement('header');
+const header = document.createElement('header');
 document.body.appendChild(header);
 
-let title = document.createElement('h1');
+const title = document.createElement('h1');
 title.innerText = 'Minha Lista de Tarefas';
 header.appendChild(title);
 
 // Requisito 2
-let paragrafo = document.createElement('p');
+const paragrafo = document.createElement('p');
 paragrafo.id = 'funcionamento';
-paragrafo.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
+paragrafo.innerText =
+  'Clique duas vezes em um item para marcá-lo como completo';
 header.appendChild(paragrafo);
 
 // Requisito 3
-let input = document.createElement('input');
+const input = document.createElement('input');
 input.id = 'texto-tarefa';
 header.appendChild(input);
 
 // Requisito 4
-let sectionList = document.createElement('section');
+const sectionList = document.createElement('section');
 document.body.appendChild(sectionList);
 
-let orderedList = document.createElement('ol');
+const orderedList = document.createElement('ol');
 orderedList.id = 'lista-tarefas';
 sectionList.appendChild(orderedList);
 
-// Requisito 5
-let button = document.createElement('button');
+// Requisito 5 e 6
+const button = document.createElement('button');
 button.id = 'criar-tarefa';
-button.innerText = 'Inserir'
+button.innerText = 'Inserir';
 sectionList.appendChild(button);
 
-button.addEventListener('click', function () {
-let li = document.createElement('li');
+button.addEventListener('click', () => {
+  const li = document.createElement('li');
   li.innerHTML = input.value;
+  li.classList = 'item';
   orderedList.appendChild(li);
   input.value = '';
-})
+});
+
+// Requisito 10
+const buttonClear = document.createElement('button');
+buttonClear.id = 'apaga-tudo';
+buttonClear.innerText = 'Limpar Tarefas';
+sectionList.appendChild(buttonClear);
+
+buttonClear.addEventListener('click', () => {
+  const itens = document.querySelectorAll('li');
+  for (let index = 0; index < itens.length; index += 1) {
+    document.querySelector('ol').removeChild(itens[index]);
+  }
+});
