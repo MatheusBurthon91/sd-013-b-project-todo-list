@@ -1,5 +1,6 @@
 const createTaskBtn = document.getElementById('criar-tarefa');
 const taskListOl = document.getElementById('lista-tarefas');
+const deleteAllTasks = document.getElementById('apaga-tudo');
 
 function createTask() {
   const inputText = document.getElementById('texto-tarefa');
@@ -35,5 +36,11 @@ window.onload = function () {
   taskListOl.addEventListener('dblclick', function(event) {
     const clickedTask = event.target;
     clickedTask.classList.toggle('completed');
+  })
+  deleteAllTasks.addEventListener('click', function() {
+    // Source from Stackoverflow: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    while (taskListOl.firstChild) {
+      taskListOl.removeChild(taskListOl.lastChild);
+    }
   })
 };
