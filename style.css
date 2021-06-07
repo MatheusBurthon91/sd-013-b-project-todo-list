@@ -1,6 +1,6 @@
 /* cabeçalho */
 
-h1{
+h1 {
   color: rgb(255 , 255 , 255);
   background-color: rgb(99 , 102 , 96);
   text-align: center;
@@ -18,7 +18,16 @@ h1{
   background-color: rgb(234 , 245 , 245);
 }
 
-/* Botão para add tarefas */
+/* Botãos */
+
+#remover-finalizados {
+  background-color: rgb(250 , 223 , 174);
+}
+
+#apaga-tudo {
+  margin-right: 60px;
+  background-color: rgb(252 , 95 , 67);
+}
 
 #criar-tarefa {
   background-color: rgb(62 , 160 , 206);
@@ -27,8 +36,12 @@ h1{
 
 /* Lista de tarefas */
 
-#lista-tarefas {
+li::selection {
+  background-color: transparent;
+}
 
+li {
+  cursor: pointer;
 }
 
 .selected {
@@ -36,5 +49,5 @@ h1{
 }
 
 .completed {
-  text-decoration: line-through;
+  text-decoration: line-through solid black;
 }
