@@ -3,7 +3,8 @@ const taskButton = document.querySelector('#criar-tarefa');
 const taskInput = document.getElementById('texto-tarefa');
 let listItem;
 const btnRemoveList = document.getElementById('apaga-tudo');
-const btnRemoveTask = document.getElementById('remover-finalizadas');
+const btnRemoveTask = document.getElementById('remover-finalizados');
+const btnRemoveSelected = document.getElementById('remover-selecionado');
 
 function listMaker() {
   const inputText = taskInput.value;
@@ -27,7 +28,9 @@ function selectedItem(event) {
       event.target.classList.add('selected');
     }
   }
-  event.target.classList.add('selected');
+  if (event.target.classList.contains('task')) {
+    event.target.classList.add('selected');
+  }
 }
 
 taskList.addEventListener('click', selectedItem);
@@ -46,7 +49,7 @@ taskList.addEventListener('dblclick', taskCompleted);
 
 /* Consultado em: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript */
 function removeList() {
-  let taskList = document.querySelector('#lista-tarefas');
+  taskList = document.querySelector('#lista-tarefas');
   while (taskList.firstChild) {
     taskList.firstChild.remove();
   }
@@ -56,10 +59,21 @@ btnRemoveList.addEventListener('click', removeList);
 
 /* Consultado em: https://stackoverflow.com/questions/10842471/how-to-remove-all-elements-of-a-certain-class-from-the-dom */
 function removeTask() {
-  let completedTasks = document.getElementsByClassName('completed');
+  const completedTasks = document.getElementsByClassName('completed');
   while (completedTasks[0]) {
     completedTasks[0].parentNode.removeChild(completedTasks[0]);
   }
 }
 
 btnRemoveTask.addEventListener('click', removeTask);
+
+/* Requisito 12 */
+
+/* Requisito 13 */
+
+function removeSelected() {
+  const selectedElement = document.querySelector('.selected');
+  selectedElement.parentNode.removeChild(selectedElement);
+}
+
+btnRemoveSelected.addEventListener('click', removeSelected);
