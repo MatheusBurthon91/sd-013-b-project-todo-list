@@ -4,7 +4,7 @@ const ol = document.getElementById('lista-tarefas');
 
 // Adicionar as tarefas na lista
 function addTask() {
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     if (input.value === '') {
       alert('Adicione uma tarefa!!!');
     } else {
@@ -20,7 +20,7 @@ addTask();
 // Mudar a cor do background ao clicar em um item da lista
 const li = document.getElementsByTagName('li');
 function changeBackgroundList() {
-  ol.addEventListener('click', function (event) {
+  ol.addEventListener('click', (event) => {
     for (let index = 0; index < li.length; index += 1) {
       if (li[index].className.includes('cinza')) {
         li[index].classList.remove('cinza');
@@ -35,7 +35,7 @@ changeBackgroundList();
 
 // Riscar a tarefa que foi completada
 function strikeOutCompletedTask() {
-  ol.addEventListener('dblclick', function (event) {
+  ol.addEventListener('dblclick', (event) => {
     const element = event.target;
     if (element.className.includes('completed')) {
       element.classList.remove('completed');
@@ -50,7 +50,7 @@ strikeOutCompletedTask();
 const buttonClean = document.getElementById('apaga-tudo');
 
 function buttonToCleanAll() {
-  buttonClean.addEventListener('click', function () {
+  buttonClean.addEventListener('click', () => {
     ol.innerHTML = '';
   });
 }
@@ -60,7 +60,7 @@ buttonToCleanAll();
 const buttonRemoveTasks = document.getElementById('remover-finalizados');
 
 function removeTasksFinished() {
-  buttonRemoveTasks.addEventListener('click', function () {
+  buttonRemoveTasks.addEventListener('click', () => {
     for (let index = li.length - 1; index >= 0; index -= 1) {
       if (li[index].className.includes('completed')) {
         li[index].remove('.completed');
@@ -74,7 +74,7 @@ removeTasksFinished();
 const buttonSaveTasks = document.getElementById('salvar-tarefas');
 
 function saveTasks() {
-  buttonSaveTasks.addEventListener('click', function () {
+  buttonSaveTasks.addEventListener('click', () => {
     let cont = 0;
     for (let index = 0; index < li.length; index += 1) {
       if (li[index].className.includes('completed')) {
@@ -91,7 +91,19 @@ saveTasks();
 // Pegar o resultado da função anterior e deixar visível no browser
 window.onload = function showSalvedDatas() {
   const importSalvedTasks = localStorage.getItem('task');
-  if (importSalvedTasks) {
-    ol.innerHTML = importSalvedTasks;
-  }
+  ol.innerHTML = importSalvedTasks;
 };
+
+// Remover tarefa selecionada
+const buttonRemoveSelectedTasks = document.getElementById('remover-selecionado');
+
+function removeSelectedTasks() {
+  buttonRemoveSelectedTasks.addEventListener('click', () => {
+    for (let index = 0; index < li.length; index += 1) {
+      if (li[index].className.includes('cinza')) {
+        ol.removeChild(li[index]);
+      }
+    }
+  });
+}
+removeSelectedTasks();
