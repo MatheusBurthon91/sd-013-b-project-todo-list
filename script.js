@@ -3,6 +3,7 @@ const entradaDeTexto = document.querySelector('#texto-tarefa');
 const getClick = document.getElementById('conteudo-lista');
 const clearAll = document.querySelector('#apaga-tudo');
 const rmIndividual = document.querySelector('#remover-finalizados');
+const sList = document.querySelector('#salvar-tarefas');
 
 // Resgata o que foi escrito na caixa de texto
 function criaTarefa() {
@@ -54,10 +55,11 @@ getClick.addEventListener('dblclick', (clicks) => {
 
 // limpa toda a lista de tarefas
 clearAll.addEventListener('click', () => {
-  const listToRm = document.querySelectorAll('.itensLista');
-  for (let index = 0; index < listToRm.length; index += 1) {
-    listToRm[index].parentNode.removeChild(listToRm[index]);
-  }
+  const listToRm = document.getElementById('lista-tarefas');
+  listToRm.innerHTML = '';
+  // for (let index = 0; index < listToRm.length; index += 1) {
+  //   listToRm[index].parentNode.removeChild(listToRm[index]);
+  // }
 });
 
 // remove os itens que estão marcados como feitos
@@ -69,6 +71,18 @@ function remComplete() {
   }
 }
 
+function saveList() {
+  const getListItens = document.querySelector('#lista-tarefas');
+  const teste = JSON.stringify(getListItens.innerHTML);
+  localStorage.setItem('completeList', teste);
+}
+window.onload = () => {
+  const getOl = document.getElementById('lista-tarefas');
+  const content = JSON.parse(localStorage.getItem('completeList'));
+  getOl.innerHTML = content;
+};
+
+sList.addEventListener('click', saveList);
 rmIndividual.addEventListener('click', remComplete);
 entradaDeTexto.addEventListener('change', criaTarefa);
 botao.addEventListener('click', adicionaLista);
