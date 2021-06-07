@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(184, 151, 7);
+  background-color: rgb(184 , 151 , 7);
 }
 
 * {
@@ -38,4 +38,9 @@ header {
 
 .completed {
   text-decoration: line-through solid black;
+}
+
+#apagar-tudo {
+  font-size: large;
+  width: 85px;
 }
