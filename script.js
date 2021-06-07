@@ -5,17 +5,18 @@ const pegaOl = document.getElementById('lista-tarefas');
 function criaItem() {
   const criaLi = document.createElement('li');
   criaLi.innerText = inputValue.value;
-  criaLi.addEventListener('click', liCinza); //evento do ex7
+  criaLi.addEventListener('click', liCinza); //  evento do desafio 7
   pegaOl.appendChild(criaLi);
   inputValue.value = '';
 }
 botao.addEventListener('click', criaItem);
 
-// ex7
-const pegaLi = document.getElementById('lista-tarefas').children;
-
+// desafio 7
 function liCinza(event) {
-  console.log('ta funcionando');
+  //   console.log('ta funcionando');
+  for (let index = 0; index < pegaOl.children.length; index += 1) {  // esse for é referente ao desafio 8
+    pegaOl.children[index].classList.remove('cinzou');
+  }
   const liEvent = event.target;
   liEvent.classList.add('cinzou');
 }
