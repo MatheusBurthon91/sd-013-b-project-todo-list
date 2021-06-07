@@ -2,10 +2,6 @@ body {
   background-color: lightseagreen;
 }
 
-#criar-tarefa {
-  margin-top: 20px;
-}
-
 .selected {
   background-color: gray;
 }
@@ -24,11 +20,11 @@ header {
   margin-top: 40px;
 }
 
-h1, p {
+h1 p {
   margin-left: 30px;
 }
 
-input, button {
+input button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-bottom: 10px;
   display: inline;
@@ -52,6 +48,7 @@ li {
 
 #criar-tarefa {
   background-color: lightgreen;
+  margin-top: 20px;
 }
 
 #apaga-tudo {
