@@ -64,12 +64,12 @@ function clearSelect() {
 function selectioned(item) {
   const itemSelectioned = item;
   if (itemSelectioned.style.backgroundColor !== corDefault) {
-    itemSelectioned.style.backgroundColor = corDefault;
     clearSelect();
+    itemSelectioned.style.backgroundColor = corDefault;
     itemSelectioned.id = 'selected';
   } else {
-    itemSelectioned.id = 'deselected';
     itemSelectioned.style.backgroundColor = 'transparent';
+    itemSelectioned.id = 'deselected';
   }
 }
 
@@ -159,6 +159,7 @@ btnMoveUp.addEventListener('click', () => {
   if (listItemUp !== null && listItemUp.previousElementSibling) {
     listItemUp.parentNode.insertBefore(listItemUp, listItemUp.previousElementSibling);
   }
+  clearSelect();
 });
 
 btnMoveDown.addEventListener('click', () => {
