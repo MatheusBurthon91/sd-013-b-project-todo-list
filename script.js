@@ -15,8 +15,10 @@ function addTask(){
 
     newLi.addEventListener("click", changeColor);
     document.getElementById("texto-tarefa").value = "";
-   
-    function changeColor(){
+} 
+
+function changeColor(){
+
         if(document.querySelectorAll(".grey").length !== 0){
         document.querySelector(".grey").style.backgroundColor = document.body.style.backgroundColor;
         document.querySelector(".grey").classList.remove("grey");    
@@ -26,9 +28,7 @@ function addTask(){
             else{
                 event.target.style.backgroundColor = "rgb(128, 128, 128"     
                 event.target.classList.add("grey");
-            }
-
-    } 
+            }  
 
 } 
 
