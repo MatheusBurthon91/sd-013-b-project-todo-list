@@ -1,3 +1,7 @@
+body {
+  background-color: lightseagreen;
+}
+
 #criar-tarefa {
   margin-top: 20px;
 }
@@ -8,4 +12,49 @@
 
 .completed {
   text-decoration: line-through;
+}
+
+header {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-right: 300px;
+  margin-left: 300px;
+  margin-top: 40px;
+}
+
+h1, p {
+  margin-left: 30px;
+}
+
+input, button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 10px;
+  display: inline;
+  border-radius: 5px;
+}
+
+input {
+  margin-left: 30px;
+}
+
+li {
+  list-style-position: inside;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 5px;
+  margin-left: 30px;
+}
+
+#remover-finalizados {
+  background-color: lightgray;
+}
+
+#criar-tarefa {
+  background-color: lightgreen;
+}
+
+#apaga-tudo {
+  background-color: red;
+  color: white;
 }
