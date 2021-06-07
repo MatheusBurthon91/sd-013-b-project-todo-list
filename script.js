@@ -110,13 +110,13 @@ removeCompletedBtn.addEventListener('click', () => {
 
 // Cria localstorage com os itens da lista
 saveTaksBtn.addEventListener('click', () => {
-  const itemSelected = document.querySelectorAll('#lista-tarefas li');
+  const liSelected = document.querySelectorAll('#lista-tarefas li');
   const arrayItens = [];
 
-  for (let index = 0; index < itemSelected.length; index += 1) {
+  for (let index = 0; index < liSelected.length; index += 1) {
     arrayItens.push({
-      classes: itemSelected[index].className,
-      innerText: itemSelected[index].innerText,
+      classes: liSelected[index].className,
+      innerText: liSelected[index].innerText,
     });
   }
   localStorage.setItem('tasks', JSON.stringify(arrayItens));
@@ -136,27 +136,20 @@ function loadStorage() {
 }
 
 // Mover item da lista para cima
-moveUpBtn.addEventListener('click', function() {
+moveUpBtn.addEventListener('click', () => {
   const selectItem = document.querySelector(itemSelected);
   if (selectItem !== null) {
     const selectItemPrev = document.querySelector(itemSelected).previousSibling;
-
     if (selectItemPrev !== null) {
-      /*  element.parentNode.children → Returns the brothers of element, including that element.
-      Array.from → Casts the constructor of children to an Array object
-      indexOf → You can apply indexOf because you now have an Array object.  */
-      const elementsBrother = selectItem.parentNode.children; 
+      /*  element.parentNode.children → Returns the brothers of element, including that element. | Array.from → Casts the constructor of children to an Array object | indexOf → You can apply indexOf because you now have an Array object.  */
+      const elementsBrother = selectItem.parentNode.children;
       const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
-
       const classNameSelected = selectItem.className;
       const innerTextSelected = selectItem.innerText;
-
       const classNamePrevSelected = selectItemPrev.className;
       const innerTextPrevSelected = selectItemPrev.innerText;
-
-      elementsBrother[selectItemPos-1].innerText = innerTextSelected;
-      elementsBrother[selectItemPos-1].className = classNameSelected;
-
+      elementsBrother[selectItemPos - 1].innerText = innerTextSelected;
+      elementsBrother[selectItemPos - 1].className = classNameSelected;
       elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
       elementsBrother[selectItemPos].className = classNamePrevSelected;
     }
@@ -164,28 +157,20 @@ moveUpBtn.addEventListener('click', function() {
 });
 
 // Mover item da lista para baixo
-moveDownBtn.addEventListener('click', function() {
+moveDownBtn.addEventListener('click', () => {
   const selectItem = document.querySelector(itemSelected);
-
   if (selectItem !== null) {
     const selectItemNext = document.querySelector(itemSelected).nextSibling;
-
     if (selectItemNext !== null) {
-      /*  element.parentNode.children → Returns the brothers of element, including that element.
-      Array.from → Casts the constructor of children to an Array object
-      indexOf → You can apply indexOf because you now have an Array object.  */
-      const elementsBrother = selectItem.parentNode.children; 
+      /*  element.parentNode.children → Returns the brothers of element, including that element. | Array.from → Casts the constructor of children to an Array object | indexOf → You can apply indexOf because you now have an Array object.  */
+      const elementsBrother = selectItem.parentNode.children;
       const selectItemPos = Array.from(elementsBrother).indexOf(selectItem);
-
       const classNameSelected = selectItem.className;
       const innerTextSelected = selectItem.innerText;
-
       const classNamePrevSelected = selectItemNext.className;
       const innerTextPrevSelected = selectItemNext.innerText;
-
       elementsBrother[selectItemPos + 1].innerText = innerTextSelected;
       elementsBrother[selectItemPos + 1].className = classNameSelected;
-
       elementsBrother[selectItemPos].innerText = innerTextPrevSelected;
       elementsBrother[selectItemPos].className = classNamePrevSelected;
     }
