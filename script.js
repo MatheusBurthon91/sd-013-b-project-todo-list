@@ -88,7 +88,9 @@ clickSelectedItems.addEventListener('click', removeSelected);
 function moveUp() {
   let listItems = document.querySelectorAll('#lista-tarefas li');
   for (let index = 0; index < listItems.length; index += 1){
-    if(listItems[index].classList.contains('choreClass')){
+    if (listItems[0].classList.contains('choreClass')) {
+      break;
+    } else if(listItems[index].classList.contains('choreClass')){
       const saveItem = listItems[index].innerHTML;
       listItems[index].innerHTML = listItems[index - 1].innerHTML;
       listItems[index - 1].innerHTML = saveItem;
@@ -106,7 +108,9 @@ moveSelectedItemUp.addEventListener('click', moveUp);
 function moveDown() {
   let listItems = document.querySelectorAll('#lista-tarefas li');
   for (let index = 0; index < listItems.length; index += 1){
-    if(listItems[index].classList.contains('choreClass')){
+    if (listItems[listItems.length -1].classList.contains('choreClass')) {
+      break;
+    } else if(listItems[index].classList.contains('choreClass')){
       const saveItem = listItems[index + 1].innerHTML;
       listItems[index + 1].innerHTML = listItems[index].innerHTML;
       listItems[index].innerHTML = saveItem;
