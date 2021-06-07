@@ -8,8 +8,6 @@ function createTask() {
   li.className = 'tarefas';
 
   li.addEventListener('click', selectTaskLi);
-
-//  li.className = 'li-task';
   li.innerText = inputText.value;
   taskListOl.appendChild(li);
   inputText.value = '';
@@ -21,7 +19,7 @@ function selectTaskLi(event) {
   const clickedTask = event.target;
 
   for (let index = 0; index < allTasks.length; index += 1) {
-    let currentTask = allTasks[index];
+    const currentTask = allTasks[index];
     
     if (currentTask === clickedTask) {
       clickedTask.classList.toggle('selected');
@@ -33,7 +31,7 @@ function selectTaskLi(event) {
 
 window.onload = function () {
   createTaskBtn.addEventListener('click', createTask);
-  taskListOl.addEventListener('dblclick', function(event) {
+  taskListOl.addEventListener('dblclick', function (event) {
     const clickedTask = event.target;
     clickedTask.classList.toggle('completed');
   })
