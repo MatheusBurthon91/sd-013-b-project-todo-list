@@ -7,7 +7,6 @@
 
 .completed {
   text-decoration: line-through solid black;
-  text-decoration-thickness: 3px;
 }
 
 body {
