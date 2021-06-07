@@ -23,7 +23,7 @@ function selectTaskLi(event) {
     let currentTask = allTasks[index];
     
     if (currentTask === clickedTask) {
-      clickedTask.classList.add('selected');
+      clickedTask.classList.toggle('selected');
     } else {
       currentTask.classList.remove('selected');
     }
