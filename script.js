@@ -19,3 +19,12 @@ olGrey.addEventListener('click', (event) => {
     }
     event.target.classList.add('grey')
 });
+
+olGrey.addEventListener('dblclick', (event) => {
+    if (event.target.classList.contains('completed')) {
+        event.target.classList.remove('completed')
+    } else {
+        event.target.classList.add('completed');
+    }
+    
+}); 
