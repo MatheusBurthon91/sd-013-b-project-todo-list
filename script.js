@@ -1,5 +1,6 @@
 let texto = '';
 let lista = document.querySelector('#lista-tarefas');
+let itemSelecionado = null;
 
 function capturar(){
     texto = document.getElementById('texto-tarefa').value;
@@ -22,6 +23,7 @@ function paint(event){
     let x = event.target;
     console.log(x);
     x.style.background = 'rgb(128,128,128)';
+    itemSelecionado = x;
 }
 
 function risca(event){
@@ -39,6 +41,9 @@ function apagaTudo(event){
     lista.innerHTML = '';
 }
 
+function apagaSelecionado(event){
+    lista.removeChild(itemSelecionado);
+}
 
 
 
