@@ -17,6 +17,7 @@ input.setAttribute('type', 'text');
 input.setAttribute('value', '');
 input.style.marginLeft = '30px';
 inputSection.appendChild(input);
+// eslint-disable-next-line sonarjs/no-duplicate-string
 input.id = 'texto-tarefa';
 const todoListDiv = document.createElement('div');
 document.body.appendChild(todoListDiv);
@@ -104,7 +105,7 @@ function addItem() {
   const taskButton = document.querySelector('#criar-tarefa');
   // desafio cumprido com auxílio de estudos do w3Scholl,
   // uso de input e valores;
-  taskButton.addEventListener('click', (event) => {
+  taskButton.addEventListener('click', () => {
     const inputId = document.getElementById('texto-tarefa').value;
     const listItem = document.createElement('li');
     listItem.innerText = inputId;
@@ -117,17 +118,17 @@ function addItem() {
 }
 addItem();
 
-function removeItems(event) {
+function removeItems() {
   const clearAllButton = document.querySelector('#apaga-tudo');
-  clearAllButton.addEventListener('click', (event) => {
+  clearAllButton.addEventListener('click', () => {
     document.getElementById('lista-tarefas').innerHTML = '';
   });
 }
 removeItems();
 
-function removeCompletedItems(event) {
+function removeCompletedItems() {
   const clearDoneButton = document.querySelector('#remover-finalizados');
-  clearDoneButton.addEventListener('click', (event) => {
+  clearDoneButton.addEventListener('click', () => {
     const listMarkedItems = document.querySelectorAll('.completed');
     if (listMarkedItems !== null) {
       for (let index = 0; index < listMarkedItems.length; index += 1) {
@@ -151,9 +152,9 @@ function saveListToObject() {
   return todoListSaveTasks;
 }
 
-function saveTaskEventListener(event) {
+function saveTaskEventListener() {
   // cumprido com auxílio do estudante Lucas Caribé e Lucas T França,.
-  // gente fina, contratem ele também.  
+  // ambos gente fina, contratem eles também.
   saveTasksButton.addEventListener('click', () => {
     const listToObject = saveListToObject();
     // pego o valor que eu quero e salvo no local storage, transformo em string
@@ -163,9 +164,53 @@ function saveTaskEventListener(event) {
 }
 saveTaskEventListener();
 
-function removeSelectedItems(event) {
+// function changePosition(listItems, listItemsIndex, selectedItem) {
+//   // para mudar a posição do selecionado com o item anterior
+//   // eu tenho que pegar a posição que ele está e mudar
+//   // ele para onde eu quero que ele vá.
+//   quem.splice(selectedItem, 0, listItems.splice(listItemsIndex, 1)[0]);
+//   return quem;
+// }
+// changePosition();
+
+function changeListPositionUpItem() {
+  const moveUpItensButton = document.querySelector('#mover-cima');
+  moveUpItensButton.addEventListener('click', () => {
+    const listItems = document.getElementsByTagName('li');
+    for (let index = 0; index < listItems.length; index += 1) {
+      if (listItems[0].classList.contains('selected')) {
+        return;
+      }
+      if (listItems[index].classList.contains('selected')) {
+        const exchangeUp = listItems[index - 1];
+        exchangeUp.insertAdjacentElement('beforebegin', listItems[index]);
+      }
+    }
+  });
+}
+changeListPositionUpItem();
+
+function changeListPositionDownItem() {
+  const moveDownItensButton = document.querySelector('#mover-baixo');
+  moveDownItensButton.addEventListener('click', () => {
+    const listItems = document.getElementsByTagName('li');
+    for (let index = 0; index < listItems.length; index += 1) {
+      if (listItems[listItems.length - 1].classList.contains('selected')) {
+        return;
+      }
+      if (listItems[index].classList.contains('selected')) {
+        const exchangeDown = listItems[index + 1];
+        exchangeDown.insertAdjacentElement('afterend', listItems[index]);
+        return;
+      }
+    }
+  });
+}
+changeListPositionDownItem();
+
+function removeSelectedItems() {
   const clearDoneButton = document.querySelector('#remover-selecionado');
-  clearDoneButton.addEventListener('click', (event) => {
+  clearDoneButton.addEventListener('click', () => {
     const listSelectedItems = document.querySelectorAll('.selected');
     if (listSelectedItems !== null) {
       for (let index = 0; index < listSelectedItems.length; index += 1) {
