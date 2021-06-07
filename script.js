@@ -40,15 +40,34 @@ button.addEventListener('click', () => {
   input.value = '';
 });
 
+// Requisito 7
+const li = document.getElementsByTagName('li');
+function changeColor() {
+  orderedList.addEventListener('click', (event) => {
+    for (let index = 0; index < li.length; index += 1) {
+      if (li[index].className.includes('gray')) {
+        li[index].classList.remove('gray');
+      }
+      if (li[index].className !== 'gray') {
+        event.target.classList.add('gray');
+      }
+    }
+  });
+}
+changeColor();
+
 // Requisito 10
 const buttonClear = document.createElement('button');
 buttonClear.id = 'apaga-tudo';
 buttonClear.innerText = 'Limpar Tarefas';
 sectionList.appendChild(buttonClear);
 
-buttonClear.addEventListener('click', () => {
-  const itens = document.querySelectorAll('li');
-  for (let index = 0; index < itens.length; index += 1) {
-    document.querySelector('ol').removeChild(itens[index]);
-  }
-});
+function resetBoard() {
+  buttonClear.addEventListener('click', () => {
+    const itens = document.querySelectorAll('li');
+    for (let index = 0; index < itens.length; index += 1) {
+      document.querySelector('ol').removeChild(itens[index]);
+    }
+  });
+}
+resetBoard();
