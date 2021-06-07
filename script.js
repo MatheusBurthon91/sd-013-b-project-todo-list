@@ -23,3 +23,13 @@ function oneSelected(event) {
 }
 const list = document.querySelector('#lista-tarefas');
 list.addEventListener('click', oneSelected);
+
+function lineThrough(event) {
+  const dbClick = event;
+  if (dbClick.target.classList.contains('completed')) {
+    dbClick.target.classList.remove('completed');
+  } else {
+    dbClick.target.classList.add('completed');
+  }
+}
+list.addEventListener('dblclick', lineThrough);

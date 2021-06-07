@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(184,151,7);
+  background-color: rgb(184, 151, 7);
 }
 
 * {
@@ -15,7 +15,7 @@ body {
 }
 
 .selected {
-  background-color: gray
+  background-color: gray;
 }
 
 #texto-tarefa {
@@ -34,4 +34,8 @@ p {
 
 header {
   font-size: large;
+}
+
+.completed {
+  text-decoration: line-through solid rgb(0, 0, 0);
 }
