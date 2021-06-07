@@ -14,7 +14,6 @@ function changeColor(event) {
   const tasks = document.querySelectorAll('li');
 
   for (let index = 0; index < tasks.length; index += 1) {
-
     if (tasks[index] === event.target) {
       event.target.classList.add('selected');
     } else {
@@ -28,3 +27,23 @@ function completeTask(event) {
   event.target.classList.toggle('completed');
 }
 list.addEventListener('dblclick', completeTask);
+
+const clearButton = document.getElementById('apaga-tudo');
+
+function clear() {
+  list.innerText = '';
+}
+clearButton.addEventListener('click', clear);
+
+const completedButton = document.getElementById('remover-finalizados');
+
+function removeCompleted() {
+  const tasks = document.querySelectorAll('li');
+
+  for (let index = 0; index < tasks.length; index += 1) {
+    if (tasks[index].classList.contains('completed')) {
+      list.removeChild(tasks[index]);
+    }
+  }
+}
+completedButton.addEventListener('click', removeCompleted);
