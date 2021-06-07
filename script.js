@@ -89,11 +89,11 @@ function createItemRestored(item, className, id, color) {
   itemList.id = id;
   itemList.style.backgroundColor = color;
   ordemList.appendChild(itemList);
-  itemList.addEventListener('dblclick', () => {
-    completed(itemList);
-  });
   itemList.addEventListener('click', () => {
     selectioned(itemList);
+  });
+  itemList.addEventListener('dblclick', () => {
+    completed(itemList);
   });
 }
 
@@ -115,11 +115,11 @@ btnCreateTasks.addEventListener('click', () => {
   itemList.className = 'item-list';
   inputTasks.value = '';
   ordemList.appendChild(itemList);
-  itemList.addEventListener('dblclick', () => {
-    completed(itemList);
-  });
   itemList.addEventListener('click', () => {
     selectioned(itemList);
+  });
+  itemList.addEventListener('dblclick', () => {
+    completed(itemList);
   });
 });
 
@@ -164,7 +164,7 @@ btnMoveUp.addEventListener('click', () => {
 btnMoveDown.addEventListener('click', () => {
   const listItemDown = document.querySelector('#selected');
   if (listItemDown !== null && listItemDown.nextElementSibling) {
-    listItemDown.parentNode.insertBefore(listItemDown.nextElementSibling, listItemDown);
+    listItemDown.parentElement.insertBefore(listItemDown.nextElementSibling, listItemDown);
   }
 });
 
