@@ -7,6 +7,9 @@ const buttonClear = document.getElementById('apaga-tudo');
 const buttonRemoveCompleted = document.getElementById('remover-finalizados');
 const saveButton = document.getElementById('salvar-tarefas');
 const input = document.getElementById('texto-tarefa');
+const buttonUp = document.getElementById('mover-cima');
+const buttonDown = document.getElementById('mover-baixo');
+const buttonRemoveSelected = document.getElementById('remover-selecionado');
 
 // Function that add an text from input to my list.
 
@@ -109,3 +112,31 @@ if (saved) {
     ol.appendChild(li);
   }
 }
+
+function goUp() {
+  const selectedLi = document.querySelector('.selected');
+  if (selectedLi !== null && selectedLi.previousElementSibling !== null) {
+    const previousLi = selectedLi.previousElementSibling;
+    previousLi.insertAdjacentElement('beforebegin', selectedLi);
+  }
+}
+
+buttonUp.addEventListener('click', goUp);
+
+function goDown() {
+  const selectedLi = document.querySelector('.selected');
+  if (selectedLi !== null && selectedLi.nextElementSibling !== null) {
+    const nextLi = selectedLi.nextElementSibling;
+    nextLi.insertAdjacentElement('afterend', selectedLi);
+  }
+}
+
+buttonDown.addEventListener('click', goDown);
+
+function removeSelected() {
+  const selectedLi = document.querySelector('.selected');
+  if (selectedLi !== null) {
+    ol.removeChild(selectedLi);
+  }
+}
+buttonRemoveSelected.addEventListener('click', removeSelected);
