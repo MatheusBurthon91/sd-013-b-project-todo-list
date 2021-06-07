@@ -26,11 +26,12 @@ body.appendChild(input);
 body.appendChild(list);
 body.appendChild(button);
 
-//Clicar no botão = Adicionar Texto do Input e limar Input
+//Clicar no botão = Adicionar Texto do Input e limpar Input
 
 function addTask() {
-    button.addEventListener('click', function() {
-        let li = document.createElement('li');
+    button.addEventListener('click', function(){
+        const li = document.createElement('li');
+        li.addEventListener('click', changeBackground)
         li.innerText = input.value;
         list.appendChild(li);
         input.value = '';
@@ -38,6 +39,8 @@ function addTask() {
 }
 addTask()
 
-function clearInput() {
+//Trocar o fundo do item selecionado da lista
 
+function changeBackground(event) {
+    event.target.style.backgroundColor = 'rgb(128, 128, 128)'
 }
