@@ -4,9 +4,18 @@ function createElement(nameElement, idElementPai) {
   elementPai.appendChild(element);
 }
 
+let contador = 0;
 function adicionaNaLista() {
-  createElement('li', 'lista-tarefas');
-  console.log(document.getElementById('texto-tarefas').nodeValue);
+  const inputValue = document.getElementById('texto-tarefa').value;
+  if (inputValue === '') {
+    alert('Escreva algum item');
+  } else {
+    createElement('li', 'lista-tarefas');
+    const elementListItem = document.getElementsByTagName('li');
+    elementListItem[contador].innerHTML = inputValue;
+    document.getElementById('texto-tarefa').value = '';
+    contador += 1;
+  }
 }
 
 document.getElementById('criar-tarefa').addEventListener('click', adicionaNaLista);
