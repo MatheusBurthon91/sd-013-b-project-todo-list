@@ -14,17 +14,21 @@ olGrey.addEventListener('click', (event) => {
         for (let index = 0; index < liGrey.length; index += 1) {
             if (liGrey[index].classList.contains('grey')) {
                     liGrey[index].classList.remove('grey')
+            } else {
+                event.target.classList.add('grey')
             }
         }
     }
-    event.target.classList.add('grey')
 });
 
 olGrey.addEventListener('dblclick', (event) => {
-    if (event.target.classList.contains('completed')) {
-        event.target.classList.remove('completed')
-    } else {
-        event.target.classList.add('completed');
+    if (event.target.classList.contains('tarefas')) {
+        
+        if (event.target.classList.contains('completed')) {
+            event.target.classList.remove('completed')
+        } else {
+            event.target.classList.add('completed');
+        }
     }
     
 }); 
@@ -35,3 +39,15 @@ function removeTask() {
         ol.removeChild(ol.firstChild); // remove o primeiro filho da ol(no caso seria as li's)
     }
 }
+
+function finishRemove() {
+    const finish = document.querySelectorAll('.completed')
+    let ol = document.querySelector('#lista-tarefas')
+    for(let index = 0; index < finish.length; index+= 1) {
+        if (finish[index].classList.contains('completed')) {
+            ol.removeChild(finish[index]);
+        }
+    }
+}
+let buttonFinish = document.getElementById('remover-finalizados')
+buttonFinish.addEventListener('click', finishRemove());
