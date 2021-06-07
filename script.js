@@ -2,7 +2,8 @@ const botao = document.querySelector('#criar-tarefa');
 const entradaDeTexto = document.querySelector('#texto-tarefa');
 const getClick = document.getElementById('conteudo-lista');
 const clearAll = document.querySelector('#apaga-tudo');
-
+const rmIndividual = document.querySelector('#remover-finalizados');
+const getItensLista = document.querySelectorAll('.itensLista');
 function criaTarefa() {
   const texto = document.querySelector('#texto-tarefa').value;
   return texto;
@@ -22,7 +23,7 @@ function adicionaLista() {
 }
 
 function removeclass() {
-  const getItem = document.querySelectorAll('.itensLista');
+  const getItem = getItensLista;
   for (let indexR = 0; indexR < getItem.length; indexR += 1) {
     getItem[indexR].classList.remove('selected');
   }
@@ -46,13 +47,23 @@ getClick.addEventListener('dblclick', (clicks) => {
   }
 }, false);
 
-function rmAll(){
-  const listToRm = document.querySelectorAll('.itensLista');
-  for(let starts = 0; starts < listToRm.length; starts += 1 ) {
+clearAll.addEventListener('click', () => {
+  const listToRm = getItensLista;
+  for (let starts = 0; starts < listToRm.length; starts += 1) {
     listToRm[starts].parentNode.removeChild(listToRm[starts]);
+  }
+});
+
+function remComplete() {
+  const remove = getItensLista;
+  for (let index = 0; index < remove.length; index += 1) {
+    const rm = remove[index];
+    if (rm.classList.contains('completed')) {
+      rm.parentNode.removeChild(rm);
+    }
   }
 }
 
-clearAll.addEventListener('click', rmAll);
+rmIndividual.addEventListener('click', remComplete);
 entradaDeTexto.addEventListener('change', criaTarefa);
 botao.addEventListener('click', adicionaLista);
