@@ -23,3 +23,8 @@ function changeColor(event) {
   }
 }
 list.addEventListener('click', changeColor);
+
+function completeTask(event) {
+  event.target.classList.toggle('completed');
+}
+list.addEventListener('dblclick', completeTask);
