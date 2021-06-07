@@ -28,3 +28,15 @@ function selectedItem(event) {
 }
 
 taskList.addEventListener('click', selectedItem);
+
+taskButton.addEventListener('click', listMaker);
+
+function taskCompleted(event) {
+  if (event.target.classList.contains('completed')) {
+    event.target.classList.remove('completed');
+  } else {
+    event.target.classList.add('completed');
+  }
+}
+
+taskList.addEventListener('dblclick', taskCompleted);
