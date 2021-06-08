@@ -1,10 +1,11 @@
-let ol = document.querySelector('#lista-tarefas');
-let tarefa = document.querySelector('#criar-tarefa');
-let apaga = document.querySelector('#apaga-tudo');
-let finalizados = document.querySelector('#remover-finalizados');
-let salvarTarefa = document.querySelector('#salvar-tarefas');
-let moverCima = document.querySelector('#mover-cima');
-let moverBaixo = document.querySelector('#mover-baixo');
+const ol = document.querySelector('#lista-tarefas');
+const tarefa = document.querySelector('#criar-tarefa');
+const apaga = document.querySelector('#apaga-tudo');
+const finalizados = document.querySelector('#remover-finalizados');
+const salvarTarefa = document.querySelector('#salvar-tarefas');
+const moverCima = document.querySelector('#mover-cima');
+const moverBaixo = document.querySelector('#mover-baixo');
+const removerTarefa = document.querySelector('#remover-selecionado')
 
 
 function criarTarefa(){
@@ -87,6 +88,15 @@ function movedown() {
 moverCima.addEventListener('click', moveup)
 moverBaixo.addEventListener('click', movedown)
 
+
+function removeTask() {
+  let selected = document.querySelector('.selected')
+  if(selected.parentNode) {
+    selected.parentNode.removeChild(selected);
+  }
+}
+
+removerTarefa.addEventListener('click', removeTask);
 
 
 
