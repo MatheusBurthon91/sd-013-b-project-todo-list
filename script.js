@@ -20,24 +20,11 @@ createTask();
 
 function changeColor (event) {
   const list = document.getElementsByTagName('li');
-    for (let index = 0; index < list.length; index += 1) {
-    if (list[index].style.backgroundColor === 'rgb(128,128,128)') {
-        list[index].style.backgroundColor = null;
+  for (let index = 0; index < list.length; index += 1) {
+    if (list[index].classList.contains('selected')) {
+      list[index].classList.remove('selected');
     }
-     event.target.style.backgroundColor = 'rgb(128,128,128)';
-   }; 
- }
+      event.target.classList.add('selected');
+  }
+}
 
-changeColor();
-
-
-const clear = document.createElement('button');
-clear.id = 'apaga-tudo';
-clear.innerHTML = 'Apagar';
-const list = document.getElementById('lista-tarefas');
-list.appendChild(clear);
-
-const remove = document.createElement('button');
-remove.id = 'remover-finalizados';
-remove.innerHTML = 'Remover Finalizados';
-list.appendChild(remove);

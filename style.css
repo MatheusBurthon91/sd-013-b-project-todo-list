@@ -18,8 +18,8 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.background {
-  background-color: rgb(128, 128, 128);
+.selected {
+  background-color:gray;
 }
 
 .completed {
