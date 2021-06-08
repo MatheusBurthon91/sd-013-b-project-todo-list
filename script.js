@@ -7,6 +7,8 @@ const addTask = document.querySelector('#criar-tarefa');
 function createTask() {
   const removeTasks = document.querySelector('#apaga-tudo');
   const addLine = document.createElement('li');
+  const removeCompleted = document.querySelector('#remover-finalizados');
+
   addLine.classList.add('task');
   addLine.innerText = document.querySelector('#texto-tarefa').value;
   list.appendChild(addLine);
@@ -32,6 +34,12 @@ function createTask() {
       list.removeChild(addLine);
     }
   });
-}
 
+  removeCompleted.addEventListener('click', () => {
+    const completed = document.querySelector('.completed');
+    if (completed !== null) {
+      list.removeChild(completed);
+    }
+  });
+}
 addTask.addEventListener('click', createTask);
