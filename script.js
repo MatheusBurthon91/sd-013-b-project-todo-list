@@ -30,20 +30,13 @@ function changeColor (event) {
 
 changeColor();
 
-// Clicar duas vezes em um item, faz com que ele seja riscado, indicando que foi completo. Deve ser possível desfazer essa ação clicando novamente duas vezes no item
-function completeTask(event) {
-  
-}  
-// Utilize a classe CSS "completed" para adicionar o efeito de letra tachada (riscada) às tarefas finalizadas.
 
-// Adicione um botão com id="apaga-tudo" que quando clicado deve apagar todos os itens da lista
 const clear = document.createElement('button');
 clear.id = 'apaga-tudo';
 clear.innerHTML = 'Apagar';
 const list = document.getElementById('lista-tarefas');
 list.appendChild(clear);
 
-// 11 - Adicione um botão com id="remover-finalizados" que quando clicado remove somente os elementos finalizados da sua lista
 const remove = document.createElement('button');
 remove.id = 'remover-finalizados';
 remove.innerHTML = 'Remover Finalizados';
