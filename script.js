@@ -74,21 +74,56 @@ function removerSelecionada() {
 btnRemoverSelecionada.addEventListener('click', removerSelecionada);
 
 let btnSalvar = document.querySelector('#salvar-tarefas');
+
+
+function generateObject(lista) {
+  return {
+    innerText: lista.innerText,
+    className: lista.className
+  }
+}
+
+
 function salvarTarefas() {
   let itemLista = document.querySelectorAll('li');
 
-  if (localStorage.length !== 0) {
+ /* if (localStorage.length !== 0) {
     localStorage.clear();
   }
+  */
 
   for (let i = 0; i < itemLista.length; i += 1) {
-    localStorage.setItem('item'+[i],itemLista[i].innerText);
+    localStorage.setItem('item'+[i],JSON.stringify(generateObject(itemLista[i])));
   }
+
 }
 btnSalvar.addEventListener('click', salvarTarefas);
 
+
+function criarLi(item) {
+  let novaLi = document.createElement('li');
+  novaLi.innerText = item.innerText;
+  novaLi.className = item.className;
+
+  return novaLi;
+}
+
+
 /** recuperar do local */
-window.onload = function() {
+window.onload = function recuperarLista() {
+  for (let i = 0; i < localStorage.length; i += 1) {
+  const novoObjeto = JSON.parse(localStorage.getItem('item'+[i]));
+  // localStorage.removeItem('item'+[i]);
+  let novaLi = criarLi(novoObjeto);
+  olTarefas.appendChild(novaLi);
+  //olTarefas.addEventListener('click', selecionarItem);
+  }
+}
+  
+
+
+
+  /*
   for (let i = 0; i < localStorage.length; i += 1) {    
     let liItem = document.createElement('li');
     // esse 'i' concatenado com 'item' é para gerar chaves diferentes, item0, item1 ... item[i]
@@ -96,4 +131,7 @@ window.onload = function() {
     // olTarefas é o PAI dos li  
     olTarefas.appendChild(liItem);
   }
-}
+
+  // olTarefas.append(localStorage.getItem('chaveOl'));
+  */
+  
