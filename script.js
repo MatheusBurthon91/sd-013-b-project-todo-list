@@ -4,7 +4,6 @@ document.querySelector('#criar-tarefa').addEventListener('click', function () {
   let ol = document.querySelector('#lista-tarefas');
   let input = document.querySelector('#texto-tarefa').value;
   ol.appendChild(novaT).innerHTML = input;
-
   //Consegui chegar a esta solução usando a ideia do César Sousa nesta pagina  https://pt.stackoverflow.com/questions/52418/como-limpar-campos-de-formulario-html
   document.querySelector('#texto-tarefa').value = '';
 
@@ -25,3 +24,10 @@ function selecionar(event) {
 function completo(event) {
   event.target.classList.toggle('completed')
 }
+
+document.querySelector('#apaga-tudo').addEventListener('click', function () {
+  let list = document.querySelectorAll('li')
+  for (let index = 0; index < list.length; index += 1) {
+    list[index].remove()
+  }
+})
