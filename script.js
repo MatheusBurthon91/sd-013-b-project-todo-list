@@ -29,10 +29,32 @@ seletorItem();
 function clearTasks() {
   const clearAllTasks = document.querySelector('#apaga-tudo');
   clearAllTasks.addEventListener('click', () => {
-
     listaTarefas.innerText = '';
-
   });
 }
 clearTasks();
 
+function doubleClick() {
+  listaTarefas.addEventListener('dblclick', (event) => {
+    const evt = event.target;
+    if (evt.classList.contains('completed')) {
+      evt.classList.remove('completed');
+      evt.style.textDecoration = '';
+    } else {
+      evt.classList.add('completed');
+      evt.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
+    }
+  });
+}
+doubleClick();
+
+function removerFinalizados() {
+  const butonRemoverFinalizados = document.querySelector('#remover-finalizados');
+  butonRemoverFinalizados.addEventListener('click', () => {
+    const completo = document.querySelectorAll('.completed');
+    for (let index = 0; index < completo.length; index += 1) {
+      listaTarefas.removeChild(completo[index]);
+    }
+  });
+}
+removerFinalizados();
