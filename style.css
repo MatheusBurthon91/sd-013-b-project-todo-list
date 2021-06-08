@@ -1,0 +1,12 @@
+.cinza {
+    background-color: rgb(128, 128, 128);
+    margin-right: 1070px;
+  }
+
+  /* Crie uma classe CSS com o nome "completed" e defina a propriedade "text-decoration" com o valor "line-through". */
+
+.completed {
+
+    text-decoration: line-through;
+
+  } 
