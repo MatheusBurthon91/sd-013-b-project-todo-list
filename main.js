@@ -29,19 +29,19 @@ ol.id = 'lista-tarefas';
 body.appendChild(ol);
 
 // Adicionar um botão com id="criar-tarefa" e, ao clicar nesse botão, um novo item deverá ser criado ao final da lista e o texto do input deve ser limpo
-//Criar botão
+// Criar botão
 const taskButton = document.createElement('button');
 
-taskButton.id = 'criar-tarefas';
+taskButton.id = 'criar-tarefa';
 taskButton.innerText = 'Add';
 main.appendChild(taskButton);
 
 // ao clicar no botão, cria-se um novo item à lista
 function addTask() {
-    let taskItem = document.createElement('li');
-    taskItem.innerText = input.value;
-    ol.appendChild(taskItem);
-    input.value = "";
+  const taskItem = document.createElement('li');
+  taskItem.innerText = input.value;
+  ol.appendChild(taskItem);
+  input.value = '';
 }
 
 taskButton.addEventListener('click', addTask);
