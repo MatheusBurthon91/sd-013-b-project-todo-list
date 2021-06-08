@@ -41,6 +41,7 @@ function addTask() {
     let taskItem = document.createElement('li');
     taskItem.innerText = input.value;
     ol.appendChild(taskItem);
+    input.value = "";
 }
 
 taskButton.addEventListener('click', addTask);
