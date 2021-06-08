@@ -7,9 +7,22 @@
 
 #texto-tarefa {
   margin: 10px;
+  padding: 0;
+  border: 1px solid black;
+  height: 30px;
 }
 
 #criar-tarefa {
   margin: 10px;
   width: 30px;
+  border: 1px solid black;
+  height: 30px;
+}
+
+/* .select {
+  
+} */
+
+.completed {
+  text-decoration: line-through solid rgb(0, 0, 0);
 }
