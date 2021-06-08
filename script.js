@@ -50,22 +50,22 @@ function inputPickUp() {
 
 function classSelected(event) {
   const e = event;
-  const itenList = document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)];
+  const position = e.target;
   if (document.querySelector('.selected') === null) {
-    itenList.classList.add('selected');
+    position.classList.add('selected');
   } else {
     document.querySelector('.selected').classList.remove('selected');
-    itenList.classList.add('selected');
+    position.classList.add('selected');
   }
 }
 
 function completedIten(event) {
   const e = event;
-  const itenList = document.querySelectorAll('li')[[].indexOf.call(toDoList, e.target)];
-  if (itenList.classList.contains('completed')) {
-    itenList.classList.remove('completed');
+  const position = e.target;
+  if (position.classList.contains('completed')) {
+    position.classList.remove('completed');
   } else {
-    itenList.classList.add('completed');
+    position.classList.add('completed');
   }
 }
 
@@ -117,11 +117,11 @@ function remove() {
   }
 }
 
+storeLiNodes();
+
 createButton.addEventListener('click', inputPickUp);
 
 createButton.addEventListener('click', storeLiNodes);
-
-storeLiNodes();
 
 clearButton.addEventListener('click', listClear);
 
