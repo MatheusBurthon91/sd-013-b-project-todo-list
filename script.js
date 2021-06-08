@@ -12,8 +12,13 @@ function elementos() {
     //pintando background
 
     li.addEventListener('click', function (event) {
+        for (let index = 0; index < li.length; index += 1) {
 
-      event.target.style.backgroundColor = 'grey';
+
+
+        }
+        event.target.style.backgroundColor = 'grey';
+
 
     });
     //riscando elementos 'li' e adicionando classe completed
@@ -27,19 +32,22 @@ function elementos() {
             event.target.classList.remove('completed');
             event.target.style.textDecoration = 'none';
         }
+
+
     })
+}
+let botaoApagar = document.querySelector('#apaga-tudo')
+botaoApagar.addEventListener('click', apagarTudo)
+function apagarTudo(event) {
 
 
-
-
+    let node = document.getElementById('lista-tarefas');
+    if (node.parentNode) {
+        node.parentNode.removeChild(node);
+    }
 }
 
 
-
-
-function selecionarItem(event) {
-
-}
 
 
 
