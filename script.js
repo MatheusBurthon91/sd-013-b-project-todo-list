@@ -5,7 +5,9 @@ const addTask = document.querySelector('#criar-tarefa');
 
 // eslint-disable-next-line max-lines-per-function
 function createTask() {
+  const removeTasks = document.querySelector('#apaga-tudo');
   const addLine = document.createElement('li');
+  addLine.classList.add('task');
   addLine.innerText = document.querySelector('#texto-tarefa').value;
   list.appendChild(addLine);
   document.getElementById('texto-tarefa').value = '';
@@ -17,11 +19,18 @@ function createTask() {
     }
     event.target.classList.add('li-selected');
   });
+
   addLine.addEventListener('dblclick', (event) => {
     event.target.classList.add('completed');
     addLine.addEventListener('dblclick', () => {
       addLine.classList.remove('completed');
     });
+  });
+
+  removeTasks.addEventListener('click', () => {
+    if (addLine !== null) {
+      list.removeChild(addLine);
+    }
   });
 }
 
