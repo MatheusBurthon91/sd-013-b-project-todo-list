@@ -1,31 +1,3 @@
-// --------->Questão 5 <--------- //
-// --------->Questão 6 <--------- //
-
-// Nomeia o botão //
-
-const botao = document.querySelector('#criar-tarefa');
-botao.innerText = 'Adicionar tarefa'
-
-// Adiciona elementos na lista //
-
-function addTarefa() {
-  const botao = document.querySelector('#criar-tarefa');
-  const box = document.querySelector('#texto-tarefa');
-  botao.addEventListener('click', function () {
-    if(box.value !== "") {
-      const tarefa = document.createElement ('li');
-      tarefa.innerText = box.value;
-      tarefa.className = 'lista';
-      tarefa.addEventListener('click', coloreTarefa);
-      tarefa.addEventListener('dblclick', riscaTarefa);
-      const listaOrdenada = document.querySelector('#lista-tarefas');
-      listaOrdenada.appendChild(tarefa);
-      box.value = "";
-    };
-  });
-};
-addTarefa();
-
 // -------> Questão 7 <------- //
 // -------> Questão 8 <------- //
 
@@ -44,8 +16,35 @@ function coloreTarefa(clicado) {
 // -------> Questão 9 <------- //
 
 function riscaTarefa (event) {
-    event.target.classList.toggle('completed')
+  event.target.classList.toggle('completed')
 };
+
+// --------->Questão 5 <--------- //
+// --------->Questão 6 <--------- //
+
+// Nomeia o botão //
+
+const botao = document.querySelector('#criar-tarefa');
+botao.innerText = 'Adicionar tarefa';
+
+// Adiciona elementos na lista //
+
+function addTarefa() {
+  const box = document.querySelector('#texto-tarefa');
+  botao.addEventListener('click', function () {
+    if (box.value !== '') {
+      const tarefa = document.createElement('li');
+      tarefa.innerText = box.value;
+      tarefa.className = 'lista';
+      tarefa.addEventListener('click', coloreTarefa);
+      tarefa.addEventListener('dblclick', riscaTarefa);
+      const listaOrdenada = document.querySelector('#lista-tarefas');
+      listaOrdenada.appendChild(tarefa);
+      box.value = "";
+    };
+  });
+};
+addTarefa();
 
 // -------> Questão 10 <------- //
 // -------> Questão 11 <------- //
@@ -68,12 +67,28 @@ createButton('Limpar tarefas realizadas', 'remover-finalizados');
 function clear() {
   let botaoClear = document.querySelector('#apaga-tudo');
   botaoClear.addEventListener('click', function() {
-    const listaOrdenada = document.getElementsByTagName('ol');
+    const listaOrdenada = document.getElementById('lista-tarefas');
     const itens = document.querySelectorAll('li');
     if(listaOrdenada.Children !== null) {
-      listaOrdenada.removeChildren(itens);
+      for(let index = 0; index < itens.length; index += 1) {
+        listaOrdenada.removeChild(itens[index]);
+      }
     }
   });
 };
-  
   clear();
+
+  // limpa a lista de tarefas realizadas //
+  function clearTarefasRealizadas() {
+    let botaoClear = document.querySelector('#remover-finalizados');
+    botaoClear.addEventListener('click', function() {
+      const listaOrdenada = document.getElementById('lista-tarefas');
+      const itensRiscados = document.querySelectorAll('.completed');
+      if(listaOrdenada.Children !== null) {
+        for(let index = 0; index < itensRiscados.length; index += 1) {
+          listaOrdenada.removeChild(itensRiscados[index]);
+        }
+      }
+    });
+  };
+  clearTarefasRealizadas();
