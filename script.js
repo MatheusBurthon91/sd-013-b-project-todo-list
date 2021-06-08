@@ -52,11 +52,10 @@ botaoApagarComplete.innerText = 'Remove os finalizados';
 botoesDeApagar.appendChild(botaoApagarComplete);
 function removeFinalizados() {
   for (let index = 0; index < todasLi.length; index += 1) {
-      if(todasLi[index].classList.contains('completed')){
-          todasLi[index].remove();
-          index -= 1;
-      }
-      
+    if (todasLi[index].classList.contains('completed')) {
+      todasLi[index].remove();
+      index -= 1;
+    }
   }
 }
 botaoApagarComplete.addEventListener('click', removeFinalizados);
