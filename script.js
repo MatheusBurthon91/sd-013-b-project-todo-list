@@ -9,7 +9,7 @@ criarTarefas.addEventListener('click', () => {
   textoTarefa.value = '';
 });
 
-function seletorItem() {
+function selectItem() {
   listaTarefas.addEventListener('click', (event) => {
     const colorGrey = 'rgb(128, 128, 128)';
     const li = document.querySelectorAll('li');
@@ -24,7 +24,7 @@ function seletorItem() {
     evt.classList.add('seletorColor');
   });
 }
-seletorItem();
+selectItem();
 
 function clearTasks() {
   const clearAllTasks = document.querySelector('#apaga-tudo');
@@ -34,7 +34,7 @@ function clearTasks() {
 }
 clearTasks();
 
-function doubleClick() {
+function taskCompleted() {
   listaTarefas.addEventListener('dblclick', (event) => {
     const evt = event.target;
     if (evt.classList.contains('completed')) {
@@ -46,9 +46,9 @@ function doubleClick() {
     }
   });
 }
-doubleClick();
+taskCompleted();
 
-function removerFinalizados() {
+function removeTaskCompleted() {
   const butonRemoverFinalizados = document.querySelector('#remover-finalizados');
   butonRemoverFinalizados.addEventListener('click', () => {
     const completo = document.querySelectorAll('.completed');
@@ -57,4 +57,16 @@ function removerFinalizados() {
     }
   });
 }
-removerFinalizados();
+removeTaskCompleted();
+
+const pegarListaLocalStorage = () => {
+  if (localStorage.getItem('key') !== undefined) {
+    const listaItens = localStorage.getItem('key');
+    listaTarefas.innerHTML = listaItens;
+  }
+  const salvarTarefas = document.querySelector('#salvar-tarefas');
+  salvarTarefas.addEventListener('click', () => {
+    localStorage.setItem('key', listaTarefas.innerHTML);
+  });
+};
+pegarListaLocalStorage();
