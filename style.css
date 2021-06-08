@@ -17,3 +17,12 @@ p {
 h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.background {
+  background-color: rgb(128, 128, 128);
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}
+
