@@ -36,3 +36,34 @@ function marcarAtividade(event) {
   }
 }
 listaTarefa.addEventListener('click', marcarAtividade);
+
+//Exercicio 9
+function riscarAtividade(event) {
+  let itemSelecionado = event.target;
+  console.log(itemSelecionado);
+  if (itemSelecionado.classList.contains('completed')) {
+    itemSelecionado.classList.remove('completed');
+  } else {
+    itemSelecionado.classList.add('completed');
+  }
+}
+
+//Exercicio 10
+let botaoApagarTudo = document.getElementById('apaga-tudo');
+function apagarTudo() {
+let todasTarefas = document.querySelectorAll('li');
+for (let index = 0; index < todasTarefas.length; index += 1) {
+todasTarefas[index].remove();
+}
+}
+botaoApagarTudo.addEventListener('click', apagarTudo);
+
+//Exercicio 11
+let botaoApagarRealizadas = document.getElementById('remover-finalizados');
+function apagarAtividadeRealizada() {
+let todasTarefas = document.querySelectorAll('.completed');
+for (let index = 0; index < todasTarefas.length; index += 1) {
+todasTarefas[index].remove();
+}
+}
+botaoApagarRealizadas.addEventListener('click', apagarAtividadeRealizada);
