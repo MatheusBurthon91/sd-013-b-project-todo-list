@@ -17,7 +17,8 @@ main.appendChild(paragraph);
 
 /* Adicione um input com o id="texto-tarefa" onde a pessoa usuária
 poderá digitar o nome do item que deseja adicionar à lista */
- 
 
 // Adicionar uma lista ordenada de tarefas com o id="lista-tarefas"
+const body = document.querySelector('body');
+
 const ol = document.createElement('ol');
