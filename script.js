@@ -8,3 +8,14 @@ function criarParagrafo() {
     corpo.appendChild(paragrafo);
 }
 criarParagrafo();
+
+function criarInput() {
+    let lugarDoInput = document.getElementById('lugar-do-input');
+    let input = document.createElement('input');
+    let idDoInput = 'texto-tarefa';
+
+    input.innerText = 'digite aqui o item.'
+    input.id = idDoInput;
+    lugarDoInput.appendChild(input);
+}
+criarInput();
