@@ -8,6 +8,7 @@ function createTask() {
       listItem.innerText = input.value;
       listItem.style.fontFamily = 'Verdana, Geneva, Tahoma, sans-serif';
       listItem.addEventListener('click', changeColor);
+      listItem.addEventListener('dblclick', completeTask);
       list.appendChild(listItem);
       input.value = '';
     } else {
@@ -24,7 +25,14 @@ function changeColor (event) {
     if (list[index].classList.contains('selected')) {
       list[index].classList.remove('selected');
     }
-      event.target.classList.add('selected');
+    event.target.classList.add('selected');
   }
 }
 
+function completeTask(event) {
+  const getLi = document.getElementsByTagName('li');
+  for (let index = 0; index < getLi.length; index += 1) {
+  }
+  event.target.classList.toggle('completed');
+ }
+ 
