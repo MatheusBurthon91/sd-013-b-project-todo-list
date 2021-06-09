@@ -1,6 +1,7 @@
 // Nesse Requisito eu tive ajuda do Lopes e do Pedro!
 function selected(event){
-    const allLi = document.getElementsByClassName('selected')[0];
+    // const allLi = document.getElementsByClassName('selected')[0];
+    const allLi = document.querySelector('.selected');
     if (allLi) {
         allLi.classList.remove('selected');
     }
