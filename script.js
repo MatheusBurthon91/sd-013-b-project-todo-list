@@ -52,3 +52,13 @@ function removeCompleted() {
 
 const removeFinished = document.querySelector('#remover-finalizados');
 removeFinished.addEventListener('click', removeCompleted);
+
+const removeSelected = document.getElementById('remover-selecionado');
+removeSelected.addEventListener('click', (event) => {
+  const selectedItem = document.querySelector('.selected');
+  if (selectedItem === null) {
+    alert('Não há itens selecionados');
+  }
+  selectedItem.remove();
+  console.log(event.target);
+});
