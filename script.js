@@ -42,11 +42,11 @@ function apagaTudo(event){
 
 function apagaSelecionado(event){
     lista.removeChild(itemSelecionado);
+    itemSelecionado = null;
 }
 
 function apagaFinalizado(event){
     item = lista.children;
-    console.log(item);
     for (index = 0; index < item.length; index += 1){
         if(item[index].className == 'completed'){
             lista.removeChild(item[index]);
@@ -54,8 +54,19 @@ function apagaFinalizado(event){
             
         }    
     }
-    
 }
 
+function moverBaixo(event){
+    item = lista.children;
+    li = itemSelecionado;
+    if (li != item[item.length-1] && itemSelecionado != null) {
+      li.parentNode.insertBefore(li, li.nextSibling.nextSibling);
+    }    
+}
 
-
+function moverCima(event){
+    item = lista.children;
+    if (itemSelecionado != item[0] && itemSelecionado != null) {
+        itemSelecionado.parentNode.insertBefore(itemSelecionado, itemSelecionado.previousSibling);
+    }    
+}
