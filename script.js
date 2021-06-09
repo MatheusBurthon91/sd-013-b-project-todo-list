@@ -59,7 +59,7 @@ function removeTaskCompleted() {
 }
 removeTaskCompleted();
 
-const pegarListaLocalStorage = () => {
+const saveTask = () => {
   if (localStorage.getItem('key') !== undefined) {
     const listaItens = localStorage.getItem('key');
     listaTarefas.innerHTML = listaItens;
@@ -69,4 +69,26 @@ const pegarListaLocalStorage = () => {
     localStorage.setItem('key', listaTarefas.innerHTML);
   });
 };
-pegarListaLocalStorage();
+saveTask();
+
+// referencia:
+// https://living-sun.com/pt/javascript/378747-move-list-item-up-javascript-dom.html
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/nextElementSibling
+function moveLiButton() {
+  const moveUp = document.querySelector('#mover-cima');
+  moveUp.addEventListener('click', () => {
+    const li = document.querySelector('.seletorColor');
+    if (li != null && li.previousElementSibling) {
+      li.parentNode.insertBefore(li, li.previousElementSibling);
+    }
+  });
+  const moveDown = document.querySelector('#mover-baixo');
+  moveDown.addEventListener('click', () => {
+    const li = document.querySelector('.seletorColor');
+    if (li != null && li.nextElementSibling) {
+      li.parentNode.insertBefore(li.nextElementSibling, li);
+    }
+  });
+}
+moveLiButton();
