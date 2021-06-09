@@ -16,19 +16,18 @@ function createTaskBtn() {
   createTask(task, classOfTask);
 }
 
-let allTasks = tasksList.children;
-console.log(allTasks);
-
-function selectItem(event) {
-  const clickItem = event.target; // pega o evento click
-  clickItem.classList.add('selecionado'); // add classe selecionado
-
-  for (let index = 0; index < allTasks.length; index += 1) {
-    if (allTasks[index] !== clickItem) {
-      allTasks[index].classList.remove('selecionado');
-    }
-  }
-}
-
 buttonTaskCreated.addEventListener('click', createTaskBtn);
-allTasks.addEventListener('click', selectItem);
+
+tasksList.addEventListener('click', (event) => {
+  const assistant = event;
+  const classToRemove = document.querySelector('.selected');
+  if (classToRemove === null) {
+    assistant.target.classList.add('selected');
+    assistant.target.style.backgroundColor = 'rgb(128, 128, 128)';
+  } else {
+    classToRemove.classList.remove('selected');
+    classToRemove.style.backgroundColor = 'white';
+    assistant.target.classList.add('selected');
+    assistant.target.style.backgroundColor = 'rgb(128, 128, 128)';
+  }
+});
