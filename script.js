@@ -19,3 +19,13 @@ function criarInput() {
     lugarDoInput.appendChild(input);
 }
 criarInput();
+
+function criarLista() {
+    let pegarLista = document.getElementById('lista');
+    let listaOrdenada = document.createElement('ol');
+    let idDaListaDeTarefas = 'lista-tarefas';
+
+    listaOrdenada.id = idDaListaDeTarefas;
+    pegarLista.appendChild(listaOrdenada);
+}
+criarLista();
