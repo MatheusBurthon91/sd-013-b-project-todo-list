@@ -105,11 +105,13 @@ function criarLi(objeto) {
 
 function moverParaPima() {
   let itemLista = document.querySelector('.selecionado');
-  // retorna 'true' se o elemento tem um irmão 'antes'
-  //if (itemLista.classList.contains('selecionado')) {
+    // if (itemLista.classList.contains('selecionado')) { -> [retorno = à classe ou null] Desta forma apresenta erro de que 'não é possível ler a propriedade clasList de null'
+    // [retorno = true ou false] entra no IF se for 'true', e não entra nem dá erro se for 'false'
     if(itemLista) {
+    // retorna 'true' se o elemento itemLista tem um irmão 'antes'
     if (itemLista.previousElementSibling) {
       itemLista.parentNode.insertBefore(itemLista, itemLista.previousElementSibling);
+      console.log(itemLista);
     }
   } 
 }
