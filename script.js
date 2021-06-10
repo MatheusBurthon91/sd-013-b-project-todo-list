@@ -1,12 +1,13 @@
 /* PROJETO 4 */
 const inputTarefa = document.querySelector('#texto-tarefa');
 const btnCriarTarefa = document.querySelector('#criar-tarefa');
+let olTarefas = document.querySelector('#lista-tarefas'); // PAI da lista 'ol'
+let filhosTarefas = olTarefas.children; // FILHOS  da lista 'li'
+let btnApagarTudo = document.querySelector('#apaga-tudo');
+let btnExcluirFinalizadas = document.querySelector('#remover-finalizados');
+let btnRemoverSelecionada = document.querySelector('#remover-selecionado');
+let btnSalvar = document.querySelector('#salvar-tarefas');
 
-// * PAI da lista 'ol'
-let olTarefas = document.querySelector('#lista-tarefas');
-
-// * FILHOS  da lista 'li'
-let filhosTarefas = olTarefas.children;
 
 function manipularTarefas() {
   /* texto do imput */
@@ -20,12 +21,12 @@ function manipularTarefas() {
 }
 btnCriarTarefa.addEventListener('click', manipularTarefas);
 
-function selecionarItem(event){
+function selecionarItem(event) {
   let itemClicado = event.target;
   itemClicado.classList.add('selecionado');
 
   /* * remover a classe 'selecionado' do irmão */
-  for (let i = 0; i < filhosTarefas.length; i += 1){
+  for (let i = 0; i < filhosTarefas.length; i += 1) {
     if (filhosTarefas[i] !== itemClicado) {
       filhosTarefas[i].classList.remove('selecionado');
     }
@@ -39,7 +40,6 @@ function completarTarefa(event) {
 }
 olTarefas.addEventListener('dblclick', completarTarefa);
 
-let btnApagarTudo = document.querySelector('#apaga-tudo');
 function apagarTudo() {
   let filhos = document.querySelectorAll('#lista-tarefas li');
   for (let i = 0; i < filhos.length; i += 1) {
@@ -48,21 +48,19 @@ function apagarTudo() {
 }
 btnApagarTudo.addEventListener('click', apagarTudo);
 
-let btnExcluirFinalizadas = document.querySelector('#remover-finalizados');
 function excluirFinalizadas() {
   let itens = document.querySelectorAll('.completed');
-  
+
   for (let i = 0; i < itens.length; i += 1) {
     itens[i].remove();
   }
-  
+
 }
 btnExcluirFinalizadas.addEventListener('click', excluirFinalizadas);
 
-let btnRemoverSelecionada = document.querySelector('#remover-selecionado');
 function removerSelecionada() {
   let selecionada = document.querySelector('.selecionado');
-  
+
   if (filhosTarefas.length === 0) {
     alert('Sua lista está vazia. Aproveite seu tempo livre!');
   } else if (selecionada === null) {
@@ -73,65 +71,69 @@ function removerSelecionada() {
 }
 btnRemoverSelecionada.addEventListener('click', removerSelecionada);
 
-let btnSalvar = document.querySelector('#salvar-tarefas');
-
-
-function generateObject(lista) {
+function gerarObjeto(lista) {
   return {
-    innerText: lista.innerText,
-    className: lista.className
+    texto: lista.innerText,
+    classe: lista.className
   }
 }
-
 
 function salvarTarefas() {
   let itemLista = document.querySelectorAll('li');
 
- /* if (localStorage.length !== 0) {
+  if (localStorage.length !== 0) {
     localStorage.clear();
   }
-  */
 
   for (let i = 0; i < itemLista.length; i += 1) {
-    localStorage.setItem('item'+[i],JSON.stringify(generateObject(itemLista[i])));
+    localStorage.setItem('item' + [i], JSON.stringify(gerarObjeto(itemLista[i])));
   }
 
 }
 btnSalvar.addEventListener('click', salvarTarefas);
 
+/* a função recebe um OBJETO como parâmetro */
+function criarLi(objeto) {
+  let novaLiCriada = document.createElement('li');
 
-function criarLi(item) {
-  let novaLi = document.createElement('li');
-  novaLi.innerText = item.innerText;
-  novaLi.className = item.className;
+  novaLiCriada.innerText = objeto.texto;
+  novaLiCriada.className = objeto.classe;
 
-  return novaLi;
+  return novaLiCriada;
 }
 
 
-/** recuperar do local */
+function moverParaPima() {
+  let itemLista = document.querySelector('.selecionado');
+  // retorna 'true' se o elemento tem um irmão 'antes'
+  if (itemLista.classList.contains('selecionado')) {
+    if (itemLista.previousElementSibling) {
+      itemLista.parentNode.insertBefore(itemLista, itemLista.previousElementSibling);
+    }
+  } 
+}
+
+function moverParaBaixo() {
+  let itemLista = document.querySelector('.selecionado');
+  // if (itemLista.classList.contains('selecionado')) {
+    if (itemLista){
+    if (itemLista.nextElementSibling) {
+      itemLista.parentNode.insertBefore(itemLista.nextElementSibling, itemLista);
+    }
+  }
+}
+document.querySelector('#mover-cima').addEventListener('click', moverParaPima);
+document.querySelector('#mover-baixo').addEventListener('click', moverParaBaixo);
+
+
+
+/** recuperar do localStorage, após o carregamento da página */
 window.onload = function recuperarLista() {
   for (let i = 0; i < localStorage.length; i += 1) {
-  const novoObjeto = JSON.parse(localStorage.getItem('item'+[i]));
-  // localStorage.removeItem('item'+[i]);
-  let novaLi = criarLi(novoObjeto);
-  olTarefas.appendChild(novaLi);
-  //olTarefas.addEventListener('click', selecionarItem);
+    const novoObjeto = JSON.parse(localStorage.getItem('item' + [i]));
+    /** a novaLi recebe o retorno da função, ou seja, a novaLiCriada */
+    let novaLi = criarLi(novoObjeto);
+    /** e ela é adicionada como filha da OL, na última posição */
+    olTarefas.appendChild(novaLi);
   }
 }
-  
-
-
-
-  /*
-  for (let i = 0; i < localStorage.length; i += 1) {    
-    let liItem = document.createElement('li');
-    // esse 'i' concatenado com 'item' é para gerar chaves diferentes, item0, item1 ... item[i]
-    liItem.innerText = localStorage.getItem('item'+[i]);
-    // olTarefas é o PAI dos li  
-    olTarefas.appendChild(liItem);
-  }
-
-  // olTarefas.append(localStorage.getItem('chaveOl'));
-  */
-  
