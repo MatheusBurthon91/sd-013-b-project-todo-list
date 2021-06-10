@@ -32,3 +32,21 @@ function completed(event) {
   }
 }
 list.addEventListener('dblclick', completed);
+
+function reset() {
+  const remove = document.getElementById('lista-tarefas');
+  remove.innerHTML = '';
+}
+const eraseBtn = document.getElementById('apaga-tudo');
+eraseBtn.addEventListener('click', reset);
+
+// https://stackoverflow.com/questions/4777077/removing-elements-by-class-name
+function removeCompleted() {
+  const itensCompleted = document.getElementsByClassName('completed');
+  console.log(itensCompleted[0]);
+  while (itensCompleted.length > 0) {
+    itensCompleted[0].parentNode.removeChild(itensCompleted[0]);
+  }
+}
+const eraseCompleteBtn = document.getElementById('remover-finalizados');
+eraseCompleteBtn.addEventListener('click', removeCompleted);

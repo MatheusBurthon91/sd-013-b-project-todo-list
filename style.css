@@ -1,6 +1,7 @@
 body {
   font-family: monospace;
   background-color: antiquewhite;
+  user-select: none;
 }
 
 header {
