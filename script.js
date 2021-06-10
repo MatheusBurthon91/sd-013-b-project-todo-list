@@ -106,7 +106,8 @@ function criarLi(objeto) {
 function moverParaPima() {
   let itemLista = document.querySelector('.selecionado');
   // retorna 'true' se o elemento tem um irmão 'antes'
-  if (itemLista.classList.contains('selecionado')) {
+  //if (itemLista.classList.contains('selecionado')) {
+    if(itemLista) {
     if (itemLista.previousElementSibling) {
       itemLista.parentNode.insertBefore(itemLista, itemLista.previousElementSibling);
     }
