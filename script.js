@@ -1,4 +1,4 @@
-function changeColor (event) {
+function changeColor (event){
   const list = document.getElementsByTagName('li');
   for (let index = 0; index < list.length; index += 1) {
     if (list[index].classList.contains('selected')) {
@@ -42,8 +42,8 @@ function clear() {
 }
 
 const resetButton = document.createElement('button');
-resetButton.id = "apaga-tudo";
-resetButton.innerHTML = "Apagar";
+resetButton.id = 'apaga-tudo';
+resetButton.innerHTML = 'Apagar';
 resetButton.addEventListener('click', clear);
-const btncontainer = document.querySelector('.button-container')
+const btncontainer = document.querySelector('.button-container');
 btncontainer.appendChild(resetButton);
