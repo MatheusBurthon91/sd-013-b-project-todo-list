@@ -3,6 +3,7 @@ let listAdd = document.querySelector('#criar-tarefa');
 const listOrd = document.getElementById('lista-tarefas');
 // variavel recebe o elemente ol.
 const botaoLimpar = document.getElementById('apaga-tudo');
+const botaoLimparConcluido = document.getElementById('remover-finalizados');
 
 function AdicionaLista() {
     const createLine = document.createElement('li');
@@ -51,13 +52,12 @@ function apagarTarefas() {
 //função para apagar tudo.
 botaoLimpar.addEventListener('click', apagarTarefas);
 
-
-// const textoTarefa = document.querySelector('#texto-tarefa');
-// const listaTarefa = document.querySelector('lista-tarefas');
-// const lista = listAdd.appendChild('li');
-// lista.className = 'lista'
-// lista.innerText = textoTarefa.value;
-// listAdd.appendChild(lista);
-// text.value = '';
-
-
+function limparConcluido() {
+    let listas = document.getElementsByTagName('li');
+    for (let index = listas.length - 1; index >= 0; index -= 1) {
+        if (listas[index].classList.contains('completed')) {
+            listOrd.removeChild(listas[index]);
+        }           
+    }    
+}
+botaoLimparConcluido.addEventListener('click', limparConcluido);
