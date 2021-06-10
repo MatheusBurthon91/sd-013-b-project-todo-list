@@ -1,7 +1,11 @@
 /* header */
-#criar-tarefa{
-    position: relative;
-    width: 35px;
-    font-size: 11px;
-    margin-left: 5px;
+#criar-tarefa {
+  position: relative;
+  width: 35px;
+  font-size: 11px;
+  margin-left: 5px;
+}
+
+.li-style {
+  margin: 5px;
 }

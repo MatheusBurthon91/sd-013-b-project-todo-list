@@ -37,11 +37,24 @@ taskButton.innerText = 'Add';
 main.appendChild(taskButton);
 
 // ao clicar no botão, cria-se um novo item à lista
+// Ao clicar em um item da lista, alterna seu backgroundColor para 'rgb(128,128,128)'
+function changeBackgroundColor(event) {
+  if(event.target.style.backgroundColor !== 'rgb(128, 128, 128)'){
+  event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+  }
+  else {
+    event.target.style.backgroundColor = 'white';
+  }
+}
+
 function addTask() {
   const taskItem = document.createElement('li');
+  taskItem.className = 'li-style';
   taskItem.innerText = input.value;
   ol.appendChild(taskItem);
   input.value = '';
+  ol.addEventListener('click', changeBackgroundColor);
 }
-
 taskButton.addEventListener('click', addTask);
+
+
