@@ -30,14 +30,16 @@ div1.appendChild(nameInput);
 
 //Cria uma lista ordenada de tarefas
 var divList = document.createElement('div');
+divList.id = 'div-list';
 main.appendChild(divList);
 var oList = document.createElement('ol');
 oList.id = 'lista-tarefas';
 divList.appendChild(oList);
 
 
-//Cria um input com o id="texto-tarefa" onde o usuário poderá digitar o nome do item que deseja adicionar à lista
+//Cria um input com id="criar-tarefa" e, ao clicar nesse botão, um novo item deverá ser criado ao final da lista e o texto do input deve ser limpo
 var nameButton= document.createElement('button');
+nameButton.innerText = 'Criar tarefa';
 nameButton.id = 'criar-tarefa';
 div1.appendChild(nameButton);
 
@@ -53,6 +55,7 @@ nameButton.onclick = function (){
   oList.appendChild(li);
   nameInput.value = '';
   }
+  
 }
 
 
@@ -86,4 +89,49 @@ function completedTask(){
  }
   event.target.classList.toggle('completed');
   false;
+}
+
+
+//Cria botão com id="apaga-tudo" que quando clicado deve apagar todos os itens da lista
+let eraseButton = document.createElement('button');
+eraseButton.id = 'apaga-tudo';
+eraseButton.innerText = 'Apagar Lista';
+div1.appendChild(eraseButton);
+
+eraseButton.onclick = function(){
+  let lis = document.querySelectorAll('li');
+  for (let index = 0; index < lis.length; index +=1){
+    lis[index].remove();
+  }
+}
+
+
+//Cria botão com id="remover-finalizados" que quando clicado remove **somente** os elementos finalizados da sua lista
+let eraseCompletedsButton = document.createElement('button');
+eraseCompletedsButton.id = 'remover-finalizados';
+eraseCompletedsButton.innerText = 'Apagar Itens Finalizados';
+div1.appendChild(eraseCompletedsButton);
+
+eraseCompletedsButton.onclick = function(){
+  let lis = document.querySelectorAll('.completed');
+  for (let index = 0; index < lis.length; index +=1){
+    lis[index].remove();
+  }
+}
+
+//Adicione um botão com id="salvar-tarefas" que salve o conteúdo da lista. Se você fechar e reabrir a página, a lista deve continuar no estado em que estava
+let saveList = document.createElement('button');
+saveList.id = 'salvar-tarefas';
+saveList.innerText = 'Salvar Lista';
+div1.appendChild(saveList);
+
+saveList.onclick = function(){
+  let lis = document.getElementById('lista-tarefas');
+  let lista = localStorage.setItem('lista', lis.innerHTML);
+  console.log(lis.innerHTML);
+}
+
+window.onload = function(){
+  let storageList = localStorage.getItem('lista');
+  oList.innerHTML = storageList;
 }
