@@ -25,3 +25,20 @@ h1 {
 .completed {
   text-decoration: line-through solid black;
 }
+
+.button-container button {
+  border: 1px solid black;
+  border-radius: 10px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 4px;
+  margin: 4px;
+}
+
+.remover-concluidos {
+  background-color: orange;
+}
+
+.limpar-lista {
+  background-color: red;
+}

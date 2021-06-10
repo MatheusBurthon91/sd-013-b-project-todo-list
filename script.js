@@ -43,7 +43,22 @@ function clear() {
 
 const resetButton = document.createElement('button');
 resetButton.id = 'apaga-tudo';
-resetButton.innerHTML = 'Apagar';
+resetButton.innerHTML = 'Limpar lista';
+resetButton.className = 'limpar-lista';
 resetButton.addEventListener('click', clear);
 const btncontainer = document.querySelector('.button-container');
 btncontainer.appendChild(resetButton);
+
+function remove() {
+  const getCompleted = document.querySelectorAll('.completed');
+  for (let index = 0; index < getCompleted.length; index += 1) {
+    getCompleted[index].remove();
+  }
+}
+
+const removeButton = document.createElement('button');
+removeButton.id = 'remover-finalizados';
+removeButton.innerHTML = 'Remover concluídos';
+removeButton.className = 'remover-concluidos';
+removeButton.addEventListener('click', remove);
+btncontainer.appendChild(removeButton);
