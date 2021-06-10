@@ -1,3 +1,20 @@
+function changeColor (event) {
+  const list = document.getElementsByTagName('li');
+  for (let index = 0; index < list.length; index += 1) {
+    if (list[index].classList.contains('selected')) {
+      list[index].classList.remove('selected');
+    }
+    event.target.classList.add('selected');
+  }
+}
+
+function completeTask(event) {
+  const getLi = document.getElementsByTagName('li');
+  for (let index = 0; index < getLi.length; index += 1) {
+  }
+  event.target.classList.toggle('completed');
+}
+
 function createTask() {
   const button = document.getElementById('criar-tarefa');
   const input = document.getElementById('texto-tarefa');
@@ -19,20 +36,14 @@ function createTask() {
 
 createTask();
 
-function changeColor (event) {
-  const list = document.getElementsByTagName('li');
-  for (let index = 0; index < list.length; index += 1) {
-    if (list[index].classList.contains('selected')) {
-      list[index].classList.remove('selected');
-    }
-    event.target.classList.add('selected');
-  }
+function clear() {
+  const getOl = document.getElementById('lista-tarefas');
+  getOl.innerHTML = '';
 }
 
-function completeTask(event) {
-  const getLi = document.getElementsByTagName('li');
-  for (let index = 0; index < getLi.length; index += 1) {
-  }
-  event.target.classList.toggle('completed');
- }
- 
+const resetButton = document.createElement('button');
+resetButton.id = "apaga-tudo";
+resetButton.innerHTML = "Apagar";
+resetButton.addEventListener('click', clear);
+const btncontainer = document.querySelector('.button-container')
+btncontainer.appendChild(resetButton);
