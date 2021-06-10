@@ -18,14 +18,27 @@ function setColor(event) {
   const clickColor = event.target;
   const listPaint = document.getElementsByClassName('paint');
   if (clickColor.classList.contains('paint')) {
-
+    // não irá fazer nada
   } else if (listPaint.length === 0) {
     clickColor.classList.add('paint');
-  }
-    else {
+  } else {
     listPaint[0].classList.remove('paint');
     clickColor.classList.add('paint');
-    }
+  }
 }
 
 list.addEventListener('click', setColor);
+
+const li = document.getElementsByTagName('li');
+
+function setDobleClick(event) {
+  const clickDB = event.target;
+  
+    if (clickDB.classList.contains('completed')) {
+      clickDB.classList.remove('completed');
+    } else
+      clickDB.classList.add('completed');
+  }
+
+
+list.addEventListener('dblclick', setDobleClick);
