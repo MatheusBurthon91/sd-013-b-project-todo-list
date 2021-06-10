@@ -14,7 +14,7 @@ function criarInput() {
     let input = document.createElement('input');
     let idDoInput = 'texto-tarefa';
 
-    input.innerText = 'digite aqui o item.'
+    input.placeholder = 'digite aqui o item.';
     input.id = idDoInput;
     lugarDoInput.appendChild(input);
 }
@@ -29,3 +29,30 @@ function criarLista() {
     pegarLista.appendChild(listaOrdenada);
 }
 criarLista();
+
+function criarButao() {
+    let butao = document.createElement('button');
+    let idDobotao = 'criar-tarefa';
+    let resgateinput = document.getElementById('lugar-do-input');
+    
+    butao.id = idDobotao;
+    butao.innerText = 'adionar';
+    resgateinput.appendChild(butao);
+}
+criarButao();
+
+/*No campo de input será digitado o texto de uma tarefa qualquer e, em seguida, 
+clicar-se-á no botão de criar tarefa. Será verificado que, após o clique, 
+o texto digitado aparece na lista e desaparece do input.*/
+let button = document.getElementById('criar-tarefa');
+button.addEventListener('click', criarTextoNaLista)
+
+function criarTextoNaLista() {
+    let input = document.getElementById('texto-tarefa');
+    let elementoDaLista = document.createElement('li');
+    let lista = document.getElementById('lista-tarefas');
+
+    elementoDaLista.innerText = input.value;
+    lista.appendChild(elementoDaLista);
+    input.value = "";
+}
