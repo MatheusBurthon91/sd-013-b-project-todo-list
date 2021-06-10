@@ -1,0 +1,11 @@
+.tarefaSelecionada {
+    background-color: rgb(128, 128, 128)   
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+#lista-tarefas {
+    max-width: 350px;
+}

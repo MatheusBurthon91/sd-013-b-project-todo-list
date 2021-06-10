@@ -1,11 +1,12 @@
 let listAdd = document.querySelector('#criar-tarefa');
-
+// variavel recebe ação
+const listOrd = document.getElementById('lista-tarefas');
+// variavel recebe o elemente ol.
+const botaoLimpar = document.getElementById('apaga-tudo');
 
 function AdicionaLista() {
     const createLine = document.createElement('li');
     // variavel recebe a função de criar lista.
-    const listOrd = document.querySelector('#lista-tarefas');
-    // variavel recebe o elemente ol.
     const textItem = document.querySelector('#texto-tarefa');
     // variavel recebe o texto escrito no input.
     createLine.innerText = textItem.value;
@@ -19,13 +20,44 @@ function AdicionaLista() {
 listAdd.addEventListener('click', AdicionaLista);
 // chamando a função de criação de lista após o CLICK no botão 'adicionar tarefa'.
 
-function changeColor() {
-    let linhaCriada = document.getElementsByTagName('li');
-    linhaCriada.style.backgroundColor = rgb(128,128,128);
+function changeColor(event) {
+    const Select = document.getElementsByClassName('tarefaSelecionada');
+    const targetEvent = event.target;
+    if (Select.length === 1) {
+        Select[0].classList.remove('tarefaSelecionada')   
+    }
+    targetEvent.classList.add('tarefaSelecionada')
+
 }
+//função para selecionar tarefa e trocar o fundo
+listOrd.addEventListener('click', changeColor);
 
-linhaCriada.addEventListener('click', changeColor);
+function tarefaCompleta(event) {
+    const targetCompleted = event.target;
+    
+    if (targetCompleted.classList.contains('completed')) {
+        targetCompleted.classList.remove('completed');
+    } else {
+        targetCompleted.classList.add('completed');
+    }
+}
+//função para riscar tarefas completas.
+listOrd.addEventListener('dblclick', tarefaCompleta)
 
 
-// dblclick = dois clicks do mouse
+function apagarTarefas() {
+    listOrd.innerHTML = '';
+}
+//função para apagar tudo.
+botaoLimpar.addEventListener('click', apagarTarefas);
+
+
+// const textoTarefa = document.querySelector('#texto-tarefa');
+// const listaTarefa = document.querySelector('lista-tarefas');
+// const lista = listAdd.appendChild('li');
+// lista.className = 'lista'
+// lista.innerText = textoTarefa.value;
+// listAdd.appendChild(lista);
+// text.value = '';
+
 
