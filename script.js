@@ -13,14 +13,14 @@ button.addEventListener('click', Makelist)
 
 function changeColor(event) {
   remove()
-  event.target.classList.add('selected')
+  event.target.classList.add('select')
 }
 list.addEventListener('click', changeColor)
 
 function remove() {
-  let removeClass = document.querySelectorAll('.selected')[0]
+  let removeClass = document.querySelectorAll('.select')[0]
   if (removeClass) {
-    removeClass.classList.remove('selected')
+    removeClass.classList.remove('select')
   }
 }
 
