@@ -38,8 +38,9 @@ main.appendChild(taskButton);
 
 // ao clicar no botão, cria-se um novo item à lista
 // Ao clicar em um item da lista, alterna seu backgroundColor para 'rgb(128,128,128)'
+
 function changeBackgroundColor(event) {
-  const liSelected = document.querySelectorAll('li');
+  const liSelected = document.querySelectorAll('li');  
   for (let index = 0; index < liSelected.length; index += 1) {
   liSelected[index].classList.remove('li-style');  
   }
@@ -54,8 +55,16 @@ function addTask() {
 }
   input.value = '';
   taskItem.addEventListener('click', changeBackgroundColor);
-  
+  taskItem.addEventListener('dblclick', taskCompleted);
 }
 taskButton.addEventListener('click', addTask);
 
+// Requisito 9 - Ao clicar duas vezes no item, caso não esteja riscado, riscar, caso esteja, 'desriscar'
 
+function taskCompleted(event) {
+  if (event.target.classList.contains('completed')) {
+    event.target.classList.remove('completed');
+  } else {
+    event.target.classList.add('completed');
+  }
+}
