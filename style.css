@@ -1,13 +1,8 @@
-#criar-tarefa {
+/* #criar-tarefa {
   position: absolute;
-  background-color: rgb(91 , 89 , 214);
-  border-radius: 10px;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding: 4px;
-  left: 200px;
-  top: 110px;
-}
+  top: 105px;
+  left: 330px;
+} */
 
 p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -35,10 +30,23 @@ h1 {
   margin: 4px;
 }
 
-.remover-concluidos {
-  background-color: orange;
+.box {
+  border-radius: 10px;
+  position: absolute;
+  padding: 30px;
+  top: 200px;
+  right: 200px;
+  left: 100px;
+  background-color: white;
+  margin-left: 0px auto;
+  margin-right: 0px auto;
 }
 
-.limpar-lista {
-  background-color: red;
+body {
+  background-color: lightslategray;
+}
+
+ol {
+  margin-top: 10px;
+  line-height: 20px;
 }

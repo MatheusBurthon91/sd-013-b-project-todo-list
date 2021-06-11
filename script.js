@@ -44,7 +44,7 @@ function clear() {
 const resetButton = document.createElement('button');
 resetButton.id = 'apaga-tudo';
 resetButton.innerHTML = 'Limpar lista';
-resetButton.className = 'limpar-lista';
+resetButton.className = 'btn btn-danger btn-sm';
 resetButton.addEventListener('click', clear);
 const btncontainer = document.querySelector('.button-container');
 btncontainer.appendChild(resetButton);
@@ -60,5 +60,14 @@ const removeButton = document.createElement('button');
 removeButton.id = 'remover-finalizados';
 removeButton.innerHTML = 'Remover concluídos';
 removeButton.className = 'remover-concluidos';
+removeButton.className = 'remover-concluidos btn btn-warning btn-sm';
 removeButton.addEventListener('click', remove);
 btncontainer.appendChild(removeButton);
+
+// Adicione um botão com id="salvar-tarefas" que salve o conteúdo da lista. Se você fechar e reabrir a página, a lista deve continuar no estado em que estava.
+
+let saveButton = document.createElement('button');
+saveButton.id = 'salvar-tarefas';
+saveButton.innerHTML = 'Salvar';
+saveButton.className = 'btn btn-primary btn-sm'
+btncontainer.appendChild(saveButton);

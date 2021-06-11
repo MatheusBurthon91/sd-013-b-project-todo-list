@@ -2,25 +2,35 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
     <title>To do List</title>
 </head>
 <body>
-    <header>
-        <h1>Minha Lista de Tarefas</h1>
-        <p id = 'funcionamento'>Clique duas vezes em um item para marcá-lo como completo</p>
-    </header>
-
-    <input type="text" id = 'texto-tarefa' placeholder='Digite sua tarefa aqui' autofocus>
-
-    <ol id = 'lista-tarefas'></ol>
-    
-    <button id = 'criar-tarefa'>Adicionar</button>
-    
-    <div class = 'button-container'>
-
+    <div class = 'box'>
+        <div>
+            <header>
+                <h1>Minha Lista de Tarefas</h1>
+                <p id = 'funcionamento'>Clique duas vezes em um item para marcá-lo como completo</p>
+            </header>
+        </div>
+        
+        <hr>
+        
+        <div class = 'container input-group'>
+            <input type="text" id = 'texto-tarefa' placeholder='Digite sua tarefa aqui' autofocus>
+            <button id = 'criar-tarefa' class="btn btn-success btn-sm">Adicionar</button>
+        </div>
+        
+        <div class="container">
+            <ol id = 'lista-tarefas'></ol>
+        </div>
+        
+        <div class='button-container container'></div>
+        
     </div>
-    <script src="script.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>
