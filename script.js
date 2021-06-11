@@ -1,55 +1,30 @@
-const list = document.querySelector('#lista-tarefas');
-const addTask = document.querySelector('#criar-tarefa');
-const inputTask = document.getElementById('texto-tarefa');
-let listItem;
+let list = document.querySelector('#lista-tarefas')
+let input = document.querySelector('#texto-tarefa')
+let button = document.querySelector('#criar-tarefa')
 
-function listMaker(){
-    const inputText = inputTask.value;
-    listItem = document.createElement('li');
-    listItem.classList.add('task')
-    listItem.innerText = inputText
-    taskList.appendChild(listItem)
-    inputTask.value = '';
+function Makelist() {
+  let valor = input.value
+  let li = document.createElement('li')
+  li.innerHTML = valor
+  list.appendChild(li)
+  input.value = ''
+}
+button.addEventListener('click', Makelist)
+
+function changeColor(event) {
+  remove()
+  event.target.classList.add('select')
+}
+lista.addEventListener('click', changeColor)
+
+function remove() {
+  let removeClass = document.querySelectorAll('.select')[0]
+  if (removeClass) {
+    removeClass.classList.remove('select')
+  }
 }
 
-taskButton.addEventListener('click', listMaker)
-
-function selectedItem(event) {
-    const liArray = document.getElementsByTagName('li');
-    for (let index = 0; index < liArray.length; index += 1) {
-        if (event.target.classList.contains('task')) {
-            if (liArray[index].classList.contains('selected')) {
-                liArray[index].classList.remove('selected')
-            }
-            event.target.classList.add('selected')
-        }
-    }
-    event.target.classList.add('selected')
+function riscar(event) {
+  event.target.classList.toggle('completed')
 }
-taskList.addEventListener('click', selectedItem);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function createTask() {
-//     const addLine = document.createElement('li')
-//   addLine.innerText(text);
-//   list.appendChild(addLine);
-//   document.getElementById('texto-tarefa').value = ' ';
-// }
-
-// addTask.addEventListener('click', createTask)
+lista.addEventListener('dblclick', riscar)
