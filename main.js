@@ -68,3 +68,17 @@ function taskCompleted(event) {
     event.target.classList.add('completed');
   }
 }
+
+// Requisito 10 - Inserir um botão "apaga-tudo"
+// criar button
+let clearButton = document.createElement('button');
+clearButton.id = "apaga-tudo";
+clearButton.innerText = 'Limpar';
+body.appendChild(clearButton);
+
+function clearAllButton() {
+const list = document.querySelector('#lista-tarefas');
+list.innerHTML = '';
+}
+
+clearButton.addEventListener('click', clearAllButton);
