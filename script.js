@@ -25,7 +25,7 @@ function mudarBG (li) {
 function mudarCompleted (la) {
   la.addEventListener('dblclick', (event) => {
     const changeComplete = event.target;
-    if (changeComplete.className === 'completed'){
+    if (changeComplete.classList.contains('completed')){
       event.target.classList.remove('completed');
     }else {
       event.target.classList.add('completed');
