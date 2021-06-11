@@ -39,6 +39,10 @@ main.appendChild(taskButton);
 // ao clicar no botão, cria-se um novo item à lista
 // Ao clicar em um item da lista, alterna seu backgroundColor para 'rgb(128,128,128)'
 function changeBackgroundColor(event) {
+  const liSelected = document.querySelectorAll('li');
+  for (let index = 0; index < liSelected.length; index += 1) {
+  liSelected[index].classList.remove('li-style');  
+  }
   event.target.classList.add('li-style');
 }
 
