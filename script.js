@@ -45,14 +45,50 @@ criarButao();
 clicar-se-á no botão de criar tarefa. Será verificado que, após o clique, 
 o texto digitado aparece na lista e desaparece do input.*/
 let button = document.getElementById('criar-tarefa');
-button.addEventListener('click', criarTextoNaLista)
+button.addEventListener('click', criarTextoNaLista);
 
 function criarTextoNaLista() {
     let input = document.getElementById('texto-tarefa');
-    let elementoDaLista = document.createElement('li');
+    let elementoDaLista = document.createElement('li');// aqui é uma <li></li> vazia.
     let lista = document.getElementById('lista-tarefas');
-
-    elementoDaLista.innerText = input.value;
+    elementoDaLista.innerText = input.value;// é o valor que está dentro do input
+    elementoDaLista.addEventListener('click', function(){//adiciona o evento na lista
+        let elementoComClasseCinza = document.querySelector('.cinza');
+        elementoDaLista.className = 'cinza';
+        if(elementoComClasseCinza !== null) {
+            elementoComClasseCinza.classList.remove('cinza');
+    }
+});
+    // aqui é uma <li>value</li>
     lista.appendChild(elementoDaLista);
+    //<ol id='lista-tarefas'><li>value</li></ol>
     input.value = "";
 }
+
+
+
+
+
+
+
+// let itensDaLista = document.querySelector('.selected');
+// function clicarNoItem(event) {
+//     event.target.classList('selected');
+//     clicarNoItem.classList.remove('selected');
+// }
+// itensDaLista.addEventListener('click', clicarNoItem);
+// let lista = document.getElementById('lista-tarefas');
+// lista.className = 'selected';
+// lista.addEventListener('click', function(event){
+// event.target.classList.add('selected');
+// });
+
+//let itensDaLista = document.getElementsByTagName('li');
+//itensDaLista.addEventListener('click', function())
+/*function mudarOBackgroundDoItem() {
+
+}
+itemDaLista.style.backgroundColor = 'rgb(128,128,128)';*/
+
+//sempre utilize o typeof pra saber o que ele quer retornar
+//ficar de olho no console do site
